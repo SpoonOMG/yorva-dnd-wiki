@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wireframe — Выбор заклинаний (предложение)</title>
+<style>
+  :root{ --c-bg:#0f1115; --c-bg-elev:#1a1d24; --c-bg-raised:#232733; --c-border:#2a2f3a; --c-border-strong:#3a4152; --c-text:#e6e8ee; --c-muted:#9aa3b2; --c-faint:#6b7280; --c-accent:#7c5cfb; --c-accent-fg:#fff; --c-success:#22c55e; --c-danger:#ef4444; --radius-md:10px; --radius-lg:12px; --radius-full:999px; }
+  *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--c-bg);color:var(--c-text);line-height:1.4}
+  .page{max-width:980px;margin:32px auto;padding:0 20px}
+  h1{font-size:20px;margin:0 0 6px} .sub{font-size:13px;color:var(--c-muted);margin:0 0 20px}
+  .legend{font-size:12px;color:var(--c-faint);border:1px dashed var(--c-border);padding:8px 10px;border-radius:8px;margin-bottom:20px}
+  .wire{border:1px solid var(--c-border-strong);border-radius:16px;overflow:hidden;background:var(--c-bg-elev);box-shadow:0 8px 30px rgba(0,0,0,.35)}
+  .wire-header{padding:14px 16px;border-bottom:1px solid var(--c-border);display:flex;align-items:center;gap:12px}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--c-accent)} .steps{flex:1;height:1px;background:var(--c-border);max-width:60px;margin:0 8px}
+  .wizard-grid{display:grid;grid-template-columns:1fr 200px;gap:16px;padding:16px}
+  .filter-bar{border:1px solid var(--c-border);background:var(--c-bg-raised);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px}
+  .search{flex:1;min-width:180px;padding:8px 10px;border-radius:8px;border:1px solid var(--c-border-strong);background:var(--c-bg-elev);color:var(--c-text);font-size:13px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .chip{padding:6px 12px;border-radius:999px;border:1px solid var(--c-border-strong);background:var(--c-bg-elev);color:var(--c-muted);font-size:12px;cursor:pointer}
+  .chip.active{background:var(--c-accent);color:var(--c-accent-fg);border-color:var(--c-accent);font-weight:700}
+  .chip small{opacity:.8;margin-left:4px}
+  .tabs{display:flex;gap:8px;border-bottom:1px solid var(--c-border);padding-bottom:0}
+  .tab{padding:8px 12px;font-size:13px;font-weight:600;border-radius:8px 8px 0 0;border:1px solid transparent;cursor:pointer;color:var(--c-muted)}
+  .tab.active{background:var(--c-bg-raised);border-color:var(--c-border) var(--c-border) transparent;color:var(--c-text)}
+  .tab .cnt{font-size:11px;color:var(--c-faint);margin-left:6px}
+  .progress{height:4px;background:var(--c-border);border-radius:999px;overflow:hidden;margin:8px 0 4px}
+  .progress>i{display:block;height:100%;background:var(--c-accent);border-radius:999px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:10px}
+  .card{border:1px solid var(--c-border);background:var(--c-bg-raised);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px;position:relative;cursor:pointer;transition:.15s}
+  .card:hover{border-color:var(--c-border-strong);transform:translateY(-1px)}
+  .card.selected{border-color:var(--c-accent);background:color-mix(in srgb,var(--c-accent) 10%,var(--c-bg-raised));box-shadow:0 0 0 2px color-mix(in srgb,var(--c-accent) 18%, transparent)}
+  .card.disabled{opacity:.55;cursor:not-allowed}
+  .card-head{display:flex;align-items:center;gap:6px}
+  .icon{font-size:18px} .pill{font-size:11px;padding:2px 7px;border-radius:999px;background:var(--c-bg-elev);border:1px solid var(--c-border);color:var(--c-muted)}
+  .pill.cat{margin-left:auto;font-size:11px;padding:2px 7px;border-radius:999px}
+  .pill.ur{border-color:#f59e0b55;background:#f59e0b1a;color:#fbbf24}
+  .pill.heal{border-color:#22c55e55;background:#22c55e1a;color:#86efac}
+  .pill.ctrl{border-color:#38bdf855;background:#38bdf81a;color:#7dd3fc}
+  .pill.sup{border-color:#a78bfa55;background:#a78bfa1a;color:#c4b5fd}
+  .check{margin-left:auto;width:26px;height:26px;border-radius:999px;display:grid;place-items:center;border:1px solid var(--c-border-strong);background:var(--c-bg-elev);font-weight:700}
+  .card.selected .check{background:var(--c-accent);color:var(--c-accent-fg);border-color:var(--c-accent)}
+  .name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .badges{display:flex;gap:6px;flex-wrap:wrap}
+  .badge{font-size:11px;padding:3px 7px;border-radius:999px;border:1px solid var(--c-border);background:var(--c-bg-elev);color:var(--c-muted)}
+  .info{position:absolute;top:8px;right:44px;width:22px;height:22px;border-radius:999px;border:1px solid var(--c-border);display:grid;place-items:center;font-size:12px;color:var(--c-muted);background:var(--c-bg-elev)}
+  .meta{font-size:11px;color:var(--c-faint);display:flex;gap:6px;margin-top:auto}
+  .empty{padding:14px;border:1px dashed var(--c-border);border-radius:10px;color:var(--c-faint);font-size:12px;text-align:center}
+  .modal{margin-top:16px;border:1px solid var(--c-border-strong);border-radius:12px;padding:12px;background:var(--c-bg-raised)}
+  .modal h3{margin:0 0 8px;font-size:14px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .box{padding:10px;border:1px solid var(--c-border);border-radius:8px;background:var(--c-bg-elev);font-size:12px}
+  .box b{font-size:11px;color:var(--c-faint);display:block;margin-bottom:4px}
+  @media(max-width:720px){ .wizard-grid{grid-template-columns:1fr} .grid{grid-template-columns:1fr 1fr} }
+  @media(max-width:480px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Wireframe — Окно заклинаний (предложение)</h1>
+  <p class="sub">Шаг 1 мастера → выбор заклинаний для кастера. 3 таба вместо 3 гридов, фильтры с счётчиками, клик по карточке = выбор.</p>
+  <div class="legend">Легенда: <b>✨ клик-карточка = выбрать</b> · <b>i = инфо-модалка</b> · чипы показывают кол-во до фильтра · прогресс-бар = лимит · disabled с тултипом «Лимит 3/3»</div>
+
+  <div class="wire">
+    <div class="wire-header"><span class="dot"></span> <b style="font-size:13px">Создание персонажа — Шаг 1</b> <span class="steps"></span> <span class="dot" style="background:var(--c-border-strong)"></span> <span style="margin-left:auto;font-size:11px;color:var(--c-faint)">Мир: «Пепельные берега» · sci-fi</span></div>
+    <div class="wizard-grid">
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+        <!-- Filters -->
+        <div class="filter-bar">
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <input class="search" placeholder="Поиск по названию или эффекту…  (напр. огонь, щит)" value="" />
+            <button class="chip" style="padding:8px 12px">✕ Сброс</button>
+          </div>
+          <div class="chips">
+            <button class="chip active">Все <small>(24)</small></button>
+            <button class="chip">Урон <small>(9)</small></button>
+            <button class="chip">Лечение <small>(2)</small></button>
+            <button class="chip">Контроль <small>(6)</small></button>
+            <button class="chip">Поддержка <small>(7)</small></button>
+            <span style="margin-left:auto;font-size:11px;color:var(--c-faint)">Показано 24 · поиск 300ms debounce</span>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <div>
+          <div class="tabs">
+            <div class="tab active">Заговоры <span class="cnt">2/3</span></div>
+            <div class="tab">Книга <span class="cnt">4/6</span></div>
+            <div class="tab">Подготовленные <span class="cnt">2/4</span></div>
+          </div>
+          <div class="progress"><i style="width:66%"></i></div>
+          <div style="font-size:11px;color:var(--c-muted)">Выбрано 2 из 3 заговоров · клик по карточке — выбрать, i — подробнее</div>
+
+          <div class="grid">
+            <div class="card selected">
+              <div class="card-head"><span class="icon">🔥</span> <span class="pill">Заговор</span> <span class="pill cat ur">Урон</span> <span class="info">i</span> <span class="check">✓</span></div>
+              <div class="name">Огненный луч</div>
+              <div class="badges"><span class="badge">1d10 🔥</span> <span class="badge">60 фт</span> <span class="badge">Действие</span></div>
+              <div class="meta"><span>Воплощение</span> <span>·</span> <span>без конц.</span></div>
+            </div>
+            <div class="card selected">
+              <div class="card-head"><span class="icon">✨</span> <span class="pill">Заговор</span> <span class="pill cat sup">Поддержка</span> <span class="info">i</span> <span class="check">✓</span></div>
+              <div class="name">Свет</div>
+              <div class="badges"><span class="badge">Касание</span> <span class="badge">Действие</span></div>
+              <div class="meta"><span>Воплощение</span></div>
+            </div>
+            <div class="card">
+              <div class="card-head"><span class="icon">❄️</span> <span class="pill">Заговор</span> <span class="pill cat ur">Урон</span> <span class="info">i</span> <span class="check">+</span></div>
+              <div class="name">Леденящее прикосновение</div>
+              <div class="badges"><span class="badge">1d8 ❄️</span> <span class="badge">Касание</span> <span class="badge">Нежить·помеха</span></div>
+              <div class="meta"><span>Некромантия</span></div>
+            </div>
+            <div class="card disabled" title="Лимит 3/3">
+              <div class="card-head"><span class="icon">⚡</span> <span class="pill">Заговор</span> <span class="pill cat ur">Урон</span> <span class="info">i</span> <span class="check">+</span></div>
+              <div class="name">Электрошок</div>
+              <div class="badges"><span class="badge">1d8 ⚡</span> <span class="badge">Касание</span></div>
+              <div class="meta"><span>Воплощение</span></div>
+            </div>
+          </div>
+
+          <div class="empty" style="margin-top:10px">Фильтр «Лечение» скрыл 4 заговора · <u style="cursor:pointer">показать все</u> · <u>сбросить фильтр</u></div>
+
+          <div class="modal">
+            <h3>🔥 Огненный луч — модалка (i)</h3>
+            <p style="font-size:12px;color:var(--c-muted);margin:0 0 10px">Вы бросаете луч огня. При попадании цель получает урон огнём. На 5 ур. +1 луч.</p>
+            <div class="cols">
+              <div class="box"><b>Дистанция</b> 60 фт</div>
+              <div class="box"><b>Накладывание</b> Действие</div>
+              <div class="box"><b>Компоненты</b> В, С</div>
+              <div class="box"><b>Длительность</b> Мгновенно</div>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+              <button class="chip">Закрыть</button>
+              <button class="chip active">Убрать ✓</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="border:1px solid var(--c-border);border-radius:12px;padding:12px;background:var(--c-bg-raised);height:fit-content;position:sticky;top:16px">
+        <div style="font-size:11px;color:var(--c-faint)">Портрет</div>
+        <div style="height:120px;display:grid;place-items:center;border:1px dashed var(--c-border);border-radius:10px;margin:8px 0;color:var(--c-faint)">🧙</div>
+        <div style="font-size:12px;color:var(--c-muted)">HP 10 + Тел · d8 · Ур.1</div>
+        <div style="font-size:11px;color:var(--c-faint);margin-top:8px">Подсказка: клик по карточке выбирает, i — детали + эффект. Фильтры не сбрасывают выбор.</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:12px;color:var(--c-muted);margin:14px 0 0">Мобила ≤560px: грид 1 колонка, табы скроллятся горизонтально, фильтр-бар остаётся sticky. `Empty` состояние — с кнопкой сброса, а не «Нет заклинаний».</p>
+</div>
+</body>
+</html>

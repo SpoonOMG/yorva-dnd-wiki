@@ -1,0 +1,2324 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/design/chat-ux-deep-dive/">
+      
+      
+        <link rel="prev" href="../character-creation-ux/">
+      
+      
+        <link rel="next" href="../landing-brief/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Чат - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docsdesignchat-ux-deep-divemd" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Чат
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Почему это критично
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Аудит текущей реализации
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Референсы жанра — что берём / что не подходит
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Принципы дизайна чата
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ux-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. UX-флоу
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. UX-флоу">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Обычный ход
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Ошибка отправки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Ожидание ответа (многофазный индикатор)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Предложенные варианты действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Драматизация броска кубика
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Обратная связь панели персонажа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 Длинная сессия и навигация
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-ux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 Восстановление сессии (блокер, не чисто UX)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Компоненты и состояния
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Мобильная адаптация (принципы, не в приоритете реализации)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Открытые вопросы (нужно решение до реализации соответствующей части)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Открытые вопросы (нужно решение до реализации соответствующей части)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Структурированные варианты действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 История сессии (persistence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Применение жанровой темы
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Что осознанно не делаем сейчас
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Приоритизация для реализации (предложение)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Критерий готовности итерации 1
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Почему это критично
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Аудит текущей реализации
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Референсы жанра — что берём / что не подходит
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Принципы дизайна чата
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ux-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. UX-флоу
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. UX-флоу">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Обычный ход
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Ошибка отправки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Ожидание ответа (многофазный индикатор)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Предложенные варианты действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Драматизация броска кубика
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Обратная связь панели персонажа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7 Длинная сессия и навигация
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58-ux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8 Восстановление сессии (блокер, не чисто UX)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Компоненты и состояния
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Мобильная адаптация (принципы, не в приоритете реализации)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Открытые вопросы (нужно решение до реализации соответствующей части)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Открытые вопросы (нужно решение до реализации соответствующей части)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Структурированные варианты действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 История сессии (persistence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Применение жанровой темы
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Что осознанно не делаем сейчас
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Приоритизация для реализации (предложение)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Критерий готовности итерации 1
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="docsdesignchat-ux-deep-divemd">docs/design/chat-ux-deep-dive.md — Глубокая проработка игрового чата<a class="headerlink" href="#docsdesignchat-ux-deep-divemd" title="Permanent link">&para;</a></h1>
+<p>Автор: Visual/UX Designer. Реализация — Frontend Engineer. Открытые вопросы к
+LLM Engineer/System Analyst/Backend — раздел 8.</p>
+<h2 id="1">1. Почему это критично<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>Игровой чат (<code>/sessions/[id]</code>) — единственное место, где пользователь проводит
+основное время. North-star-метрика продукта — «% дошедших до 10-го хода»
+(<code>strategy-docs/product-strategy.md</code> §8). Если чат не держит внимание на
+ходах 1–10, retention не спасут ни лендинг, ни конструктор миров. Это делает
+чат зоной наивысшего приоритета для UX-инвестиций.</p>
+<p>Аудитория — «геймер из BG3» (25–40, прошёл AAA RPG, ждёт глубины выбора и
+последствий, устал от «ИИ-обёртки без души»). Для него текстовый интерфейс
+должен ощущаться как <strong>инструмент погружения</strong>, а не форма обратной связи.</p>
+<h2 id="2">2. Аудит текущей реализации<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>Разобрал <code>components/game/{TurnList,ActionInput,MechanicsStrip,CharacterPanel}.tsx</code>
+и <code>app/(app)/sessions/[id]/page.tsx</code>. Резюме, что есть:</p>
+<ul>
+<li>Пузырь действия игрока (справа) + пузырь нарратива ГМ (слева), под нарративом —
+  плоская строка чипов механик (кубики, урон, статусы, XP).</li>
+<li>Ввод — textarea + кнопка, Enter отправляет.</li>
+<li>Панель персонажа — статичная карточка справа (HP-бар, статы, инвентарь).</li>
+<li>Ожидание ответа — курсивный текст «Гейммастер размышляет…».</li>
+<li>Ошибка — красная плашка под списком, действие пользователя просто исчезает.</li>
+</ul>
+<p>Найденные проблемы (это и есть предмет проработки):</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Проблема</th>
+<th>Почему это важно</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>История ходов живёт только в React state, нет <code>GET</code> эндпоинта для восстановления сессии (<code>api-specification/openapi.yaml</code> — только <code>POST .../turns</code>)</td>
+<td>Обновление страницы = потеря всего чата. Это ломает доверие мгновенно — критичнее любого визуального дефекта</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Нарратив ГМ — «стена текста» без внутренней структуры (нет разделения речи NPC / описания сцены / внутреннего голоса)</td>
+<td><code>gm-principles.md</code> требует «конкретику через реплики NPC» — но UI не помогает это прочитать быстрее</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Открытые варианты действий (<code>gm-principles.md</code> п.4, ≥2-3 варианта) сейчас растворены в прозе — нет способа быстро выбрать один</td>
+<td>Каждый ход требует придумать и напечатать текст с нуля — повышает трение именно там, где чаще всего происходит отток (первые 10 ходов)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Бросок кубика показывается как готовый факт (чип с результатом), без ощущения броска</td>
+<td>Кубики — это культовый D&amp;D-момент; мгновенная плоская цифра не даёт AAA-ощущения</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Индикатор ожидания — статичный текст, нет намёка на то, «что» делает ГМ (думает / бросает кубик / применяет эффект)</td>
+<td>Ответ LLM занимает заметное время; пустое ожидание ощущается медленнее, чем структурированное</td>
+</tr>
+<tr>
+<td>6</td>
+<td>При ошибке действие пользователя пропадает, нужно перепечатывать текст</td>
+<td>Наказывает пользователя за сетевую ошибку — не его вина</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Механики (урон, статус, XP) не связаны визуально с панелью персонажа — HP-бар просто перерисовывается</td>
+<td>Разрывает причинно-следственную связь «получил урон → полоска упала» — теряется ощущение последствий действия (ключевой принцип ГМ: «провал двигает сюжет»)</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>data-genre</code> токены заведены в <code>globals.css</code> (fantasy/scifi/cyberpunk/horror), но не применяются ни в одном компоненте</td>
+<td>Жанро-реактивная тема (ключевое отличие продукта, <code>visual-concept.md</code> §4) физически не работает — весь чат сейчас нейтрального цвета независимо от жанра мира</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Нет разделения длинной истории на сцены/главы, нет якорей для быстрой навигации назад</td>
+<td>При 10+ ходах (ровно наша целевая глубина) список превращается в бесконечный неструктурированный поток</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>aria-live</code> отсутствует, нет объявления нового сообщения для screen reader</td>
+<td>Базовая доступность чата не соблюдена</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3">3. Референсы жанра — что берём / что не подходит<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Референс</th>
+<th>Что взять</th>
+<th>Что не подходит нашей аудитории</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AI Dungeon</strong></td>
+<td>Минимализм чата, быстрый цикл действие→ответ</td>
+<td>Нет структурной механики, нет ощущения «правил» — наша аудитория (BG3) ждёт систему, не только текст</td>
+</tr>
+<tr>
+<td><strong>NovelAI</strong></td>
+<td>Чистая типографика для длинного чтения</td>
+<td>Полностью убирает игровую механику из UI — нам механика (кубики, HP) — часть AAA-ощущения, её нельзя прятать</td>
+</tr>
+<tr>
+<td><strong>D&amp;D Beyond</strong></td>
+<td>Визуальная иерархия карточки персонажа, читаемость статов</td>
+<td>Это лист персонажа не для реал-тайм чата — плотность верна для справочника, избыточна построчно в бою</td>
+</tr>
+<tr>
+<td><strong>Talespire</strong></td>
+<td>3D-подсветка результата броска (drama reveal)</td>
+<td>3D-движок вне бюджета (<code>visual-concept.md</code> — «нет живого 3D»); переносим саму <strong>идею драматизации броска</strong>, не технологию</td>
+</tr>
+</tbody>
+</table>
+<p>Вывод: наша ниша — «AI Dungeon по темпу, D&amp;D Beyond по ощущению системы,
+без 3D-Talespire, но с его чувством драмы броска через 2D-анимацию».</p>
+<h2 id="4">4. Принципы дизайна чата<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Действие игрока — всегда видимый, весомый момент.</strong> Не теряется в потоке,
+   не исчезает при ошибке.</li>
+<li><strong>Механика — прозрачна, но не громче нарратива.</strong> Кубики и эффекты
+   поддерживают историю, не конкурируют с ней за внимание.</li>
+<li><strong>Каждый ход — ощутимое последствие.</strong> Изменение HP/статуса в панели
+   персонажа визуально связано с ходом, который его вызвал (не «само
+   изменилось»).</li>
+<li><strong>Трение выбора — минимальное.</strong> Если ГМ предлагает варианты — игрок может
+   выбрать в один клик, а не печатать с нуля.</li>
+<li><strong>Ожидание — информативно, не пусто.</strong> Разные фазы ответа (бросок → эффект →
+   текст) видимы, а не одна и та же надпись 3–8 секунд.</li>
+<li><strong>Жанр мира виден в интерфейсе, не только в тексте.</strong> Токены <code>data-genre</code>
+   должны реально красить чат.</li>
+<li><strong>Долгая сессия читается, а не скроллится вслепую.</strong> Визуальные якоря на
+   значимых точках (новый квест, крупный бой, левел-ап).</li>
+</ol>
+<h2 id="5-ux-">5. UX-флоу<a class="headerlink" href="#5-ux-" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 Обычный ход<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Игрок печатает действие или кликает по предложенному варианту (см. 5.4).</li>
+<li>Пузырь действия сразу закрепляется в потоке (оптимистичный рендер, не ждём
+   ответа сервера, чтобы показать).</li>
+<li>Начинается фаза ожидания (5.3).</li>
+<li>Приходит ответ: сначала обновляется панель персонажа (с анимацией дельты),
+   затем разворачивается нарратив, затем — чипы механик под ним (лёгкая
+   последовательная анимация появления, не одновременная вспышка).</li>
+</ol>
+<h3 id="52">5.2 Ошибка отправки<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Действие игрока остаётся в потоке с индикатором «не отправлено» (визуально
+  притушенное + иконка предупреждения), а не исчезает.</li>
+<li>Под ним — компактная плашка «Не удалось получить ответ» с кнопкой
+  <strong>Повторить</strong> (переотправляет тот же текст без перепечатывания) и
+  <strong>Отменить</strong> (убирает неотправленное действие).</li>
+</ul>
+<h3 id="53">5.3 Ожидание ответа (многофазный индикатор)<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
+<p>Вместо одной надписи — короткая последовательность статусов (меняются по
+таймеру, не привязаны к реальным серверным событиям, т.к. это один LLM-вызов):
+<code>Гейммастер обдумывает ситуацию…</code> → (через ~2с) <code>Читает историю мира…</code> →
+(через ~4с) <code>Формулирует ответ…</code>. Если бросок кубика точно будет (эвристика:
+не для каждого хода) — после ответа сервера сначала проигрывается анимация
+броска (5.5), потом появляется текст.</p>
+<h3 id="54">5.4 Предложенные варианты действий<a class="headerlink" href="#54" title="Permanent link">&para;</a></h3>
+<p>Под последним ответом ГМ — до 3 компактных кнопок-подсказок (если модель дала
+явные варианты) плюс инпут остаётся всегда доступным для свободного текста.
+Клик по подсказке подставляет текст в инпут (не отправляет мгновенно — игрок
+может подправить) либо отправляет сразу, в зависимости от решения в §8.1.
+<strong>Требует структурированных данных от LLM — открытый вопрос, см. §8.1.</strong></p>
+<h3 id="55">5.5 Драматизация броска кубика<a class="headerlink" href="#55" title="Permanent link">&para;</a></h3>
+<p>Чип кубика не появляется готовым числом. Короткая (400–600мс) анимация
+«вращения» значения (случайные цифры сменяются) → фиксация на финальном
+результате с лёгким акцентом (масштаб/цвет) при крите (natural 20/1).</p>
+<h3 id="56">5.6 Обратная связь панели персонажа<a class="headerlink" href="#56" title="Permanent link">&para;</a></h3>
+<p>При ходе, где меняется HP/статус/XP — соответствующий блок в <code>CharacterPanel</code>
+подсвечивается кратким цветным пульсом (красным при уроне, зелёным при
+лечении/XP) синхронно с появлением чипа механики в чате. Это единственная
+связь, которой сейчас physически не существует (проблема #7).</p>
+<h3 id="57">5.7 Длинная сессия и навигация<a class="headerlink" href="#57" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Каждые N ходов (или по триггеру: новый квест, левел-ап, крупный бой) —
+  тонкий визуальный разделитель-веха в потоке (не полноценная «глава», просто
+  лёгкая метка с кратким текстом события).</li>
+<li>Кнопка «Наверх/к началу сцены» появляется после скролла вниз на N экранов.</li>
+</ul>
+<h3 id="58-ux">5.8 Восстановление сессии (блокер, не чисто UX)<a class="headerlink" href="#58-ux" title="Permanent link">&para;</a></h3>
+<p>Без backend-эндпоинта истории это невозможно реализовать честно. UX-требование:
+при заходе на <code>/sessions/[id]</code> показывать скелетон загрузки истории, а не
+пустой чат. <strong>Зависит от backend, см. §8.2.</strong></p>
+<h2 id="6">6. Компоненты и состояния<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Компонент</th>
+<th>Состояния, которые нужно предусмотреть</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ActionBubble</code> (действие игрока)</td>
+<td>default / отправляется (приглушённая, спиннер) / не отправлено (предупреждение + повторить)</td>
+</tr>
+<tr>
+<td><code>NarrativeBubble</code></td>
+<td>default / появление (fade+slide, не мгновенно)</td>
+</tr>
+<tr>
+<td><code>SuggestedActionChip</code></td>
+<td>default / hover / active / disabled (во время ожидания ответа)</td>
+</tr>
+<tr>
+<td><code>MechanicsChip</code> (кубик)</td>
+<td>rolling (анимация) / resolved / crit-success / crit-fail</td>
+</tr>
+<tr>
+<td><code>ThinkingIndicator</code></td>
+<td>фаза 1/2/3 (текст меняется), без резких скачков layout</td>
+</tr>
+<tr>
+<td><code>CharacterPanel</code> — блок HP/статус/XP</td>
+<td>idle / pulse-damage / pulse-heal / pulse-xp</td>
+</tr>
+<tr>
+<td><code>SceneMarker</code> (веха)</td>
+<td>компактная, не кликабельная в MVP (без deep-linking)</td>
+</tr>
+<tr>
+<td><code>RetryBanner</code></td>
+<td>error / retrying (спиннер на кнопке)</td>
+</tr>
+</tbody>
+</table>
+<p>Все состояния должны использовать существующие семантические токены
+(<code>--c-danger</code>, <code>--c-success</code>, <code>--c-warning</code>, <code>--c-accent</code>) — не хардкодить hex,
+чтобы жанровая тема (после §8.3) автоматически подхватывалась.</p>
+<h2 id="7">7. Мобильная адаптация (принципы, не в приоритете реализации)<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Предложенные варианты (5.4) на мобильном — горизонтальный скролл чипов, не
+  перенос строк (экономия вертикального пространства чата).</li>
+<li>Многофазный индикатор ожидания (5.3) — та же логика, короче текст.</li>
+<li>Панель персонажа на мобильном уже уходит вниз (<code>column-reverse</code> в текущем
+  CSS) — сохраняем, но добавить свайп-переход между чатом/листом персонажа
+  вместо вечного вертикального стека — отдельная задача, не блокирует текущую.</li>
+</ul>
+<h2 id="8">8. Открытые вопросы (нужно решение до реализации соответствующей части)<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="81">8.1 Структурированные варианты действий<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
+<p>Чтобы показать кнопки-подсказки (5.4), нужны либо:
+- (a) LLM возвращает отдельное структурированное поле <code>suggestedActions:
+  string[]</code> в дополнение к прозе нарратива, либо
+- (b) фронтенд/бэкенд эвристически парсит варианты из текста (ненадёжно,
+  противоречит принципу "LLM для сюжета, код для структуры" в <code>rules.md</code>).</p>
+<p>Рекомендация: (a). Это меняет <code>TurnResponse</code> в OpenAPI-спеке и промпт ГМ —
+нужно подтверждение и передача LLM Engineer + System Analyst (по флоу ролей),
+не решаю это в одиночку как UX.</p>
+<h3 id="82-persistence">8.2 История сессии (persistence)<a class="headerlink" href="#82-persistence" title="Permanent link">&para;</a></h3>
+<p>Нужен <code>GET /api/v1/sessions/{sessionId}</code> или <code>GET .../turns</code>, отдающий
+сохранённые ходы. Судя по схеме БД, таблица <code>turns</code> уже существует
+(<code>0003-sessions.yaml</code>) — данные, вероятно, пишутся, просто не отдаются наружу.
+Это backend-задача независимо от визуальной проработки, но она блокирует
+честную реализацию п.5.8 (скелетон загрузки вместо восстановления состояния
+означал бы обман пользователя, если данных всё равно нет).</p>
+<h3 id="83">8.3 Применение жанровой темы<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
+<p>Токены <code>data-genre</code> есть, но ничто не выставляет атрибут на <code>&lt;main
+data-surface="game"&gt;</code>. Нужно: (1) где хранится жанр мира — поле в <code>World</code>? По
+<code>visual-concept.md</code> §5 это открытый вопрос к System Analyst; (2) определяется
+LLM при создании мира или на каждый заход. Без этого решения жанровая
+подсветка чата, упомянутая в принципах (§4.6), не может быть реализована —
+она будет просто «догадкой» на фронтенде без источника данных.</p>
+<h2 id="9">9. Что осознанно не делаем сейчас<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Голосовой ввод/вывод — не запрашивалось, не в стратегии.</li>
+<li>Полноценный rich-text/markdown-движок для нарратива — только точечное
+  визуальное разделение речи/описания (п.5.2 аудита), не общий движок
+  форматирования.</li>
+<li>Deep-linking на конкретный ход/сцену — избыточно до появления persistence
+  (§8.2).</li>
+<li>3D/WebGL-анимация броска — плоская 2D-анимация достаточна
+  (<code>visual-concept.md</code> — «нет живого 3D-движка»).</li>
+</ul>
+<h2 id="10">10. Приоритизация для реализации (предложение)<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<p>Из-за объёма предлагаю разбить на итерации, а не делать всё одним PR:</p>
+<ol>
+<li><strong>Итерация 1 (чистый фронтенд, без изменения API):</strong> многофазное ожидание
+   (5.3), сохранение неотправленного действия при ошибке + повтор (5.2),
+   анимация появления нарратива, драматизация броска (5.5) на основе уже
+   приходящих данных, пульс панели персонажа (5.6), <code>aria-live</code> для чата.</li>
+<li><strong>Итерация 2 (требует решения backend/API):</strong> восстановление истории сессии
+   (8.2).</li>
+<li><strong>Итерация 3 (требует решения LLM Engineer):</strong> структурированные
+   предложенные действия (8.1).</li>
+<li><strong>Итерация 4 (требует решения System Analyst):</strong> применение жанровой темы
+   (8.3).</li>
+</ol>
+<h2 id="11-1">11. Критерий готовности итерации 1<a class="headerlink" href="#11-1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Ошибка хода не уничтожает введённый текст, доступна кнопка «Повторить».</li>
+<li>Индикатор ожидания меняет текст минимум дважды за типичный цикл ответа.</li>
+<li>Бросок кубика показывает короткую анимацию перед финальным числом.</li>
+<li>При изменении HP/XP/статуса соответствующий блок <code>CharacterPanel</code> даёт
+  визуальный пульс синхронно с чипом механики.</li>
+<li>Новый нарратив анонсируется через <code>aria-live="polite"</code>.</li>
+<li><code>npm run build</code> проходит.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="../character-creation-ux/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Создание персонажа">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Создание персонажа
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../landing-brief/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Лендинг">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Лендинг
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
