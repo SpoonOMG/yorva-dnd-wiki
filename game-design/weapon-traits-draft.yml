@@ -1,0 +1,78 @@
+# Каталог штрафов оружия и оружейных свойств (weapon_traits).
+# Трейт применяется когда игрок атакует без явного оружия из каталога:
+# - два лёгких оружия / бой с двумя оружиями → offhand
+# - удар щитом → shield_bash
+# - бросок камня/ножа → thrown (метательное)
+# - выстрел без стрел → нет боезапаса (fumble-эффект)
+# - тяжёлое оружие (greatsword, heavy) → struggling (помеха при нехватке силы)
+
+weapon_traits:
+  - code: light
+    name_ru: Лёгкое
+    description: Лёгкое оружие — можно бить вторым (offhand) с бонусом и уменьшенным уроном.
+    attack_penalty: 0
+    damage_penalty: 2
+    offhand_allowed: true
+
+  - code: heavy
+    name_ru: Тяжёлое
+    description: Огромное оружие требует Силы; слабый персонаж атакует с помехой.
+    attack_penalty: 2
+    damage_penalty: 0
+    min_strength: 13
+
+  - code: finesse
+    name_ru: Фехтовальное
+    description: Атака использует лучшую из Силы/Ловкости.
+    attack_penalty: 0
+    damage_penalty: 0
+    use_best_attr: true
+
+  - code: thrown
+    name_ru: Метательное
+    description: Бросок использует Ловкость (или Силу для топора/камня) и не провоцирует за себя.
+    attack_penalty: 0
+    damage_penalty: 0
+    use_ranged: true
+
+  - code: two_handed
+    name_ru: Двуручное
+    description: Медленное, но мощное — урон выше, атака не может идти с offhand.
+    attack_penalty: 0
+    damage_penalty: 0
+    two_handed_only: true
+
+  - code: versatile
+    name_ru: Универсальное
+    description: Можно держать одной или двумя руками; двумя — урон больше.
+    attack_penalty: 0
+    damage_penalty: 0
+    versatile: true
+
+  - code: ammo
+    name_ru: Боезапас
+    description: Для выстрела нужны стрелы/болты/патроны; без них — осечка.
+    attack_penalty: 2
+    damage_penalty: 0
+    needs_ammo: true
+
+  - code: energy
+    name_ru: Энергетическое
+    description: Лазер/бластер — не требует патронов, но бьёт по энергощитам.
+    attack_penalty: 0
+    damage_penalty: 0
+    energy_damage: true
+
+  - code: burst
+    name_ru: Очередь
+    description: Автоматическая очередь — несколько пробитий одним залпом.
+    attack_penalty: 2
+    damage_penalty: 0
+    burst: true
+
+  - code: shield
+    name_ru: Щит
+    description: Щит — удар щитом (shield bash) с шансом сбить с ног.
+    attack_penalty: 0
+    damage_penalty: 0
+    shield_bash: true

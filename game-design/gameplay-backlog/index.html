@@ -1,0 +1,2683 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/game-design/gameplay-backlog/">
+      
+      
+        <link rel="prev" href="../../design/layout-navigation-brief/">
+      
+      
+        <link rel="next" href="../../journal/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Обзор - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Обзор
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сводная таблица
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Движок правил
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Движок правил">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-01 — Классификация действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-02-no-roll-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-02 — No-roll для не-действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-03-dcac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-03 — Полная формула броска и объявление DC/AC до броска
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-04-hpac-npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-04 — Модель противника: HP/AC, ход NPC, контратаки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-05 — Один ход = одно действие; последствия провала
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-06 — Прогресс цели и условия победы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-07 — Стоимость магии и «цена успеха»
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Нарратив ГМа (промпт / LLM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Нарратив ГМа (промпт / LLM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b-08-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-08 — Убрать варианты-подсказки ГМа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-09 — Порядок «бросок → результат → нарратив»
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-10 — Качество вывода: дубли, связность
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30082026-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сессия 30.08.2026 — «след кабана» (новые наблюдения, живой LLM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Сессия 30.08.2026 — «след кабана» (новые наблюдения, живой LLM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Новые дефекты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-20-critical-ability-checks-briefmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-20 — Иерархический каталог действий (critical, ability-checks-brief.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30082026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сопоставление с внешними рекомендациями (30.08.2026)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pro-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Порядок реализации (актуальный, после ревью pro-модели)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сопоставление со старыми ID (для истории)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-21b-30-2026-09-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Статус B-21…B-30 (аудит 2026-09-01)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сводная таблица
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Движок правил
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Движок правил">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-01 — Классификация действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-02-no-roll-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-02 — No-roll для не-действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-03-dcac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-03 — Полная формула броска и объявление DC/AC до броска
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-04-hpac-npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-04 — Модель противника: HP/AC, ход NPC, контратаки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-05 — Один ход = одно действие; последствия провала
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-06 — Прогресс цели и условия победы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-07 — Стоимость магии и «цена успеха»
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Нарратив ГМа (промпт / LLM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Нарратив ГМа (промпт / LLM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b-08-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-08 — Убрать варианты-подсказки ГМа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-09 — Порядок «бросок → результат → нарратив»
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-10 — Качество вывода: дубли, связность
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30082026-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сессия 30.08.2026 — «след кабана» (новые наблюдения, живой LLM)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Сессия 30.08.2026 — «след кабана» (новые наблюдения, живой LLM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Новые дефекты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-20-critical-ability-checks-briefmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B-20 — Иерархический каталог действий (critical, ability-checks-brief.md)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#30082026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сопоставление с внешними рекомендациями (30.08.2026)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pro-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Порядок реализации (актуальный, после ревью pro-модели)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сопоставление со старыми ID (для истории)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-21b-30-2026-09-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Статус B-21…B-30 (аудит 2026-09-01)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">Бэклог исправлений геймплея (единый)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>Статус: <strong>B-01…B-20 реализовано</strong> (devlog 30–34, миграции 0015/0016, CatalogService wired). Full wired каталог: <code>weapon→stat/dice</code>, <code>creature→hp/ac</code>, <code>skill→WIS</code> — проверено <code>иду по следу→survival_track WIS DC15</code>, <code>кабан→Кабан 12/11</code>.</p>
+<p>Источники:
+- анализ реальной сессии <code>726d72db-743c-4457-a367-03313a84bfae</code>;
+- собственный разбор движка (<code>TurnResolver</code>, <code>GameState</code>);
+- замечания второго ГМа (обозначены <code>GM2</code>).</p>
+<hr />
+<h2 id="_2">Сводная таблица<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Название</th>
+<th>Категория</th>
+<th>Severity</th>
+<th>Источник</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B-01</td>
+<td>Классификация действий (заклинание / суммон / проверка / без-броска)</td>
+<td>Движок</td>
+<td>high</td>
+<td>GP-1, GP-2, GM2</td>
+</tr>
+<tr>
+<td>B-02</td>
+<td>No-roll для не-действий</td>
+<td>Движок</td>
+<td>medium</td>
+<td>GP-3</td>
+</tr>
+<tr>
+<td>B-03</td>
+<td>Полная формула броска + объявление DC/AC до броска</td>
+<td>Движок</td>
+<td>high</td>
+<td>GP-5, GM2#3, GM2#4</td>
+</tr>
+<tr>
+<td>B-04</td>
+<td>Модель противника: HP/AC, ход NPC, контратаки</td>
+<td>Движок</td>
+<td>high</td>
+<td>GP-4, GP-5, GM2#5</td>
+</tr>
+<tr>
+<td>B-05</td>
+<td>Один ход = одно действие; последствия провала</td>
+<td>Движок</td>
+<td>high</td>
+<td>GM2#5, GP-4</td>
+</tr>
+<tr>
+<td>B-06</td>
+<td>Прогресс цели и условия победы</td>
+<td>Движок</td>
+<td>medium</td>
+<td>GP-8</td>
+</tr>
+<tr>
+<td>B-07</td>
+<td>Стоимость магии и «цена успеха»</td>
+<td>Движок/баланс</td>
+<td>medium</td>
+<td>GP-7, GM2#7</td>
+</tr>
+<tr>
+<td>B-08</td>
+<td>Убрать варианты-подсказки ГМа</td>
+<td>Нарратив</td>
+<td>high</td>
+<td>GM2#1</td>
+</tr>
+<tr>
+<td>B-09</td>
+<td>Порядок «бросок → результат → нарратив»</td>
+<td>Нарратив</td>
+<td>high</td>
+<td>GM2#2, GP-6</td>
+</tr>
+<tr>
+<td>B-10</td>
+<td>Качество вывода: дубли, связность</td>
+<td>Нарратив</td>
+<td>medium</td>
+<td>GM2#6</td>
+</tr>
+<tr>
+<td>B-11</td>
+<td>Ложный <code>no_roll</code> для выслеживания/восприятия/скрытности</td>
+<td>Движок</td>
+<td>high</td>
+<td>сессия кабана #1–3</td>
+</tr>
+<tr>
+<td>B-12</td>
+<td>Неверные модификаторы и AC игрока (в т.ч. лук по Силе)</td>
+<td>Движок</td>
+<td>critical</td>
+<td>сессия кабана #4–7, внешн. ГМ #1, #4</td>
+</tr>
+<tr>
+<td>B-13</td>
+<td>Десинхрон нарратива и механики (stub в боевых ходах)</td>
+<td>Нарратив/движок</td>
+<td>critical</td>
+<td>сессия кабана #4, #6, внешн. ГМ #3, #4</td>
+</tr>
+<tr>
+<td>B-14</td>
+<td>Неконсистентное имя/состояние врага</td>
+<td>Движок/нарратив</td>
+<td>medium</td>
+<td>сессия кабана #4–7</td>
+</tr>
+<tr>
+<td>B-15</td>
+<td>Мультиатака без цены и штрафа (+ два действия за ход)</td>
+<td>Баланс/движок</td>
+<td>medium</td>
+<td>сессия кабана #6–7, внешн. ГМ #7</td>
+</tr>
+<tr>
+<td>B-16</td>
+<td>Повтор одного действия без прогресса</td>
+<td>Движок</td>
+<td>low</td>
+<td>сессия кабана #4→5, #6→7</td>
+</tr>
+<tr>
+<td>B-17</td>
+<td>Отсутствие смерти при HP ≤ 0 (нет потери сознания/спасбросков)</td>
+<td>Движок</td>
+<td>critical</td>
+<td>внешн. ГМ #2</td>
+</tr>
+<tr>
+<td>B-18</td>
+<td>Урон без модификатора (игрок и враг — голый d6)</td>
+<td>Движок</td>
+<td>high</td>
+<td>внешн. ГМ #5</td>
+</tr>
+<tr>
+<td>B-19</td>
+<td>Нестрогий расчёт попадания <code>итог ≥ AC</code> (10 vs 10 засчитан как промах)</td>
+<td>Движок</td>
+<td>high</td>
+<td>внешн. ГМ #4</td>
+</tr>
+<tr>
+<td>B-20</td>
+<td>Иерархический каталог действий (категории→оружие→трейты, семейства заклинаний, эффекты) — замена regex</td>
+<td>Движок/баланс</td>
+<td>critical</td>
+<td><code>ability-checks-brief.md</code> (покрывает B-11/B-12/B-15/B-18/B-19)</td>
+</tr>
+<tr>
+<td>B-21</td>
+<td>XP за побеждённых врагов</td>
+<td>Прогрессия</td>
+<td>high</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-22</td>
+<td>Трата маны на заклинания/умения</td>
+<td>Ресурсы</td>
+<td>high</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-23</td>
+<td>Система статусов (frozen/stunned/paralyzed)</td>
+<td>Движок</td>
+<td>high</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-24</td>
+<td>Отслеживание HP игрока</td>
+<td>Движок</td>
+<td>high</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-25</td>
+<td>Убийство без проверки регистрирует enemyDefeated</td>
+<td>Движок</td>
+<td>high</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-26</td>
+<td>Мёртвые враги не воскресают</td>
+<td>Движок</td>
+<td>critical</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-27</td>
+<td>Действия с окружением как объект</td>
+<td>Движок</td>
+<td>medium</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-28</td>
+<td>Правильный атрибут для проверок восприятия</td>
+<td>Движок</td>
+<td>medium</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-29</td>
+<td>Единая семантика кубиков урона</td>
+<td>Движок</td>
+<td>low</td>
+<td>ревью ac9a7a09</td>
+</tr>
+<tr>
+<td>B-30</td>
+<td>Инвентарь/лут</td>
+<td>Движок</td>
+<td>medium</td>
+<td>ревью ac9a7a09</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">Движок правил<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="b-01">B-01 — Классификация действий<a class="headerlink" href="#b-01" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> high<br />
+<strong>Источник:</strong> GP-1, GP-2, GM2 (эпизоды «шарики → Сила», «невидимость → атака»)</p>
+<p><strong>Проблема:</strong>
+<code>TurnResolver</code> определяет тип действия по наивным regex-подстрокам. Примеры из сессии:
+- «создать заклинание невидимости» → матч <code>заклин</code> в <code>ATTACK_PATTERN</code> → атака по AC, «Промах».
+- «призрачные шарики, которые сильно…» → матч <code>сил</code> в <code>STRENGTH_PATTERN</code> → «Проверка: Сила 10» с модификатором −1.</p>
+<p><strong>Корень:</strong> <code>TurnResolver.kt:171</code> (<code>заклин</code> в атаке), <code>:174–175</code> (<code>сил</code> без границы слова).</p>
+<p><strong>Критерий:</strong>
+- Заклинания не попадают в <code>resolveAttack</code>; появляется отдельный <code>resolveSpell</code> с характеристикой заклинателя (Интеллект/Мудрость/Харизма) и своим DC.
+- Регулярки учитывают границы слов; физические характеристики не применяются к магии.
+- Суммон разрешается отдельно от атаки и от generic-броска.</p>
+<hr />
+<h3 id="b-02-no-roll-">B-02 — No-roll для не-действий<a class="headerlink" href="#b-02-no-roll-" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> medium<br />
+<strong>Источник:</strong> GP-3</p>
+<p><strong>Проблема:</strong>
+Описание сцены, бег без опасности и суммон кидают бессмысленный <code>d20</code> через
+<code>resolveGeneric</code> (в сессии: <code>15</code>, <code>18</code>, <code>10</code>), который не влияет на нарратив и
+создаёт шум.</p>
+<p><strong>Критерий:</strong>
+- Категория <code>no-roll</code> для чистого описания/безопасного перемещения.
+- Суммон (голем/оружие) разрешается по своей механике с учётом стоимости (см. B-07).</p>
+<hr />
+<h3 id="b-03-dcac">B-03 — Полная формула броска и объявление DC/AC до броска<a class="headerlink" href="#b-03-dcac" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> high<br />
+<strong>Источник:</strong> GP-5, GM2#3, GM2#4</p>
+<p><strong>Проблема:</strong>
+- В карточке атаки не показан бонус игрока: «Атака: AC 10, d20 = 12, итого 12».
+- DC/AC цели не объявляется до броска.
+- <code>AC</code> захардкожен как <code>10</code> для всех целей (<code>TurnResolver.kt:42</code>).</p>
+<p><strong>Критерий:</strong>
+- Всегда выводить полную формулу: <code>d20 + модификатор = итог</code>.
+- Объявлять <code>Сложность N</code> (проверка) или <code>AC N</code> (атака) до броска.
+- <code>AC</code> берётся из профиля противника, а не из константы.</p>
+<hr />
+<h3 id="b-04-hpac-npc">B-04 — Модель противника: HP/AC, ход NPC, контратаки<a class="headerlink" href="#b-04-hpac-npc" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> high<br />
+<strong>Источник:</strong> GP-4, GP-5, GM2#5</p>
+<p><strong>Проблема:</strong>
+Враги существуют только в нарративе LLM. Волк и нага ни разу не бросили
+собственную атаку, не нанесли урон, не имеют HP/AC. Игрок не рискует.</p>
+<p><strong>Критерий:</strong>
+- Сущность <code>Combatant</code> (<code>hp</code>, <code>maxHp</code>, <code>ac</code>, <code>attackBonus</code>, <code>damageDie</code>).
+- После хода игрока, если противник жив и в бою, детерминированный ход NPC:
+  бросок атаки, урон/эффекты по персонажу.
+- В UI отображается состояние врага (HP, AC).</p>
+<hr />
+<h3 id="b-05">B-05 — Один ход = одно действие; последствия провала<a class="headerlink" href="#b-05" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> high<br />
+<strong>Источник:</strong> GM2#5, GP-4</p>
+<p><strong>Проблема:</strong>
+Провал невидимости не дал последствий — игрок в том же ходу переключился на
+атаку шариками. Одно действие «добивается» за счёт другого броска.</p>
+<p><strong>Критерий:</strong>
+- Один ход игрока = одно действие.
+- При провале ГМ описывает последствия (например, нага атакует с преимуществом)
+  и спрашивает, как игрок реагирует, а не даёт бесплатное повторное действие.</p>
+<hr />
+<h3 id="b-06">B-06 — Прогресс цели и условия победы<a class="headerlink" href="#b-06" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> medium<br />
+<strong>Источник:</strong> GP-8</p>
+<p><strong>Проблема:</strong>
+Игрок не видит, сколько урона нанесено врагу и сколько осталось. Нет чёткого
+итога боя (смерть врага / победа).</p>
+<p><strong>Критерий:</strong>
+- После урона показывать оставшееся HP цели (<code>Кровавый волк 4/15 HP</code>).
+- При смерти врага движок фиксирует <code>enemyDefeated</code> и передаёт в нарратив.</p>
+<hr />
+<h3 id="b-07">B-07 — Стоимость магии и «цена успеха»<a class="headerlink" href="#b-07" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> medium<br />
+<strong>Источник:</strong> GP-7, GM2#7</p>
+<p><strong>Проблема:</strong>
+Призыватель бесплатно призывает голема, секиру, орбы, невидимость. Успехи почти
+не имеют осложнений — игра превращается в «walkthrough».</p>
+<p><strong>Критерий:</strong>
+- Ресурс магии (мана/слоты/перезарядка); <code>resolveSpell</code>/<code>resolveSummon</code> списывает стоимость.
+- Нехватка ресурса отклоняет действие до броска.
+- Возможна «цена успеха» (голем истощён, вспышка привлекает врагов) — через движок
+  или правила нарратива (см. B-08).</p>
+<hr />
+<h2 id="llm">Нарратив ГМа (промпт / LLM)<a class="headerlink" href="#llm" title="Permanent link">&para;</a></h2>
+<h3 id="b-08-">B-08 — Убрать варианты-подсказки ГМа<a class="headerlink" href="#b-08-" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> high<br />
+<strong>Источник:</strong> GM2#1 (главная проблема)</p>
+<p><strong>Проблема:</strong>
+Каждый раунд ГМ перечисляет 3 варианта: «можете приказать голему… Также можете
+отступить… Или же можете осмотреться…». Игрок превращается в выбиральщика меню.</p>
+<p><strong>Критерий:</strong>
+- Запрет на перечисление вариантов в системном промпте.
+- Вместо вариантов — чистое описание ситуации + вопрос «Что делаешь?».
+- Косвенная помощь — через детали окружения (треснувший свод, тенистый проход),
+  без явного списка действий.</p>
+<hr />
+<h3 id="b-09">B-09 — Порядок «бросок → результат → нарратив»<a class="headerlink" href="#b-09" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> high<br />
+<strong>Источник:</strong> GM2#2, GP-6</p>
+<p><strong>Проблема:</strong>
+Описание успеха/провала идёт до броска: в эпизоде с невидимостью ГМ пишет
+«заклинание распадается» до показа «Промах». Если бы бросок был успешным,
+нарратив стал бы ложным.</p>
+<p><strong>Критерий (жёсткая последовательность):</strong>
+1. Игрок озвучивает действие.
+2. ГМ объявляет проверку (кость, характеристика, DC).
+3. ГМ генерирует/показывает бросок.
+4. Вердикт «Успех»/«Провал» отдельной строкой.
+5. Только после этого — нарратив, соответствующий результату.</p>
+<hr />
+<h3 id="b-10">B-10 — Качество вывода: дубли, связность<a class="headerlink" href="#b-10" title="Permanent link">&para;</a></h3>
+<p><strong>Severity:</strong> medium<br />
+<strong>Источник:</strong> GM2#6</p>
+<p><strong>Проблема:</strong>
+В вводной сцене дважды написано «Стив только попал… оглянувшись…» — артефакт
+генерации.</p>
+<p><strong>Критерий:</strong>
+- Правила в промпте против повторов/самокопирования.
+- Пост-обработка/проверка связности первого нарратива (проверка повторов фраз).</p>
+<hr />
+<h2 id="30082026-llm">Сессия 30.08.2026 — «след кабана» (новые наблюдения, живой LLM)<a class="headerlink" href="#30082026-llm" title="Permanent link">&para;</a></h2>
+<p>Диалог (сокращённо, механика перед нарративом):</p>
+<ol>
+<li><code>Иду по следу кабана.</code> → <em>Без проверки</em> → generic «шаг вперёд / вход в пещеру»</li>
+<li><code>Новострить слух — нет ли звуков из пещеры</code> → <em>Без проверки</em> → generic «ветер доносит шёпот»</li>
+<li><code>войти в пещеру. Очень тихо</code> → <em>Без проверки</em> → generic «земля дрожит»</li>
+<li><code>Быстро кинуть ловушку. Если кабан — приручу, если враг — атакую из лука</code> → <code>d20 19+0=19 Попадание урон 3 / враг 6+2=8 Промах</code> → <strong>нарратив-поляна/алтарь (несвязан с ловушкой)</strong></li>
+<li><em>повтор</em> той же ловушки → <code>15+0=15 Попадание урон 2 / враг 18+2=20 Успех урон 6</code> → нарратив уже корректный: «иглобрюх, капкан, алтарь пульсирует, сталактит, расщелина»</li>
+<li><code>Положить на тетиву три стрелы…</code> → <code>10+0=10 Промах / враг 17+2=19 Успех урон 2</code> → <strong>нарратив-stub «шаг вперёд» (десинхрон)</strong></li>
+<li><em>повтор</em> трёх стрел → <code>11+0=11 Промах / враг 8+2=10 Успех урон 2</code> → нарратив корректный, но с отравлением/паникой</li>
+</ol>
+<h3 id="_4">Новые дефекты<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Название</th>
+<th>Категория</th>
+<th>Severity</th>
+<th>Связь</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B-11</td>
+<td>Ложный <code>no_roll</code> для выслеживания/восприятия/скрытности</td>
+<td>Движок</td>
+<td>high</td>
+<td>B-01/B-02</td>
+</tr>
+<tr>
+<td>B-12</td>
+<td>Неверные модификаторы и AC игрока</td>
+<td>Движок</td>
+<td>high</td>
+<td>B-03</td>
+</tr>
+<tr>
+<td>B-13</td>
+<td>Десинхрон нарратива и механики (stub в боевых ходах)</td>
+<td>Нарратив/движок</td>
+<td>critical</td>
+<td>B-09, B-04</td>
+</tr>
+<tr>
+<td>B-14</td>
+<td>Неконсистентное имя/состояние врага</td>
+<td>Движок/нарратив</td>
+<td>medium</td>
+<td>B-04/B-06</td>
+</tr>
+<tr>
+<td>B-15</td>
+<td>Мультиатака без цены и штрафа</td>
+<td>Баланс</td>
+<td>medium</td>
+<td>B-07</td>
+</tr>
+<tr>
+<td>B-16</td>
+<td>Повтор одного действия без прогресса/кулдауна</td>
+<td>Движок</td>
+<td>low</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>B-11 — Ложный no_roll (исправлен по ревью).</strong> <code>NO_ROLL_PATTERN</code> <code>иду</code> → «Иду по следу» = <code>no_roll</code>, хотя это <code>Выживание WIS</code>. <code>слух</code> vs <code>слуш</code> → «Навострить слух» тоже <code>no_roll</code>. <strong>Фикс:</strong> DC = <code>skill_checks.dc_medium</code> (15) если нет маркеров <code>легко/трудно</code> (через <code>detectDc</code>), не диапазон 10–15; <code>no_roll</code> — только чистые глаголы без исследовательского интента: <code>жду, говорю, отвечаю, отступаю, описываю</code> (убрать <code>осматриваю</code> — это Расследование INT); <code>CatalogClassifier</code> получает <code>no_roll</code> как отдельный тип в закрытом списке (иначе <code>жду</code> → оружие); ключевые слова навыка: <code>выследи|идти по следу|тропа кабана → Выживание WIS</code>, <code>след зверя|ягоды|растения → Природа INT</code> (развели Природу vs Выживание по длине токена).</p>
+<p><strong>B-12 — Модификаторы/AC + оружие→характеристика (исправлен).</strong> <code>Сила 12 +0</code> вместо <code>+1</code>, <code>AC 10</code> вместо <code>10+dexMod</code>, лук <code>strMod</code> в <code>TurnResolver.kt:72</code>. <strong>Фикс:</strong> <code>proficiency = 2</code> (SRD ур.1) — фиксируем в <code>rules.md</code>/<code>GameState</code> (MVP: без prof — house rule, но явно прописать; атака = <code>d20+statMod+prof</code>, урон = <code>dice+statMod</code> без prof); <code>energy psionic→int</code> — убрать из <code>weapon_categories.attack_stat_default</code>, правило: если в тексте <code>псионик|сила разума</code> → <code>int</code>, иначе <code>dex</code> (явный токен); <code>throwable: дротик</code> → <code>is_finesse=true, attack=dex</code> (SRD finesse/thrown); <code>SessionService.create()</code> вычисляет <code>ac = 10 + dexMod</code> (сейчас default 10, <code>GameState.kt:174</code>).</p>
+<p><strong>B-13 — Десинхрон (исправлен).</strong> Ход 4/6 — механика <code>ловушка урон 3</code> → нарратив «поляна», 6 — stub. <strong>Корень уточнён:</strong> LLM получает <code>TurnContext.mechanics</code> как плоскую <code>description</code> строку (<code>SessionService.kt:159</code>), а не <code>enemy/hp/active_effects</code> — проверять нечего. <strong>Фикс (тестируемо):</strong> <code>TurnContext</code> расширить на <code>enemy{name,hp,maxHp}, active_effects[]</code>; тест сборки промпта: при <code>enemy!=null</code> в промпте обязателен запрет «не выдумывай локацию»; golden-sample на зафиксированном ответе LLM; B-13 считается закрытым только когда <code>enemy.name</code> пробрасывается из движка, а не из нарратива.</p>
+<p><strong>B-14 — Имя врага (исправлен).</strong> <code>противник</code> (defaultEnemy) → <code>иглобрюх</code> из LLM. <strong>Фикс:</strong> источник имени — seed <code>creatures(key, name_ru, hp, ac, attackBonus, damageBonus, damageDice, keywords)</code> в составе B-20 (волк/кабан/иглобрюх/нага); движок спавнит по <code>keywords</code> из действия (<code>кабан</code>→<code>boar</code>), фиксирует <code>enemy.name</code> и не даёт LLM переименовать; критерий: <code>enemy.name</code> из движка = <code>enemy.name</code> в карточке и промпте (<code>Имя HP/max</code>).</p>
+<p><strong>B-15 — Три стрелы (исправлен).</strong> Без цены. <strong>Фикс:</strong> <code>special_attacks(key=multi_shot_3, dc=16, keywords="три стрелы\w*, залпом\w*")</code> приоритет <code>special_action &gt; weapon</code> (иначе <code>стрел\w*</code> съест как обычный лук); <code>StateChange.ConsumeItem("Стрелы",3)</code> + проверка <code>inventory</code> (аналог <code>manaInsufficient</code>); помеха — реализовать как <code>advantage/disadvantage: 2×d20, берём меньший</code> (ввести <code>RollMode</code>), ранен <code>hp&lt;max/2</code> или <code>Отравлен</code> → <code>disadvantage</code>.</p>
+<p><strong>B-16 — Повтор (исправлен).</strong> <strong>Фикс:</strong> единый предикат — если <code>active_effects</code> уже содержит <code>set_trap</code> или текст идентичен одному из 3 последних ходов → <code>no_roll</code> «ловушка уже стоит / ты уже целился тремя стрелами» (не «либо/либо»), тест на <code>active_effects</code> и историю.</p>
+<p><strong>B-17 — Смерть при 0 HP (исправлен, снято противоречие).</strong> <code>hp in 0..maxHp</code> клипается в 0, критерий <code>hp==0</code> (не <code>≤0</code>). <strong>Фикс:</strong> <code>hp==0 → status=Без сознания</code>; обычный режим — не «стабилизация DC10» автоматом, а спасброски каждый ход <code>d20: 10+ успех, &lt;10 провал, 1=2 провала, 20=1HP</code> (SRD) — 3 успеха → <code>Стабилен (0 HP, без сознания, броски стоп)</code>, 3 провала → <code>isDead=true</code>; хардкор <code>permadeath=true</code> → сразу <code>isDead</code>. <code>processTurn</code> при <code>hp==0</code> отклоняет обычное действие и принимает только <code>death_save</code> (или <code>Medicine</code> от союзника — вне MVP). <code>applyEnemyTurn</code> проверяет итоговое <code>hp</code> после <code>Damage</code> и не бьёт лежачего. Длительность <code>Без сознания</code> — <code>indefinite</code> до стабилизации.</p>
+<p><strong>B-18 — Урон без модификатора (исправлен, SRD).</strong> <strong>Фикс:</strong> урон <strong>без prof</strong> (SRD: prof только к атаке/проверке, <code>brief §2.2</code> верно, B-18 текст поправлен); ввести <code>Enemy.damageBonus</code> отдельно от <code>attackBonus</code> (волк <code>+5 to hit, 2d6+3</code> — не путать); крит — <strong>двойной бросок кубов</strong> <code>roll(2,sides)+mod</code> (а не <code>*2</code>), <code>TurnResolver.kt:78</code> поправить; консистентность <code>longbow 1d8</code> (бриф) vs B-18 пример <code>d6</code> — использовать <code>1d8</code>.</p>
+<p><strong>B-19 — <code>итог ≥ AC</code>.</strong> Код уже <code>total&gt;=ac</code> (<code>TurnResolver.kt:76,305</code>), nat20/1 — ок. <strong>Фикс:</strong> закрыть component-тестом <code>10 vs AC10 = хит</code> + проверка карточки <code>AC</code> до броска (B-03), исторический лог — артефакт.</p>
+<h3 id="b-20-critical-ability-checks-briefmd">B-20 — Иерархический каталог действий (critical, <code>ability-checks-brief.md</code>)<a class="headerlink" href="#b-20-critical-ability-checks-briefmd" title="Permanent link">&para;</a></h3>
+<p><strong>Проблема:</strong> <code>TurnResolver</code> классифицирует regex (<code>ATTACK_PATTERN</code>, <code>NO_ROLL_PATTERN</code>) — ломается на <code>лук→Сила</code> (B-12), <code>иду→no_roll</code> (B-11), бесконечных заклинаниях/бластерах/катанах. Попытка перечислить всё в коде — не масштабируется (sci-fi/ориентал/энергетика) и снова «стрельнёт».</p>
+<p><strong>Решение:</strong> трехуровневый справочник в БД (<code>0015-action-catalog</code>):
+- <code>weapon_categories</code> (7, исчерпывающие: <code>kinetic_melee/ranged/energy/oriental/throwable/finesse/unarmed</code> + <code>is_finesse/clamp</code>)
+- <code>weapons</code> (13 seed, наследуют <code>attack_stat/damage_dice</code> из категории; <code>keywords \w*</code> с приоритетом длинного токена)
+- <code>weapon_traits</code> (6: <code>flaming/frost/poisoned/cursed</code> — <code>extra_dice + status + save + duration</code>, clamp <code>≤2 трейта, ≤+2d6</code> включая DoT)
+- <code>spell_families</code> (4 семейства <code>direct_damage/save_debuff/control/summon_heal</code> — любое новое заклинание маппится LLM-классификатором в семейство)
+- <code>effect_templates</code> (<code>duration_type rounds/indefinite/condition</code>, <code>tick_dice</code>, <code>save</code>, <code>max_stacks=1</code>)
+- <code>skill_checks</code> (18 навыков с <code>dc_easy/medium/hard</code> и <code>keywords</code>)</p>
+<p>Матчинг: <code>exact keywords</code> → категория; miss → <code>CatalogClassifier</code> (LLM, temp 0, только <code>category_key</code> из списка) → <code>default_weapon 1d4+str</code> (никогда <code>null</code>). Логика «одно действие за ход» (B-05/B-15) и «ловушка уже стоит» (B-16) — через <code>active_effects</code>.</p>
+<p><strong>Критерий:</strong> <code>TurnResolver.resolve()</code> без regex (кроме токенизации <code>\b\w*</code>), все <code>attack_stat/dc/skill</code> — из БД; <code>default</code> фолбэк гарантирует расчёт; <code>unknown_action</code> логируется.</p>
+<h3 id="30082026">Сопоставление с внешними рекомендациями (30.08.2026)<a class="headerlink" href="#30082026" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Внешн. ГМ</th>
+<th>Суть</th>
+<th>Наш ID</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#1 Лук по Силе 12</td>
+<td>дальнобойное → Ловкость, а не Сила</td>
+<td><strong>B-12</strong> (расширен)</td>
+<td>открыто — <code>TurnResolver.kt:72</code> всегда <code>strMod</code>, нужен <code>weapon→attribute</code> (лук/арбалет → dexMod)</td>
+</tr>
+<tr>
+<td>#2 HP в минус, но жив</td>
+<td><code>−2 HP</code> → должен упасть, спасброски</td>
+<td><strong>B-17</strong> новый</td>
+<td>открыто</td>
+</tr>
+<tr>
+<td>#3 Дублирование текста</td>
+<td>«шаг вперёд» в середине боя</td>
+<td><strong>B-13 / B-10</strong></td>
+<td>открыто (уже B-13)</td>
+</tr>
+<tr>
+<td>#4 <code>10 vs AC10</code> = промах, нет штрафов за ранение</td>
+<td>непоследовательный <code>≥</code></td>
+<td><strong>B-19</strong> новый + <strong>B-13</strong></td>
+<td>открыто</td>
+</tr>
+<tr>
+<td>#5 Урон без модификатора</td>
+<td><code>d6=6</code> без <code>+2</code></td>
+<td><strong>B-18</strong> новый</td>
+<td>открыто</td>
+</tr>
+<tr>
+<td>#6 Нет проверок навыков</td>
+<td>слух/след/ловушка без броска</td>
+<td><strong>B-11</strong></td>
+<td>открыто (уже B-11)</td>
+</tr>
+<tr>
+<td>#7 Два действия за ход</td>
+<td>ловушка + выстрел одновременно</td>
+<td><strong>B-05 + B-15</strong></td>
+<td>открыто (уже B-05/B-15)</td>
+</tr>
+</tbody>
+</table>
+<p>Итог: из 7 внешних пунктов 3 уже покрыты (B-11, B-13, B-05), 4 требуют расширения/новых задач: <strong>B-12 расширить (оружие→хар-ка), B-17 смерть, B-18 урон+мод, B-19 строгое <code>≥</code></strong>. Приоритет: <code>B-17</code> и <code>B-12</code> — critical (ломают выживание/баланс лучника), затем <code>B-18/B-19</code>.</p>
+<h2 id="_5">Зависимости<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>B-01 (классификация) ──┐
+B-02 (no-roll) ────────┤
+                       └─→ B-03 (формула броска + DC/AC)
+B-04 (модель врага) ─────→ B-05 (ход NPC, последствия) → B-06 (прогресс цели)
+B-07 (стоимость магии) ── независимо, после B-01
+B-08 (варианты) ───────── независимо (промпт)
+B-09 (порядок) ────────── после B-03 (требует объявления проверки)
+B-10 (дубли) ──────────── независимо (промпт)
+B-11 ─┬─→ B-20 (каталог — фундамент, закрывает B-11/B-12/B-15/B-18/B-19)
+B-12 ─┤
+B-15 ─┤
+B-18 ─┤
+B-19 ─┘
+B-17 (смерть) ───────── независимо, critical, блокирует выживание
+B-14 (имя врага) ────── зависит от B-20 (creatures seed)
+B-13 (десинхрон) ────── зависит от B-20 + B-14 (enemy/active_effects в TurnContext)
+B-16 (повтор) ───────── зависит от B-20 (active_effects)
+</code></pre></div>
+<h2 id="pro-">Порядок реализации (актуальный, после ревью pro-модели)<a class="headerlink" href="#pro-" title="Permanent link">&para;</a></h2>
+<p><strong>Уже реализовано:</strong> B-01…B-10 (devlog 30–33).</p>
+<p><strong>Осталось B-11…B-20 (критично → фундамент → зависимые):</strong>
+1. <strong>B-19</strong> — <code>10 vs AC10 = хит</code> — 1 тест, код уже <code>&gt;=</code> (быстрый win).
+2. <strong>B-17 — смерть/спасброски</strong> (critical, независимо от каталога) — состояние <code>Без сознания</code>, счётчики <code>deathSaveSuccess/Fail</code>, гейт <code>processTurn</code> при <code>hp==0</code>, стоп контратак.
+3. <strong>B-20 — каталог</strong> (фундамент) — <code>0015</code> <code>weapon_categories/weapons/weapon_traits/spell_families/effect_templates/skill_checks/creatures</code> + <code>CatalogService/Classifier</code> (закрывает B-11/B-12/B-15/B-18/B-19 как тесты на правила каталога, фиксит ловушки <code>\w*</code>, приоритет, clamp, <code>no_roll</code> в классификаторе).
+4. <strong>B-16 — повтор</strong> через <code>active_effects</code> (после B-20).
+5. <strong>B-14 — имя врага + статблоки</strong> (<code>creatures</code> seed в составе B-20 или отдельно).
+6. <strong>B-13 — движковая часть</strong> (<code>TurnContext enemy/active_effects</code>) — после B-20/B-14; промптовая часть B-13 — параллельно с п.2.</p>
+<p>Параллельный промпт-трек (независимо): B-13 промпт + B-08…B-10 уже done.</p>
+<p><strong>Реализовано B-21…B-30 по ревью сессии ac9a7a09 (devlog 37–44, коммиты a76465f и ранее):</strong>
+- ✅ B-21 — XP за побеждённых врагов.
+- ✅ B-22 — Трата маны на заклинания/умения (<code>manaCost</code>, <code>manaInsufficient</code>).
+- ✅ B-23 — Система статусов (<code>enemy.statuses</code>, спасбросок, <code>isIncapacitated</code>).
+- ✅ B-24 — Отслеживание HP игрока (<code>characterHpBefore/After</code>, <code>damageTaken</code>).
+- ✅ B-25 — Убийство без проверки регистрирует <code>enemyDefeated</code> + XP.
+- ✅ B-26 — Мёртвые враги не воскресают (<code>defaultEnemy</code> возвращает <code>null</code> для нераспознанного типа).
+- ✅ B-27 — Действия с окружением как объект (<code>OBJECT_PATTERN</code>, <code>resolveObject</code>).
+- ✅ B-28 — Проверки восприятия на <code>WIS</code>.
+- ✅ B-29 — Единая семантика кубиков урона (<code>result</code> = чистый бросок, <code>total</code> = итог).
+- ✅ B-30 — Инвентарь/лут (<code>LOOT_PATTERN</code>, <code>resolveLoot</code>).</p>
+<p><em>Старый порядок B-01…B-07 — исторический, оставлен для справки.</em></p>
+<hr />
+<h2 id="id">Сопоставление со старыми ID (для истории)<a class="headerlink" href="#id" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Старый/внешний ID</th>
+<th>Новый ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GP-1 (заклинания → атаки)</td>
+<td>B-01</td>
+</tr>
+<tr>
+<td>GP-2 («сильно» → Сила)</td>
+<td>B-01</td>
+</tr>
+<tr>
+<td>GP-3 (generic-броски)</td>
+<td>B-02</td>
+</tr>
+<tr>
+<td>GP-4 (нет хода противника)</td>
+<td>B-04</td>
+</tr>
+<tr>
+<td>GP-5 (AC = 10, нет статов)</td>
+<td>B-03, B-04</td>
+</tr>
+<tr>
+<td>GP-6 (рассинхрон нарратив/механика)</td>
+<td>B-09</td>
+</tr>
+<tr>
+<td>GP-7 (нет стоимости магии)</td>
+<td>B-07</td>
+</tr>
+<tr>
+<td>GP-8 (нет прогресса цели)</td>
+<td>B-06</td>
+</tr>
+<tr>
+<td>GM2#1 (варианты-подсказки)</td>
+<td>B-08</td>
+</tr>
+<tr>
+<td>GM2#2 (порядок бросок→нарратив)</td>
+<td>B-09</td>
+</tr>
+<tr>
+<td>GM2#3 (не объявлена проверка)</td>
+<td>B-03</td>
+</tr>
+<tr>
+<td>GM2#4 (модификаторы/AC)</td>
+<td>B-03</td>
+</tr>
+<tr>
+<td>GM2#5 (скачки действий, нет последствий)</td>
+<td>B-05, B-04</td>
+</tr>
+<tr>
+<td>GM2#6 (дублирование)</td>
+<td>B-10</td>
+</tr>
+<tr>
+<td>GM2#7 (лёгкие успехи)</td>
+<td>B-07</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="b-21b-30-2026-09-01">Статус B-21…B-30 (аудит 2026-09-01)<a class="headerlink" href="#b-21b-30-2026-09-01" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Статус</th>
+<th>Devlog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B-21 XP за врагов</td>
+<td>✅ Реализовано</td>
+<td>devlog/37</td>
+</tr>
+<tr>
+<td>B-22 Трата маны</td>
+<td>✅ Реализовано</td>
+<td>devlog/38</td>
+</tr>
+<tr>
+<td>B-23 Система статусов</td>
+<td>✅ Реализовано</td>
+<td>devlog/40</td>
+</tr>
+<tr>
+<td>B-24 Отслеживание HP игрока</td>
+<td>✅ Реализовано</td>
+<td>devlog/39</td>
+</tr>
+<tr>
+<td>B-25 enemyDefeated без проверки</td>
+<td>✅ Реализовано</td>
+<td>devlog/36</td>
+</tr>
+<tr>
+<td>B-26 Мёртвые враги не воскресают</td>
+<td>✅ Реализовано</td>
+<td>devlog/35</td>
+</tr>
+<tr>
+<td>B-27 Действия с окружением</td>
+<td>✅ Реализовано</td>
+<td>devlog/42</td>
+</tr>
+<tr>
+<td>B-28 Атрибут восприятия</td>
+<td>✅ Реализовано</td>
+<td>devlog/41</td>
+</tr>
+<tr>
+<td>B-29 Семантика кубиков урона</td>
+<td>✅ Реализовано</td>
+<td>devlog/44</td>
+</tr>
+<tr>
+<td>B-30 Инвентарь/лут</td>
+<td>✅ Реализовано</td>
+<td>devlog/43</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Следующие задачи</strong> — см. <code>devlog/53-mechanics-audit-and-plan.md</code>:
+gaps без тикета: formal combat-loop, adv-disadv, saving throws, proficiency bonus, death saving throws, spell slots.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="../../design/layout-navigation-brief/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Навигация">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Навигация
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../journal/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Обзор">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Обзор
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

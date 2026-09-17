@@ -1,0 +1,2783 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/07-combat-facts/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Аудит умений/заклинаний — Блок 2.7: Боевая система (фактура) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#27" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Аудит умений/заклинаний — Блок 2.7: Боевая система (фактура)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#271-attack-roll" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1 ATTACK ROLL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.1 ATTACK ROLL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2711" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.1. Где обрабатывается атака?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2712-d20-abilitymod-pb-vs-ac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.2. Формула d20 + abilityMod + PB vs AC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2713-ac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.3. Где берётся AC цели
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2714-proficiency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.4. Proficiency с оружием
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2715-finesseheavytwo-handed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.5. Учёт оружия (finesse/heavy/two-handed)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2716-unarmed-strike" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.6. Unarmed strike
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2717-spell-attack-roll-d20-spellmod-pb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.7. Spell attack roll (d20 + spellMod + PB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2718-spellmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.1.8. Где берётся spellMod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#272" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2 УРОН
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.2 УРОН">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2721" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2.1. Формула урона
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2722-dice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2.2. Откуда dice оружия
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2723-abilitymod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2.3. abilityMod для урона
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2724-two-handed-str-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2.4. Two-handed STR ×1.5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2725-off-hand-mod-two-weapon-fighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2.5. Off-hand без mod (two-weapon fighting)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2726" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2.6. Типы урона
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2727" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.2.7. Список типов урона
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#273" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.3 КРИТИЧЕСКИЕ УДАРЫ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.3 КРИТИЧЕСКИЕ УДАРЫ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2731-2732-nat-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.3.1-2.7.3.2. Где проверяется, nat 20
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2733-critrange-champion-19-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.3.3. critRange (Champion 19-20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2734-2-dice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.3.4. Урон при крите (×2 dice)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2735-6-savage-attacks-brutal-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.3.5-6. Savage Attacks / Brutal Critical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2737-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.3.7. Крит-эффекты от фич
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#274" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.4 СПАСБРОСКИ ОТ ЗАКЛИНАНИЙ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.4 СПАСБРОСКИ ОТ ЗАКЛИНАНИЙ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2741-2742-spell-save-dc-8-pb-spellmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.4.1-2.7.4.2. Где spell save DC; формула 8 + PB + spellMod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2743-dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.4.3. Монстры — фиксированный DC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2744-saveeffect-halfnegatesnone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.4.4. SaveEffect (HALF/NEGATES/NONE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2745-spell-save-dc-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.4.5. Spell save DC у Enemy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#275-saving-throws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.5 SAVING THROWS (общие)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.5 SAVING THROWS (общие)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2751-2752-saving-throws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.5.1-2.7.5.2. Где saving throws; формула
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2753-proficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.5.3. Откуда proficient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2754-advantage-saves-elf-charm-dwarf-poison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.5.4. Advantage на saves (Elf charm / Dwarf poison)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#276-cover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.6 COVER
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#277-flanking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.7 FLANKING
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#278-multiattack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.8 MULTIATTACK
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.8 MULTIATTACK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2781-multiattack-enemyfeatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.8.1. Multiattack у Enemy.features
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2782-extra-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.8.2. Extra Attack у классов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2783-extra-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.8.3. Стакание Extra Attack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2784" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.8.4. Как обрабатывается
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#279-two-weapon-fighting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.9 TWO-WEAPON FIGHTING
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2710-ranged-in-melee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.10 RANGED IN MELEE
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2711-spell-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.11 SPELL ATTACKS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.11 SPELL ATTACKS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27111-27112-d20-spellmod-pb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.11.1-2.7.11.2. d20 + spellMod + PB где
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27113-weapon-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.11.3. Разница с weapon attack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27114-spell-attack-cantrips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.11.4. Spell attack для cantrips
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2712-damage-resistance-immunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.12 DAMAGE RESISTANCE / IMMUNITY
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.12 DAMAGE RESISTANCE / IMMUNITY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27121-27122-enemy-player" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.12.1-2.7.12.2. У Enemy / Player
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27123-2-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.12.3. Как применяется (÷2 / →0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27124-vulnerabilities-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.12.4. Vulnerabilities (×2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27125" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.12.5. Где применяется
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2713-hp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.13 HP И СМЕРТЬ В БОЮ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.13 HP И СМЕРТЬ В БОЮ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27131-hp-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.13.1. HP = 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27132-death-saves" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.13.2. Death saves
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27133-nat-20-nat-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.13.3. Nat 20 / Nat 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27134-massive-damage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.13.4. Massive damage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27135" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.13.5. Урон по бессознательному
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2714" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.14 ИНИЦИАТИВА
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.14 ИНИЦИАТИВА">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27141-27142-rollinitiative-d20-dex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.14.1-2.7.14.2. rollInitiative, d20 + DEX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27143" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.14.3. Порядок ходов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27144-27145-legendary-lair-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.14.4-2.7.14.5. Legendary / Lair actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2715-whitelist-dsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.15 WHITELIST / DSL ДЛЯ БОЯ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.15 WHITELIST / DSL ДЛЯ БОЯ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27151-attack_-whitelist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.15.1. ATTACK_* в whitelist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27152" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.15.2. Как валидатор проверяет
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27153-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.15.3. Покрытие боем через 25 шаблонов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2716" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.16 БОЕВЫЕ СПОСОБНОСТИ КЛАССОВ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2717" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.17 БОЕВЫЕ СОСТОЯНИЯ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.17 БОЕВЫЕ СОСТОЯНИЯ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27171-27173" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.17.1-2.7.17.3. Применение/снятие/влияние
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2718-xp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.18 XP ЗА БОЙ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.18 XP ЗА БОЙ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27181-27183" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.18.1-2.7.18.3. Как начисляется, где, зависимость от ранга
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2719" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.19 ЛУТ ПОСЛЕ БОЯ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.7.19 ЛУТ ПОСЛЕ БОЯ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#27191-27193-loottablerollforenemy-lootwhitelist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7.19.1-2.7.19.3. Генерация лута, LootTable.rollForEnemy, LootWhitelist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        СВОДНАЯ ТАБЛИЦА
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="27">Аудит умений/заклинаний — Блок 2.7: Боевая система (фактура)<a class="headerlink" href="#27" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Фактура извлечена из кода (<code>backend/app/src/main/kotlin/**</code>), YAML/JSON каталогов (<code>.yml</code>/<code>.yaml</code>/<code>.json</code>).
+Метод: только факты без оценок. Пути → классы/строки → примеры. «Отсутствует» — если нет в коде.
+Основной файл механики: <code>com/yorva/rules/TurnResolver.kt</code> (2822 строки).</p>
+</blockquote>
+<hr />
+<h2 id="271-attack-roll">2.7.1 ATTACK ROLL<a class="headerlink" href="#271-attack-roll" title="Permanent link">&para;</a></h2>
+<h3 id="2711">2.7.1.1. Где обрабатывается атака?<a class="headerlink" href="#2711" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TurnResolver.resolveAttack(action, actionLower, character, enemy, profile)</code> — <code>TurnResolver.kt:1420</code>.</li>
+<li><code>TurnResolver.resolveAttackCatalog(weapon, ...)</code> — <code>TurnResolver.kt:566</code> (атака оружием из weapon-каталога).</li>
+<li><code>TurnResolver.resolveSpecialAttack(sa, ...)</code> — <code>TurnResolver.kt:1039</code> (special_attacks из каталога).</li>
+<li><code>TurnResolver.resolveOpportunityAttack</code> — <code>TurnResolver.kt:554</code> (реакция, переиспользует resolveAttack).</li>
+<li><code>TurnResolver.resolveFinishingBlow</code> — <code>TurnResolver.kt:1074</code>.</li>
+<li>Диспетчеризация типа → <code>resolve(...)</code> в <code>TurnResolver.kt:412</code> (<code>ActionType.ATTACK</code>), <code>:358</code> (<code>ATTACK_CATALOG</code>), <code>:348</code> (<code>SPECIAL_ATTACK</code>), <code>:332</code> (<code>FINISHING_BLOW</code>), <code>:344</code> (<code>OPPORTUNITY_ATTACK</code>).</li>
+</ul>
+<h3 id="2712-d20-abilitymod-pb-vs-ac">2.7.1.2. Формула d20 + abilityMod + PB vs AC<a class="headerlink" href="#2712-d20-abilitymod-pb-vs-ac" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="c1">// TurnResolver.kt:1500-1515</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">attackMod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">isFinesse</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">maxOf</span><span class="p">(</span><span class="n">strMod</span><span class="p">,</span><span class="w"> </span><span class="n">dexMod</span><span class="p">)</span>
+<span class="w">    </span><span class="n">isRanged</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">dexMod</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">strMod</span>
+<span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">proficiencyBonus</span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">level</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">weaponAttackBonus</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fsAttackBonus</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">applyModifiers</span><span class="p">(</span><span class="n">baseTotal</span><span class="p">,</span><span class="w"> </span><span class="s">"attack_roll"</span><span class="p">,</span><span class="w"> </span><span class="n">character</span><span class="p">)</span><span class="w">   </span><span class="c1">// baseTotal = attackRoll + effectiveAttackMod</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">ac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="p">.</span><span class="na">ac</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">hit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crit</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">fumble</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">ac</span><span class="p">)</span>
+</code></pre></div>
+Реализовано. Профисиенси всегда прибавляется к атаке (нет разделения «владею/не владею оружием»).</p>
+<h3 id="2713-ac">2.7.1.3. Где берётся AC цели<a class="headerlink" href="#2713-ac" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>val ac = target.ac</code> (<code>TurnResolver.kt:1514</code>); в catalog-варианте <code>target.ac</code> (<code>:617</code>); у атаки врага <code>playerAc = character.effectiveAc + defenseAcBonus</code> (<code>:2363</code>, defense fighting style +1).</li>
+<li><code>Enemy.ac</code> — поле <code>Enemy</code> (<code>GameState.kt</code>, напр. <code>ac = row.ac</code> при инстансархиатипе <code>TurnResolver.kt:1120</code>).</li>
+</ul>
+<h3 id="2714-proficiency">2.7.1.4. Proficiency с оружием<a class="headerlink" href="#2714-proficiency" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Нет. Нет weapon-proficiencies (список «владею этим оружием»). <code>proficiencyBonus(character.level)</code> прибавляется безусловно к каждому броску атаки (<code>:1504</code>, <code>:606-609</code>).</li>
+</ul>
+<h3 id="2715-finesseheavytwo-handed">2.7.1.5. Учёт оружия (finesse/heavy/two-handed)<a class="headerlink" href="#2715-finesseheavytwo-handed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>finesse</strong>: <code>isFinesse = equipped FINESSE || trait finesse || FINESSE_PATTERN || имя</code> (<code>:1483,1487</code>); бросок атаки и урон — <code>maxOf(strMod, dexMod)</code> (<code>:1501,1524</code>).</li>
+<li><strong>heavy</strong>: trait <code>minStrength</code> → штраф <code>attackPenalty</code>, если <code>strength &lt; minStr</code> (<code>:1491,1508-1509</code>); в catalog — <code>:611-615</code>; применяется только к melee.</li>
+<li><strong>two-handed</strong>: <code>isTwoHanded</code> из trait <code>two_handed</code>/свойства <code>TWO_HANDED</code> (<code>:1494-1495</code>) — влияет только на fighting style dueling (не суммируется).</li>
+<li>Атака блокируется/деградирует: если оружие каталога неизвестно и есть inventory — бьётся дефолтом <code>1d6</code> (<code>:1426-1456</code>, <code>:1517</code>).</li>
+<li>Weapon traits: traitCode → <code>catalogService.findWeaponTrait</code> (<code>:1481</code>); <code>attackPenalty</code>/<code>damagePenalty</code>/<code>minStrength</code> (<code>:1489-1491</code>).</li>
+</ul>
+<h3 id="2716-unarmed-strike">2.7.1.6. Unarmed strike<a class="headerlink" href="#2716-unarmed-strike" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть как whitelist-код <code>ATTACK_UNARMED</code> (<code>action-whitelist-core.yaml:13</code>), маппится в <code>resolveConcreteId</code> ("unarmed" → <code>ATTACK_UNARMED</code>, <code>ActionWhitelist.kt:133</code>). Механика: попадает в <code>resolveAttack</code> c дефолтным дайсом <code>1d6</code> и abilityMod, если нет оружия (<code>:1422-1424,1517</code>). Отдельного дайса 1+strMod (SRD 1 bludgeoning) — отсутствует.</li>
+</ul>
+<h3 id="2717-spell-attack-roll-d20-spellmod-pb">2.7.1.7. Spell attack roll (d20 + spellMod + PB)<a class="headerlink" href="#2717-spell-attack-roll-d20-spellmod-pb" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть в <code>resolveSpellOrSummon</code>: <code>spellMod = castingAttribute.second + proficiencyBonus(level)</code>, <code>total = roll + spellMod</code> (<code>:1659-1660</code>), бросок к <code>dc = detectDc(...)</code> (<code>:1657</code>), а не к AC. Сравнение с <code>dc</code>, не с <code>target.ac</code>.</li>
+<li><strong>Отсутствует</strong> в <code>SpellService.resolveDamage</code> (<code>SpellService.kt:124-177</code>): заклинание из <code>cast &lt;id&gt;</code> (SpellService) <strong>не делает броска атаки по AC</strong> — сразу применяет урон/спасбросок. Attack-roll тип заклинания реализован только в упрощённой ветке <code>resolveSpellOrSummon</code>.</li>
+</ul>
+<h3 id="2718-spellmod">2.7.1.8. Где берётся spellMod<a class="headerlink" href="#2718-spellmod" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>detectCastingAttribute(action, character)</code> → <code>(attrName, mod)</code> (<code>:1643</code>), <code>spellMod = castingAttribute.second + proficiencyBonus(level)</code> (<code>:1659</code>).</li>
+<li>В <code>resolveSpellCatalog</code>: <code>spellMod = casterMod + proficiencyBonus(character.level)</code> (<code>:720</code>), <code>casterMod</code> из <code>family.casterStat</code>.</li>
+</ul>
+<hr />
+<h2 id="272">2.7.2 УРОН<a class="headerlink" href="#272" title="Permanent link">&para;</a></h2>
+<h3 id="2721">2.7.2.1. Формула урона<a class="headerlink" href="#2721" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="c1">// TurnResolver.kt:1517-1530</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">diceSpec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">equippedItem</span><span class="o">?.</span><span class="na">effectiveDamageDice</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">weapon</span><span class="o">?.</span><span class="na">damageDice</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">"1d6"</span>
+<span class="kd">val</span><span class="w"> </span><span class="p">(</span><span class="nv">diceTimes</span><span class="p">,</span><span class="w"> </span><span class="nv">diceSides</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parseDice</span><span class="p">(</span><span class="n">diceSpec</span><span class="p">)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">damageRoll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hit</span><span class="p">)</span><span class="w"> </span><span class="n">dice</span><span class="p">.</span><span class="na">roll</span><span class="p">(</span><span class="n">diceTimes</span><span class="p">,</span><span class="w"> </span><span class="n">diceSides</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="m">0</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">damage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hit</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">damageRoll</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">damageMod</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">weaponBonus</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fsDamageBonus</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">damagePenalty</span><span class="p">).</span><span class="na">coerceAtLeast</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+<code>dice + abilityMod + оружие-бонус + fighting style − штраф</code>, минимум 1. Реализовано (<code>:1523-1530</code>).</p>
+<h3 id="2722-dice">2.7.2.2. Откуда dice оружия<a class="headerlink" href="#2722-dice" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>equippedItem?.effectiveDamageDice</code> (инвентарь, MISC 1d4) → <code>weapon?.damageDice</code> (каталог) → дефолт <code>"1d6"</code> (<code>:1517</code>).</li>
+<li>Парс: <code>parseDice("1d8") → (1,8)</code>, <code>parseDice("2d6") → (2,6)</code>.</li>
+<li>В catalog-атаке: <code>diceSpec = weapon.damageDice</code> (<code>:618</code>).</li>
+</ul>
+<h3 id="2723-abilitymod">2.7.2.3. abilityMod для урона<a class="headerlink" href="#2723-abilitymod" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>damageMod = when { isFinesse -&gt; maxOf(strMod,dexMod); isRanged -&gt; dexMod; else -&gt; strMod }</code> (<code>:1523-1526</code>); в catalog <code>:622-626</code>.</li>
+</ul>
+<h3 id="2724-two-handed-str-15">2.7.2.4. Two-handed STR ×1.5<a class="headerlink" href="#2724-two-handed-str-15" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует.</strong> Только finesse/dex/str выбор (<code>:1523-1526</code>). Нет правила «двуручное оружие → +1×strMod».</li>
+</ul>
+<h3 id="2725-off-hand-mod-two-weapon-fighting">2.7.2.5. Off-hand без mod (two-weapon fighting)<a class="headerlink" href="#2725-off-hand-mod-two-weapon-fighting" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует.</strong> Нет two-weapon fighting: бонус <code>BONUS_ATTACK</code>/<code>ATTACK_MULTI</code> есть только как whitelist-коды (см. 2.7.9), реальной реализации off-hand атаки/бонусного действия нет («off_hand» встречается только как <code>EquipSlot.OFF_HAND</code>, <code>SessionService.kt:2089</code>).</li>
+</ul>
+<h3 id="2726">2.7.2.6. Типы урона<a class="headerlink" href="#2726" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Оружие/физическая атака: урон без типа — <code>StateChange.Damage(damage, StateTarget.ENEMY)</code> без <code>damageType</code> (<code>:1549</code>, <code>GameState.kt:1106</code> — <code>data class Damage(amount, target, damageType: String? = null)</code>).</li>
+<li>Заклинание: <code>StateChange.Damage(amount, ENEMY, damageType = effect.damageType)</code> (<code>SpellService.kt:170-174</code>).</li>
+</ul>
+<h3 id="2727">2.7.2.7. Список типов урона<a class="headerlink" href="#2727" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует</strong> в виде enum/DamageType. Тип — строка <code>damageType: String</code> (<code>SpellEffect.Damage</code>, <code>Spell.kt:72</code>; <code>StateChange.Damage</code>, <code>GameState.kt:1106</code>). Примеры значений в <code>spells.json</code>: "fire", "cold", "force", "lightning", "necrotic", "acid", "poison", "radiant", "psychic", "piercing".</li>
+</ul>
+<hr />
+<h2 id="273">2.7.3 КРИТИЧЕСКИЕ УДАРЫ<a class="headerlink" href="#273" title="Permanent link">&para;</a></h2>
+<h3 id="2731-2732-nat-20">2.7.3.1-2.7.3.2. Где проверяется, nat 20<a class="headerlink" href="#2731-2732-nat-20" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>val crit = attackRoll == 20</code> (<code>:1477</code>), <code>:602</code>; <code>val hit = crit || (!fumble &amp;&amp; total &gt;= ac)</code> (<code>:1515</code>, <code>:617</code>). Nat 20 → автохит (крит).</li>
+<li>У заклинания: <code>crit = roll == 20</code> (<code>:1661</code>).</li>
+<li>В check/save: <code>crit || (!fumble &amp;&amp; total &gt;= dc)</code> (<code>:2007-2009</code>, <code>:918-920</code>, <code>:2123</code>).</li>
+</ul>
+<h3 id="2733-critrange-champion-19-20">2.7.3.3. critRange (Champion 19-20)<a class="headerlink" href="#2733-critrange-champion-19-20" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует.</strong> Только <code>attackRoll == 20</code> (<code>:1477</code>, <code>:602</code>). Поле <code>critRange</code> нет в коде (решено в аудите 2.6/Блока 1 добавить в CharacterState — в коде не найдено).</li>
+</ul>
+<h3 id="2734-2-dice">2.7.3.4. Урон при крите (×2 dice)<a class="headerlink" href="#2734-2-dice" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="c1">// TurnResolver.kt:1519-1522</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">critDoubles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crit</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="s">"armor_heavy"</span><span class="w"> </span><span class="k">!in</span><span class="w"> </span><span class="n">target</span><span class="p">.</span><span class="na">features</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">damageRoll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hit</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">critDoubles</span><span class="p">)</span><span class="w"> </span><span class="n">dice</span><span class="p">.</span><span class="na">roll</span><span class="p">(</span><span class="n">diceTimes</span><span class="o">*</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">diceSides</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">dice</span><span class="p">.</span><span class="na">roll</span><span class="p">(</span><span class="n">diceTimes</span><span class="p">,</span><span class="w"> </span><span class="n">diceSides</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+Крит = удвоение только дайсов (не mod). Реализовано. «armor_heavy» — фича противника, подавляет удвоение (полу-иммунитет к криту).</p>
+<h3 id="2735-6-savage-attacks-brutal-critical">2.7.3.5-6. Savage Attacks / Brutal Critical<a class="headerlink" href="#2735-6-savage-attacks-brutal-critical" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствуют.</strong> Нет доп. дайса при крите (Half-Orc Savage Attacks, Barbarian Brutal Critical).</li>
+</ul>
+<h3 id="2737-">2.7.3.7. Крит-эффекты от фич<a class="headerlink" href="#2737-" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствуют.</strong> Крит даёт только урон ×2 дайсов; fumble → «Ошеломлён» (<code>:1532</code>, <code>:629</code>). Нет фич-модификаторов крита.</li>
+</ul>
+<hr />
+<h2 id="274">2.7.4 СПАСБРОСКИ ОТ ЗАКЛИНАНИЙ<a class="headerlink" href="#274" title="Permanent link">&para;</a></h2>
+<h3 id="2741-2742-spell-save-dc-8-pb-spellmod">2.7.4.1-2.7.4.2. Где spell save DC; формула 8 + PB + spellMod<a class="headerlink" href="#2741-2742-spell-save-dc-8-pb-spellmod" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Проводится в <code>SavingThrowResolver</code> (<code>com/yorva/rules/SavingThrowResolver.kt</code>).</li>
+<li><code>resolveEnemySave</code>: <code>saveBonus = enemy.statusSaveBonus; total = d20 + saveBonus</code> (<code>:62-86</code>). DC приходит из <code>savingThrow.dc</code>.</li>
+<li><code>resolvePlayerSave</code>: <code>modifier = abilityModifier; total = d20 + mod + profBonus</code> (<code>:22-53</code>), DC из <code>savingThrow.dc</code>.</li>
+<li><strong>Формула «8 + PB + spellMod» отсутствует</strong> как вычисление DC. DC у заклинаний — <strong>фиксированные числа в spells.json</strong> (напр. <code>"savingThrow": { "ability": "constitution", "dc": 13 }</code>, <code>spells.json:17-19</code>), зашиты в каталог, а не считаются от кастера.</li>
+</ul>
+<h3 id="2743-dc">2.7.4.3. Монстры — фиксированный DC<a class="headerlink" href="#2743-dc" title="Permanent link">&para;</a></h3>
+<ul>
+<li>В заклинаниях: да, из spells.json. В спасбросках против статусов врага: <code>saveDc = 13 + profile.mechanics.dcOffset</code> (<code>:2294</code>), <code>saveDc = hazard.saveDc ?: 12</code> (<code>:1201</code>), <code>dc = 12 + profile.mechanics.dcOffset</code> (ambush, <code>:2257</code>), poison_strike DC 13 (<code>:2414</code>). Для персонажа-кастера (SpellService) — из savingThrow.dc заклинания.</li>
+</ul>
+<h3 id="2744-saveeffect-halfnegatesnone">2.7.4.4. SaveEffect (HALF/NEGATES/NONE)<a class="headerlink" href="#2744-saveeffect-halfnegatesnone" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть: <code>enum SaveEffect { HALF, NEGATES, NONE }</code> (<code>SavingThrowResolver.kt:127-136</code>).</li>
+<li>Применяется в <code>SpellService.resolveDamage</code> (<code>:153-159</code>): <code>HALF → totalDamage /= 2; NEGATES → 0; NONE → {}</code>. Только если <code>spell.savingThrow != null</code> и <code>saveResult.success</code>.</li>
+</ul>
+<h3 id="2745-spell-save-dc-enemy">2.7.4.5. Spell save DC у Enemy<a class="headerlink" href="#2745-spell-save-dc-enemy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует</strong> как поле <code>Enemy</code> (нет <code>enemy.spellSaveDc</code>). Бонус врага — только <code>enemy.statusSaveBonus</code> (<code>GameState.kt</code>, напр. <code>:1127</code>), используется в <code>resolveEnemySave</code> и в начале хода врага (<code>:2297</code>).</li>
+</ul>
+<hr />
+<h2 id="275-saving-throws">2.7.5 SAVING THROWS (общие)<a class="headerlink" href="#275-saving-throws" title="Permanent link">&para;</a></h2>
+<h3 id="2751-2752-saving-throws">2.7.5.1-2.7.5.2. Где saving throws; формула<a class="headerlink" href="#2751-2752-saving-throws" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TurnResolver.resolveSavingThrow(character, attribute, dc, effectName, hasProficiency, advantage, disadvantage)</code> — <code>:2077</code>.
+<div class="highlight"><pre><span></span><code><span class="c1">// :2104-2123</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">hasProf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hasProficiency</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">proficiencies</span><span class="p">.</span><span class="na">any</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">attribute</span><span class="p">,</span><span class="w"> </span><span class="n">ignoreCase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">profBonus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hasProf</span><span class="p">)</span><span class="w"> </span><span class="n">proficiencyBonus</span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">level</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="m">0</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attrMod</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">profBonus</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">roll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">advantage</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">d20WithAdvantage</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">disadvantage</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">d20WithDisadvantage</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">d20</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">applyModifiers</span><span class="p">(</span><span class="n">baseTotal</span><span class="p">,</span><span class="w"> </span><span class="s">"saving_throw"</span><span class="p">,</span><span class="w"> </span><span class="n">character</span><span class="p">)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">crit</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">fumble</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">dc</span><span class="p">)</span>
+</code></pre></div>
+Формула <code>d20 + abilityMod + PB</code> реализована. Профисиенси по атрибуту берётся из <code>character.proficiencies</code> (по имени атрибута, напр. "dex").</li>
+<li>Второй путь: <code>SavingThrowResolver.resolvePlayerSave</code> (<code>:22-53</code>) — идентичная формула.</li>
+<li>Дополнительно для врага (статус-сэйвы): <code>applyEnemyTurn</code> <code>:2293-2321</code>.</li>
+</ul>
+<h3 id="2753-proficient">2.7.5.3. Откуда proficient<a class="headerlink" href="#2753-proficient" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Два пути: параметр <code>hasProficiency</code> ИЛИ совпадение названия атрибута в <code>character.proficiencies</code> (<code>:2104</code>).</li>
+<li><code>SavingThrowResolver</code>: <code>if (ability in character.proficiencies.map { it.lowercase() })</code> (<code>:31-35</code>).</li>
+</ul>
+<h3 id="2754-advantage-saves-elf-charm-dwarf-poison">2.7.5.4. Advantage на saves (Elf charm / Dwarf poison)<a class="headerlink" href="#2754-advantage-saves-elf-charm-dwarf-poison" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует</strong> для расовых способностей (нет racial save-advantage из 2.3).</li>
+<li>Adv/disadv в <code>resolveSavingThrow</code> — только параметры и статусы: <code>effectiveAdvantage = advantage || ("Уклонение" in statuses &amp;&amp; attr=="dex")</code>, <code>effectiveDisadvantage = disadvantage || hasDisadvantageOnChecks(character)</code> (<code>:2109-2110</code>).</li>
+</ul>
+<hr />
+<h2 id="276-cover">2.7.6 COVER<a class="headerlink" href="#276-cover" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Отсутствует полностью.</strong> Нет half/three-quarters/total cover, нет бонуса к AC от укрытия (grep по cover/flank пуст в TurnResolver/SessionService/GameState).</li>
+</ul>
+<hr />
+<h2 id="277-flanking">2.7.7 FLANKING<a class="headerlink" href="#277-flanking" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Отсутствует.</strong> Нет flanking, нет проверки позиций союзников для преимущества.</li>
+<li>Единственный смежный механизм: <code>allyAdjacentToEnemy</code> — поле-условие в whitelist для <code>SNEAK_ATTACK</code> (<code>action-whitelist-magic.yaml:314</code>, <code>action-whitelist-core.yaml:122</code>), но реализации вычисления позиций в движке нет.</li>
+</ul>
+<hr />
+<h2 id="278-multiattack">2.7.8 MULTIATTACK<a class="headerlink" href="#278-multiattack" title="Permanent link">&para;</a></h2>
+<h3 id="2781-multiattack-enemyfeatures">2.7.8.1. Multiattack у Enemy.features<a class="headerlink" href="#2781-multiattack-enemyfeatures" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть: <code>attackCount = (if ("multiattack" in enemy.features) 2 else 1) + legendaryExtra</code> (<code>:2388</code>), повтор <code>repeat(attackCount)</code> бросков урона (<code>:2396-2403</code>). Применяется только в <strong>ответной</strong> атаке врага <code>applyEnemyTurn</code>.</li>
+<li>Также <code>"legendary" in enemy.features</code> → +1 легендарная атака (<code>:2387</code>).</li>
+</ul>
+<h3 id="2782-extra-attack">2.7.8.2. Extra Attack у классов<a class="headerlink" href="#2782-extra-attack" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует</strong> в механике бросков. <code>EXTRA_ATTACK</code> есть как whitelist-код с условием <code>class == 'Fighter' &amp;&amp; level &gt;= 5</code> (<code>action-whitelist-magic.yaml:224-226</code>), но резолвера, дающего второй бросок/набор урона игроку, нет (grep: ни одного вхождения в .kt).</li>
+</ul>
+<h3 id="2783-extra-attack">2.7.8.3. Стакание Extra Attack<a class="headerlink" href="#2783-extra-attack" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует</strong> (нет реализации, нет защиты от стака).</li>
+</ul>
+<h3 id="2784">2.7.8.4. Как обрабатывается<a class="headerlink" href="#2784" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Для врага: через <code>attackCount</code> в <code>applyEnemyTurn</code> (<code>:2385-2403</code>) — несколько бросков урона (без отдельных attack-roll бросаются — 1 атак-ролл, N бросков урона). Для игрока — через <code>ATTACK_MULTI</code> только как whitelist-код, без множителя атак.</li>
+</ul>
+<hr />
+<h2 id="279-two-weapon-fighting">2.7.9 TWO-WEAPON FIGHTING<a class="headerlink" href="#279-two-weapon-fighting" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Отсутствует.</strong> <code>BONUS_ATTACK</code>/<code>ATTACK_MULTI</code> — whitelist-коды (<code>action-whitelist-core.yaml:47,50</code>, <code>ActionWhitelist.kt:134</code>), но: нет отдельного бонусного действия, нет учёта light-оружий, нет off-hand атаки без mod, нет feat <code>Dual Wielder</code>.</li>
+<li>Единственное упоминание off-hand — слот <code>EquipSlot.OFF_HAND</code> (<code>SessionService.kt:2089</code>).</li>
+</ul>
+<hr />
+<h2 id="2710-ranged-in-melee">2.7.10 RANGED IN MELEE<a class="headerlink" href="#2710-ranged-in-melee" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Отсутствует.</strong> Нет disadvantage для ranged-атаки вблизи противника. В <code>hasDisadvantageOnAttacks</code> (<code>:1984-1985</code>) — только статусы; дистанция/близость не проверяются. <code>Crossbow Expert</code> — feat с 2.4, но механики «игнор дистанции» нет в коде.</li>
+</ul>
+<hr />
+<h2 id="2711-spell-attacks">2.7.11 SPELL ATTACKS<a class="headerlink" href="#2711-spell-attacks" title="Permanent link">&para;</a></h2>
+<h3 id="27111-27112-d20-spellmod-pb">2.7.11.1-2.7.11.2. d20 + spellMod + PB где<a class="headerlink" href="#27111-27112-d20-spellmod-pb" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>resolveSpellOrSummon</code>: <code>spellMod = castingAttribute.second + proficiencyBonus(level)</code>, <code>total = roll + spellMod</code>, сравнение с <code>dc</code> (<code>:1659-1663</code>). НЕ против AC.</li>
+<li><code>resolveSpellCatalog</code>: <code>spellMod = casterMod + proficiencyBonus(level)</code> (<code>:720</code>).</li>
+</ul>
+<h3 id="27113-weapon-attack">2.7.11.3. Разница с weapon attack<a class="headerlink" href="#27113-weapon-attack" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Weapon attack: бросок к <code>ac</code> (<code>:1514</code>). Spell attack в <code>resolveSpellOrSummon</code>: бросок к <strong><code>dc</code></strong> (<code>detectDc</code>, <code>:1657</code>), не к AC.</li>
+<li><code>SpellService</code> (cast по id, <code>spells.json</code>): <strong>вообще без броска</strong> — <code>resolveDamage</code> сразу считает урон/спасбросок (<code>SpellService.kt:124-177</code>). Нет ни to-hit-броска, ни attack-roll.</li>
+</ul>
+<h3 id="27114-spell-attack-cantrips">2.7.11.4. Spell attack для cantrips<a class="headerlink" href="#27114-spell-attack-cantrips" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует</strong> как отдельная механика. Cantrip не различается в коде боя (нет isCantrip-логики в SpellService/TurnResolver; в <code>Spell.kt:21</code> поле <code>level</code>, без отдельного cantrip-атаки-броска).</li>
+</ul>
+<hr />
+<h2 id="2712-damage-resistance-immunity">2.7.12 DAMAGE RESISTANCE / IMMUNITY<a class="headerlink" href="#2712-damage-resistance-immunity" title="Permanent link">&para;</a></h2>
+<h3 id="27121-27122-enemy-player">2.7.12.1-2.7.12.2. У Enemy / Player<a class="headerlink" href="#27121-27122-enemy-player" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Enemy</strong>: <code>val resistances: List&lt;String&gt;</code>, <code>val immunities: List&lt;String&gt;</code> (<code>GameState.kt:653,655</code>). Нет <code>vulnerabilities</code> поля.</li>
+<li><strong>Player</strong>: <code>character.resistances</code>, <code>character.immunities</code> — поля в CharacterState? — grep в GameState для CharacterState дал <code>:653,655</code> (это Enemy-блок; блок <code>GameState.kt:653-655</code> находится между Enemy-полями). Уточнение: применить к <code>StateChange.Damage</code> для PLAYER код не находит применения <code>character.resistances</code> в TurnResolver (пусто). Player-resistance применение — <strong>отсутствует</strong>.</li>
+</ul>
+<h3 id="27123-2-0">2.7.12.3. Как применяется (÷2 / →0)<a class="headerlink" href="#27123-2-0" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Только для <strong>Enemy</strong> и только в <code>SpellService.resolveDamage</code>:
+<div class="highlight"><pre><span></span><code><span class="c1">// SpellService.kt:162-168</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="na">damageType</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">target</span><span class="p">.</span><span class="na">resistances</span><span class="p">)</span><span class="w"> </span><span class="n">totalDamage</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="m">2</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="na">damageType</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">target</span><span class="p">.</span><span class="na">immunities</span><span class="p">)</span><span class="w"> </span><span class="n">totalDamage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div></li>
+<li>Оружейный урон по врагу (<code>resolveAttack</code>) — без применений resistance/immunity.</li>
+<li>Урон по игроку (<code>StateChange.Damage PLAYER</code>, <code>SessionService.kt:1671</code>) — <strong>без</strong> halving по типу (нет использования <code>change.damageType</code> для резистов игрока).</li>
+</ul>
+<h3 id="27124-vulnerabilities-2">2.7.12.4. Vulnerabilities (×2)<a class="headerlink" href="#27124-vulnerabilities-2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Отсутствует</strong> и для Enemy, и для Player (нет поля <code>vulnerabilities</code>, нет логики ×2).</li>
+</ul>
+<h3 id="27125">2.7.12.5. Где применяется<a class="headerlink" href="#27125" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Только <code>SpellService.resolveDamage</code> для Enemy (<code>:162-168</code>). Не в TurnResolver боевых атак, не для игрока.</li>
+</ul>
+<hr />
+<h2 id="2713-hp">2.7.13 HP И СМЕРТЬ В БОЮ<a class="headerlink" href="#2713-hp" title="Permanent link">&para;</a></h2>
+<h3 id="27131-hp-0">2.7.13.1. HP = 0<a class="headerlink" href="#27131-hp-0" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Enemy: <code>val isDefeated: Boolean get() = hp &lt;= 0</code> (<code>GameState.kt:663</code>); при победе — <code>GainXp</code> + loot (<code>TurnResolver.kt:1554-1556, 1142-1146</code>).</li>
+<li>Player: <code>if (hp == 0) statuses.add("Без сознания")</code> (<code>SessionService.kt:1675-1676</code>).</li>
+</ul>
+<h3 id="27132-death-saves">2.7.13.2. Death saves<a class="headerlink" href="#27132-death-saves" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть: <code>resolveDeathSave(character)</code> (<code>TurnResolver.kt:427-455</code>); поля <code>deathSaveSuccess/deathSaveFail</code> (<code>GameState.kt:345-346</code>).</li>
+<li><code>isUnconscious = hp == 0 &amp;&amp; !isDead &amp;&amp; deathSaveFail &lt; 3 &amp;&amp; "Стабилен" !in statuses</code> (<code>GameState.kt:489</code>).</li>
+<li>Без сознания — только death_save, действия блокируются (<code>:178-179</code>).</li>
+</ul>
+<h3 id="27133-nat-20-nat-1">2.7.13.3. Nat 20 / Nat 1<a class="headerlink" href="#27133-nat-20-nat-1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Nat 20 → <code>Heal(1)</code> + RemoveStatus Без сознания (<code>:430-435</code>).</li>
+<li>Nat 1 → 2× <code>DeathSaveFail</code> (<code>:436-441</code>).</li>
+<li><code>&gt;=10</code> успех, иначе провал (<code>:442-453</code>).</li>
+</ul>
+<h3 id="27134-massive-damage">2.7.13.4. Massive damage<a class="headerlink" href="#27134-massive-damage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>massiveDeath = change.amount &gt;= state.maxHp</code>; <code>if (permadeath || massiveDeath) isDead = true</code> (<code>SessionService.kt:1678-1679</code>).</li>
+</ul>
+<h3 id="27135">2.7.13.5. Урон по бессознательному<a class="headerlink" href="#27135" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>wasUnconsciousBefore = hp == 0 || "Без сознания" in statuses</code>; при попадании по лежачему (не massive) — <code>deathFail += 2</code> (автокрит), <code>if (deathFail &gt;= 3) isDead = true</code> (<code>SessionService.kt:1672-1685</code>).</li>
+<li>Врагу не атакует у <code>applyEnemyTurn</code>, если <code>character.hp == 0 || unconscious || dead</code> (<code>:2280</code>).</li>
+<li>Концентрация при уроне: DC <code>maxOf(10, change.amount/2)</code>, save CON (<code>:1688-1707</code>).</li>
+</ul>
+<hr />
+<h2 id="2714">2.7.14 ИНИЦИАТИВА<a class="headerlink" href="#2714" title="Permanent link">&para;</a></h2>
+<h3 id="27141-27142-rollinitiative-d20-dex">2.7.14.1-2.7.14.2. rollInitiative, d20 + DEX<a class="headerlink" href="#27141-27142-rollinitiative-d20-dex" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TurnResolver.resolveInitiative(character, enemy, playerSurprised, enemySurprised)</code> (<code>:2447</code>), перегрузка <code>(character, List&lt;Enemy&gt;, groupRoll, ...)</code> (<code>:2461</code>).</li>
+<li><code>playerRoll = if (playerSurprised) minOf(d20,d20) else d20; playerTotal = playerRoll + dexMod</code> (<code>:2468-2470</code>). Враг: мод 0 (<code>:2498</code>), групповая инициатива по <code>archetypeCode</code> (<code>:2492-2496</code>).</li>
+</ul>
+<h3 id="27143">2.7.14.3. Порядок ходов<a class="headerlink" href="#27143" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>CombatState.initiativeOrder</code>, сортировка <code>INITIATIVE_COMPARATOR</code> (<code>GameState.kt:1377,1446</code>), <code>insertIntoInitiative</code> (<code>:1415</code>).</li>
+</ul>
+<h3 id="27144-27145-legendary-lair-actions">2.7.14.4-2.7.14.5. Legendary / Lair actions<a class="headerlink" href="#27144-27145-legendary-lair-actions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Legendary: <strong>частично</strong> — <code>"legendary" in enemy.features</code> → +1 атака в <code>applyEnemyTurn</code> (<code>:2387-2388</code>). Отдельного типа действия/фазы «вне своего хода» нет.</li>
+<li>Lair actions: <strong>отсутствует</strong>.</li>
+</ul>
+<hr />
+<h2 id="2715-whitelist-dsl">2.7.15 WHITELIST / DSL ДЛЯ БОЯ<a class="headerlink" href="#2715-whitelist-dsl" title="Permanent link">&para;</a></h2>
+<h3 id="27151-attack_-whitelist">2.7.15.1. ATTACK_* в whitelist<a class="headerlink" href="#27151-attack_-whitelist" title="Permanent link">&para;</a></h3>
+<ul>
+<li>core: <code>ATTACK_MELEE</code>, <code>ATTACK_UNARMED</code> (<code>action-whitelist-core.yaml:12-13</code>), <code>OPPORTUNITY_ATTACK</code>, <code>ATTACK_RANGED</code>, <code>ATTACK_SPELL_RANGED</code>, <code>ATTACK_SPELL_MELEE</code>, <code>ATTACK_SPELL_AOE</code>, <code>ATTACK_MULTI</code>, <code>BONUS_ATTACK</code>, <code>SNEAK_ATTACK</code> (<code>:32-76</code>), <code>ATTACK_NO_KILL</code> (exploration <code>:449</code>).</li>
+<li>magic: <code>CAST_ATTACK_SPELL</code> (<code>:21</code>), <code>RECKLESS_ATTACK</code> (<code>:132</code>), <code>EXTRA_ATTACK</code> (<code>:224</code>), <code>SNEAK_ATTACK</code> (<code>:313</code>).</li>
+</ul>
+<h3 id="27152">2.7.15.2. Как валидатор проверяет<a class="headerlink" href="#27152" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ActionWhitelist.canExecute(dslId, context)</code> — 4 шага: NEVER → блок; условный NEVER → блок; ALWAYS → разрешено; CONDITIONAL → eval; нет в whitelist → false (<code>ActionWhitelist.kt:103-112</code>).</li>
+<li>25 шаблонов LLM ↔ 150 конкр. id: <code>resolveConcreteId(genericId, param, rawAction)</code> (<code>:115-...</code>); <code>ATTACK</code> → melee/ranged/unarmed/multi (<code>:129-137</code>).</li>
+<li>Условия боя (для 2.7.15.2): <code>enemy == null</code>, <code>!hasRangedWeapon</code>, <code>!hasSpellSlots</code>, <code>class == 'Fighter' &amp;&amp; level &gt;= 5</code>, <code>class == 'Rogue' &amp;&amp; (hasAdvantage || allyAdjacentToEnemy)</code> и т.п. (<code>action-whitelist-core.yaml:111-122</code>, magic <code>:224,313</code>).</li>
+</ul>
+<h3 id="27153-25">2.7.15.3. Покрытие боем через 25 шаблонов<a class="headerlink" href="#27153-25" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TEMPLATE_IDS</code> (25) <code>listOf("ATTACK","CAST_ATTACK","CAST_DEFEND","CAST_HEAL","CAST_BUFF","CAST_DEBUFF","CAST_UTILITY", "CHECK","SOCIAL","ACQUIRE","USE","EQUIP","UNEQUIP","OBJECT","GIVE","CAMP_REST","CAMP_FIRE","CAMP_GATHER","HEAL","MOVE","HIDE","DEFEND","MANEUVER","HAZARD","SAVE","NO_ROLL")</code> (<code>ActionWhitelist.kt:89-93</code>).</li>
+<li><code>ATTACK</code> покрывает melee/ranged/unarmed/multi; <code>MANEUVER</code> → shove/grapple/disarm; <code>CAST_ATTACK</code> → боевые заклинания; <code>DEFEND</code> → DODGE; <code>HIDE</code> → advantage-атака.</li>
+</ul>
+<hr />
+<h2 id="2716">2.7.16 БОЕВЫЕ СПОСОБНОСТИ КЛАССОВ<a class="headerlink" href="#2716" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Rage (Barbarian)</strong>: ресурс <code>RAGE</code> — <code>resources.rage</code> (<code>SessionService.kt:2043,2061</code>), активация фичи «Ярость» → <code>rage.active=true, roundsRemaining=10</code> (<code>:2079</code>). Механика бонуса к урону/резиста в бою — <strong>не найдена</strong> в resolveAttack (нет учета rage в уроне).</li>
+<li><strong>Sneak Attack (Rogue)</strong>: только whitelist-условие (<code>action-whitelist-magic.yaml:313-315</code>, core <code>:76,122</code>). Резолвера-урона Sneak Attack — <strong>отсутствует</strong>.</li>
+<li><strong>Divine Smite (Paladin)</strong>: <strong>отсутствует</strong> (grep no match в TurnResolver/SessionService).</li>
+<li><strong>Action Surge (Fighter)</strong>: <strong>отсутствует</strong> (нет второго действия; <code>EXTRA_ATTACK</code> — whitelist без резолвера).</li>
+<li><strong>Ki (Monk)</strong>: ресурс <code>Resources</code> — <code>ki</code>/<code>KI_POINTS</code> не найден (см. <code>Resources</code>-поля <code>:1359-1360</code> arcaneRecovery/naturalRecovery; <code>grep ki</code> пуст).</li>
+<li><strong>Wild Shape (Druid)</strong>: <strong>отсутствует</strong> (не найден). Есть <code>resolveSpellOrSummon</code> <code>isSummon</code> (<code>:1678</code>) — призыв существа, не Wild Shape персонажа.</li>
+<li><strong>Channel Divinity (Cleric)</strong>: <strong>отсутствует</strong>.</li>
+</ul>
+<hr />
+<h2 id="2717">2.7.17 БОЕВЫЕ СОСТОЯНИЯ<a class="headerlink" href="#2717" title="Permanent link">&para;</a></h2>
+<h3 id="27171-27173">2.7.17.1-2.7.17.3. Применение/снятие/влияние<a class="headerlink" href="#27171-27173" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Применение: <code>StateChange.ApplyStatus(статус, target, durationRounds)</code> (<code>SessionService.kt:1719-1727</code>), снятие <code>RemoveStatus</code> (<code>:1728-1730</code>), <code>statusDurations</code> (<code>:1724-1726</code>).</li>
+<li>Влияние на атаку — набор хардкод-статусов:</li>
+<li><code>hasDisadvantageOnAttacks</code>: <code>Отравлен, Ошеломлён, Испуган, Связан, Опутанный, Ослеплён, Сбит с ног</code> + <code>isProne</code> (<code>TurnResolver.kt:1984-1985</code>).</li>
+<li><code>targetGrantsAdvantage</code>: <code>Связан, Опутанный, Без сознания, Парализован, Ошеломлён, Сон, Заморожен, Ослеплён, Сбит с ног</code> + <code>isIncapacitated</code> + <code>isProne</code> (<code>:1987-1988</code>).</li>
+<li>Враг: <code>playerGrantsAdv = character.isIncapacitated</code>; <code>enemyHasDisadv.statuses ∩ {Отравлен, Ошеломлён, Испуган}</code> (<code>:2352-2355</code>).</li>
+<li>Снятие в бою: <code>resolveSaveEnds</code> (<code>TurnResolver.kt:49</code>) — топ-уровневая функция сброса save-статусов; враг — сэйв в начале хода <code>applyEnemyTurn</code> (<code>:2292-2321</code>).</li>
+<li><code>isIncapacitated = isUnconscious || statuses ∩ {Ошеломлён, Парализован, Оглушён, Сон, Заморожен, Недееспособен}</code> (<code>GameState.kt:492</code>).</li>
+</ul>
+<hr />
+<h2 id="2718-xp">2.7.18 XP ЗА БОЙ<a class="headerlink" href="#2718-xp" title="Permanent link">&para;</a></h2>
+<h3 id="27181-27183">2.7.18.1-2.7.18.3. Как начисляется, где, зависимость от ранга<a class="headerlink" href="#27181-27183" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>private fun xpForEnemy(enemy)</code>: <code>enemy.xpReward ?: when { maxHp&gt;=30 -&gt; 100; maxHp&gt;=15 -&gt; 75; else -&gt; 50 }</code> (<code>TurnResolver.kt:1094-1098</code>).</li>
+<li><code>enemy.xpReward</code> приходит из архетипа <code>row.xp * scale</code> (<code>instantiateArchetypeEnemy</code>, <code>:1112-1125</code>) — партийное масштабирование <code>× (1 + 0.6×союзники)</code>.</li>
+<li><code>GainXp</code> добавляется при <code>defeated</code> (<code>:1556, 1677</code>) и при спец. заклинании <code>nonCombatXp</code> (<code>:853, 1679, 2262</code>).</li>
+<li><strong>От ранга (DifficultyRank) напрямую не зависят</strong> — зависят от maxHp (фикс. фолбэк) или от архетипа.</li>
+</ul>
+<hr />
+<h2 id="2719">2.7.19 ЛУТ ПОСЛЕ БОЯ<a class="headerlink" href="#2719" title="Permanent link">&para;</a></h2>
+<h3 id="27191-27193-loottablerollforenemy-lootwhitelist">2.7.19.1-2.7.19.3. Генерация лута, LootTable.rollForEnemy, LootWhitelist<a class="headerlink" href="#27191-27193-loottablerollforenemy-lootwhitelist" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="c1">// TurnResolver.kt:1133-1146</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">rollLootDrops</span><span class="p">(</span><span class="n">enemy</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LootTable</span><span class="p">.</span><span class="na">rollForEnemy</span><span class="p">(</span><span class="n">enemy</span><span class="p">,</span><span class="w"> </span><span class="n">catalog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">itemCatalog</span><span class="p">,</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldSetting</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">ItemDropped</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="n">TurnMechanics</span><span class="p">.</span><span class="nf">withLoot</span><span class="p">(</span><span class="n">defeatedEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">enemyDefeated</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">defeatedEnemy</span><span class="o">==</span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">loot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rollLootDrops</span><span class="p">(...)</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+- Вызывается через <code>.withLoot(target.takeIf { defeated })</code> в <code>resolveAttack</code> (<code>:1593</code>), <code>resolveAttackCatalog</code> (<code>:658</code>), <code>resolveSpellOrSummon</code> (<code>:1709</code>).
+- <code>LootTable.rollForEnemy</code>/<code>rollForContainer</code> — внешний класс (в <code>com.yorva.catalog</code> / ресурсе; точное расположение вне данного файла — «требует уточнения»). <code>StateChange.ItemDropped</code> применяется в <code>SessionService</code> как лут-статус.
+- LootWhitelist: взаимодействие — в коде TurnResolver нет явной ссылки на LootWhitelist; сбор предметов — <code>action == "loot"</code> в <code>SessionService.kt:2224-2233</code>. «Требует уточнения» (LootWhitelist в этом файле не используется напрямую).</p>
+<hr />
+<h2 id="_1">СВОДНАЯ ТАБЛИЦА<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Подблок</th>
+<th style="text-align: left;">Реализовано</th>
+<th style="text-align: left;">Частично</th>
+<th style="text-align: left;">Отсутствует</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">2.7.1 Attack roll</td>
+<td style="text-align: left;">✅ <code>resolveAttack</code> d20+mod+PB vs AC</td>
+<td style="text-align: left;">weapon-finesse/heavy</td>
+<td style="text-align: left;">unarmed strike дайс, weapon-proficiency, spell attack к AC</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.2 Урон</td>
+<td style="text-align: left;">✅ dice+mod, типы для заклинаний</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">two-handed ×1.5, off-hand, enum урона</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.3 Криты</td>
+<td style="text-align: left;">✅ nat20, ×2 dice</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">critRange, Savage/Brutal Crit, crit-фичи</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.4 Spell save DC</td>
+<td style="text-align: left;">✅ SavingThrowResolver, SaveEffect</td>
+<td style="text-align: left;">DC из spells.json (фикс.)</td>
+<td style="text-align: left;">формула 8+PB+spellMod, DC у Enemy</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.5 Saving throws</td>
+<td style="text-align: left;">✅ resolveSavingThrow d20+mod+PB</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">расовый save-advantage</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.6 Cover</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">всё</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.7 Flanking</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">всё (только allyAdjacentToEnemy в whitelist)</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.8 Multiattack</td>
+<td style="text-align: left;">✅ Enemy multiattack/legendary</td>
+<td style="text-align: left;">игрок ExtraAttack — whitelist без резолвера</td>
+<td style="text-align: left;">стаки</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.9 Two-weapon</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">всё</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.10 Ranged in melee</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">всё (incl. Crossbow Expert)</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.11 Spell attacks</td>
+<td style="text-align: left;">✅ resolveSpellOrSummon d20+spellMod+PB</td>
+<td style="text-align: left;">SpellService без броска</td>
+<td style="text-align: left;">cantrip-атака</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.12 Resist/Immun</td>
+<td style="text-align: left;">✅ Enemy в SpellService (÷2/→0)</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">player-resistance, vulnerabilities</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.13 HP/смерть</td>
+<td style="text-align: left;">✅ death saves, massive, unconscious</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.14 Инициатива</td>
+<td style="text-align: left;">✅ resolveInitiative d20+DEX, порядок</td>
+<td style="text-align: left;">legendary как +атака</td>
+<td style="text-align: left;">lair actions</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.15 Whitelist/DSL</td>
+<td style="text-align: left;">✅ canExecute, 25→150 ATTACK_*</td>
+<td style="text-align: left;">услов. gating</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.16 Класс-способности</td>
+<td style="text-align: left;">⚠️ Rage-ресурс (без урона)</td>
+<td style="text-align: left;">Sneak/Extra — whitelist</td>
+<td style="text-align: left;">Smite, Action Surge, Ki, Wild Shape, Channel Divinity, Rage-бонус</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.17 Состояния</td>
+<td style="text-align: left;">✅ Apply/RemoveStatus + влияние на атаку</td>
+<td style="text-align: left;">hardcoded набор</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.18 XP</td>
+<td style="text-align: left;">✅ xpForEnemy + архетип-масштаб</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.7.19 Лут</td>
+<td style="text-align: left;">✅ withLoot/rollForEnemy</td>
+<td style="text-align: left;">LootWhitelist связь</td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
