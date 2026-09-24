@@ -1,0 +1,2068 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/chek-lists/actualized/audit-04-races-actualized/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Аудит: Расы (races.yml, Race/RacialTrait, расовые механики) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#racesyml-raceracialtrait" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Аудит: Расы (races.yml, Race/RacialTrait, расовые механики)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сводка
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Детали
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Детали">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.1] Каталог рас
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-raceracialtrait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.2] Модель Race/RacialTrait
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233-racial-traits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.3] Racial traits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-subraces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.4] Subraces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-ability-score-increases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.5] Ability Score Increases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#236-origin-vs-raceid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.6] origin vs raceId
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#237-hpacspeedsizelanguages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.7] Влияние расы (HP/AC/speed/size/languages)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#238-racial-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.8] Racial abilities в бою
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#239-rest-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.9] REST API
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2310-srd-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.10] SRD-расы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2311-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.11] Мультикласс-требования
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2312-custom-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.12] Custom Lineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2313-point-buy-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.13] Point-buy vs расовые бонусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2314-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.14] Speed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2315-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.15] Size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2316-languages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.16] Languages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2317-lucky" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.17] Lucky
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2318-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.18] Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2319-skillchoices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.19] skillChoices рас
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2320-creationmethod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.20] creationMethod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.21] Расовые заклинания
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2322-resistanceadvantageimmunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.22] Расовые resistance/advantage/immunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2323-racial-traits-characterstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.23] Формат хранения racial traits в CharacterState
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2324-resistancesadvantagesimmunities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.24] resistances/advantages/immunities у игрока
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2325-resistance-turnresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.25] Применение resistance в TurnResolver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2326-features-characterstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.26] Формат features в CharacterState
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2327-creationmethod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [2.3.27] Порядок обработки creationMethod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Новые находки (которых не было в старом аудите)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Новые находки (которых не было в старом аудите)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-1-hazard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        [NEW-1] Типизированный урон по игроку от hazard
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Устаревшие пункты (REMOVED)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Регрессии (REGRESSED)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="racesyml-raceracialtrait">Аудит: Расы (races.yml, Race/RacialTrait, расовые механики)<a class="headerlink" href="#racesyml-raceracialtrait" title="Permanent link">&para;</a></h1>
+<p>Актуализировано: 2026-09-22
+Источник: audit/audit-04-races.md</p>
+<h2 id="_1">Сводка<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Всего утверждений: 28</li>
+<li>✅ VALID: 11</li>
+<li>⚠️ CHANGED: 16</li>
+<li>❌ REMOVED: 0</li>
+<li>🔴 REGRESSED: 0</li>
+<li>➕ NEW_GAP: 1</li>
+</ul>
+<blockquote>
+<p>Особая проверка: <code>races.yml</code>, <code>RaceRegistry</code>, <code>RacialTrait</code>, <code>raceId</code>, <code>subraceId</code> — 0 вхождений в коде и ресурсах. Расовый слой по-прежнему отсутствует полностью.</p>
+</blockquote>
+<h2 id="_2">Детали<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="231">[2.3.1] Каталог рас<a class="headerlink" href="#231" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>races.yml</code> в <code>resources/</code> отсутствует.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>backend/app/src/main/resources/</code> — файла <code>races.yml</code> нет; эталон <code>ClassRegistry.kt:16-46</code>.</li>
+<li><strong>Целевое поведение (5e):</strong> каталог 9 SRD-рас + подрасы.</li>
+<li><strong>Расхождение:</strong> нет (факт отсутствия подтверждён), устарела ссылка <code>ClassRegistry.kt:18</code> → <code>:16-46</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="232-raceracialtrait">[2.3.2] Модель <code>Race</code>/<code>RacialTrait</code><a class="headerlink" href="#232-raceracialtrait" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> доменных моделей расы нет; ближайший аналог <code>ClassFeature</code>.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> grep <code>RaceRegistry</code>/<code>RacialTrait</code> = 0; <code>CharacterClass.kt:51-65</code> (<code>ClassFeature</code>).</li>
+<li><strong>Целевое поведение (5e):</strong> <code>Race</code> + <code>RacialTrait</code>.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="233-racial-traits">[2.3.3] Racial traits<a class="headerlink" href="#233-racial-traits" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> модели traits нет; Darkvision — только текст в <code>subclasses.yml:203</code>.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>subclasses.yml:203</code> (единственное вхождение Darkvision); <code>CharacterClass.kt:51-65</code>.</li>
+<li><strong>Целевое поведение (5e):</strong> darkvision как механика.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="234-subraces">[2.3.4] Subraces<a class="headerlink" href="#234-subraces" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> подрас нет; <code>subraceId</code> отсутствует; есть только классовый <code>Subclass</code>.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>SubclassRegistry.kt:40-50</code> (парсинг <code>features</code>), <code>:62-64</code> (get/getAll/getForClass); <code>subraceId</code> = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> подрасы с собственными traits.</li>
+<li><strong>Расхождение:</strong> нет, устарела ссылка <code>:38-50</code> → <code>:40-50</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="235-ability-score-increases">[2.3.5] Ability Score Increases<a class="headerlink" href="#235-ability-score-increases" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> ASI только на level-up; расовых ASI при создании нет.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>LevelUpService.kt:110</code> (<code>applyAsi</code>), <code>:279</code> (<code>private fun applyAsi</code>).</li>
+<li><strong>Целевое поведение (5e):</strong> расовые ASI +2/+1 при создании.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="236-origin-vs-raceid">[2.3.6] <code>origin</code> vs <code>raceId</code><a class="headerlink" href="#236-origin-vs-raceid" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> раса — только свободный текст <code>origin</code>; <code>raceId</code>/<code>subraceId</code> нет.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>SessionDtos.kt:21</code> (<code>origin</code>); <code>GameState.kt:740</code> (<code>Participant.origin</code>); <code>SessionService.kt:492</code>; <code>CharacterCreationWizard.tsx:246</code>.</li>
+<li><strong>Целевое поведение (5e):</strong> идентификаторы <code>raceId</code>/<code>subraceId</code>.</li>
+<li><strong>Расхождение:</strong> нет по сути; устарели ссылки <code>GameState.kt:701</code>→<code>:740</code>, <code>SessionService.kt:501</code>→<code>:492</code>; <code>ContextBuilder.kt</code> больше не читает <code>origin</code> (grep = 0).</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="237-hpacspeedsizelanguages">[2.3.7] Влияние расы (HP/AC/speed/size/languages)<a class="headerlink" href="#237-hpacspeedsizelanguages" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> HP/AC от класса; <code>speed</code>/<code>size</code> не хранятся; <code>languages</code> есть.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>SessionService.kt:434-435</code> (<code>hp = hitDie + conMod</code>, <code>ac = 10 + dexMod</code>); <code>GameState.kt:341,344,451</code>.</li>
+<li><strong>Целевое поведение (5e):</strong> расовые модификаторы HP/AC/speed/size.</li>
+<li><strong>Расхождение:</strong> нет; устарели ссылки <code>:429-430</code>→<code>:434-435</code>, <code>:330,338,429</code>→<code>:341,344,451</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="238-racial-abilities">[2.3.8] Racial abilities в бою<a class="headerlink" href="#238-racial-abilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> ни одной расовой способности в бою; расовых веток в <code>TurnResolver</code> нет.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>TurnResolver.kt</code> — 0 вхождений <code>race</code>/<code>расов</code>.</li>
+<li><strong>Целевое поведение (5e):</strong> racial traits в бою.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="239-rest-api">[2.3.9] REST API<a class="headerlink" href="#239-rest-api" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>/api/races</code> нет; эталон — <code>ClassController</code>.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>ClassController.kt:7,13,23,42,62</code>; <code>/api/races</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> <code>GET /api/races</code>.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="2310-srd-">[2.3.10] SRD-расы<a class="headerlink" href="#2310-srd-" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> 0 из 9 SRD-рас; источника данных нет.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>races.yml</code> отсутствует; каталоги классов/черт есть.</li>
+<li><strong>Целевое поведение (5e):</strong> 9 SRD-рас.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="2311-">[2.3.11] Мультикласс-требования<a class="headerlink" href="#2311-" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>classLevels</code> есть; <code>multiclassRequirements</code> нет.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>GameState.kt:483</code> (<code>classLevels</code>); <code>LevelUpService.kt:206-213</code>; <code>multiclassRequirements</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> требования мультикласса.</li>
+<li><strong>Расхождение:</strong> нет; ссылка <code>GameState.kt:461</code>→<code>:483</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2312-custom-lineage">[2.3.12] Custom Lineage<a class="headerlink" href="#2312-custom-lineage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>creationMethod</code> отсутствует.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>SessionDtos.kt:15-40</code> (<code>CreateSessionRequest</code>); <code>creationMethod</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> STANDARD/CUSTOM_LINEAGE/HOMEBREW.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="2313-point-buy-vs">[2.3.13] Point-buy vs расовые бонусы<a class="headerlink" href="#2313-point-buy-vs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> point-buy 8..15/27 реализован; <code>baseAttributes</code> отсутствует.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>SessionService.kt:57-59</code> (константы), <code>:416-418</code> (валидация); <code>baseAttributes</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> base + racial bonuses.</li>
+<li><strong>Расхождение:</strong> нет; ссылки <code>:57-60,411-413</code>→<code>:57-59,416-418</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2314-speed">[2.3.14] Speed<a class="headerlink" href="#2314-speed" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>speed</code> не хранится; Dash без дистанции; movement-флаги в YAML не резолвятся.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>TurnResolver.kt:515</code> (DASH), <code>:672</code> (<code>resolveDash</code>); <code>action-whitelist-core.yaml:140-146,171-173</code>; <code>speed</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> speed 30/25/35 фт, Dash ×2.</li>
+<li><strong>Расхождение:</strong> нет; ссылки <code>:474,622</code>→<code>:515,672</code>, <code>:135-168</code>→<code>:140-146,171-173</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2315-size">[2.3.15] Size<a class="headerlink" href="#2315-size" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>enum class Size</code> отсутствует.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>GameState.kt:169</code> (<code>ItemCategory</code>), <code>:227</code> (<code>ItemProperty</code>); <code>enum class Size</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> Small/Medium и т.д.</li>
+<li><strong>Расхождение:</strong> нет; ссылка <code>GameState.kt:228</code>→<code>:227</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2316-languages">[2.3.16] Languages<a class="headerlink" href="#2316-languages" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>languages</code> хранится; расовых языков нет; фоновые захардкожены.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>GameState.kt:451</code>; <code>SessionService.kt:77-92</code> (<code>getBackgroundProficiencies</code>), <code>:444-448</code> (<code>when</code> по bgId); <code>backgrounds.yml:7</code>.</li>
+<li><strong>Целевое поведение (5e):</strong> racial + background languages через реестр.</li>
+<li><strong>Расхождение:</strong> нет; ссылки <code>GameState.kt:429</code>→<code>:451</code>, <code>SessionService.kt:439-443</code>→<code>:444-448</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2317-lucky">[2.3.17] Lucky<a class="headerlink" href="#2317-lucky" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> механика черт только для <code>tough</code>; <code>lucky</code> не обрабатывается.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>LevelUpService.kt:188</code>; <code>feats.yml:12</code>; grep <code>lucky</code> в Kotlin = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> 3 luck points/день.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="2318-frontend">[2.3.18] Frontend<a class="headerlink" href="#2318-frontend" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> раса вводится свободным текстом; dropdown рас нет.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>CharacterCreationWizard.tsx:246-250</code> (text input).</li>
+<li><strong>Целевое поведение (5e):</strong> выбор расы из списка.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="2319-skillchoices">[2.3.19] <code>skillChoices</code> рас<a class="headerlink" href="#2319-skillchoices" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>FeatureChoice</code> есть, к расам не подключён.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>CharacterClass.kt:45-49</code>; <code>ClassRegistry.kt:132-153</code>.</li>
+<li><strong>Целевое поведение (5e):</strong> расовый выбор навыков.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="2320-creationmethod">[2.3.20] <code>creationMethod</code><a class="headerlink" href="#2320-creationmethod" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> поля нет ни в запросе, ни в состоянии.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>SessionDtos.kt:15-40</code>; <code>CharacterState</code> начинается на <code>GameState.kt:338</code>; <code>creationMethod</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> способ создания персонажа.</li>
+<li><strong>Расхождение:</strong> нет; ссылка <code>GameState.kt:327</code>→<code>:338</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2321">[2.3.21] Расовые заклинания<a class="headerlink" href="#2321" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>RacialTraitEffect.SpellLike</code> и расовых заклинаний нет.</li>
+<li><strong>Статус:</strong> ✅</li>
+<li><strong>Текущая реализация:</strong> <code>SpellService.kt</code> — расового источника нет; <code>SpellLike</code> grep = 0.</li>
+<li><strong>Целевое поведение (5e):</strong> Tiefling/High Elf/Drow/Genasi.</li>
+<li><strong>Расхождение:</strong> нет.</li>
+<li><strong>Что делать:</strong> оставить.</li>
+</ul>
+<h3 id="2322-resistanceadvantageimmunity">[2.3.22] Расовые resistance/advantage/immunity<a class="headerlink" href="#2322-resistanceadvantageimmunity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> у игрока полей нет; есть только у <code>Enemy</code>.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>GameState.kt:701,703</code> (<code>Enemy.resistances</code>/<code>immunities</code>); у <code>CharacterState</code> таких полей нет.</li>
+<li><strong>Целевое поведение (5e):</strong> racial resistances (fire, poison и т.п.).</li>
+<li><strong>Расхождение:</strong> нет; ссылка <code>GameState.kt:662,664</code>→<code>:701,703</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2323-racial-traits-characterstate">[2.3.23] Формат хранения racial traits в <code>CharacterState</code><a class="headerlink" href="#2323-racial-traits-characterstate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> <code>CharacterState.features</code> отсутствует; <code>features</code> только у <code>Enemy</code>.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>GameState.kt:697</code> (<code>Enemy.features</code>); у <code>CharacterState</code> поля <code>features</code> нет.</li>
+<li><strong>Целевое поведение (5e):</strong> хранение racial traits.</li>
+<li><strong>Расхождение:</strong> нет; ссылка <code>GameState.kt:658</code>→<code>:697</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2324-resistancesadvantagesimmunities">[2.3.24] <code>resistances</code>/<code>advantages</code>/<code>immunities</code> у игрока<a class="headerlink" href="#2324-resistancesadvantagesimmunities" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> механика только для <code>Enemy</code>; <code>StateChange.Damage</code> несёт <code>damageType</code>.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>SpellService.kt:168-173</code>; <code>GameState.kt:1157</code> (<code>StateChange.Damage(amount, target, damageType)</code>).</li>
+<li><strong>Целевое поведение (5e):</strong> resistance/immunity игрока.</li>
+<li><strong>Расхождение:</strong> нет; ссылки <code>SpellService.kt:167-173</code>→<code>:168-173</code>, <code>GameState.kt:1118</code>→<code>:1157</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2325-resistance-turnresolver">[2.3.25] Применение resistance в <code>TurnResolver</code><a class="headerlink" href="#2325-resistance-turnresolver" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> урон по игроку формируется без <code>damageType</code>; применения ÷2/→0 для <code>PLAYER</code> нет.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>TurnResolver.kt:2824</code> (атака врага по игроку — без <code>damageType</code>); <code>:1461</code> (hazard-урон по игроку — С <code>damageType</code>); <code>SessionService.kt:2385</code> (обработка <code>Damage</code> без resistance).</li>
+<li><strong>Целевое поведение (5e):</strong> resistance/immunity применяются к урону игрока.</li>
+<li><strong>Расхождение:</strong> есть частичное: hazard-урон теперь типизирован, resistance всё ещё не применяется.</li>
+<li><strong>Что делать:</strong> обновить формулировку (см. NEW-1).</li>
+</ul>
+<h3 id="2326-features-characterstate">[2.3.26] Формат <code>features</code> в <code>CharacterState</code><a class="headerlink" href="#2326-features-characterstate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> разделения на class/subclass/racial/feat нет; единого <code>features</code> нет.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>GameState.kt:338</code> (<code>CharacterState</code>); отдельных полей нет.</li>
+<li><strong>Целевое поведение (5e):</strong> типизированные фичи.</li>
+<li><strong>Расхождение:</strong> нет; ссылка <code>GameState.kt:327</code>→<code>:338</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h3 id="2327-creationmethod">[2.3.27] Порядок обработки <code>creationMethod</code><a class="headerlink" href="#2327-creationmethod" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Утверждение (старое):</strong> при создании только point-buy → HP/AC → владения → языки; расовых шагов нет.</li>
+<li><strong>Статус:</strong> ⚠️</li>
+<li><strong>Текущая реализация:</strong> <code>SessionService.kt:405-488</code> (валидация, HP/AC, proficiencies, languages, state).</li>
+<li><strong>Целевое поведение (5e):</strong> шаги выбора расы/бонусов/traits.</li>
+<li><strong>Расхождение:</strong> нет; ссылка <code>:402-443,470-471</code>→<code>:405-488</code>.</li>
+<li><strong>Что делать:</strong> обновить формулировку.</li>
+</ul>
+<h2 id="_3">Новые находки (которых не было в старом аудите)<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="new-1-hazard">[NEW-1] Типизированный урон по игроку от hazard<a class="headerlink" href="#new-1-hazard" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Где:</strong> <code>TurnResolver.kt:1461</code> (<code>StateChange.Damage(damage, PLAYER, hazard.damageType)</code>); <code>SessionService.kt:814-818</code> (<code>incomingElementalDamageTaken</code>); миграция <code>0035-environmental-hazards.yaml:14</code> (<code>damage_type</code>).</li>
+<li><strong>Соответствует 5e:</strong> частично — тип урона передаётся, но resistance/immunity игрока всё ещё не применяются (<code>SessionService.kt:2385</code>).</li>
+<li><strong>Рекомендация:</strong> добавить в аудит.</li>
+</ul>
+<h2 id="removed">Устаревшие пункты (REMOVED)<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Нет.</li>
+</ul>
+<h2 id="regressed">Регрессии (REGRESSED)<a class="headerlink" href="#regressed" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Нет.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

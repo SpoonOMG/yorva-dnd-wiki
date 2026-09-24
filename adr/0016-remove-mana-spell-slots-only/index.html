@@ -1,0 +1,2300 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0016-remove-mana-spell-slots-only/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0016: Удаление mana — переход на spell slots как единственный ресурс заклинаний (канон 5e) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0016-mana-spell-slots-5e" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0016: Удаление mana — переход на spell slots как единственный ресурс заклинаний (канон 5e)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Факты (файл:строка)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Факты (файл:строка)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mana-homebrew-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mana (homebrew-модель)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spell-slots-5e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spell slots (канон 5e, уже реализовано и работает)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pact-magic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pact Magic (отдельная модель, канон, НЕ трогать)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Upcast — отсутствует
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mana-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mana в контракте/UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ключевые ограничения для вариантов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#am" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Решения (A–M)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обязательные уточнения
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-characterstatemana-maxmana-gamestatekt352-353" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Судьба CharacterState.mana / maxMana (GameState.kt:352-353)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-itembonusesmanabonus-gamestatekt211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Судьба ItemBonuses.manaBonus (GameState.kt:211)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-statechangespendmana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Судьба StateChange.SpendMana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Источник уровня слота заклинания
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-spell_families-manacost-catalogservicekt1929-33-0015-0017" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Каталог spell_families + manaCost (CatalogService.kt:19,29-33; миграции 0015, 0017)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-mechanicsprofileresourcesenabled-gamestatekt7593104115" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. MechanicsProfile.resourcesEnabled (GameState.kt:75,93,104,115)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-upcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Upcast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-cancast-spellservicekt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. canCast (SpellService.kt)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-pact-magic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Pact Magic
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-legacy-mana-ledgerjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        J. Legacy-сессии с mana в ledgerJson
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-ui-openapi-frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K. Контракт/UI (OpenAPI + frontend)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l-mana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L. Формула «может кастовать» после удаления mana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m-turnmechanicsmanainsufficient-manacost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M. TurnMechanics.manaInsufficient / manaCost (поля ответа)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0016-mana-spell-slots-5e">ADR-0016: Удаление mana — переход на spell slots как единственный ресурс заклинаний (канон 5e)<a class="headerlink" href="#adr-0016-mana-spell-slots-5e" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>В движке сосуществуют <strong>две параллельные модели ресурса заклинаний</strong>:</p>
+<ol>
+<li><strong>Mana (homebrew-модель)</strong> — плоский пул очков, константная цена любого заклинания, расход
+   только в NORMAL/HARDCORE, без восстановления.</li>
+<li><strong>Spell slots (канон 5e)</strong> — уже полностью реализованы и работают (прогрессии full/half/pact,
+   трата <code>SpendSpellSlot</code>, <code>canCast</code>, restore на отдыхе).</li>
+</ol>
+<p>Mana — это отход от канона 5e (PHB p.201-202), где <strong>единственным</strong> ресурсом заклинаний являются
+spell slots: уровень слота = уровень заклинания (1..9), upcast = трата слота выше уровня, full/half/pact
+прогрессии, long rest восстанавливает все слоты (pact — short rest). Продукт позиционируется на
+оригинальные миры на русском языке, механика канонична SRD — параллельная mana-модель дробит
+консистентность (audit: REG-1, NEW-1, NEW-2, NEW-3).</p>
+<h3 id="_1">Факты (файл:строка)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h4 id="mana-homebrew-">Mana (homebrew-модель)<a class="headerlink" href="#mana-homebrew-" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>GameState.kt:352-353</code></td>
+<td><code>CharacterState.mana: Int = 10</code>, <code>maxMana: Int = 10</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>GameState.kt:517-518</code></td>
+<td><code>require(mana in 0..maxMana)</code>, <code>require(maxMana &gt;= 0)</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>GameState.kt:75,93,104,115</code></td>
+<td><code>MechanicsProfile.resourcesEnabled</code>: EASY=<code>false</code>, NORMAL=<code>true</code>, HARDCORE=<code>true</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>TurnResolver.kt:98</code></td>
+<td><code>SPELL_MANA_COST = 3</code> — константная цена любого заклинания ≥1 уровня</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>TurnResolver.kt:108-109</code></td>
+<td><code>TurnMechanics.manaInsufficient</code> / <code>manaCost</code> (поля ответа)</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>TurnResolver.kt:947,1902</code></td>
+<td>эмиссия <code>StateChange.SpendMana</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>SessionService.kt:2539</code></td>
+<td>применение <code>SpendMana</code>: <code>mana = (mana - amount).coerceAtLeast(0)</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>GameState.kt:211</code></td>
+<td><code>ItemBonuses.manaBonus: Int = 0</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>ItemCatalogService.kt:274</code></td>
+<td>чтение <code>mana_bonus</code> из БД → <code>manaBonus</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>SessionService.kt:777,955</code>; <code>ActionParser.kt:84</code></td>
+<td>гейт <code>hasSpellSlots = slots.values.any{it&gt;0} || mana &gt;= 3</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ключевые наблюдения про mana:</strong>
+- <code>manaBonus</code> читается из БД, но <strong>нигде не применяется</strong> (grep <code>manaBonus</code> = только <code>GameState.kt:211</code>
+  + <code>ItemCatalogService.kt:274</code>; в расчёте ресурсов не участвует) — мёртвое поле.
+- <strong>Восстановление mana отсутствует</strong>: grep <code>mana</code> в <code>RestService.kt</code> = 0; <code>LevelUpService</code> mana не
+  трогает (grep <code>maxMana</code> = только определение + тесты). → mana — фиксированный пул 10, который
+  <strong>только убывает</strong> (≈3 каста за всю карьеру в NORMAL/HARDCORE).
+- Уровень слота при резолве выводится из <code>manaCost</code>, а не из <code>spell.level</code> (<code>TurnResolver.kt:885-888</code>,
+  <code>:938-941</code>) — дублирующая/конфликтующая логика.</p>
+<h4 id="spell-slots-5e">Spell slots (канон 5e, уже реализовано и работает)<a class="headerlink" href="#spell-slots-5e" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>GameState.kt:362-364</code></td>
+<td><code>spellSlots</code> / <code>maxSpellSlots: SpellSlots</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>GameState.kt:1014-1043</code></td>
+<td><code>data class SpellSlots</code>: <code>slots: Map&lt;Int,Int&gt;</code>, <code>hasSlot</code>, <code>lowestAvailable</code>, <code>spend(level)</code>, <code>restore(maxSlots)</code>, <code>forLevel(level)</code> (full caster SRD)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>GameState.kt:1199</code></td>
+<td><code>StateChange.SpendSpellSlot(level)</code> — <strong>уже существует</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>SessionService.kt:2540</code></td>
+<td>применение <code>SpendSpellSlot</code>: <code>spellSlots = spellSlots.spend(change.level)</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>TurnResolver.kt:945,1998</code>; <code>ReactionResolver.kt:62,86,116</code></td>
+<td>эмиссия <code>SpendSpellSlot</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>LevelUpService.kt:310-358</code></td>
+<td><code>spellSlotsFor</code>: FULL→<code>forLevel</code>, HALF→<code>halfSlotsFor</code> (<code>:321-343</code>), PACT→<code>pactSlotsFor</code> (<code>:345-358</code>)</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>LevelUpService.kt:204,268-269</code></td>
+<td>назначение <code>maxSpellSlots</code>/<code>spellSlots</code> на level-up</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>SpellService.kt</code> (canCast)</td>
+<td>level 0 (заговоры) без слота; warlock→<code>pactSlots</code>; иначе <code>spellSlots.slots[spell.level]</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>SpellService.kt:75</code></td>
+<td><code>StateChange.CastSpell(level = spell.level)</code> — уровень слота = уровень заклинания</td>
+</tr>
+</tbody>
+</table>
+<h4 id="pact-magic">Pact Magic (отдельная модель, канон, НЕ трогать)<a class="headerlink" href="#pact-magic" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>GameState.kt:1377-1402</code></td>
+<td><code>PactSlots</code>: <code>count/level/used</code>, <code>forWarlockLevel</code>, <code>spend</code>, <code>restore</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>ClassResourceHelper.kt:59,113-116,141</code></td>
+<td>инициализация/level-up/restore pact slots</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>ClassFeatureHelper.kt:64</code>; <code>SessionService.kt:2777,2795</code></td>
+<td>spend/restore <code>PACT_SLOTS</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>TurnResolver.kt:1996</code></td>
+<td><code>SpendClassResource("PACT_SLOTS")</code> для warlock</td>
+</tr>
+</tbody>
+</table>
+<h4 id="upcast">Upcast — отсутствует<a class="headerlink" href="#upcast" title="Permanent link">&para;</a></h4>
+<ul>
+<li>grep <code>upcast|higherLevel</code> по backend = <strong>0</strong>; поле upcast в <code>Spell.kt</code> <strong>нет</strong>; <code>CastSpell.level =
+  spell.level</code> (<code>SpellService.kt:75</code>). Каноничный upcast (слот выше уровня) не поддержан.</li>
+</ul>
+<h4 id="mana-ui">Mana в контракте/UI<a class="headerlink" href="#mana-ui" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Слой</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAPI</td>
+<td><code>openapi.yaml:356-358</code></td>
+<td><code>manaInsufficient</code></td>
+</tr>
+<tr>
+<td>OpenAPI</td>
+<td><code>openapi.yaml:536-539</code></td>
+<td><code>mana</code>, <code>maxMana</code></td>
+</tr>
+<tr>
+<td>OpenAPI</td>
+<td><code>openapi.yaml:1117-1118</code></td>
+<td><code>spellSlotsBefore/After</code> (уже есть)</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><code>lib/api.ts:139,169,253</code></td>
+<td><code>manaInsufficient</code>, <code>manaBonus</code>, <code>mana</code></td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><code>CharacterPanel.tsx:225-228</code>; <code>CharacterStaticPanel.tsx:113-114</code></td>
+<td>mana-бар</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><code>MechanicsStrip.tsx:25,45-46</code></td>
+<td>предупреждение «Недостаточно маны»</td>
+</tr>
+<tr>
+<td>Frontend</td>
+<td><code>FunctionalPanel.tsx:46,69</code>; <code>LootDropCard.tsx:152</code></td>
+<td><code>manaBonus</code> в луте</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">Ключевые ограничения для вариантов<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Pact Magic ≠ mana.</strong> Pact Magic (колдун) — отдельная каноничная модель (<code>PactSlots</code> +
+   <code>ClassResources.pactSlots</code>), НЕ трогается. Смешивание запрещено (D1 = no-op).</li>
+<li>Спека-первая: изменение API-контракта — только через <code>api-specification/openapi.yaml</code> (AGENTS).</li>
+<li><code>StateChange.SpendSpellSlot(level)</code> уже есть — перехода «mana → slots» в основном требует
+   <strong>удаления</strong>, а не добавления новой механики.</li>
+<li>Уровень слота сейчас в mana-ветке выводится из <code>manaCost</code>; в slots-ветке — из <code>spell.level</code>.
+   После удаления mana источник уровня один — <code>spell.level</code>.</li>
+</ol>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="am">Решения (A–M)<a class="headerlink" href="#am" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A = A1</strong> — удалить <code>CharacterState.mana</code> / <code>maxMana</code> (<code>GameState.kt:352-353</code>) вместе с
+  <code>require(mana in 0..maxMana)</code> / <code>require(maxMana &gt;= 0)</code> (<code>GameState.kt:517-518</code>).</li>
+<li><strong>B = B1</strong> — удалить <code>ItemBonuses.manaBonus</code> (<code>GameState.kt:211</code>) и чтение <code>mana_bonus</code>
+  (<code>ItemCatalogService.kt:274</code>). Колонку БД <code>item_archetypes.mana_bonus</code> — оставить или
+  drop'нуть, уточнить при реализации.</li>
+<li><strong>C = C1</strong> — удалить <code>StateChange.SpendMana</code> + эмиссии (<code>TurnResolver.kt:947,1902</code>) +
+  применение (<code>SessionService.kt:2539</code>).</li>
+<li><strong>D = D1</strong> — единственный источник уровня слота — <code>spell.level</code>. Вывод из <code>manaCost</code>
+  (<code>TurnResolver.kt:885-888,938-941</code>) удаляется.</li>
+<li><strong>E = E2 + резолвер</strong> — каталог <code>spell_families</code> и таблица БД (миграция <code>0017</code>) <strong>ОСТАЮТСЯ</strong>
+  (для статус-заклинаний); поле <code>manaCost</code> <strong>игнорируется</strong>. Удаляется <strong>только</strong> mana-путь
+  <code>resolveSpellCatalog</code> (<code>TurnResolver.kt:878-949</code>). Канонический путь остаётся:
+  <code>SpellService.castSpell</code> (<code>SpellService.kt:60</code>) + <code>TurnResolver.resolveCastSpell</code>
+  (<code>TurnResolver.kt:1954</code>) / <code>resolveSpellOrSummon</code> (<code>TurnResolver.kt:1872</code>), из которых
+  убираются mana-ветки (<code>SpendMana</code>, гейты <code>resourcesEnabled</code>).</li>
+<li><strong>F = F1</strong> — удалить <code>MechanicsProfile.resourcesEnabled</code> (<code>GameState.kt:75,93,104,115</code>) и все
+  гейты (<code>TurnResolver.kt:879,935,1881,1902,1944</code>). EASY-режим — отдельная game-design задача.</li>
+<li><strong>G = G2</strong> — upcast отложен в ФАЗУ 3 (отдельный ADR).</li>
+<li><strong>H = H1</strong> — <code>canCast</code> — slots-only: warlock→pact, level 0 free, иначе <code>spellSlots.slots[level]</code>
+  (<code>SpellService.kt:26-54</code> уже каноничен; mana не участвует).</li>
+<li><strong>I = I1</strong> — Pact Magic no-op, не трогаем.</li>
+<li><strong>J = J2</strong> — legacy <code>mana</code> в <code>ledgerJson</code> игнорируется. <strong>Обязательное требование:</strong> проверка
+  <code>shared/infrastructure/JsonConfig.kt</code> выполнена — <code>FAIL_ON_UNKNOWN_PROPERTIES</code> <strong>НЕ отключён</strong>
+  (strict). Поэтому J2 требует <code>@JsonIgnoreProperties(ignoreUnknown = true)</code> на <code>CharacterState</code>
+  ИЛИ глобального <code>.configure(FAIL_ON_UNKNOWN_PROPERTIES, false)</code> в <code>JsonConfig.kt</code> — иначе старые
+  сессии упадут на десериализации. Правка <code>.kt</code> — отдельным шагом, после явного подтверждения.</li>
+<li><strong>K = K1</strong> — spec-first: сначала <code>openapi.yaml</code>, затем backend, затем frontend.</li>
+<li><strong>L = L1</strong> — <code>hasSpellSlots</code> → <code>canCastAnything = slots&gt;0 || cantripsKnown&gt;0</code> (cantrip-only
+  кастер сохраняет возможность; нужен источник «есть ли known cantrips»).</li>
+<li><strong>M = M1</strong> — удалить <code>TurnMechanics.manaInsufficient</code>/<code>manaCost</code> (<code>GameState.kt:1112,1114</code>)
+  синхронно с <code>openapi.yaml:356-358</code> и <code>frontend/lib/api.ts</code>. Если нужен API-сигнал об отказе —
+  M2 (<code>slotInsufficient</code>/<code>slotLevel</code>).</li>
+</ul>
+<h3 id="_3">Обязательные уточнения<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Mana — мёртвая механика (нет регена: grep <code>mana</code> в <code>RestService.kt</code> = 0). ADR-0016 = удаление,
+  не переделка.</strong></li>
+<li><strong>Pact Magic не затрагивается</strong> (I1).</li>
+<li><strong><code>resolveSpellCatalog</code> удаляется; каталог <code>spell_families</code> остаётся</strong> (E).</li>
+<li><strong>J требует проверки <code>JsonConfig.kt</code></strong> — она выполнена: strict (см. J выше).</li>
+</ul>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<h3 id="a-characterstatemana-maxmana-gamestatekt352-353">A. Судьба <code>CharacterState.mana</code> / <code>maxMana</code> (<code>GameState.kt:352-353</code>)<a class="headerlink" href="#a-characterstatemana-maxmana-gamestatekt352-353" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A1 — удалить поля полностью.</strong></li>
+<li><code>+</code> Чистая модель, один ресурс; устраняет <code>require</code> (<code>:517-518</code>) и мёртвое состояние.</li>
+<li><code>−</code> Ломает сериализацию старых <code>ledgerJson</code> (ObjectMapper не знает об удалённом поле — см. J);
+    правки всех мест чтения (гейты <code>:777,955</code>, <code>ActionParser.kt:84</code>).</li>
+<li><strong>A2 — оставить как <code>@Deprecated</code> (legacy-десериализация), не читать в логике.</strong></li>
+<li><code>+</code> Старые сессии читаются без миграции; постепенный вывод из эксплуатации.</li>
+<li><code>−</code> Мёртвое поле живёт в DTO/модели; риск случайного использования.</li>
+<li><strong>A3 — оставить как homebrew-опцию</strong> (не удалять).</li>
+<li><code>−</code> Противоречит цели ADR (единственный ресурс); сохраняет конфликт двух моделей. <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></li>
+</ul>
+<h3 id="b-itembonusesmanabonus-gamestatekt211">B. Судьба <code>ItemBonuses.manaBonus</code> (<code>GameState.kt:211</code>)<a class="headerlink" href="#b-itembonusesmanabonus-gamestatekt211" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>B1 — удалить поле + колонку чтения</strong> (<code>ItemCatalogService.kt:274</code>).</li>
+<li><code>+</code> Убирает мёртвый код; симметрично A1.</li>
+<li><code>−</code> Миграция БД (колонка <code>mana_bonus</code> в <code>item_archetypes</code>) либо оставить колонку без чтения.</li>
+<li><strong>B2 — оставить <code>@Deprecated</code>, не читать.</strong></li>
+<li><code>+</code> Без миграции данных.</li>
+<li><code>−</code> Второе мёртвое поле.</li>
+<li><strong>B3 — переименовать в <code>spellSlotBonus</code></strong> (предмет даёт доп. слот).</li>
+<li><code>+</code> Сохраняет «предмет → ресурс заклинаний» как фичу.</li>
+<li><code>−</code> Новая механика, канон SRD не знает «бонус слота от предмета» — преждевременно.</li>
+</ul>
+<h3 id="c-statechangespendmana">C. Судьба <code>StateChange.SpendMana</code><a class="headerlink" href="#c-statechangespendmana" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>C1 — удалить <code>SpendMana</code></strong> (эмиссия <code>TurnResolver.kt:947,1902</code>; применение <code>SessionService.kt:2539</code>).</li>
+<li><code>+</code> Один путь траты ресурса (<code>SpendSpellSlot</code>).</li>
+<li><code>−</code> Правки двух точек эмиссии + ветки применения; старые <code>StateChange</code> в истории ходов.</li>
+<li><strong>C2 — оставить как deprecated no-op.</strong></li>
+<li><code>+</code> История ходов с <code>SpendMana</code> не ломается при чтении.</li>
+<li><code>−</code> Мёртвый вариант в sealed-иерархии <code>StateChange</code>.</li>
+</ul>
+<h3 id="d">D. Источник уровня слота заклинания<a class="headerlink" href="#d" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>D1 — всегда <code>spell.level</code> (канон).</strong></li>
+<li><code>+</code> Единственный источник; соответствует PHB; <code>CastSpell(level=spell.level)</code> уже так работает
+    (<code>SpellService.kt:75</code>).</li>
+<li><code>−</code> Требует удаления вывода из <code>manaCost</code> (<code>TurnResolver.kt:885-888,938-941</code>).</li>
+<li><strong>D2 — оставить вывод из <code>manaCost</code></strong> (текущий mana-путь).</li>
+<li><code>−</code> Неканонично; сохраняет зависимость от mana. <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></li>
+<li><strong>D3 — оба источника с флагом режима.</strong></li>
+<li><code>−</code> Дублирование логики; конфликт источников. <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></li>
+</ul>
+<h3 id="e-spell_families-manacost-catalogservicekt1929-33-0015-0017">E. Каталог <code>spell_families</code> + <code>manaCost</code> (<code>CatalogService.kt:19,29-33</code>; миграции <code>0015</code>, <code>0017</code>)<a class="headerlink" href="#e-spell_families-manacost-catalogservicekt1929-33-0015-0017" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>E1 — удалить каталог/резолв <code>spell_families</code></strong> (альтернативный mana-резолв).</li>
+<li><code>+</code> Один путь резолва заклинаний.</li>
+<li><code>−</code> Удаление seed-данных (<code>0017-status-spell-families.yaml</code>) и <code>SpellFamilyRow.manaCost</code>.</li>
+<li><strong>E2 — оставить каталог, игнорировать <code>manaCost</code>.</strong></li>
+<li><code>+</code> Каталог статус-заклинаний остаётся для прочих полей; без переезда данных.</li>
+<li><code>−</code> Мёртвая колонка <code>mana_cost</code>.</li>
+<li><strong>E3 — переписать <code>manaCost</code> → <code>slotLevel</code>.</strong></li>
+<li><code>+</code> Каталог несёт каноничный уровень слота.</li>
+<li><code>−</code> Миграция колонки; дублирует <code>Spell.level</code> (см. D).</li>
+</ul>
+<h3 id="f-mechanicsprofileresourcesenabled-gamestatekt7593104115">F. <code>MechanicsProfile.resourcesEnabled</code> (<code>GameState.kt:75,93,104,115</code>)<a class="headerlink" href="#f-mechanicsprofileresourcesenabled-gamestatekt7593104115" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>F1 — удалить гейт</strong> (расход ресурсов всегда по канону).</li>
+<li><code>+</code> Устраняет расхождение сложности (audit NEW-3: «EASY не расходует ресурсы» — не канон).</li>
+<li><code>−</code> Теряется «облегчённый» режим; надо решить, чем заменить (если вообще).</li>
+<li><strong>F2 — оставить гейт только для EASY</strong> (в NORMAL/HARDCORE всегда канон).</li>
+<li><code>+</code> Минимальное изменение; EASY остаётся «бесплатным» для новичков.</li>
+<li><code>−</code> Гейт всё ещё неканоничен по сути.</li>
+<li><strong>F3 — переосмыслить</strong> (напр. EASY = больше слотов, а не бесплатно).</li>
+<li><code>+</code> Дизайн-решение сложности, а не ресурса.</li>
+<li><code>−</code> Вне объёма ADR-0016; требует game-design.</li>
+</ul>
+<h3 id="g-upcast">G. Upcast<a class="headerlink" href="#g-upcast" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>G1 — поддержать сейчас</strong> (слот выше уровня заклинания).</li>
+<li><code>+</code> Полный канон; <code>SpendSpellSlot</code> уже параметризован уровнем.</li>
+<li><code>−</code> Нужен выбор слота (какой слот тратить), отсутствует <code>Spell.upcast</code>-поле.</li>
+<li><strong>G2 — отложить до ФАЗЫ 3</strong> (не блокирует удаление mana).</li>
+<li><code>+</code> Не строим преждевременно; удаление mana от upcast независимо.</li>
+<li><code>−</code> Upcast временно недоступен.</li>
+<li><strong>G3 — не поддерживать.</strong></li>
+<li><code>−</code> Неполный канон. <strong>НЕ РЕКОМЕНДУЕТСЯ</strong> (но допустимо как сознательный скоуп).</li>
+</ul>
+<h3 id="h-cancast-spellservicekt">H. <code>canCast</code> (<code>SpellService.kt</code>)<a class="headerlink" href="#h-cancast-spellservicekt" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>H1 — slots-only</strong> (warlock→pact, остальные→<code>spellSlots.slots[spell.level]</code>, level 0 free).</li>
+<li><code>+</code> Уже фактически так (mana в <code>canCast</code> не участвует); чистый канон.</li>
+<li><code>−</code> Удалить упоминания mana из <code>hasSpellSlots</code>-гейтов (<code>SessionService.kt:777,955</code>, <code>ActionParser.kt:84</code>).</li>
+<li><strong>H2 — hybrid (slots || pact || mana).</strong></li>
+<li><code>−</code> Сохраняет третью ветку. <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></li>
+<li><strong>H3 — как есть до ФАЗЫ 2.</strong></li>
+<li><code>−</code> Откладывает устранение конфликта. <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></li>
+</ul>
+<h3 id="i-pact-magic">I. Pact Magic<a class="headerlink" href="#i-pact-magic" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>I1 — подтвердить no-op</strong> (Pact Magic НЕ трогаем; <code>PactSlots</code>, <code>PACT_SLOTS</code>, <code>ClassResourceHelper</code>
+  остаются как есть).</li>
+<li><code>+</code> Каноничная отдельная модель; смешивание с mana отсутствует уже сейчас.</li>
+<li><code>−</code> (none) — это фиксация границы, а не изменение.</li>
+</ul>
+<h3 id="j-legacy-mana-ledgerjson">J. Legacy-сессии с mana в <code>ledgerJson</code><a class="headerlink" href="#j-legacy-mana-ledgerjson" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>J1 — мигрировать mana → spell slots</strong> при десериализации.</li>
+<li><code>+</code> Старые персонажи не теряют ресурс заклинаний.</li>
+<li><code>−</code> Нужна логика конвертации (сложно сопоставить 1:1).</li>
+<li><strong>J2 — игнорировать/сбрасывать mana</strong> (десериализация без <code>mana</code>, слоты как есть).</li>
+<li><code>+</code> Просто; незнакомый ключ Jackson игнорирует/сбрасывает в дефолт.</li>
+<li><code>−</code> Старые персонажи получают «пустой» ресурс до первого long rest.</li>
+<li><strong>J3 — <code>@Deprecated</code> поле с сохранением значения</strong> (совместимо с A2).</li>
+<li><code>+</code> Без потери данных; плавный вывод.</li>
+<li><code>−</code> Мёртвое поле живёт до ФАЗЫ 2+.</li>
+</ul>
+<h3 id="k-ui-openapi-frontend">K. Контракт/UI (OpenAPI + frontend)<a class="headerlink" href="#k-ui-openapi-frontend" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>K1 — spec-first</strong> (сначала <code>openapi.yaml</code>, затем код и frontend).</li>
+<li><code>+</code> Соблюдает AGENTS (spec-first); <code>spellSlotsBefore/After</code> уже в контракте (<code>:1117-1118</code>).</li>
+<li><code>−</code> Объём правок шире (openapi + frontend + backend одновременно).</li>
+<li><strong>K2 — отложить фронт/контракт</strong> до отдельной задачи (сейчас только backend).</li>
+<li><code>+</code> Меньше за один шаг; backend-модель чистится первой.</li>
+<li><code>−</code> Временно рассинхрон: UI рисует mana-бар при его отсутствии в модели.</li>
+</ul>
+<h3 id="l-mana">L. Формула «может кастовать» после удаления mana<a class="headerlink" href="#l-mana" title="Permanent link">&para;</a></h3>
+<p>Сейчас <code>hasSpellSlots = slots&gt;0 || mana&gt;=3</code> (<code>SessionService.kt:777,955</code>; <code>ActionParser.kt:84</code>).
+После A1 mana уходит.</p>
+<ul>
+<li><strong>L1 — переименовать в <code>canCastAnything = slots&gt;0 || cantripsKnown&gt;0</code></strong> — cantrip-only кастер
+  (level 0, нет слотов) сохраняет возможность.</li>
+<li><code>+</code> Семантически верно; не блокирует bard/sorcerer/warlock на ранних уровнях.</li>
+<li><code>−</code> Нужен способ определить «есть ли cantrips» (grep known spells level 0).</li>
+<li><strong>L2 — оставить <code>slots&gt;0</code> без cantrip-ветки.</strong></li>
+<li><code>−</code> Блокирует cantrip-only кастеров. <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></li>
+<li><strong>L3 — <code>slots&gt;0 || pactSlots.used &lt; pactSlots.count</code></strong> (покрывает warlock отдельно).</li>
+<li><code>+</code> Симметрично H1.</li>
+<li><code>−</code> cantrip-only кастер всё равно блокируется. <strong>НЕ РЕКОМЕНДУЕТСЯ без L1.</strong></li>
+</ul>
+<h3 id="m-turnmechanicsmanainsufficient-manacost">M. <code>TurnMechanics.manaInsufficient</code> / <code>manaCost</code> (поля ответа)<a class="headerlink" href="#m-turnmechanicsmanainsufficient-manacost" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>M1 — удалить поля</strong> (<code>GameState.kt:1112,1114</code>) синхронно с <code>openapi.yaml:356-358</code> и
+  <code>frontend/lib/api.ts</code>.</li>
+<li><code>+</code> Чистый контракт.</li>
+<li><code>−</code> Ломает API-клиентов, если поле используется.</li>
+<li><strong>M2 — переименовать в <code>slotInsufficient</code> / <code>slotLevel</code>.</strong></li>
+<li><code>+</code> Сохраняет сигнал клиенту (какой слот запрошен / почему отказ).</li>
+<li><code>−</code> Миграция DTO + UI.</li>
+<li><strong>M3 — оставить как есть</strong> (мёртвые поля).</li>
+<li><code>−</code> Противоречит A1/C1. <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></li>
+</ul>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Плюсы<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Устранён конфликт двух параллельных моделей ресурса заклинаний (mana vs spell slots).</li>
+<li>Один источник уровня слота — <code>spell.level</code> (D1).</li>
+<li>Единый путь траты ресурса — <code>SpendSpellSlot</code> (C1); mana-ветки (<code>SpendMana</code>, <code>resourcesEnabled</code>)
+  удалены.</li>
+<li><code>canCast → canCastAnything</code> (L1) чинит cantrip-only кастеров (bard/sorcerer/warlock без слотов).</li>
+<li>Контракт и UI чистые: <code>manaInsufficient</code>/<code>manaCost</code>/<code>mana</code>/<code>maxMana</code>/<code>manaBonus</code> уходят из
+  OpenAPI и frontend (K1, M1).</li>
+<li>Pact Magic не затронут (I1); upcast явно отложен (G2).</li>
+</ul>
+<h3 id="_5">Минусы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Legacy-сессии требуют проверки Jackson (J) — strict-маппер ломает десериализацию старых
+  <code>ledgerJson</code> с <code>mana</code>.</li>
+<li>EASY-режим без ресурсного гейта — отдельная game-design задача (F1 → F3).</li>
+<li>Frontend mana-бар и <code>api.ts</code> требуют правок (K1, M1).</li>
+<li>Spec-first расширяет объём одного шага (K1).</li>
+</ul>
+<h3 id="_6">Риски<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>J</strong> — strict Jackson ломает старые сессии. Митигация: <code>@JsonIgnoreProperties(ignoreUnknown=true)</code>
+  на <code>CharacterState</code> + тест десериализации сессии с <code>mana=7</code>.</li>
+<li><strong>L1</strong> — <code>cantripsKnown</code> требует источника данных. Митигация: known spells level 0 через
+  <code>SpellRegistry</code>/<code>canonicalClassId</code>.</li>
+<li><strong>E</strong> — удаление <code>resolveSpellCatalog</code> может задеть существующие тесты. Митигация: grep тестов
+  на <code>resolveSpellCatalog</code>/<code>spell_families</code>, отдельный коммит.</li>
+</ul>
+<h3 id="_7">Отложено<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>G2 — upcast, ФАЗА 3 (отдельный ADR).</li>
+<li>F3 — EASY-режим, game-design.</li>
+<li>Миграция <code>mana → slots</code> (J1) — только если откажемся от J2.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Pact Magic</strong> — <code>PactSlots</code> (<code>GameState.kt:1377-1402</code>), <code>PACT_SLOTS</code>, <code>ClassResourceHelper</code>,
+  <code>ClassFeatureHelper</code> — не меняются (I1).</li>
+<li><strong>Spell save DC / difficulty class</strong> — отдельная ADR-0017, вне объёма.</li>
+<li><strong>Conditions/duration/exhaustion</strong> — закрыты ADR-0013/0014/0015, не затрагиваются.</li>
+<li><strong>Upcast (G2)</strong> — ФАЗА 3, отдельный ADR.</li>
+<li><strong>EASY-режим без ресурсного гейта</strong> — отдельная game-design задача (F1 → F3).</li>
+<li><strong>Миграция legacy-сессий</strong> — при J2 mana сознательно сбрасывается (данные теряются);
+  J1-миграция <code>mana → slots</code> не выполняется (соотношение неочевидно).</li>
+<li><strong>Колонка <code>item_archetypes.mana_bonus</code></strong> — остаётся или drop'ается (уточнить при реализации B1).</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>D&amp;D 5e PHB p.201-202 (Spellcasting, spell slots).</li>
+<li>ADR-0006 (action economy / class resources, пакетные договорённости).</li>
+<li>ADR-0010 §9 (casting time, <code>Spell.castingTime</code>).</li>
+<li>ADR-0012 (DamageType/резолвер, стиль B).</li>
+<li>ADR-0017 (spell DC — будущее, вне объёма).</li>
+<li><code>GameState.kt</code> (<code>mana/maxMana:352-353</code>, <code>SpellSlots:1014-1043</code>, <code>SpendSpellSlot:1199</code>, <code>PactSlots:1377-1402</code>).</li>
+<li><code>TurnResolver.kt</code> (<code>SPELL_MANA_COST:98</code>, <code>resolveSpellCatalog:878-949</code>, <code>resolveSpellOrSummon:1872-1902</code>).</li>
+<li><code>SessionService.kt</code> (<code>SpendMana:2539</code>, <code>SpendSpellSlot:2540</code>, <code>PACT_SLOTS:2777,2795</code>).</li>
+<li><code>SpellService.kt</code> (canCast, <code>CastSpell:75</code>).</li>
+<li><code>LevelUpService.kt</code> (<code>spellSlotsFor:310-358</code>).</li>
+<li><code>CatalogService.kt</code> (<code>SpellFamilyRow:19</code>, <code>findSpellFamily:29-33</code>); <code>ItemCatalogService.kt:274</code>.</li>
+<li>Liquibase <code>0015-action-catalog.yaml</code>, <code>0017-status-spell-families.yaml</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

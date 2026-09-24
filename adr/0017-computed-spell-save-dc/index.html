@@ -1,0 +1,2371 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0017-computed-spell-save-dc/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0017: Вычисляемый spell save DC (8 + proficiency bonus + spellcasting ability modifier) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0017-spell-save-dc-8-proficiency-bonus-spellcasting-ability-modifier" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0017: Вычисляемый spell save DC (8 + proficiency bonus + spellcasting ability modifier)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Факты (файл:строка)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Факты (файл:строка)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Где хранится и читается DC заклинания (статично)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Где DC применяется в рантайме
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dc_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Поля, из которых DC можно вычислить (уже в модели)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Текущая эвристика способности каста (свободный путь, regex)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Два пути резолва заклинаний (важно для границ ADR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NPC / враги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Мультикласс
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adr_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Владение спасбросками (связанное, но НЕ предмет этого ADR)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dc_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тесты, завязанные на статичный DC
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ключевые ограничения для вариантов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-spell-save-dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Где вычислять spell save DC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-spellcasting-ability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Источник spellcasting ability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Форма вычисленного результата
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-dc-spellsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Судьба dc в spells.json
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-spell-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Spell attack (бросок атаки заклинанием)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. NPC / враги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Мультикласс
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-proficiency-bonus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Источник proficiency bonus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-fallback-legacy-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Fallback для legacy-заклинаний без вычисляемого источника
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-save-proficiency-vs-spell-save-dc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        J. Save proficiency vs spell save DC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-adr-0013-h2-adr-0014-l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K. Связь с ADR-0013 H2 → ADR-0014 L1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски и митигация
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0017-spell-save-dc-8-proficiency-bonus-spellcasting-ability-modifier">ADR-0017: Вычисляемый spell save DC (8 + proficiency bonus + spellcasting ability modifier)<a class="headerlink" href="#adr-0017-spell-save-dc-8-proficiency-bonus-spellcasting-ability-modifier" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>Сейчас сложность спасброска от заклинания игрока (spell save DC) <strong>жёстко зашита</strong> в
+<code>spells.json</code> как статичное число <code>savingThrow.dc</code> (только 13 / 14 / 15) и не зависит ни от
+класса, ни от характеристики, ни от уровня персонажа. Канон D&amp;D 5e (PHB p.203-205) требует
+вычислять DC по формуле:</p>
+<div class="highlight"><pre><span></span><code>spell save DC      = 8 + proficiency bonus + spellcasting ability modifier
+spell attack bonus = proficiency bonus + spellcasting ability modifier
+</code></pre></div>
+<p>где ability по классу: Wizard — INT; Cleric/Druid/Ranger — WIS; Bard/Paladin/Sorcerer/Warlock — CHA.
+Мультикласс — по источнику заклинания; NPC — своя DC из статблока.</p>
+<p>Текущая статичная DC даёт одинаковую сложность заклинания у волшебника 1-го и 20-го уровня,
+игнорирует ASI (росты INT/WIS/CHA) и делает прогрессию заклинателя бессмысленной для
+спасбросков. Это рассинхрон с уже реализованным каноном (spell slots, proficiency bonus,
+spellcastingAbility — всё есть в модели, но DC ими не пользуется).</p>
+<h3 id="_1">Факты (файл:строка)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h4 id="dc">Где хранится и читается DC заклинания (статично)<a class="headerlink" href="#dc" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>spells/Spell.kt:57-60</code></td>
+<td><code>data class SavingThrow(ability: String, dc: Int)</code> — <code>dc</code> обязательное поле</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>spells/Spell.kt:98-103</code></td>
+<td><code>SpellEffect.Debuff(savingThrow: SavingThrow, ...)</code> — <strong>вложенный</strong> DC у дебаффов</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>spells/SpellRegistry.kt:60-66</code></td>
+<td>парсинг <code>effect.savingThrow.dc</code> для debuff-эффекта</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>spells/SpellRegistry.kt:81-87</code></td>
+<td>парсинг верхнеуровневого <code>savingThrow.dc</code> (null если отсутствует)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>resources/spells.json</code></td>
+<td>фиксированные <code>dc</code>: только <strong>13 / 14 / 15</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Статистика <code>spells.json</code> (90 заклинаний):
+- верхнеуровневый <code>savingThrow</code> не-null: <strong>26</strong> (14 — damage, 11 — debuff с дублем DC, 1 — sanctuary buff);
+- <code>effect.savingThrow</code> у debuff: <strong>18</strong> (все 18 debuff-заклинаний);
+- без спасброска вообще: <strong>57</strong>;
+- <strong>уникальных заклинаний с ≥1 спасброском: 33</strong> (= 26 верхн. + 7 только <code>effect.savingThrow</code>; <strong>не</strong> 44);
+- <strong>44</strong> = суммарное число <em>объектов</em> спасброска (26 верхн. + 18 effect), из них <strong>11 дублей</strong> посчитаны дважды;
+- распределение <code>dc</code> по объектам: <code>{13: 25, 14: 8, 15: 11}</code> (включая 11 дублей).
+- Список 11 дублей (есть И верхнеуровневый, И <code>effect.savingThrow</code>): <code>vicious-mockery</code>, <code>charm-person</code>,
+  <code>command</code>, <code>entangle</code>, <code>faerie-fire</code>, <code>grease</code>, <code>hold-person</code>, <code>suggestion</code>, <code>web</code>, <code>hypnotic-pattern</code>, <code>slow</code>.</p>
+<h4 id="dc_1">Где DC применяется в рантайме<a class="headerlink" href="#dc_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6</td>
+<td><code>rules/SavingThrowResolver.kt:22-53</code></td>
+<td><code>resolvePlayerSave</code>: <code>total &gt;= savingThrow.dc</code> (<code>:39</code>)</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>rules/SavingThrowResolver.kt:62-86</code></td>
+<td><code>resolveEnemySave</code>: <code>total &gt;= savingThrow.dc</code> (<code>:72</code>)</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>spells/SpellService.kt:153-154</code></td>
+<td>damage-заклинание: <code>resolveEnemySave(spell.savingThrow, target)</code> → DC из справочника</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>spells/SpellService.kt:228</code></td>
+<td>debuff: <code>resolveEnemySave(effect.savingThrow, target)</code> → DC из справочника</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Вывод:</strong> DC нигде не вычисляется из кастера — это всегда статичное <code>savingThrow.dc</code> из
+<code>spells.json</code>, доставленное через объект <code>SavingThrow</code>.</p>
+<h4 id="dc_2">Поля, из которых DC <strong>можно</strong> вычислить (уже в модели)<a class="headerlink" href="#dc_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td><code>classes/CharacterClass.kt:13</code></td>
+<td><code>spellcastingAbility: String?</code> — INTELLIGENCE / WISDOM / CHARISMA или null</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>classes/CharacterClass.kt:20</code></td>
+<td><code>casterType: String = "NONE"</code> — FULL / HALF / PACT / NONE</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>classes/ClassRegistry.kt:120</code></td>
+<td>парсинг <code>spellcastingAbility</code> (uppercase) из <code>classes.yml</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>classes/ClassRegistry.kt:160-202</code></td>
+<td>fallback-классы: wizard=INT, cleric=WIS, bard=CHA, druid=WIS, paladin=CHA, ranger=WIS, sorcerer=CHA, warlock=CHA; warrior/rogue/barbarian/monk=null</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>rules/TurnResolver.kt:33-39</code></td>
+<td>top-level <code>fun proficiencyBonus(level: Int): Int</code> = 2/3/4/5/6 (SRD)</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>rules/SavingThrowResolver.kt:113</code></td>
+<td>private <code>proficiencyBonus(level) = 2 + (level-1)/4</code> (эквивалент SRD-таблице)</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>rules/GameState.kt:124-152</code></td>
+<td><code>Attributes</code> + модификаторы <code>intMod</code>/<code>wisMod</code>/<code>chaMod</code> (<code>:147,149,151</code>)</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>rules/GameState.kt:338-352</code></td>
+<td><code>CharacterState.level</code> (<code>:342</code>), <code>attributes</code> (<code>:341</code>)</td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>rules/GameState.kt:622-642</code></td>
+<td><code>effectiveAttributes</code> (атрибуты с бонусами предметов)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Важно про два источника proficiency bonus:</strong> top-level <code>TurnResolver.proficiencyBonus(level)</code>
+(<code>:33-39</code>) и private <code>SavingThrowResolver.proficiencyBonus(level)</code> (<code>:113</code>) дают <strong>одинаковый</strong>
+результат (2/3/4/5/6), но продублированы в двух местах — см. развилку H.</p>
+<h4 id="regex">Текущая эвристика способности каста (свободный путь, regex)<a class="headerlink" href="#regex" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19</td>
+<td><code>rules/TurnResolver.kt:3103-3110</code></td>
+<td><code>detectCastingAttribute(action, character)</code> — <strong>regex по тексту действия</strong>: CHARISMA-паттерн→chaMod, WISDOM-паттерн→wisMod, иначе→intMod (<strong>default INT</strong>). Не по классу.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="adr">Два пути резолва заклинаний (важно для границ ADR)<a class="headerlink" href="#adr" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td><code>rules/TurnResolver.kt:1954-2008</code></td>
+<td><code>resolveCastSpell</code> («cast <id>») — <strong>детерминированный</strong> путь через <code>SpellService.castSpell</code></td>
+</tr>
+<tr>
+<td>21</td>
+<td><code>rules/TurnResolver.kt:1872-1946</code></td>
+<td><code>resolveSpellOrSummon</code> — <strong>свободный</strong> путь («spell»/«summon»): <code>spellMod = ability + proficiencyBonus(level)</code> (<code>:1895</code>), <code>dc = detectDc(action, defaultDc=13)</code> (<code>:1893</code>), бросок атаки <code>d20 + spellMod &gt;= dc</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>resolveSpellOrSummon</code> — это уже существующий «spell attack», но: (1) атакует <strong>против DC</strong>,
+а не против AC; (2) использует regex-<code>detectCastingAttribute</code>, а не класс; (3) mana-ветки
+(см. ADR-0016, ещё не мигрированы). Отношение к ADR-0017 — развилки E и B.</p>
+<h4 id="npc">NPC / враги<a class="headerlink" href="#npc" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22</td>
+<td><code>rules/GameState.kt:682-704</code></td>
+<td><code>Enemy</code> — есть <code>statusSaveBonus</code> (<code>:699</code>), поля <code>spellSaveDc</code> <strong>нет</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="_2">Мультикласс<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>23</td>
+<td><code>rules/GameState.kt:672-676</code></td>
+<td><code>ClassLevelEntry(classId, level)</code></td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>rules/GameState.kt:483</code></td>
+<td><code>CharacterState.classLevels: List&lt;ClassLevelEntry&gt;</code> (задел, сейчас 1 класс)</td>
+</tr>
+<tr>
+<td>25</td>
+<td><code>leveling/LevelUpService.kt:206-213</code></td>
+<td>обновление <code>classLevels</code> на level-up (одноклассово)</td>
+</tr>
+</tbody>
+</table>
+<p>grep <code>Multiclass</code> = 0; <code>MulticlassService</code> отсутствует.</p>
+<h4 id="adr_1">Владение спасбросками (связанное, но НЕ предмет этого ADR)<a class="headerlink" href="#adr_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26</td>
+<td><code>rules/GameState.kt:349</code></td>
+<td><code>CharacterState.proficiencies</code> — коды навыков и спасбросков (STR/DEX/...)</td>
+</tr>
+<tr>
+<td>27</td>
+<td><code>rules/SavingThrowResolver.kt:31-35</code></td>
+<td>proficiency bonus применяется если <code>ability in character.proficiencies</code></td>
+</tr>
+<tr>
+<td>28</td>
+<td><code>classes/CharacterClass.kt:28</code></td>
+<td><code>Proficiencies.savingThrows</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="dc_3">Тесты, завязанные на статичный DC<a class="headerlink" href="#dc_3" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Место</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>29</td>
+<td><code>spells/SpellServiceTest.kt</code></td>
+<td>касты через <code>SpellService</code> + <code>SavingThrowResolver</code></td>
+</tr>
+<tr>
+<td>30</td>
+<td><code>rules/SavingThrowResolverTest.kt</code></td>
+<td><code>resolvePlayerSave</code>/<code>resolveEnemySave</code> с фиксированным <code>dc</code> (15/10)</td>
+</tr>
+<tr>
+<td>31</td>
+<td><code>spells/SpellRegistryTest.kt:97</code></td>
+<td><code>assertEquals(14, effect.savingThrow.dc)</code></td>
+</tr>
+<tr>
+<td>32</td>
+<td><code>spells/SpellModelTest.kt:115-118</code></td>
+<td><code>SavingThrow(ability="wisdom", dc=14)</code></td>
+</tr>
+<tr>
+<td>33</td>
+<td><code>spells/SpellSystemIntegrationTest.kt:92-109</code></td>
+<td>cast hold-person → condition on failed save</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">Ключевые ограничения для вариантов<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Не путать с save-end DC состояний.</strong> ADR-0014 закрывает «спасбросок в конце хода снимает
+   статус» (DC 12, <code>TurnResolver.kt:42-43</code>, <code>SaveEndResolverTest.kt</code>). Это <strong>другая</strong> DC —
+   не затрагивается. Здесь — только DC заклинателя (8 + prof + ability).</li>
+<li><strong>Pact Magic и mana</strong> — вне объёма (закрыты ADR-0016). ADR-0016 ещё <strong>не мигрирован в код</strong>
+   (grep <code>mana</code> = 39 совпадений: <code>GameState.kt:352-353</code>, <code>TurnResolver.kt:1881,1902</code> и др.),
+   поэтому любые правки <code>.kt</code> здесь — только после подтверждения и не пересекаются с 0016.</li>
+<li><strong>Spec-first</strong> (AGENTS): изменение контракта — только через <code>api-specification/openapi.yaml</code>.</li>
+<li><strong><code>dc</code> в <code>spells.json</code></strong> — сейчас обязательное поле <code>SavingThrow.dc</code> (<code>Spell.kt:59</code>). Удаление
+   поля ломает <code>SpellRegistry.kt:63-66,83-86</code> и strict-Jackson (<code>JsonConfig.kt</code>).</li>
+<li><strong>Два пути резолва</strong> (детерминированный <code>SpellService</code> + свободный <code>resolveSpellOrSummon</code>)
+   — вычисляемый DC должен определиться, в каком из них применяется (вероятно, в
+   детерминированном; свободный путь — см. E).</li>
+</ol>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Решения по развилкам A–K (приняты архитектором):</p>
+<ul>
+<li><strong>A = A2</strong> — derived-хелпер <code>CastingStats.of(character)</code>, <strong>без кэша</strong> на <code>CharacterState</code>.
+  Значения пересчитываются на лету → всегда актуальны; сериализация не трогается.</li>
+<li><strong>B = B1 + B4</strong> — enum <code>SpellcastingAbility { INT, WIS, CHA }</code>; источник данных —
+  <code>CharacterClass.spellcastingAbility</code> (<code>classes.yml</code>, парсинг в <code>ClassRegistry.kt:120</code>).
+  Парсинг: <code>INTELLIGENCE→INT</code>, <code>WISDOM→WIS</code>, <code>CHARISMA→CHA</code>. <code>SpellcastingAbility</code> — <strong>только
+  для кастера</strong> (не для <code>SavingThrow.ability</code>).</li>
+<li><strong>C = C2</strong> — <code>data class SpellcastingStats(spellSaveDc: Int, spellAttackBonus: Int)</code>.</li>
+<li><strong>D = D1</strong> — удалить <code>dc</code> из <code>SavingThrow</code>: <code>data class SavingThrow(ability: String)</code>.
+  <strong><code>SavingThrow.ability</code> — характеристика спасброска ЦЕЛИ (6 значений, <code>String</code>). НЕ
+  перетипизировать в <code>SpellcastingAbility</code>.</strong> Введение enum <code>Ability { STR, DEX, CON, INT, WIS,
+  CHA }</code> — territory ADR-0011, <strong>не в этом ADR</strong>.</li>
+<li><strong>E = E1 + E1a</strong> — ввести <code>spellAttackBonus</code> <strong>и</strong> атаку vs AC (канон PHB p.194).
+  <code>resolveSpellOrSummon</code> (<code>TurnResolver.kt:1893</code>) переписывается: <code>d20 + spellAttackBonus</code> против
+  <code>target.ac</code> (<strong>не</strong> против DC 13).</li>
+<li><strong>F = F2</strong> — <code>Enemy.spellSaveDc</code> — ФАЗА 2 (Monsters), не сейчас.</li>
+<li><strong>G = G2</strong> — мультикласс — отдельный ADR; сейчас берём <code>canonicalClassId</code>.</li>
+<li><strong>H = H2</strong> — единый хелпер <code>proficiencyBonus</code>; оба потребителя (<code>TurnResolver</code> и
+  <code>SavingThrowResolver</code>) делегируют ему.</li>
+<li><strong>I = I1 + I3</strong> — I1: guard — кастер без <code>spellcastingAbility</code> не может наложить заклинание со
+  спасброском (явный отказ). I3: legacy-fallback — <code>dc</code> переименовывается в <strong><code>fixedDc: Int?</code></strong>,
+  <strong>топ-левел поле <code>Spell</code></strong> (не внутри <code>SavingThrow</code>). Семантика: если у кастера нет
+  <code>spellcastingAbility</code>, DC = <code>fixedDc</code>; иначе DC = <code>8 + PB + mod</code>.</li>
+<li><strong>J = J1</strong> — только DC кастера; save proficiency цели не трогаем.</li>
+<li><strong>K = K1</strong> — ADR-0017 <strong>реализует контракт 0013 H2 → 0014 L1, не изменяет 0014</strong>: <code>spellSaveDc</code>
+  кастера прокидывается как вход для DC наложения (через <code>StateChange</code>, 0013 H2), а 0014 L1
+  использует fallback DC из <code>ConditionRegistry</code>.</li>
+</ul>
+<p>Явные фиксации:</p>
+<ul>
+<li><code>SavingThrow.ability</code> — характеристика спасброска <strong>ЦЕЛИ</strong> (6 значений, <code>String</code>). <strong>НЕ <code>SpellcastingAbility</code>.</strong></li>
+<li><code>SpellcastingAbility</code> — <strong>только для кастера</strong> (расчёт DC и spell attack).</li>
+<li><code>fixedDc</code> — <strong>топ-левел поле <code>Spell</code></strong> (не внутри <code>SavingThrow</code>).</li>
+<li>enum <code>Ability { STR, DEX, CON, INT, WIS, CHA }</code> — <strong>territory ADR-0011</strong> (дубль #5), не 0017.</li>
+<li><strong>ADR-0017 реализует контракт 0013 H2 → 0014 L1, не изменяет 0014.</strong></li>
+<li><strong>E1a</strong> — spell attack <strong>vs AC</strong>, не vs DC.</li>
+<li><strong>D1</strong> — breaking change для <code>SavingThrow.dc</code> (Spell.kt, SpellRegistry, SpellModelTest, SpellRegistryTest).</li>
+<li><strong>H2</strong> — консолидация дубля <code>proficiencyBonus</code> (0011-territory).</li>
+</ul>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<h3 id="a-spell-save-dc">A. Где вычислять spell save DC<a class="headerlink" href="#a-spell-save-dc" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A1 — кэшированное поле <code>CharacterState.spellSaveDc</code></strong> (пересчитывается при level-up/ASI/смене класса).</li>
+<li><code>+</code> Один расчёт; прозрачно для UI/нарратива; сериализуется в <code>ledgerJson</code>.</li>
+<li><code>−</code> Новое поле в <code>CharacterState</code> (+strict-Jackson десериализация legacy-сессий); риск
+    рассинхрона с атрибутами, если забыть пересчитать.</li>
+<li><strong>A2 — вычисляемый (derived) доступор/хелпер <code>CastingStats.of(character)</code></strong> без хранения.</li>
+<li><code>+</code> Нет состояния для синхронизации; всегда актуально; не трогает сериализацию.</li>
+<li><code>−</code> Расчёт на каждый каст; дублирование формулы, если не сделать единый хелпер.</li>
+<li><strong>A3 — вычислять на месте каста в <code>SpellService.castSpell</code></strong> (локально, без переиспользования).</li>
+<li><code>+</code> Минимум изменений поверхности.</li>
+<li><code>−</code> Логика размазана; spell attack (E) потом придётся вычислять заново.</li>
+</ul>
+<h3 id="b-spellcasting-ability">B. Источник spellcasting ability<a class="headerlink" href="#b-spellcasting-ability" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>B1 — <code>CharacterClass.spellcastingAbility: String?</code></strong> (уже есть, <code>CharacterClass.kt:13</code>;
+  значения по классам — <code>ClassRegistry.kt:160-202</code>).</li>
+<li><code>+</code> Каноничный источник; уже загружен из <code>classes.yml</code>; покрывает все 12 классов.</li>
+<li><code>−</code> <code>null</code> у не-кастеров (warrior/rogue/barbarian/monk) — нужен явный отказ/guard.</li>
+<li><strong>B2 — <code>Map&lt;classId, ability&gt;</code> (константа) в коде.</strong></li>
+<li><code>+</code> Явно и детерминированно; не зависит от <code>classes.yml</code>.</li>
+<li><code>−</code> Дублирует источник правды; рассинхрон с <code>classes.yml</code> при правках.</li>
+<li><strong>B3 — regex-fallback <code>detectCastingAttribute</code></strong> (как сейчас в свободном пути, <code>TurnResolver.kt:3103</code>).</li>
+<li><code>+</code> Ноль новых данных; работает без <code>canonicalClassId</code>.</li>
+<li><code>−</code> Неканонично (default INT для любого не-RU-паттерна); для детерминированного пути
+    неприемлемо. <strong>НЕ РЕКОМЕНДУЕТСЯ для детерминированного каста.</strong></li>
+<li><strong>B4 — enum <code>SpellcastingAbility { INT, WIS, CHA }</code></strong> вместо <code>String?</code>.</li>
+<li><code>+</code> Типобезопасность; исключает опечатки.</li>
+<li><code>−</code> Миграция поля <code>CharacterClass.spellcastingAbility</code> + все места чтения (больше правок).</li>
+</ul>
+<h3 id="c">C. Форма вычисленного результата<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>C1 — <code>Int</code> (только <code>spellSaveDc</code>).</strong></li>
+<li><code>+</code> Минимально; покрывает этот ADR.</li>
+<li><code>−</code> Spell attack (E) потребует отдельного значения/расширения позже.</li>
+<li><strong>C2 — <code>data class SpellcastingStats(spellSaveDc: Int, spellAttackBonus: Int)</code>.</strong></li>
+<li><code>+</code> Сразу покрывает и DC, и атаку заклинанием; одна формула, два потребителя.</li>
+<li><code>−</code> Чуть шире объёма (spell attack ещё не в скоупе E).</li>
+</ul>
+<h3 id="d-dc-spellsjson">D. Судьба <code>dc</code> в <code>spells.json</code><a class="headerlink" href="#d-dc-spellsjson" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>D1 — удалить <code>dc</code> из <code>SavingThrow</code></strong> → <code>SavingThrow(ability: String)</code> (без <code>dc</code>); DC вычисляется.
+  <code>ability</code> остаётся характеристикой спасброска ЦЕЛИ (6 значений, <code>String</code>), <strong>не</strong> перетипизируется.</li>
+<li><code>+</code> Один источник правды; исключает конфликт «статичный vs вычисляемый».</li>
+<li><code>−</code> Ломает <code>SavingThrow(dc)</code> (<code>Spell.kt:59</code>), парсер (<code>SpellRegistry.kt:63-66,83-86</code>),
+    strict-Jackson; нужна правка модели + тестов (<code>SpellRegistryTest:97</code>, <code>SpellModelTest:115-118</code>).</li>
+<li><strong>D2 — <code>dc</code> остаётся, но игнорируется в рантайме</strong> (override вычисленным).</li>
+<li><code>+</code> Совместимость legacy-сессий/тестов; мягкий переход.</li>
+<li><code>−</code> Мёртвое поле в справочнике; риск случайного использования.</li>
+<li><strong>D3 — переименовать в <code>fixedDc</code> (fallback для legacy-миров без канона).</strong></li>
+<li><code>+</code> Явная семантика «это fallback, не канон».</li>
+<li><code>−</code> Миграция JSON + парсера; не решает вопрос «когда fallback применяется» (см. I).</li>
+</ul>
+<h3 id="e-spell-attack">E. Spell attack (бросок атаки заклинанием)<a class="headerlink" href="#e-spell-attack" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>E1 — ввести сейчас</strong> (подварианты E1a/E1b).</li>
+<li><strong>E1a — атака сразу vs AC</strong> (канон PHB p.194): <code>spellAttackBonus = proficiencyBonus + abilityMod</code>;
+    <code>resolveSpellOrSummon</code> (<code>TurnResolver.kt:1893</code>) переписывается на <code>d20 + spellAttackBonus &gt;= target.ac</code>.<ul>
+<li><code>+</code> Полный канон; убирает сломанный «атака vs DC».</li>
+<li><code>−</code> Меняет контракт <code>resolveSpellOrSummon</code> (vs DC 13 → vs AC); затрагивает тесты.</li>
+</ul>
+</li>
+<li><strong>E1b — только <code>spellAttackBonus</code>, атака остаётся vs DC</strong> (текущий сломанный вариант).<ul>
+<li><code>+</code> Меньше изменений поверхности.</li>
+<li><code>−</code> Сохраняет неканоничную атаку vs DC; непоследовательно с DC-решением.</li>
+</ul>
+</li>
+<li><strong>E2 — отложить</strong> (сейчас только spell save DC; spell attack — отдельный ADR).</li>
+<li><code>+</code> Узкий скоуп; DC решается чисто.</li>
+<li><code>−</code> Временная асимметрия: DC вычисляемый, атака — нет (свободный путь живёт как есть).</li>
+</ul>
+<h3 id="f-npc">F. NPC / враги<a class="headerlink" href="#f-npc" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>F1 — <code>Enemy.spellSaveDc</code></strong> (собственная DC из статблока/каталога).</li>
+<li><code>+</code> Канон (у монстров своя DC, не по классам); симметрия с <code>statusSaveBonus</code>.</li>
+<li><code>−</code> Новое поле <code>Enemy</code> + источник данных (архетип <code>creature_archetypes</code>).</li>
+<li><strong>F2 — отложить в ФАЗУ 2 (Monsters)</strong> (пока NPC не кастуют заклинания со спасбросками).</li>
+<li><code>+</code> Не строим преждевременно; NPC-заклинания сейчас нет в скоупе.</li>
+<li><code>−</code> Если NPC закастует — снова статичный DC.</li>
+</ul>
+<h3 id="g">G. Мультикласс<a class="headerlink" href="#g" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>G1 — учесть сейчас</strong> (ability по <code>classLevels</code> источнику заклинания).</li>
+<li><code>+</code> Канон для мультикласса.</li>
+<li><code>−</code> <code>MulticlassService</code>/<code>classLevels</code> ещё задел (<code>GameState.kt:483</code>, <code>LevelUpService.kt:206</code>);
+    преждевременно до поддержки мультикласса.</li>
+<li><strong>G2 — отдельный ADR</strong> (сейчас один класс — берём <code>canonicalClassId</code>).</li>
+<li><code>+</code> Соответствует текущему состоянию модели (мультикласс не реализован).</li>
+<li><code>−</code> Позже потребуется ревизия источника ability.</li>
+</ul>
+<h3 id="h-proficiency-bonus">H. Источник proficiency bonus<a class="headerlink" href="#h-proficiency-bonus" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>H1 — единый top-level <code>TurnResolver.proficiencyBonus(level)</code></strong> (<code>:33-39</code>).</li>
+<li><code>+</code> Уже public; одна точка правды.</li>
+<li><code>−</code> <code>SavingThrowResolver</code> использует свой private аналог (<code>:113</code>) — дублирование остаётся.</li>
+<li><strong>H2 — единый хелпер (общий <code>Proficiency</code>/<code>LevelTableRegistry</code>), оба потребителя.</strong></li>
+<li><code>+</code> Устраняет дублирование 2 формул.</li>
+<li><code>−</code> Небольшой рефактор вне узкого скоупа DC.</li>
+<li><strong>H3 — из <code>LevelTableRegistry</code> (таблица <code>level-table.yml</code>).</strong></li>
+<li><code>+</code> Единый data-driven источник (<code>LevelTableEntry.proficiencyBonus</code>).</li>
+<li><code>−</code> Зависимость от YAML; таблица может отличаться от hardcoded SRD.</li>
+</ul>
+<h3 id="i-fallback-legacy-">I. Fallback для legacy-заклинаний без вычисляемого источника<a class="headerlink" href="#i-fallback-legacy-" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>I1 — заклинания без класса/ability не кастуются со спасброском</strong> (guard → отказ).</li>
+<li><code>+</code> Нет скрытого fallback; честный отказ.</li>
+<li><code>−</code> Не-кастер с заклинанием (edge) получит отказ.</li>
+<li><strong>I2 — fallback-модификатор 0</strong> (DC = 8 + prof + 0).</li>
+<li><code>+</code> Не ломает каст; детерминированно.</li>
+<li><code>−</code> Неканонично; заниженная DC.</li>
+<li><strong>I3 — fallback на текущий статичный <code>dc</code> из JSON</strong> (D3/D2).</li>
+<li><code>+</code> Обратная совместимость.</li>
+<li><code>−</code> Сохраняет статичный DC в обходном пути.</li>
+</ul>
+<h3 id="j-save-proficiency-vs-spell-save-dc">J. Save proficiency vs spell save DC<a class="headerlink" href="#j-save-proficiency-vs-spell-save-dc" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>J1 — только DC заклинателя</strong> (этот ADR); save proficiency не трогаем.</li>
+<li><code>+</code> Узкий скоуп; <code>resolvePlayerSave</code> (<code>:31-35</code>) уже работает корректно.</li>
+<li><code>−</code> (none) — фиксация границы.</li>
+<li><strong>J2 — расширить на «владение спасбросками»</strong>.</li>
+<li><code>−</code> Вне объёма; save proficiency — отдельная тема (броски цели, а не DC кастера).</li>
+</ul>
+<h3 id="k-adr-0013-h2-adr-0014-l1">K. Связь с ADR-0013 H2 → ADR-0014 L1<a class="headerlink" href="#k-adr-0013-h2-adr-0014-l1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>K1 — реализация контракта 0013 H2 → 0014 L1</strong> (не изменяет 0014): <code>spellSaveDc</code> кастера
+  становится входом для DC наложения — прокидывается через <code>StateChange</code> (0013 H2), а 0014 L1
+  берёт fallback DC из <code>ConditionRegistry</code>.</li>
+<li><code>+</code> Консистентность: DC наложения = DC кастера; реализует уже принятый контракт.</li>
+<li><code>−</code> Требует координации с реализацией 0013 H2 / 0014 L1 (ещё не в коде).</li>
+<li><strong>K2 — ADR-0014 остаётся с DC 12, связь не устанавливаем.</strong></li>
+<li><code>+</code> Не трогаем закрытый ADR; минимальный риск.</li>
+<li><code>−</code> Расхождение «DC наложения vs DC заклинания» остаётся.</li>
+</ul>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Плюсы<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Канон-DC</strong> (<code>8 + proficiencyBonus + abilityMod</code>) вместо статичных 13/14/15.</li>
+<li><strong>Прогрессия кастера работает</strong>: уровень/ASI реально влияют на сложность спасбросков.</li>
+<li><strong>Spell attack → vs AC</strong> (E1a): убирается сломанный «атака vs DC 13».</li>
+<li><strong>enum <code>SpellcastingAbility</code></strong> (B4) — типобезопасность, исключает опечатки.</li>
+<li><strong>Единый <code>proficiencyBonus</code></strong> (H2) — устраняется дубль формулы из 0011-territory.</li>
+<li><strong>Задел под мультикласс</strong> (G2): источник ability сведён к классу (<code>canonicalClassId</code>).</li>
+</ul>
+<h3 id="_5">Минусы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>D1 — breaking change</strong>: <code>SavingThrow.dc</code> удаляется → <code>Spell.kt:57-60</code>,
+  <code>SpellRegistry.kt:60-66,81-87</code>, <code>SpellModelTest.kt:115-118</code>, <code>SpellRegistryTest.kt:97</code>.</li>
+<li><strong>B4 — миграция <code>String?</code> → enum</strong> у <code>CharacterClass.spellcastingAbility</code> + все места чтения.</li>
+<li><strong>E1a — контракт <code>resolveSpellOrSummon</code> меняется</strong> (атака vs AC вместо vs DC 13).</li>
+<li><strong>A2 — вычисление на каждом касте</strong> (минимальная цена, без кэша).</li>
+</ul>
+<h3 id="_6">Риски и митигация<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>D1 — strict Jackson на legacy-сессиях с <code>dc</code> в JSON</strong> → митигация: I3 <code>fixedDc: Int?</code>
+  (+ <code>@JsonIgnoreProperties(ignoreUnknown=true)</code> на <code>CharacterState</code>, если legacy-сессии хранят <code>dc</code>).</li>
+<li><strong>E1a — тесты <code>SpellServiceTest</code> могут ожидать «vs DC»</strong> → митигация: grep тестов перед правкой,
+  отдельный коммит на контракт атаки.</li>
+<li><strong>H2 — рефактор с неочевидным эффектом</strong> → митигация: unit-тесты обеих формул
+  (<code>TurnResolver.proficiencyBonus</code> и <code>SavingThrowResolver.proficiencyBonus</code>) должны давать
+  одинаковый результат 2/3/4/5/6.</li>
+</ul>
+<h3 id="_7">Отложено<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>F2</strong> — <code>Enemy.spellSaveDc</code> — ФАЗА 2 (Monsters).</li>
+<li><strong>G2</strong> — мультикласс-casting — отдельный ADR.</li>
+<li><strong>enum <code>Ability</code> (6 значений)</strong> — territory ADR-0011 (дубль #5).</li>
+<li><strong>Upcast</strong> — ФАЗА 3 (ADR-0016 G2).</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Save-end DC состояний (ADR-0014)</strong> — DC 12, <code>TurnResolver.kt:42-43</code>, <code>SaveEndResolverTest</code> — не меняется.</li>
+<li><strong>Mana → spell slots (ADR-0016)</strong> — миграция кода не входит; правки <code>.kt</code> пересекающиеся
+  с mana-ветками (<code>TurnResolver.kt:1881,1902</code>) — только после подтверждения и отдельно от 0017.</li>
+<li><strong>Pact Magic</strong> — <code>PactSlots</code>, <code>PACT_SLOTS</code> — не меняется.</li>
+<li><strong>Upcast</strong> — ФАЗА 3 (ADR-0016 G2), вне объёма.</li>
+<li><strong>Расы/фоны/фичи классов, подклассы</strong> — вне объёма.</li>
+<li><strong>Save proficiency (владение спасбросками цели)</strong> — работает (<code>SavingThrowResolver.kt:31-35</code>), не меняется.</li>
+<li><strong>enum <code>Ability { STR, DEX, CON, INT, WIS, CHA }</code> (6 значений)</strong> — <strong>territory ADR-0011</strong> (дубль #5:
+  <code>attributeForSkill</code>/<code>detectAttribute</code>/<code>getAbilityScore</code>/<code>detectCastingAttribute</code>) — не в этом ADR.</li>
+<li><strong>Spell attack для NPC/монстров</strong> — ФАЗА 2 (Monsters, F2).</li>
+<li><strong>Мультикласс-casting</strong> — отдельный ADR (G2).</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>D&amp;D 5e PHB p.194 (Attack Rolls), p.203-205 (Spellcasting: Spell save DC, Spell attack bonus).</li>
+<li>ADR-0013 (StateChange — H2: DC из источника наложения прокидывается через StateChange).</li>
+<li>ADR-0014 (condition duration lifecycle — L1: fallback DC из ConditionRegistry; save-end DC 12).</li>
+<li>ADR-0011 (дубль #5: attribute-резолверы — territory enum <code>Ability</code>).</li>
+<li>ADR-0016 (remove mana, spell slots only — гран. контекст, ещё не мигрирован).</li>
+<li>ADR-0012 (damage type / resolver — стиль B образец).</li>
+<li><code>Spell.kt</code> (<code>SavingThrow:57-60</code>, <code>SpellEffect.Debuff:98-103</code>).</li>
+<li><code>SpellRegistry.kt</code> (парсинг DC <code>:60-66,81-87</code>).</li>
+<li><code>SavingThrowResolver.kt</code> (<code>resolvePlayerSave:22</code>, <code>resolveEnemySave:62</code>, <code>proficiencyBonus:113</code>).</li>
+<li><code>TurnResolver.kt</code> (<code>proficiencyBonus:33-39</code>, <code>resolveCastSpell:1954</code>, <code>resolveSpellOrSummon:1872</code>,
+  <code>detectCastingAttribute:3103</code>).</li>
+<li><code>SpellService.kt</code> (<code>resolveDamage:153</code>, <code>resolveDebuff:228</code>).</li>
+<li><code>CharacterClass.kt</code> (<code>spellcastingAbility:13</code>, <code>casterType:20</code>); <code>ClassRegistry.kt</code> (fallback <code>:160-202</code>).</li>
+<li><code>GameState.kt</code> (<code>CharacterState:338</code>, <code>Attributes:124</code>, <code>Enemy:682</code>, <code>ClassLevelEntry:672</code>).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

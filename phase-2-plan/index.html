@@ -1,0 +1,1897 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/phase-2-plan/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Фаза 2 — план реализации ADR-0012…0019 (фундамент эпика) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2-adr-00120019" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Фаза 2 — план реализации ADR-0012…0019 (фундамент эпика)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sub-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sub-phases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sub-phases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-damage-foundation-adr-0012-medium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 — Damage Foundation (ADR-0012) — medium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-condition-core-adr-0013-large" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 — Condition Core (ADR-0013) — large
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-condition-lifecycle-adr-0014-large" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 — Condition Lifecycle (ADR-0014) — large
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-exhaustion-rest-adr-0015-1-medium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 — Exhaustion + Rest (ADR-0015 + #1) — medium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-mana-removal-adr-0016-large-spec-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 — Mana Removal (ADR-0016) — large (spec-first)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-spell-save-dc-adr-0017-large" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 — Spell Save DC (ADR-0017) — large
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-xp-level-up-adr-0018-2-gap-6-large" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7 — XP + Level-Up (ADR-0018 + #2 + gap #6) — large
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-activatable-abilityresolver-adr-0019-3-7-0011-large" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8 — Activatable / AbilityResolver (ADR-0019 + #3 + #7 + финал 0011) — large
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2-adr-00120019">Фаза 2 — план реализации ADR-0012…0019 (фундамент эпика)<a class="headerlink" href="#2-adr-00120019" title="Permanent link">&para;</a></h1>
+<p>Working doc (не ADR). Фактура собрана из <code>docs/adr/0011–0019</code>, <code>_REPORT-PHASE-1A.md</code>,
+<code>docs/phase-1a-plan.md</code> и разведки кода <code>backend/app/src/**</code>. Файл:строка — актуально на
+2026-09-22, состояние ФАЗЫ 1a (3 регрессии закрыты).</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>ФАЗА 2 переводит принятые ADR-0012…0019 из «проекта» в код. Это <strong>8 ADR</strong> + незакрытые
+дубли из ADR-0011 (#1/#2/#3/#4/#7) + gap #6 (<code>hitDie ?: 8</code>). Работа декомпозируется на
+<strong>8 подфаз</strong> — по одной на ADR (ADR атомарны и связаны жёстким графом зависимостей;
+безопасное слияние без разрыва «один коммит = один логический шаг» невозможно). Каждая
+подфаза закрывает ровно один ADR + сопутствующий дубль ADR-0011.</p>
+<p>Ключевая сложность фазы — <strong>смена типа <code>statuses: List&lt;String&gt; → List&lt;StatusId&gt;</code></strong>
+(ADR-0013) и <strong><code>statusDurations: Map&lt;String,Int&gt; → Map&lt;StatusId,StatusInstance&gt;</code></strong>
+(ADR-0014): это сквозной breaking-change по всем резолверам и ~20 тестам. Второй
+по объёму блок — <strong>spec-first удаление mana</strong> (ADR-0016) с правкой <code>openapi.yaml</code> +
+фронтенда. Третий — <strong>breaking-change <code>SavingThrow.dc</code></strong> (ADR-0017).</p>
+<p>Миграции БД — минимальны: движок в основном «code-defined» (Kotlin-реестры, <code>spells.json</code>,
+<code>classes.yml</code>), а не табличный. Реальных Liquibase-миграций — <strong>2</strong> (см. ниже).</p>
+<hr />
+<h2 id="dependencies-map">Dependencies Map<a class="headerlink" href="#dependencies-map" title="Permanent link">&para;</a></h2>
+<p>Направление стрелки: <code>X → Y</code> = «Y нельзя мерджить раньше X».</p>
+<div class="highlight"><pre><span></span><code>ADR-0016 (mana removal) ────────────┐
+   │ (убирает mana-ветки, которые    │
+   │  трогает 0017)                  ▼
+   └──────────────────────────► ADR-0017 (spell DC)
+                                     │
+ADR-0012 (DamageType/Resolver) ──┐   │ (SpellcastingAbility → enum Ability)
+   │ (resistanceToAll D1,        │   ▼
+   │  Resolver-паттерн)          └► ADR-0019 (Activatable/AbilityResolver)
+   ▼                                ▲      ▲
+ADR-0013 (StatusId/registry) ───────┘      │
+   │ (kind → 0014; AdvDisadvResolver → 0015)│
+   ├──► ADR-0014 (lifecycle) ──► ADR-0015 (exhaustion, совместимость pass-order)
+   └──► ADR-0015 (exhaustion, K1 composition, H1 StatusContext)
+ADR-0018 (XP/LevelUp) ─── независим (свой кластер: XP/HP/ASI/features)
+ADR-0011 дубли:
+   #1 Rest  → внутрь ADR-0015 (F1)
+   #2 ClassResources → внутрь ADR-0018 (F1)
+   #4 Enemy HP → внутрь ADR-0012 (E1-следствие)
+   #3 ActionEconomy + #7 enemy save → внутрь ADR-0019 (O3 + код-унификация)
+</code></pre></div>
+<p>Итог: <strong>0012 → {0013, 0019}; 0013 → {0014, 0015, 0019}; 0014 → 0015; 0015 → (0011#1);
+0016 → 0017 → 0019; 0018 — независим; 0019 — финал (тянет 0012/0013/0016/0017 + #3/#7).</strong></p>
+<hr />
+<h2 id="sub-phases">Sub-phases<a class="headerlink" href="#sub-phases" title="Permanent link">&para;</a></h2>
+<h3 id="21-damage-foundation-adr-0012-medium">2.1 — Damage Foundation (ADR-0012) — <strong>medium</strong><a class="headerlink" href="#21-damage-foundation-adr-0012-medium" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> enum <code>DamageType</code> (A1), <code>object DamageResolver</code> (B1), интерфейс
+<code>Damageable</code> (C1), <code>vulnerabilities</code> (G1), <code>resistanceToAll</code> (D1), единая точка E1,
+типизация оружия (G3). Дубль <strong>#4 Enemy HP</strong> — следствие E1 (перенос <code>Enemy.copy(hp)</code> в
+<code>applyStateChanges</code> строго 1:1).</p>
+<p><strong>Решения архитектора (follow-up):</strong> дубль #4 Enemy HP — вариант C: <code>StateChange.Damage(ENEMY)</code> — intent; <code>DamageResolver.apply</code> на эмиссии; <code>Enemy.copy</code> — 1:1 реализация после резолвера.</p>
+<p><strong>Файлы:</strong>
+- Новые: <code>rules/damage/DamageType.kt</code>, <code>rules/damage/DamageResolver.kt</code> (<code>Damageable</code>).
+- <code>rules/GameState.kt</code>: <code>StateChange.Damage.damageType: String?→DamageType?</code> (:1163),
+  <code>Enemy.resistances/immunities → List&lt;DamageType&gt;</code> + <code>vulnerabilities</code> (:707,709),
+  <code>CharacterState</code> + 3 поля <code>Damageable</code> (:338+), <code>InventoryItem.damageType</code> (:231).
+- <code>spells/Spell.kt:72</code> (<code>SpellEffect.Damage.damageType</code>), <code>spells/SpellRegistry.kt:35</code>,
+  <code>catalog/CatalogService.kt:260</code> (<code>EnvironmentalHazardRow.damageType</code>).
+- <code>spells/SpellService.kt:168-173</code> — <strong>удалить</strong> resist/immune (перенос в <code>applyStateChanges</code>).
+- <code>sessions/SessionService.kt:2385+</code> — применить <code>DamageResolver</code> в <code>Damage(PLAYER)</code>;
+  #4: консолидировать <code>Damage(ENEMY)</code> (сейчас <code>TurnResolver</code> мутирует <code>Enemy.copy</code> напрямую).</p>
+<p><strong>Миграция БД:</strong> <code>00XX-item-archetypes-damage-type.yaml</code> — add column <code>damage_type
+VARCHAR(16) NULL</code> в <code>item_archetypes</code> (0022) + backfill канонических типов оружия
+(longsword=slashing, mace=bludgeoning, rapier/shortbow=piercing, sling=bludgeoning).</p>
+<p><strong>Тесты:</strong> ломаются/правятся — <code>SpellServiceTest</code> (уход 168-173), <code>SessionServiceDamageStabilizedTest</code>
+(target ENEMY), <code>WeaponTraitTest</code> (не затронут — traits вне скоупа). <strong>НЕ ломаются</strong> —
+<code>LootShowcaseServiceTest</code>, <code>LootPowerTableTest</code> (аддитивное поле <code>damageType=null</code>; если
+упадёт — стоп, доклад архитектору). Добавить <code>DamageResolverTest</code>.</p>
+<p><strong>Риски:</strong> новое поле <code>damageType</code> в <code>InventoryItem</code> (дефолт <code>null</code>, аддитивно — обратная
+совместимость по умолчанию). Развилки: <strong>A1/B1/C1/D1/E1/G1+G3</strong>, F2 отложено.</p>
+<h3 id="22-condition-core-adr-0013-large">2.2 — Condition Core (ADR-0013) — <strong>large</strong><a class="headerlink" href="#22-condition-core-adr-0013-large" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> <code>enum StatusId</code> (+<code>kind</code>+<code>nameRu</code>) (A1/K1), <code>ConditionRegistry</code> (B2/L1),
+<code>object ConditionResolver</code> (C1), флаги гейтов (E1), <code>AdvDisadvantageResolver</code> (F1),
+target-aware <code>AddCondition</code>/<code>ApplyDebuff</code> + <code>applyEnemyStateChanges</code> (D1),
+<code>Enemy.statusDurations</code> + <code>conditionImmunities</code> (G2), <code>StatusContext</code> (I2).</p>
+<p><strong>Файлы:</strong>
+- Новые: <code>rules/conditions/StatusId.kt</code>, <code>ConditionRegistry.kt</code>, <code>ConditionResolver.kt</code>,
+  <code>AdvDisadvantageResolver.kt</code>, <code>StatusContext.kt</code>.
+- <code>rules/GameState.kt</code>: <code>statuses: List&lt;StatusId&gt;</code> (:345,:691,:947), удалить хардкод-наборы
+  (:644-668), переписать геттеры (:527-579), <code>StateChange.AddCondition/ApplyDebuff</code> + <code>target</code>.
+- <code>sessions/SessionService.kt</code>: <code>applyStateChanges</code> (:2436-2445 баг длительности врага,
+  :2657-2691 двойное добавление), новый <code>applyEnemyStateChanges</code>, whitelist ctx (:952-962).
+- <code>rules/TurnResolver.kt</code>: adv/disadv (:2312-2322, :2746), гейты (:210-233), save-end (:50-83).
+- <code>spells/SpellService.kt:235-239</code> (двойное <code>AddCondition</code>+<code>ApplyDebuff</code>).</p>
+<p><strong>Миграция БД:</strong> нет (Kotlin-реестр).</p>
+<p><strong>Тесты (самый широкий слом):</strong> ~15–20 файлов, читающих русские строки статусов —
+<code>SyntheticAllMechanicsTest</code>, <code>TurnResolverTest</code>, <code>TurnResolverStabilizedTest</code>,
+<code>ConcentrationTest</code>, <code>SaveEndResolverTest</code>, <code>AllyEnemyTurnTest</code>, <code>DeathRulesTest</code>,
+<code>SessionServiceDamageStabilizedTest</code>, <code>EnvironmentalHazardTest</code>, <code>RestServiceTest</code>,
+<code>CreatureArchetypeTest</code>, <code>StealthAdvantageTest</code>, <code>SocialCheckTest</code>, <code>ImprovedCriticalTest</code>,
+<code>HideDashOutOfCombatTest</code>, <code>FullSimulationsTest</code>, <code>LiveLlmDirect4x15Test</code>. Добавить
+<code>ConditionRegistryTest</code>, <code>AdvDisadvantageResolverTest</code>.</p>
+<p><strong>Риски:</strong> <code>StatusContext</code> ломает <code>ctx: Map&lt;String,Any&gt;</code> (нужен <code>toWhitelistCtx()</code>);
+<code>kind</code> homebrew-статусов может пересмотреться в 0014. Развилки: A1/B2/C1/D1/E1/F1/G2/H2/I2/J1/K1/L1.</p>
+<h3 id="23-condition-lifecycle-adr-0014-large">2.3 — Condition Lifecycle (ADR-0014) — <strong>large</strong><a class="headerlink" href="#23-condition-lifecycle-adr-0014-large" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> <code>StatusInstance(statusId,remaining,source,spellLevel)</code> (A3), pass-порядок
+<code>apply→save→tick</code> (C3 + C3-fix), <code>SaveModifierResolver</code> (G1), Petrified auto-fail STR/DEX (H1),
+<code>tickEnemyDurations</code> (I1), <code>ConditionLifecycle.removeAll</code> (J1), <code>ConcentrationManager</code> (K1),
+fallback DC (L1).</p>
+<p><strong>Файлы:</strong>
+- Новые: <code>rules/conditions/StatusInstance.kt</code>, <code>ConditionLifecycle.kt</code>,
+  <code>SaveModifierResolver.kt</code>, <code>ConcentrationManager.kt</code>.
+- <code>rules/GameState.kt</code>: <code>statusDurations: Map&lt;StatusId,StatusInstance&gt;</code> (:463), <code>Enemy.statusDurations</code>.
+- <code>sessions/SessionService.kt</code>: <code>tickDurations</code> (:2824-2844) + новый <code>tickEnemyDurations</code>,
+  pass-порядок (:982-990 → <code>apply→resolveSaveEnds→tick</code>), <code>RemoveStatus</code> чистит метаданные.
+- <code>rules/TurnResolver.kt</code>: <code>resolveSaveEnds</code> (:50-83, убрать фильтр <code>statuses∩durations∩SAVE_END</code>,
+  DC через <code>ConditionRegistry</code> fallback), <code>applyEnemyTurn</code> (:2682-2711 спас врага).
+- <code>rules/SavingThrowResolver.kt</code>: <code>resolvePlayerSave</code>/<code>resolveEnemySave</code> — подключить <code>SaveModifierResolver</code>.</p>
+<p><strong>Миграция БД:</strong> нет.</p>
+<p><strong>Тесты:</strong> <code>SaveEndResolverTest</code> (семантика C3-fix — бессрочные SAVE_END теперь снимаются),
+<code>DurationTrackingTest</code>, <code>ConcentrationTest</code>, <code>EnemySaveTest</code>. Добавить <code>ConditionLifecycleTest</code>,
+<code>SaveModifierResolverTest</code>, <code>ConcentrationManagerTest</code>.</p>
+<p><strong>Риски:</strong> A3 меняет контракт 0013 (код, читающий <code>statusDurations</code> как <code>Map&lt;String,Int&gt;</code>,
+обновить); двойное срабатывание SAVE_END в двух pass (наборы SAVE_END/TIMER взаимоисключающие);
+<code>source</code>/<code>spellLevel</code> заполняются, но не потребляются до Dispel Magic (ФАЗА 3). Развилки: A3/B1/C3/D2/E2/F3/G1/H1/I1/J1/K1/L1/M1.</p>
+<h3 id="24-exhaustion-rest-adr-0015-1-medium">2.4 — Exhaustion + Rest (ADR-0015 + #1) — <strong>medium</strong><a class="headerlink" href="#24-exhaustion-rest-adr-0015-1-medium" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> <code>ExhaustionResolver.effectsFor</code> (B1), точки L1/L3/L4 (C3), <code>StateChange.GainExhaustion</code>
+(D1), смерть на 6 через <code>CharacterDeadException</code> (E1), <strong>унификация long-rest декремента → <code>RestService</code></strong> (F1, дубль #1), <code>exhaustionLevel</code> в <code>StatusContext</code> (H1), composition K1.</p>
+<p><strong>Решения архитектора (follow-up):</strong>
+- Источник ability-модификаторов врага — derivation из ранга/уровня (<code>enemy.rank → conMod</code>); миграция <code>creature_archetypes</code> — ФАЗА 3.
+- L4 истощения (maxHp halved) — derived <code>effectiveMaxHp</code> в <code>CharacterState</code>, единый расчёт, без кэша.</p>
+<p><strong>Файлы:</strong>
+- Новые: <code>rules/ExhaustionResolver.kt</code>.
+- <code>rules/GameState.kt</code>: <code>StateChange.GainExhaustion</code> (рядом с <code>Damage</code>/<code>Heal</code>).
+- <code>rules/RestService.kt:80-111</code> — декремент остаётся каноничным источником; <code>SessionService.applyStateChanges</code>
+  ветка <code>LongRest</code> (:2571-2587) <strong>делегирует</strong> в <code>RestService</code> (убрать инлайн <code>exhaustion-1</code> :2579).
+- <code>rules/TurnResolver.kt</code>: <code>resolveCheck</code> (:2326) + <code>resolveInitiative</code> (:2841) — L1;
+  <code>resolveAttack</code> (:1656) + <code>resolveSavingThrow</code> (:2407) — L3; maxHp — L4.
+- <code>rules/SavingThrowResolver.kt:22-53</code> — L3 (помеха на спасброски).</p>
+<p><strong>Миграция БД:</strong> нет. L2/L5 (speed) — мёртвые до ADR-0010 §5 (зафиксировать зависимость).</p>
+<p><strong>Тесты:</strong> <code>RestServiceTest</code> (унификация декремента — уже покрывает), <code>DeathRulesTest</code>,
+<code>TurnResolverTest</code>. Добавить <code>ExhaustionResolverTest</code> («exhaustion=3 → помеха на attack+save»).</p>
+<p><strong>Риски:</strong> забыть composition K1 в одном из 4 мест (митигация: unit-тест); слом существующего
+rest-пути (митигация: <code>RestServiceTest</code>). Развилки: A1/B1/C3/D1/E1/F1/G1/H1/I1/J2/K1.</p>
+<h3 id="25-mana-removal-adr-0016-large-spec-first">2.5 — Mana Removal (ADR-0016) — <strong>large (spec-first)</strong><a class="headerlink" href="#25-mana-removal-adr-0016-large-spec-first" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> удаление <code>mana</code>/<code>maxMana</code> (A1), <code>manaBonus</code> (B1), <code>SpendMana</code> (C1),
+уровень слота из <code>spell.level</code> (D1), удаление mana-пути <code>resolveSpellCatalog</code> (E2),
+удаление <code>resourcesEnabled</code> (F1), <code>canCast → canCastAnything</code> (L1), удаление полей
+<code>TurnMechanics</code> (M1).</p>
+<p><strong>Решения архитектора (follow-up):</strong>
+- <code>canCastAnything</code>: источник cantrips — <code>spellsKnown</code> уровня 0 через <code>SpellRegistry</code> + <code>canonicalClassId</code>.
+- Удаление 4 флагов <code>CombatState</code> — безопасно (сессии тестовые, <code>combatStateJson</code> не несёт legacy).
+- <code>spell_families.mana_cost</code> — оставить мёртвой колонкой, seed (0015/0017) не чистить.</p>
+<p><strong>Файлы (backend):</strong>
+- <code>rules/GameState.kt</code>: <code>mana/maxMana</code> (:352-353) + <code>require</code> (:523-524), <code>ItemBonuses.manaBonus</code>
+  (:211), <code>MechanicsProfile.resourcesEnabled</code> (:75,93,104,115), <code>TurnMechanics.manaInsufficient/manaCost</code>
+  (:1118,1120), <code>StateChange.SpendMana</code> (:1203).
+- <code>rules/TurnResolver.kt</code>: <code>SPELL_MANA_COST</code> (:98), <code>resolveSpellCatalog</code> (:878-949) —
+  <strong>удалить</strong> (E2), mana-ветки в <code>resolveSpellOrSummon</code> (:1880-1902) и <code>resolveCastSpell</code>.
+- <code>sessions/SessionService.kt</code>: <code>SpendMana</code> (:2539), <code>hasSpellSlots</code> (:777,955),
+  <code>manaInsufficient/manaCost</code> маппинг (:1753-1754), <code>var mana</code> (:2330,2734).
+- <code>rules/ActionParser.kt:84,121</code> (<code>hasSpellSlots</code> → <code>canCastAnything</code>).
+- <code>catalog/ItemCatalogService.kt:274</code> (чтение <code>mana_bonus</code>).</p>
+<p><strong>Миграция БД:</strong> <code>00XX-drop-or-keep-item-mana-bonus.yaml</code> — B1: drop <code>item_archetypes.mana_bonus</code>
+(0022:25) или оставить колонку без чтения (решить при реализации). <code>spell_families.mana_cost</code>
+(0015:153, 0017) — игнорируется (E2), колонка остаётся.</p>
+<p><strong>Spec-first (K1):</strong>
+- <code>api-specification/openapi.yaml</code>: <code>manaInsufficient</code> (:356), <code>mana</code>/<code>maxMana</code> (:536-539).
+- <code>frontend/</code>: <code>lib/api.ts</code> (:139,169,253-254), <code>CharacterPanel.tsx</code> (:221-228),
+  <code>CharacterStaticPanel.tsx</code> (:111-114), <code>MechanicsStrip.tsx</code> (:25,45-46),
+  <code>FunctionalPanel.tsx</code> (:46,69), <code>LootDropCard.tsx</code> (:152).</p>
+<p><strong>Тесты:</strong> <code>TurnResolverTest</code> (3 mana-теста :307-321, :722), <code>ActionParserTest</code> (:223),
+<code>WeaponAsSpellReproTest</code> (:33), <code>SpellControllerTest</code> (возможно). Добавить <code>canCastAnything</code>
+тест (cantrip-only кастер). Gherkin <code>spells.feature</code> — поправить.</p>
+<p><strong>Риски:</strong> <strong>L1</strong> — нужен источник «есть ли known cantrips» (open question); <strong>E</strong> — удаление
+<code>resolveSpellCatalog</code> задевает тесты (grep перед правкой, отдельный коммит). Развилки: A1/B1/C1/D1/E2/F1/G2/H1/I1/J2/K1/L1/M1.</p>
+<h3 id="26-spell-save-dc-adr-0017-large">2.6 — Spell Save DC (ADR-0017) — <strong>large</strong><a class="headerlink" href="#26-spell-save-dc-adr-0017-large" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> <code>CastingStats.of(character)</code> (A2), enum <code>SpellcastingAbility {INT,WIS,CHA}</code>
+(B1+B4), <code>SpellcastingStats(spellSaveDc, spellAttackBonus)</code> (C2), удаление <code>SavingThrow.dc</code> +
+<code>fixedDc: Int?</code> топ-левел (D1+I3), spell attack <strong>vs AC</strong> (E1+E1a), единый <code>proficiencyBonus</code> (H2).</p>
+<p><strong>Файлы:</strong>
+- Новые: <code>spells/CastingStats.kt</code> (<code>SpellcastingAbility</code>, <code>SpellcastingStats</code>).
+- <code>spells/Spell.kt:57-60</code> (<code>SavingThrow(ability)</code> без <code>dc</code>; <code>Spell.fixedDc: Int?</code>).
+- <code>spells/SpellRegistry.kt:60-66,81-87</code> — парсинг без <code>dc</code>, чтение <code>fixedDc</code>.
+- <code>spells/SpellService.kt:153-154,228</code> — DC из <code>CastingStats.of(caster)</code>, не из справочника.
+- <code>rules/SavingThrowResolver.kt:22-86</code> — <code>resolvePlayerSave</code>/<code>resolveEnemySave</code> принимают DC
+  (из <code>CastingStats</code>); <code>proficiencyBonus</code> (:113) → единый хелпер.
+- <code>rules/TurnResolver.kt</code>: <code>proficiencyBonus</code> (:33-39) → единый хелпер (H2),
+  <code>resolveSpellOrSummon</code> (:1893) → атака vs <code>target.ac</code>, <code>detectCastingAttribute</code> (:3104) →
+  <code>SpellcastingAbility</code> от класса (не regex).</p>
+<p><strong>Миграция БД:</strong> нет (правка <code>spells.json</code>: удалить <code>dc</code>, добавить <code>fixedDc</code> где fallback).</p>
+<p><strong>Тесты:</strong> <code>SpellModelTest</code> (:115-129), <code>SpellRegistryTest</code> (:96-97), <code>SavingThrowResolverTest</code>
+(:23-199), <code>SpellServiceTest</code>, <code>SpellSystemIntegrationTest</code> (:92-109), <code>EnemySaveTest</code> (:71).
+Добавить <code>CastingStatsTest</code>, тест «обе формулы proficiencyBonus дают 2/3/4/5/6».</p>
+<p><strong>Риски:</strong> <strong>D1</strong> breaking-change <code>SavingThrow.dc</code> (тесты);
+<strong>E1a</strong> меняет контракт <code>resolveSpellOrSummon</code> (атака vs AC — grep тестов, отдельный коммит);
+<strong>H2</strong> — рефактор с неочевидным эффектом. Развилки: A2/B1+B4/C2/D1/E1a/F2/G2/H2/I1+I3/J1/K1.</p>
+<h3 id="27-xp-level-up-adr-0018-2-gap-6-large">2.7 — XP + Level-Up (ADR-0018 + #2 + gap #6) — <strong>large</strong><a class="headerlink" href="#27-xp-level-up-adr-0018-2-gap-6-large" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> кумулятив <code>xp</code> (A1), <code>LevelUpApplier.applyLevelUp</code> (B2), HP-формула <code>avgHitDie +
+conModAfter + ретро-CON</code> (C3), <code>pendingASI</code> из <code>asiLevels</code> (D1), ASI-остановка (E1),
+<code>classResources</code> через <code>resourcesForLevelUp</code> (F1 = дубль #2), <code>ClearXpTriggers</code> (I1),
+<code>CompleteQuest</code> через <code>GainXp</code> (NEW_GAP), частичный heal (L2), слоты через
+<code>spellSlotsFor</code> (N1). <strong>Gap #6:</strong> авто-каскад читает <code>hitDie</code> через
+<code>classRegistry</code> (инъекция), не <code>?: 8</code>.</p>
+<p><strong>Файлы:</strong>
+- Новые: <code>leveling/LevelUpApplier.kt</code> (общее ядро HP/слотов/resources/пассивные фичи без выборов).
+- <code>sessions/SessionService.kt</code>: <code>GainXp</code> (:2490-2521) → переписать на кумулятив через
+  <code>LevelUpApplier</code> + <code>LevelTableRegistry</code>; <code>xpForNextLevel</code> (:2850-2871) — удалить/заменить
+  на <code>LevelTableRegistry.xpFor</code>; <code>CompleteQuest</code> (:2473-2474) → <code>GainXp</code>; <code>ClearXpTriggers</code>
+  (:2722-2724) → эмитить на <code>SetScene</code>; <code>classRegistry</code> — инжект для gap #6.
+- <code>leveling/LevelUpService.kt</code>: вынести HP-формулу (:187-205) и <code>hpDeltaFor</code> (:360-363) в
+  <code>LevelUpApplier</code>; <code>pendingASI</code> из <code>cls.asiLevels</code>; <code>spellSlotsFor</code> (:320-368) переиспользуется.
+- <code>classes/LevelTableRegistry.kt</code> — уже кумулятивен, используется авто-каскадом.</p>
+<p><strong>Миграция БД:</strong> нет.</p>
+<p><strong>Тесты:</strong> <code>LevelUpServiceToughTest</code>, <code>LevelUpServiceCritRangeTest</code>, <code>XpRulesTest</code>,
+<code>TurnResolverTest</code> (GainXp), <code>FullSimulationsTest</code>, <code>SyntheticLongRunTest</code>,
+<code>SessionServiceLootMetricsTest</code> (возможно). Добавить <code>LevelUpApplierTest</code> (все классы).
+Gherkin <code>level-up.feature</code>.</p>
+<p><strong>Риски:</strong> B2 ядро рассинхронизируется с ручным → unit-тесты на всех классах;
+I1 неверная точка эмиссии <code>ClearXpTriggers</code> → привязка к <code>SetScene</code>.
+Развилки: A1/B2/C3/D1/E1/F1/G2/H2/I1/J1/K1/L2/M2/N1.</p>
+<h3 id="28-activatable-abilityresolver-adr-0019-3-7-0011-large">2.8 — Activatable / AbilityResolver (ADR-0019 + #3 + #7 + финал 0011) — <strong>large</strong><a class="headerlink" href="#28-activatable-abilityresolver-adr-0019-3-7-0011-large" title="Permanent link">&para;</a></h3>
+<p><strong>Закрывает:</strong> интерфейс <code>Activatable</code> (A3), <code>object AbilityResolver</code> (B1/C3), <code>ActivatableId</code> +
+<code>activatableIds</code> (E2), sealed <code>AbilityCost</code> (F1), <code>enum Ability {STR…CHA}</code> (I1 — закрывает дубль</p>
+<h1 id="5-actioneconomyregistry-spend-o3-3o">5), <code>ActionEconomyRegistry</code> — единый маппинг «слот → <code>Spend*</code>» (O3 = дубль #3/O),<a class="headerlink" href="#5-actioneconomyregistry-spend-o3-3o" title="Permanent link">&para;</a></h1>
+<p><code>StateChange.ActivateFeature</code> (P2). <strong>#7:</strong> унификация <code>applyEnemyTurn</code> inline ↔
+<code>SavingThrowResolver.resolveEnemySave</code> (одна функция). <strong>Финализация ADR-0011</strong> (закрыть #3/#4/#5/O/#7).</p>
+<p><strong>Решения архитектора (follow-up):</strong> источник ability-модификаторов врага — derivation из ранга/уровня (<code>enemy.rank → conMod</code>); миграция <code>creature_archetypes</code> — ФАЗА 3.</p>
+<p><strong>Файлы:</strong>
+- Новые: <code>rules/activatable/Activatable.kt</code>, <code>Ability.kt</code>, <code>AbilityCost.kt</code>, <code>AbilityResolver.kt</code>,
+  <code>ActivatableId.kt</code>.
+- <code>rules/GameState.kt</code>: <code>CharacterState.activatableIds: List&lt;ActivatableId&gt;</code> (:338+).
+- <code>classes/ClassFeatureHelper.kt</code> — фасад/делегат в <code>AbilityResolver</code> (M3); <code>spendCost</code> (:75-85)
+  → <code>ActionEconomyRegistry</code>.
+- <code>rules/TurnResolver.kt</code>: <code>buildEconomyChanges</code> (:445-476) → <code>ActionEconomyRegistry</code>;
+  <code>attributeForSkill</code> (:1263), <code>detectAttribute</code> (:3090), <code>detectCastingAttribute</code> (:3104) →
+  <code>AbilityResolver.resolveAbility</code>; <code>applyEnemyTurn</code> (:2682-2711) → единый enemy-save.
+- <code>rules/SavingThrowResolver.kt:62-86,91-98</code> — <code>getAbilityScore</code> → <code>AbilityResolver</code>;
+  <code>resolveEnemySave</code> — единая точка для #7.
+- <code>rules/economy/ActionEconomyRegistry.kt</code> — добавить <code>spendFor(slot)</code> (владелец «слот → <code>Spend*</code>»).</p>
+<p><strong>Миграция БД:</strong> нет. N1 — контракт + скилет resolver; адаптеры Spell/ClassFeature — здесь (ФАЗА 2).</p>
+<p><strong>Тесты:</strong> <code>ActionEconomyTest</code>, <code>EnemySaveTest</code>, <code>SavingThrowResolverTest</code>, <code>ClassResourceHelperTest</code>,
+<code>ClassRegistryTest</code>. Добавить <code>AbilityResolverTest</code> (7 резолверов → 1), <code>AbilityCostTest</code>.
+Gherkin: <code>combat.feature</code>, <code>spells.feature</code>.</p>
+<p><strong>Риски:</strong> D1 обёртка рассинхронизируется с моделью → тест каждой обёртки; I1 резолвер
+ширится → разделить <code>resolveAbility</code>/<code>resolveAbilityMod</code>; O3 правки в двух call-sites → общий тест.
+Развилки: A3/B1/C3/D1/E2/F1/G3/H1/I1/J2/K2/L2/M3/N1/O3/P2.</p>
+<hr />
+<h2 id="order">Order<a class="headerlink" href="#order" title="Permanent link">&para;</a></h2>
+<p>Строго по графу зависимостей, каждая подфаза — отдельный мерджабельный коммит с зелёными тестами:</p>
+<ol>
+<li><strong>2.1 Damage</strong> — фундамент, ни от чего не зависит, нужен 0013/0019.</li>
+<li><strong>2.2 Condition core</strong> — зависит от 2.1 (resistanceToAll, Resolver-паттерн).</li>
+<li><strong>2.3 Lifecycle</strong> — зависит от 2.2 (kind).</li>
+<li><strong>2.4 Exhaustion+Rest</strong> — зависит от 2.2/2.3 (AdvDisadvantageResolver, pass-order).</li>
+<li><strong>2.5 Mana removal</strong> — независим от 2.1–2.4 (можно параллельно, но не раньше из-за
+   spec-first: объём контракт+фронт велик, лучше отдельным этапом).</li>
+<li><strong>2.6 Spell DC</strong> — зависит от 2.5 (mana-ветки в <code>resolveSpellOrSummon</code> удалены).</li>
+<li><strong>2.7 XP/LevelUp</strong> — независим (свой кластер; можно параллельно с 2.5/2.6, но <code>LevelUpApplier</code>
+   трогает <code>spellSlotsFor</code>/<code>critRange</code> — пересекается с 2.6 по <code>LevelUpService</code>, поэтому после 2.6).</li>
+<li><strong>2.8 Activatable</strong> — финал, тянет всё (0012/0013/0016/0017) + закрывает 0011.</li>
+</ol>
+<p>Возможный параллелизм: 2.5∥2.7 (разные файлы), 2.2∥2.5. Но из-за пересечения <code>SessionService</code>/
+<code>TurnResolver</code>/<code>GameState</code> в 2.2 и 2.5 — строго последовательно надёжнее.</p>
+<hr />
+<h2 id="risks-5">Risks (топ-5)<a class="headerlink" href="#risks-5" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Смена типа <code>statuses</code>/<code>statusDurations</code> (0013/0014)</strong> — сквозной breaking-change по ~20
+   тестам и всем резолверам. Митигация: поэтапная миграция (0013 → 0014), unit-тесты реестра
+   статусов.</li>
+<li><strong>Spec-first разрыв (0016 K1)</strong> — backend/<code>openapi.yaml</code>/frontend меняются одновременно;
+   риск временного рассинхрона UI (mana-бар) с моделью. Митигация: сначала спека, затем
+   backend, затем frontend, один коммит на слой.</li>
+<li><strong>Авто-каскад level-up (0018 B2/E1)</strong> — общее ядро <code>LevelUpApplier</code> легко рассинхронизировать
+   с ручным путём; ASI-остановка — обязательство для UI. Митигация: unit-тесты ядра на всех
+   классах + Gherkin <code>level-up.feature</code>.</li>
+<li><strong>Двойная мутация HP врага (0011 #4)</strong> — <code>StateChange.Damage(ENEMY)</code> (мёртвый write-only) vs
+   <code>Enemy.copy(hp)</code>. Митигация: консолидация в единую точку строго 1:1 (E1), тест «урон врага
+   применяется один раз».</li>
+<li><strong>Схемные Liquibase-миграции (0012/0016)</strong> — 2 миграции (<code>item_archetypes.damage_type</code>,
+   <code>item_archetypes.mana_bonus</code>); при spec-first порядке риск рассинхрона схемы и кода.
+   Митигация: миграции атомарно с подфазами 2.1/2.5, проверка на чистой БД.</li>
+</ol>
+<hr />
+<h2 id="gaps">Gaps (открытые, зафиксированы)<a class="headerlink" href="#gaps" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>resolveHazard — check-предикат вместо save.</strong>
+  Файл: TurnResolver.kt:1474.
+  resolveHazard использует hasDisadvantageOnChecks (L1-семантика),
+  хотя по сути это спасбросок. Истощение L1 даёт помеху на hazard
+  save, хотя должно только L3 (disadvantageSaves).
+  Пред-существующий, не от 2.4.
+  → Отдельный micro-fix: перевести hazard на save-предикат.
+  → Не блокирует 2.5/2.6/2.7/2.8.</p>
+</li>
+<li>
+<p><strong>RestService.applyLongRest — мёртвая мутация exhaustion.</strong>
+  Файл: RestService.kt:80-111 (декремент exhaustion внутри).
+  В LongRest-флоу result отбрасывается (resolveRest эмитит
+  GainExhaustion(-result.exhaustionRemoved)). Мутация в RestService
+  не применяется.
+  → Убрать мутацию, оставить только RestResult.
+  → Не блокирует.</p>
+</li>
+<li>
+<p><strong>G-020 — UI не показывает слоты.</strong> (H, ФАЗА 6 Frontend)</p>
+</li>
+<li><strong>G-028 — Реакции (Щит) не логируются.</strong> (L, Observability)</li>
+<li><strong>G-031 — UI-кнопки заклинаний не выбирают target.</strong> (M, ФАЗА 6 Frontend)</li>
+<li><strong>G-034 — UI не отображает эффективный AC (base + activeModifiers).</strong> (M, ФАЗА 6 Frontend)</li>
+<li>
+<p><strong>G-035 — UI предлагает реакцию «Щит» при hp=0/без сознания.</strong> (M, ФАЗА 6 Frontend)</p>
+</li>
+<li>
+<p><strong>resolveHazard — приоритет:</strong> средний (балансовый,
+  не runtime-критичный).</p>
+</li>
+<li><strong>RestService.applyLongRest — приоритет:</strong> низкий
+  (мёртвая логика).</li>
+<li><strong>G-020/G-031/G-034/G-035 — приоритет:</strong> M/H — вынесены в ФАЗУ 6 (frontend).</li>
+<li><strong>G-028 — приоритет:</strong> низкий — Observability v2.</li>
+</ul>
+<hr />
+<h2 id="phase-29-emergency-completed-2026-09-24">Phase 2.9 (emergency) — Completed (2026-09-24)<a class="headerlink" href="#phase-29-emergency-completed-2026-09-24" title="Permanent link">&para;</a></h2>
+<p>Экстренная подфаза поверх ФАЗЫ 2: критические баги движка/UI, найденные в live combat.</p>
+<ul>
+<li><strong>Backend (Fixed + confirmed live):</strong></li>
+<li>G-029 — spell damage применяется к enemy (fire-bolt/chill-touch).</li>
+<li>G-033 — reaction «Щит» больше не восстанавливает HP (только AC+5).</li>
+<li><strong>Frontend (Fixed + confirmed live):</strong></li>
+<li>G-026 — UI HP врага синхронизирован.</li>
+<li>G-027 — UI HP игрока синхронизирован.</li>
+<li><strong>Вынесены в ФАЗУ 6 (frontend, открыты):</strong> G-020, G-034, G-035.</li>
+</ul>
+<hr />
+<h2 id="out-of-scope-3">Out of scope (ФАЗА 3)<a class="headerlink" href="#out-of-scope-3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Расы / фоны / скиллы / racial traits (ADR-0019 J2).</li>
+<li>Монстры: <code>Enemy.spellSaveDc</code> (0017 F2), <code>creatureType</code>/<code>targetCreatureTypes</code> (0013 G2),
+  <code>legendaryResistance</code>, <code>conditionImmunities</code>-данные монстров.</li>
+<li>Upcast (0016 G2), мультикласс-casting (0017 G2 / 0018 J1), Dispel Magic (0014 F3),
+  typed Duration minutes/hours (0014 B2), магическое оружие <code>isMagical</code> (0012 F2).</li>
+<li>Speed-модель ADR-0010 §5 (уровни истощения L2/L5 зависят от неё).</li>
+<li><code>character_json</code> (дубль #6) — заморожен, судьба в конструкторе миров.</li>
+<li>Маркетплейс сценариев, EASY-режим без ресурсного гейта (0016 F3 → game-design).</li>
+</ul>
+<hr />
+<h2 id="open-questions-follow-up-2026-09-22">Open Questions — решены (follow-up, 2026-09-22)<a class="headerlink" href="#open-questions-follow-up-2026-09-22" title="Permanent link">&para;</a></h2>
+<p>Открытых вопросов нет.</p>
+<p><strong>Снято — все сессии тестовые, legacy-миграции не требуются:</strong>
+- #3 Jackson legacy (глобальный флаг vs <code>@JsonIgnoreProperties</code>).
+- #4 <code>fixedDc</code> fallback для легаси-миров без класса.
+- #7 Gap #6 ретро-пересчёт HP (нечего пересчитывать).
+- #9 Полнота alias-таблицы строк-статусов.</p>
+<p><strong>Решено архитектором (см. follow-up ФАЗЫ 2):</strong>
+- #1 Источник ability-модификаторов врага.
+- #2 Источник «есть ли known cantrips» для <code>canCastAnything</code> (0016 L1).
+- #5 Дубль #4 Enemy HP (вариант B vs C).
+- #6 Дубль #3 ActionEconomy (удаление 4 флагов <code>CombatState</code>).
+- #8 L4 истощения — единый расчёт производного maxHp.
+- #10 Судьба <code>spell_families.mana_cost</code> после 0016 (E2).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
