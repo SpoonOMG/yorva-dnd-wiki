@@ -1,0 +1,2906 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/09-action-economy/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Решения по Блоку 2.9 — Action Economy - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#29-action-economy" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Решения по Блоку 2.9 — Action Economy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Контекст и архитектурный вывод
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Уточнения формулировок ревью
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Решения
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Решения">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#game-breaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔴 Game-breaking
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔴 Game-breaking">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#29a-reactionused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.A — reactionUsed сбрасывается каждый ход → бесконечные реакции
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29b-combatstatenextroundnextturn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.B — CombatState.nextRound()/nextTurn() не вызываются
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29c-movement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.C — Movement без трекинга
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29d-move_jumpcrawlclimbswim-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.D — MOVE_JUMP/CRAWL/CLIMB/SWIM → CHECK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29e-dsl-bonus_attack-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.E — DSL BONUS_ATTACK → ATTACK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29f-extra-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.F — Extra Attack не работает
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔴 Критичные
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔴 Критичные">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#29g-casting-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.G — Casting Time не влияет на экономию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29h-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.H — READY не реализован
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29i-delay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.I — DELAY не реализован
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29j-free-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.J — Free Interaction не подключён
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟡 Важные
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🟡 Важные">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#29k-consumesaction-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.K — consumesAction = true по умолчанию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29l-combatstateactionused-actioneconomyactionused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.L — Дублирование CombatState.actionUsed / ActionEconomy.actionUsed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29m-resetactioneconomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.M — ResetActionEconomy не эмитится
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29n-longrest-shortrest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.N — LongRest сбрасывает, ShortRest — нет
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29o-mechanicsblockactioneconomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.O — Нет MechanicsBlock.actionEconomy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29p-opportunity-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.P — Opportunity Attack: триггер не реализован
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29q-bonus-spell-action-cantrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.Q — Bonus spell + action-cantrip не ограничено
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29r-dash-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.R — Dash без speed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29s-stand-up-prone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.S — Stand Up из Prone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29t-difficult-terrain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.T — Difficult Terrain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29u-action-surge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.U — Action Surge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29v-haste-slow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.V — Haste / Slow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29w-legendary-actions-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.W — Legendary Actions: только +1 атака
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29x-lair-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.X — Lair Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29z-freereadydelayextra-attack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.Z — Нет тестов на free/ready/delay/extra attack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29y-time-stop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.Y — Time Stop (🟢)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Целевые контракты (эскиз)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Сводная таблица решений
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Порядок реализации (предложение)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Ответы пользователя (зафиксировано)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-29aaoo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Уточнения после второго ревью (2.9.AA–OO)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Уточнения после второго ревью (2.9.AA–OO)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#29aa-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.AA — источник speed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29bb-enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.BB — движение у Enemy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29cc-distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.CC — парсинг distance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29dd-statechangespendmove" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.DD — StateChange.SpendMove
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29ee-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.EE — READY + концентрация
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29ff-ready" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.FF — READY не сработал
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29gg-ready-availablereactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.GG — READY и availableReactions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29hh-bonusspellcastthisturn-action-surge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.HH — bonusSpellCastThisTurn и Action Surge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29ii-enemyreactionused" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.II — Enemy.reactionUsed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29jj-beginplayerturn-combatstate-null" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.JJ — beginPlayerTurn при combatState == null
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29kk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.KK — движение вне боя
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29ll-dash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.LL — формула Dash
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29mm-move_teleport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.MM — MOVE_TELEPORT — не движение
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29nn-enemyshouldact-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.NN — enemyShouldAct для MOVE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29oo-turnserial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9.OO — назначение turnSerial
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Финальный чеклист 2.9
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Финальный чеклист 2.9">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-game-breaking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔴 Фаза 1: Ядро экономии (game-breaking)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔴 Фаза 2: Движение
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟡 Фаза 3: Фичи/данные
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟢 Фаза 4: Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⏸️ Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="29-action-economy">Решения по Блоку 2.9 — Action Economy<a class="headerlink" href="#29-action-economy" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Основание: факты из <code>09-action-economy-facts.md</code> + ревью (28 дыр, 6 game-breaking).
+Связанные документы: <code>docs/adr/0006-action-economy-class-resources.md</code>,
+<code>07-combat-holes-response.md</code> (2.7.F/2.7.I/2.7.LL), <code>docs/game-design/action-economy.md</code>.
+Статус: <strong>предложено к подтверждению</strong> (до реализации).</p>
+</blockquote>
+<hr />
+<h2 id="0">0. Контекст и архитектурный вывод<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Живая экономия</strong> — только <code>CharacterState.actionEconomy</code>. Флаги <code>CombatState</code> —
+   мёртвый дубль (<code>2.9.1</code>), подлежат удалению.</li>
+<li><strong>«Ход» = один <code>processTurn</code></strong>. Реального цикла инициативы в production нет:
+   <code>CombatState.nextRound()/nextTurn()</code> не вызываются (<code>2.9.8</code>).</li>
+<li><strong>Целевая модель раунда</strong> (MVP, без перестройки боя):
+   <strong>1 раунд = один нормальный запрос игрока (действие игрока + ответ врагов)</strong>.
+   Реакция и все «1/ход» ресурсы обновляются в <strong>начале нормального хода игрока</strong>,
+   то есть в начале раунда. Это канон 5e («reaction refreshes at the start of your turn»)
+   и одновременно чинит «бесконечные реакции».</li>
+<li><strong>Ответ на реакцию (<code>request.reaction != null</code>) — не новый ход</strong> и не должен сбрасывать
+   экономию. Follow-up реакции обязан видеть уже потраченную реакцию.</li>
+<li><strong>Economy как данные, а не булевы флаги по месту вызова</strong>: вводим <code>economyCost</code> в DSL.
+   <code>mechanics.consumesAction</code> остаётся fail-closed (<code>true</code> по умолчанию) до миграции.</li>
+<li><strong>Нет сетки/позиций</strong> → движение моделируется абстрактным бюджетом (футы), а не
+   геометрией. Провокационные атаки по геометрии — отложены (см. 2.9.P).</li>
+<li><strong>Изменения <code>CharacterState</code>/DTO</strong> (speed, readiedAction, ActionEconomy, MechanicsBlock) —
+   spec-first: сначала <code>api-specification/openapi.yaml</code>, потом код.
+   JSON-сессии обратно совместимы (поля с дефолтами).</li>
+</ol>
+<hr />
+<h2 id="1">1. Уточнения формулировок ревью<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Дыра</th>
+<th style="text-align: left;">Уточнение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">2.9.A</td>
+<td style="text-align: left;">Сброс реакции <strong>в начале хода игрока — канон</strong>, а не баг. Реальные баги: (а) сброс на follow-up реакции → чейнинг; (б) нет понятия раунда.</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.D</td>
+<td style="text-align: left;"><code>MOVE_CLIMB/SWIM/JUMP</code> действительно требуют проверок в 5e, но это <strong>движение с проверкой</strong>, а не Action-проверка. <code>MOVE_CRAWL/SNEAK</code> проверок не требуют.</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.E</td>
+<td style="text-align: left;"><code>BONUS_ATTACK</code> (off-hand, бонусное действие) и <code>ATTACK_MULTI</code> (мультиатака <strong>в рамках основного</strong> Attack) — разные вещи; сейчас оба теряются в <code>ATTACK</code>. Исправляются по-разному.</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.B</td>
+<td style="text-align: left;">Вывод «раунд не существует» верен. Не воскрешаем полный цикл инициативы (нет мультиплеера), а делаем раунд = цикл «ход игрока + ответ врагов».</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2">2. Решения<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="game-breaking">🔴 Game-breaking<a class="headerlink" href="#game-breaking" title="Permanent link">&para;</a></h3>
+<h4 id="29a-reactionused">2.9.A — <code>reactionUsed</code> сбрасывается каждый ход → бесконечные реакции<a class="headerlink" href="#29a-reactionused" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Сброс экономии выполняется <strong>только на нормальном ходу игрока</strong>
+(<code>request.reaction == null</code>). Follow-up реакции не сбрасывает экономию. Реакция
+обновляется вместе с <code>action</code>/<code>bonus</code>/<code>free</code> в начале нормального хода.</p>
+<p><strong>Обоснование.</strong> В 5e реакция восстанавливается в начале своего хода. Проблема не в
+этом, а в том, что <code>processTurn</code> вызывается и для follow-up реакции и там же сбрасывает
+флаги, позволяя чейнить реакции.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// SessionService.processTurn</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="na">reaction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// НЕ сбрасывать экономию: реакция уже была потрачена в предыдущем ходу</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">processReactionTurn</span><span class="p">(...)</span>
+<span class="p">}</span>
+<span class="c1">// экономия сбрасывается один раз, перед нормальным ходом</span>
+<span class="n">playerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerState</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">actionEconomy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerState</span><span class="p">.</span><span class="na">actionEconomy</span><span class="p">.</span><span class="na">beginTurn</span><span class="p">())</span>
+</code></pre></div></p>
+<p>Зависит от 2.9.B (<code>beginTurn</code> синхронизирован с раундом).</p>
+<hr />
+<h4 id="29b-combatstatenextroundnextturn">2.9.B — <code>CombatState.nextRound()/nextTurn()</code> не вызываются<a class="headerlink" href="#29b-combatstatenextroundnextturn" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Не воскрешать цикл инициативы. Ввести единый <code>beginPlayerTurn</code>:
+инкремент <code>CombatState.round</code>, сброс <code>action/bonus/free/reaction</code> через
+<code>ActionEconomy.beginTurn()</code>, синхронизация <code>currentTurnIndex</code> на игрока.</p>
+<p><strong>Обоснование.</strong> В соло-игре акторы — игрок и авто-враги; отдельный цикл по
+<code>initiativeOrder</code> не имеет смысла до мультиплеера. Раунд нужен только для «1/раунд»
+эффектов (реакция, legendary, некоторые спеллы).</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// GameState.kt</span>
+<span class="kd">fun</span><span class="w"> </span><span class="n">ActionEconomy</span><span class="p">.</span><span class="nf">beginTurn</span><span class="p">(</span><span class="n">round</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">ActionEconomy</span><span class="p">(</span><span class="n">turnSerial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">round</span><span class="p">)</span><span class="w">   </span><span class="c1">// action/bonus/free/reaction = false, movementUsed = 0</span>
+
+<span class="c1">// SessionService.processTurn (нормальный ход)</span>
+<span class="n">combatState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">combatState</span><span class="o">?.</span><span class="na">beginPlayerTurn</span><span class="p">()</span><span class="w">      </span><span class="c1">// round++, currentTurnIndex -&gt; player</span>
+<span class="n">playerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerState</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">actionEconomy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerState</span><span class="p">.</span><span class="na">actionEconomy</span><span class="p">.</span><span class="na">beginTurn</span><span class="p">(</span><span class="n">combatState</span><span class="o">?.</span><span class="na">round</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="m">0</span><span class="p">))</span>
+</code></pre></div>
+<code>CombatState.nextRound()/nextTurn()</code> оставляем как внутренние методы <code>beginPlayerTurn()</code>.
+Если боя нет (<code>combatState == null</code>) — <code>beginTurn</code> вызывается с локальным счётчиком ходов.</p>
+<p><strong>Отвергнуто:</strong> (C) отдельный <code>CombatStateService</code> — преждевременно.</p>
+<hr />
+<h4 id="29c-movement">2.9.C — Movement без трекинга<a class="headerlink" href="#29c-movement" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Ввести абстрактный бюджет движения, без сетки:
+<code>CharacterState.speed: Int</code> (футы) + <code>ActionEconomy.movementUsed: Int</code>.
+Дистанция приходит из намерения (<code>ActionIntent</code>/DSL, поле <code>distance</code>), движок вычитает.
+Dash добавляет <code>speed</code> к бюджету (2.9.R).</p>
+<p><strong>Обоснование.</strong> Без позиций полноценная геометрия невозможна, но бюджет делает Dash
+осмысленным и ограничивает «бесконечное движение». Terrain/Stand Up/ranged-in-melee —
+поверх бюджета (2.9.S/T), позже.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// CharacterState</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">speed</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span>
+<span class="c1">// ActionEconomy</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">movementUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">movementRemaining</span><span class="p">(</span><span class="n">speed</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">movementUsed</span><span class="p">).</span><span class="na">coerceAtLeast</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+</code></pre></div>
+<code>speed</code> берётся из <code>races.yml</code>/<code>classes.yml</code> (dwarf 25 и т.п.), дефолт 30.
+Поля — spec-first в OpenAPI. JSON-сессии совместимы (дефолты).</p>
+<hr />
+<h4 id="29d-move_jumpcrawlclimbswim-check">2.9.D — <code>MOVE_JUMP/CRAWL/CLIMB/SWIM</code> → <code>CHECK</code><a class="headerlink" href="#29d-move_jumpcrawlclimbswim-check" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Добавить <code>ActionType.MOVE</code>. <code>MOVE_WALK/RUN/JUMP/CRAWL/CLIMB/SWIM/SNEAK</code>
+маппить в <code>MOVE</code> (не <code>CHECK</code>). <code>MOVE_HIDE</code>→<code>HIDE</code>, <code>MOVE_FLEE</code>→<code>DISENGAGE</code> (как сейчас).
+Проверки (Athletics для CLIMB/SWIM, Acrobatics/STR для JUMP) — вложения внутрь
+<code>resolveMove</code>, а не отдельный Action. Движение списывает бюджет, <strong>не</strong> Action.</p>
+<p><strong>Обоснование.</strong> Это разные бюджеты: <code>CHECK</code> тратит основное действие, движение — нет.
+Canon: лазание/плавание стоят доп. футов (×2), прыжок ограничен STR.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// ActionParser.kt</span>
+<span class="s">"MOVE_WALK"</span><span class="p">,</span><span class="s">"MOVE_RUN"</span><span class="p">,</span><span class="s">"MOVE_JUMP"</span><span class="p">,</span><span class="s">"MOVE_CRAWL"</span><span class="p">,</span><span class="s">"MOVE_CLIMB"</span><span class="p">,</span><span class="s">"MOVE_SWIM"</span><span class="p">,</span><span class="s">"MOVE_SNEAK"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ActionType</span><span class="p">.</span><span class="na">MOVE</span>
+<span class="c1">// TurnResolver.resolveMove: списать distance из бюджета; при CLIMB/SWIM distance*2; при необходимости — roll</span>
+</code></pre></div>
+<code>MOVE_TELEPORT</code> → отдельный <code>ActionType.MOVE</code> с cost=0 (спелл-источник), не проверка.</p>
+<hr />
+<h4 id="29e-dsl-bonus_attack-attack">2.9.E — DSL <code>BONUS_ATTACK</code> → <code>ATTACK</code><a class="headerlink" href="#29e-dsl-bonus_attack-attack" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Развести два шаблона:
+- <code>BONUS_ATTACK</code> → новый <code>ActionType.BONUS_ATTACK</code> → <code>SpendBonusAction</code>, резолв <code>resolveAttack</code>.
+- <code>ATTACK_MULTI</code> → <code>ActionType.ATTACK</code> (это основное Attack-действие с мультиатакой, не бонус).</p>
+<p><strong>Обоснование.</strong> Ревью ошибочно объединяет их. Off-hand/two-weapon/Cunning Action —
+бонусные; <code>ATTACK_MULTI</code> — основное действие с Extra Attack.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// ActionParser.kt</span>
+<span class="s">"BONUS_ATTACK"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ActionType</span><span class="p">.</span><span class="na">BONUS_ATTACK</span>
+<span class="s">"ATTACK_MULTI"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ActionType</span><span class="p">.</span><span class="na">ATTACK</span>
+<span class="c1">// checkActionEconomy: BONUS_ATTACK -&gt; проверка bonusActionUsed</span>
+<span class="c1">// buildEconomyChanges: BONUS_ATTACK -&gt; SpendBonusAction</span>
+</code></pre></div>
+Whitelist <code>loot-whitelist.yml</code>/dsl — уточнить <code>economyCost</code> (см. 2.9.K).</p>
+<hr />
+<h4 id="29f-extra-attack">2.9.F — Extra Attack не работает<a class="headerlink" href="#29f-extra-attack" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Не дублировать: закрывается уже принятым 2.7.F + 2.7.LL.
+<code>attackCount(class+level)</code> + N последовательных <code>resolveAttack</code> с <code>TurnMechanics.merge</code>
+и ранним выходом при смерти цели, <strong>один</strong> <code>SpendAction</code>. 2.9 лишь проводит
+<code>ATTACK</code>/<code>ATTACK_MULTI</code> через этот путь.</p>
+<p><strong>Как.</strong> <code>repeat(attackCount(c)) { ... resolveAttack ... combined = combined.merge(r) }</code>
+(точный код — <code>07-combat-holes-response.md:135-151, 471-483</code>).</p>
+<hr />
+<h3 id="_1">🔴 Критичные<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h4 id="29g-casting-time">2.9.G — Casting Time не влияет на экономию<a class="headerlink" href="#29g-casting-time" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Резолвить бюджет заклинания из <code>Spell.castingTime</code>:
+<code>ACTION→SpendAction</code>, <code>BONUS_ACTION→SpendBonusAction</code>, <code>REACTION→SpendReaction</code>,
+<code>FREE/none→без списания</code>. Точка — <code>buildEconomyChanges</code>/<code>resolve</code> при <code>ActionType.SPELL</code>,
+через <code>SpellRegistry</code> по id заклинания.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="nf">spendForCastingTime</span><span class="p">(</span><span class="n">ct</span><span class="p">:</span><span class="w"> </span><span class="n">CastingTime</span><span class="p">):</span><span class="w"> </span><span class="n">StateChange?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">ct</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">BONUS_ACTION</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">SpendBonusAction</span>
+<span class="w">    </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">REACTION</span><span class="w">     </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">SpendReaction</span>
+<span class="w">    </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">ACTION</span><span class="p">,</span><span class="w"> </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">ONE_MINUTE</span><span class="p">,</span><span class="w"> </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">TEN_MINUTES</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">ONE_HOUR</span><span class="p">,</span><span class="w"> </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">EIGHT_HOURS</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">SpendAction</span>
+<span class="w">    </span><span class="n">CastingTime</span><span class="p">.</span><span class="na">FREE</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+</code></pre></div>
+<code>checkActionEconomy</code> для <code>SPELL</code> должен знать castingTime (проверять соответствующий флаг
+до списания). Зависит от 2.9.Q (bonus spell ограничивает второй каст).</p>
+<hr />
+<h4 id="29h-ready">2.9.H — READY не реализован<a class="headerlink" href="#29h-ready" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> <code>ActionType.READY_ACTION</code> + хранение <code>CharacterState.readiedAction:
+ReadiedAction?</code> (сохранённое действие + структурированный триггер). READY тратит основное
+действие сразу. <strong>Триггер детектируется движком автоматически</strong> (не «ручной» пункт меню):
+реестр триггеров расширяется, при совпадении действие исполняется как <strong>реакция</strong> (тратит
+<code>reaction</code>).</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ReadiedAction</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">action</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">trigger</span><span class="p">:</span><span class="w"> </span><span class="n">ReadiedTrigger</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">roundSet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ReadiedTrigger</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ENEMY_ENTERS_REACH</span><span class="p">,</span><span class="w"> </span><span class="n">ENEMY_ATTACKS</span><span class="p">,</span><span class="w"> </span><span class="n">ENEMY_CASTS</span><span class="p">,</span><span class="w"> </span><span class="n">ALLY_HIT</span><span class="p">,</span><span class="w"> </span><span class="n">CUSTOM</span><span class="w"> </span><span class="p">}</span>
+<span class="c1">// processTurn: "готовлю действие ... когда ..." -&gt; parse trigger -&gt; set readiedAction + SpendAction</span>
+<span class="c1">// detection: в applyEnemyTurn/processTurn проверять события против readiedAction.trigger</span>
+<span class="c1">//   (переиспользовать ReactionTrigger/ReactionTriggerRegistry)</span>
+<span class="c1">// processReactionTurn: исполнить сохранённое действие + SpendReaction, очистить readiedAction</span>
+</code></pre></div>
+Whitelist <code>READY_ACTION</code> уже есть — добавить DSL-шаблон, маппинг и <code>READY_*</code>-триггеры в
+<code>reaction_triggers.yml</code>. Зависит от 2.9.B (round) и 2.9.C (позиционные триггеры — по
+<code>Enemy.isEngaged</code>).</p>
+<hr />
+<h4 id="29i-delay">2.9.I — DELAY не реализован<a class="headerlink" href="#29i-delay" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> <strong>Отложить.</strong> В соло-бою очередь = [игрок] и авто-ответ врагов; «отложить ход»
+не даёт игроку ничего, кроме перестановки в списке из одного элемента.</p>
+<p><strong>Обоснование.</strong> Преждевременно до мультиплеера/сложной инициативы (см. AGENTS.md
+«не строить преждевременно»). Крючок: при мультиплеере — reorder <code>CombatState.initiativeOrder</code>.</p>
+<hr />
+<h4 id="29j-free-interaction">2.9.J — Free Interaction не подключён<a class="headerlink" href="#29j-free-interaction" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Ввести бюджет свободного взаимодействия:
+- первый <code>OBJECT_INTERACTION</code> в ходу — бесплатно (эмитит <code>SpendFreeInteraction</code>);
+- последующие объектные действия стоят основное действие.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="c1">// ActionType.OBJECT_INTERACTION (или reuse OBJECT с признаком free)</span>
+<span class="c1">// checkActionEconomy: OBJECT_INTERACTION -&gt; if (freeInteractionUsed) check actionUsed else null</span>
+<span class="c1">// buildEconomyChanges: OBJECT_INTERACTION -&gt; SpendFreeInteraction</span>
+<span class="c1">// SessionService: SpendFreeInteraction -&gt; withFreeInteractionUsed()  (обработчик уже есть, :2178)</span>
+</code></pre></div>
+Объектные действия сейчас идут как <code>ActionType.OBJECT</code> и тратят Action (<code>2.9.5</code>).</p>
+<hr />
+<h3 id="_2">🟡 Важные<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="29k-consumesaction-true">2.9.K — <code>consumesAction = true</code> по умолчанию<a class="headerlink" href="#29k-consumesaction-true" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> <code>consumesAction</code> из call-site убираем. Добавляем <code>economyCost: ACTION |
+BONUS_ACTION | REACTION | FREE | MOVE | NONE</code> в <code>dsl-registry.yml</code> и <strong>мигрируем все 5
+whitelist-файлов + DSL сразу</strong>. <code>buildEconomyChanges</code> читает <code>economyCost</code>; старый
+<code>mechanics.consumesAction</code> остаётся только как совместимый дефолт (<code>ACTION</code>) до полного
+выпиливания.</p>
+<p><strong>Обоснование.</strong> Белый список «свободных» действий опасен (неизвестное действие станет
+бесплатным). Данные безопаснее и единообразнее bool-флагов по call-site. Полная миграция
+исключает двойные источники истины (в отличие от «только затронутых шаблонов»).</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># dsl-registry.yml / whitelist/*.yaml</span>
+<span class="nt">ATTACK</span><span class="p">:</span><span class="w">        </span><span class="p p-Indicator">{</span><span class="nt"> economyCost</span><span class="p">:</span><span class="w"> </span><span class="nv">ACTION</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="nt">BONUS_ATTACK</span><span class="p">:</span><span class="w">  </span><span class="p p-Indicator">{</span><span class="nt"> economyCost</span><span class="p">:</span><span class="w"> </span><span class="nv">BONUS_ACTION</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="nt">OPPORTUNITY_ATTACK</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> economyCost</span><span class="p">:</span><span class="w"> </span><span class="nv">REACTION</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="nt">MOVE_WALK</span><span class="p">:</span><span class="w">     </span><span class="p p-Indicator">{</span><span class="nt"> economyCost</span><span class="p">:</span><span class="w"> </span><span class="nv">MOVE</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="nt">MOVE_STAND_UP</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> economyCost</span><span class="p">:</span><span class="w"> </span><span class="nv">MOVE</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="l l-Scalar l-Scalar-Plain">OPEN_CONTAINER:{ economyCost</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FREE }</span>
+</code></pre></div></p>
+<hr />
+<h4 id="29l-combatstateactionused-actioneconomyactionused">2.9.L — Дублирование <code>CombatState.actionUsed</code> / <code>ActionEconomy.actionUsed</code><a class="headerlink" href="#29l-combatstateactionused-actioneconomyactionused" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Удалить 4 флага из <code>CombatState</code> (<code>GameState.kt:1387-1390</code>) и их методы.
+Единственный источник — <code>ActionEconomy</code>. Обновить тесты/glue (<code>CombatSteps.kt</code>).
+<code>CombatState</code> оставляет <code>round</code>, <code>initiativeOrder</code>, <code>currentTurnIndex</code>,
+<code>surprisedParticipants</code>, <code>combatEnded</code>.</p>
+<p><strong>Обоснование.</strong> Два источника истины гарантируют рассинхрон. JSON-сессии: лишние поля
+просто игнорируются при десериализации.</p>
+<hr />
+<h4 id="29m-resetactioneconomy">2.9.M — <code>ResetActionEconomy</code> не эмитится<a class="headerlink" href="#29m-resetactioneconomy" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Разделить семантику:
+- <code>StateChange.ResetActionEconomy</code> — полный сброс; эмитить из <code>LongRest</code> (вместо inline-
+  <code>reset()</code>), убрать дублирование.
+- Новый <code>StateChange.RestoreAction</code> — восстановить <strong>только</strong> Action (Action Surge, 2.7.I),
+  не трогая bonus/reaction.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="k">is</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">RestoreAction</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">actionEconomy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actionEconomy</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">actionUsed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="c1">// resolveFeatureAction(ACTION_SURGE) -&gt; StateChange.RestoreAction + SpendClassResource(ACTION_SURGE)</span>
+</code></pre></div></p>
+<hr />
+<h4 id="29n-longrest-shortrest">2.9.N — LongRest сбрасывает, ShortRest — нет<a class="headerlink" href="#29n-longrest-shortrest" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Убрать сброс экономии из <code>LongRest</code> (и не добавлять в ShortRest): сброс
+экономии — исключительная ответственность <code>beginPlayerTurn</code> (2.9.B). Асимметрия исчезает
+по определению. Экономика вне боя не имеет смысла.</p>
+<p><strong>Как.</strong> Удалить <code>actionEconomy = actionEconomy.reset()</code> из <code>SessionService.kt:2065</code>;
+при следующем ходу <code>beginPlayerTurn</code> сбросит всё сам.</p>
+<hr />
+<h4 id="29o-mechanicsblockactioneconomy">2.9.O — Нет <code>MechanicsBlock.actionEconomy</code><a class="headerlink" href="#29o-mechanicsblockactioneconomy" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Добавить в <code>MechanicsBlock</code> (и OpenAPI) <code>actionEconomy</code>:
+<code>action/bonusAction/reaction/freeInteraction</code> (boolean), <code>movementRemaining: Int</code>.
+<code>characterState.actionEconomy</code> тоже остаётся, но фронту нужен компактный per-turn блок.</p>
+<p><strong>Как.</strong> <code>MechanicsBlock.actionEconomy: ActionEconomyDto</code> — spec-first, затем DTO и
+заполнение в <code>SessionService</code>/<code>TurnResolver</code>.</p>
+<hr />
+<h4 id="29p-opportunity-attack">2.9.P — Opportunity Attack: триггер не реализован<a class="headerlink" href="#29p-opportunity-attack" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> MVP-триггер привязать к движению игрока, а не к геометрии:
+если игрок выполняет <code>MOVE</code>, покидая melee (флаг <code>enemy.isEngaged</code>), и <strong>не</strong> использовал
+<code>DISENGAGE</code>, — предложить врагу OA (авто, через <code>applyEnemyTurn</code>). Провокационная атака
+игрока остаётся текстовым regex до появления позиций.</p>
+<p><strong>Обоснование.</strong> Без сетки единственный детектируемый случай — уход из melee. Полная
+геометрия — отложена. Зависит от 2.9.C/D и <code>Enemy.isEngaged</code> (2.7.N/L).</p>
+<hr />
+<h4 id="29q-bonus-spell-action-cantrip">2.9.Q — Bonus spell + action-cantrip не ограничено<a class="headerlink" href="#29q-bonus-spell-action-cantrip" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Добавить <code>ActionEconomy.bonusSpellCastThisTurn: Boolean</code>. Если в ходу
+кастовали заклинание бонусным действием, основным действием можно только cantrip
+(уровень 0). Проверять в <code>checkActionEconomy</code>/резолвере заклинаний; сбрасывается <code>beginTurn</code>.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">bonusSpellCastThisTurn</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="c1">// при ActionType.SPELL, spellLevel &gt; 0 &amp;&amp; bonusSpellCastThisTurn -&gt; отказ</span>
+</code></pre></div></p>
+<hr />
+<h4 id="29r-dash-speed">2.9.R — Dash без speed<a class="headerlink" href="#29r-dash-speed" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Закрывается 2.9.C: <code>resolveDash</code> добавляет <code>speed</code> к доступному движению и
+помечает <code>dashUsedThisTurn</code>; тратит Action.</p>
+<p><strong>Как.</strong> <code>resolveDash</code> → <code>StateChange.SpendAction</code> (есть) + <code>StateChange.AddMovement(speed)</code>
+или вычисляемо: <code>movement = speed + (if dash) speed else 0</code>.</p>
+<hr />
+<h4 id="29s-stand-up-prone">2.9.S — Stand Up из Prone<a class="headerlink" href="#29s-stand-up-prone" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> <code>MOVE_STAND_UP</code> требует ≥ половины <code>speed</code> бюджета (округление вниз), снимает
+статус «Снижен»/Prone; <code>MOVE_DROP_PRONE</code> бесплатно. Реализуется в блоке движения (2.9.C).</p>
+<hr />
+<h4 id="29t-difficult-terrain">2.9.T — Difficult Terrain<a class="headerlink" href="#29t-difficult-terrain" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Без сетки — через явное намерение: <code>MOVE_DIFFICULT_TERRAIN {distance}</code> стоит
+×2 бюджета. Автодетекция по местности — отложена вместе с сеткой.</p>
+<hr />
+<h4 id="29u-action-surge">2.9.U — Action Surge<a class="headerlink" href="#29u-action-surge" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Закрывается 2.7.I + 2.9.M: <code>resolveFeatureAction(ACTION_SURGE)</code> эмитит
+<code>RestoreAction</code> + списывает <code>ClassResources.actionSurge</code> (1/отдых). Восстанавливает
+<strong>только</strong> Action.</p>
+<hr />
+<h4 id="29v-haste-slow">2.9.V — Haste / Slow<a class="headerlink" href="#29v-haste-slow" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Реализовать через <code>activeModifiers</code> (не хардкод):
+- <code>Haste</code>: <code>+2 AC</code>, <code>speedMultiplier=2</code>, <code>extraAction</code> (ограничен Attack/одиночный каст),
+  истощение при окончании.
+- <code>Slow</code>: <code>actionRestriction</code> (одно действие, без бонусной атаки), <code>speedMultiplier=0.5</code>,
+  ограничение реакций.
+<strong>Отложено</strong> до блока эффектов заклинаний (2.7 modifiers), зафиксированы поля контракта.</p>
+<hr />
+<h4 id="29w-legendary-actions-1">2.9.W — Legendary Actions: только +1 атака<a class="headerlink" href="#29w-legendary-actions-1" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Отложить до 2.24. Целевая модель: <code>Enemy.legendaryActions: Int</code> (пул 3/раунд),
+refresh в начале раунда, трата по одному действию вне хода. Текущий <code>legendary</code> = +1 атака —
+временный костыль (<code>2.9.12</code>).</p>
+<hr />
+<h4 id="29x-lair-actions">2.9.X — Lair Actions<a class="headerlink" href="#29x-lair-actions" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Отложить до 2.24 / 2.7.T. Сейчас — только крючок (эффект по инициативе 20).</p>
+<hr />
+<h4 id="29z-freereadydelayextra-attack">2.9.Z — Нет тестов на free/ready/delay/extra attack<a class="headerlink" href="#29z-freereadydelayextra-attack" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Добавить:
+- unit (<code>ActionEconomyTest</code>): persist реакции на follow-up; <code>BONUS_ATTACK</code>→bonus; castingTime→
+  SpendBonus/Reaction; bonus-spell+cantrip ограничение; free interaction budget;
+  extra attack N× и агрегация; <code>RestoreAction</code>.
+- component (Gherkin): «реакция не восстанавливается между ходами того же раунда»,
+  «бонусная атака не тратит Action», «второе объектное действие стоит Action»,
+  «READY выполняется как реакция».</p>
+<hr />
+<h4 id="29y-time-stop">2.9.Y — Time Stop (🟢)<a class="headerlink" href="#29y-time-stop" title="Permanent link">&para;</a></h4>
+<p><strong>Решение.</strong> Отложить. Не входит в MVP; помечено в чеклисте как желательное.</p>
+<hr />
+<h2 id="3">3. Целевые контракты (эскиз)<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ActionEconomy</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">actionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">bonusActionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">reactionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">freeInteractionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">movementUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">               </span><span class="c1">// 2.9.C</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">bonusSpellCastThisTurn</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// 2.9.Q</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">dashUsedThisTurn</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">   </span><span class="c1">// 2.9.R</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">turnSerial</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">                 </span><span class="c1">// идемпотентность сброса (2.9.A/B/OO)</span>
+<span class="p">)</span>
+
+<span class="c1">// CharacterState</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">speed</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w">                         </span><span class="c1">// 2.9.C/AA</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">turnSerial</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">                     </span><span class="c1">// глобальный счётчик ходов (2.9.JJ)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">readiedAction</span><span class="p">:</span><span class="w"> </span><span class="n">ReadiedAction?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">    </span><span class="c1">// 2.9.H</span>
+
+<span class="c1">// Enemy (минимально; полный ActionEconomy — не для врага)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">speed</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w">                         </span><span class="c1">// 2.9.BB</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">reactionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">           </span><span class="c1">// 2.9.II (сброс в начале раунда)</span>
+
+<span class="c1">// ActionIntent (ADR-0009)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">distance</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">                   </span><span class="c1">// 2.9.CC, футы</span>
+
+<span class="c1">// ReadiedAction</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ReadiedAction</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">action</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">trigger</span><span class="p">:</span><span class="w"> </span><span class="n">ReadiedTrigger</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">roundSet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">isConcentration</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">    </span><span class="c1">// 2.9.EE</span>
+<span class="p">)</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ReadiedTrigger</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ENEMY_ENTERS_REACH</span><span class="p">,</span><span class="w"> </span><span class="n">ENEMY_ATTACKS</span><span class="p">,</span><span class="w"> </span><span class="n">ENEMY_CASTS</span><span class="p">,</span><span class="w"> </span><span class="n">ALLY_HIT</span><span class="p">,</span><span class="w"> </span><span class="n">CUSTOM</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c1">// ActionType (+)</span>
+<span class="n">MOVE</span><span class="p">,</span><span class="w"> </span><span class="n">BONUS_ATTACK</span><span class="p">,</span><span class="w"> </span><span class="n">OBJECT_INTERACTION</span><span class="p">,</span><span class="w"> </span><span class="n">READY_ACTION</span><span class="w">   </span><span class="c1">// 2.9.D/E/J/H</span>
+
+<span class="c1">// StateChange (+)</span>
+<span class="n">SpendMove</span><span class="p">(</span><span class="n">distance</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w">      </span><span class="c1">// 2.9.DD</span>
+<span class="n">MarkDash</span><span class="w">                      </span><span class="c1">// 2.9.R</span>
+<span class="n">RestoreAction</span><span class="w">                 </span><span class="c1">// 2.9.M/U</span>
+<span class="n">EnemyReactionUsed</span><span class="p">(</span><span class="n">enemyId</span><span class="p">)</span><span class="w">    </span><span class="c1">// 2.9.II</span>
+
+<span class="c1">// DSL/whitelist</span>
+<span class="n">economyCost</span><span class="p">:</span><span class="w"> </span><span class="n">ACTION</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">BONUS_ACTION</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">REACTION</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">FREE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">MOVE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">NONE</span><span class="w">  </span><span class="c1">// 2.9.K</span>
+</code></pre></div>
+<hr />
+<h2 id="4">4. Сводная таблица решений<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">Дыра</th>
+<th style="text-align: left;">Решение</th>
+<th style="text-align: left;">Тип</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">2.9.A</td>
+<td style="text-align: left;">reaction reset</td>
+<td style="text-align: left;">сброс только на нормальном ходу; follow-up не сбрасывает</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.B</td>
+<td style="text-align: left;">nextRound/nextTurn</td>
+<td style="text-align: left;"><code>beginPlayerTurn</code>; раунд = ход игрока + ответ врагов</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.C</td>
+<td style="text-align: left;">Movement</td>
+<td style="text-align: left;"><code>speed</code> + <code>movementUsed</code> (абстрактный бюджет)</td>
+<td style="text-align: left;">модель</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.D</td>
+<td style="text-align: left;">MOVE_*→CHECK</td>
+<td style="text-align: left;"><code>ActionType.MOVE</code> + проверки внутри</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.E</td>
+<td style="text-align: left;">BONUS_ATTACK→ATTACK</td>
+<td style="text-align: left;">развести <code>BONUS_ATTACK</code> и <code>ATTACK_MULTI</code></td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.F</td>
+<td style="text-align: left;">Extra Attack</td>
+<td style="text-align: left;">2.7.F/2.7.LL: <code>attackCount</code> + N резолвов</td>
+<td style="text-align: left;">код (2.7)</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.G</td>
+<td style="text-align: left;">castingTime</td>
+<td style="text-align: left;">маппинг castingTime → Spend*</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.H</td>
+<td style="text-align: left;">READY</td>
+<td style="text-align: left;"><code>readiedAction</code> + исполнение как реакция</td>
+<td style="text-align: left;">модель/код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.I</td>
+<td style="text-align: left;">DELAY</td>
+<td style="text-align: left;">отложено (нет смысла в соло)</td>
+<td style="text-align: left;">отложено</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.J</td>
+<td style="text-align: left;">Free Interaction</td>
+<td style="text-align: left;">бюджет 1/ход, далее Action</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.K</td>
+<td style="text-align: left;">consumesAction</td>
+<td style="text-align: left;"><code>economyCost</code> в данных, полная миграция whitelist+DSL</td>
+<td style="text-align: left;">модель</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.L</td>
+<td style="text-align: left;">дубль флагов</td>
+<td style="text-align: left;">удалить флаги <code>CombatState</code></td>
+<td style="text-align: left;">рефактор</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.M</td>
+<td style="text-align: left;">ResetActionEconomy</td>
+<td style="text-align: left;">LongRest эмитит Reset; новый <code>RestoreAction</code></td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.N</td>
+<td style="text-align: left;">Short/LongRest</td>
+<td style="text-align: left;">убрать сброс из LongRest; сброс — в beginPlayerTurn</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.O</td>
+<td style="text-align: left;">MechanicsBlock</td>
+<td style="text-align: left;">+ <code>actionEconomy</code> (spec-first)</td>
+<td style="text-align: left;">API</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.P</td>
+<td style="text-align: left;">OA-триггер</td>
+<td style="text-align: left;">OA врага при уходе из melee без Disengage</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.Q</td>
+<td style="text-align: left;">bonus spell</td>
+<td style="text-align: left;"><code>bonusSpellCastThisTurn</code> → только cantrip</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.R</td>
+<td style="text-align: left;">Dash</td>
+<td style="text-align: left;">+speed к бюджету</td>
+<td style="text-align: left;">код (2.9.C)</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.S</td>
+<td style="text-align: left;">Stand Up</td>
+<td style="text-align: left;">полspeed за снятие Prone</td>
+<td style="text-align: left;">код (2.9.C)</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.T</td>
+<td style="text-align: left;">Difficult terrain</td>
+<td style="text-align: left;">явное намерение ×2</td>
+<td style="text-align: left;">код (2.9.C)</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.U</td>
+<td style="text-align: left;">Action Surge</td>
+<td style="text-align: left;"><code>RestoreAction</code> + ресурс (2.7.I)</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.V</td>
+<td style="text-align: left;">Haste/Slow</td>
+<td style="text-align: left;">через <code>activeModifiers</code>, поля зафиксированы</td>
+<td style="text-align: left;">отложено</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.W</td>
+<td style="text-align: left;">Legendary pool</td>
+<td style="text-align: left;"><code>Enemy.legendaryActions</code> — 2.24</td>
+<td style="text-align: left;">отложено</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.X</td>
+<td style="text-align: left;">Lair Actions</td>
+<td style="text-align: left;">— 2.24 / 2.7.T</td>
+<td style="text-align: left;">отложено</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.Y</td>
+<td style="text-align: left;">Time Stop</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">отложено</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.Z</td>
+<td style="text-align: left;">Тесты</td>
+<td style="text-align: left;">unit + component</td>
+<td style="text-align: left;">тесты</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.AA</td>
+<td style="text-align: left;">источник <code>speed</code></td>
+<td style="text-align: left;">дефолт 30 + <code>SpeedResolver</code> (SRD-таблица рас) → 2.3</td>
+<td style="text-align: left;">модель</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.BB</td>
+<td style="text-align: left;">движение Enemy</td>
+<td style="text-align: left;"><code>Enemy.speed</code> (полный ActionEconomy врагу не даём)</td>
+<td style="text-align: left;">модель</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.CC</td>
+<td style="text-align: left;"><code>distance</code></td>
+<td style="text-align: left;"><code>ActionIntent.distance: Int?</code>; null → не трекаем, &gt; остатка → clamp</td>
+<td style="text-align: left;">модель</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.DD</td>
+<td style="text-align: left;"><code>SpendMove</code></td>
+<td style="text-align: left;"><code>StateChange.SpendMove(distance)</code></td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.EE</td>
+<td style="text-align: left;">READY + концентрация</td>
+<td style="text-align: left;"><code>ReadiedAction.isConcentration</code>; замена концентрации при срабатывании</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.FF</td>
+<td style="text-align: left;">READY не сработал</td>
+<td style="text-align: left;">истекает в <code>beginTurn</code>; Action не возвращается</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.GG</td>
+<td style="text-align: left;">READY vs <code>availableReactions</code></td>
+<td style="text-align: left;">синтезировать <code>READIED_ACTION</code> в список при совпадении триггера</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.HH</td>
+<td style="text-align: left;">bonusSpell + Action Surge</td>
+<td style="text-align: left;"><code>bonusSpellCastThisTurn</code> Action Surge не сбрасывает</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.II</td>
+<td style="text-align: left;"><code>Enemy.reactionUsed</code></td>
+<td style="text-align: left;">поле + сброс в начале раунда; OA его тратит</td>
+<td style="text-align: left;">модель</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.JJ</td>
+<td style="text-align: left;"><code>turnSerial</code> вне боя</td>
+<td style="text-align: left;"><code>CharacterState.turnSerial</code> — глобальный счётчик</td>
+<td style="text-align: left;">модель</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.KK</td>
+<td style="text-align: left;">движение вне боя</td>
+<td style="text-align: left;">свободно/нарративно; enforcement только в бою</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.LL</td>
+<td style="text-align: left;">Dash-формула</td>
+<td style="text-align: left;"><code>effectiveSpeed = speed + (if dash) speed</code>; <code>remaining = max(0, eff-used)</code></td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.MM</td>
+<td style="text-align: left;">MOVE_TELEPORT</td>
+<td style="text-align: left;">не <code>MOVE</code>, а SPELL/предмет (Misty Step и т.п.)</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.NN</td>
+<td style="text-align: left;">enemyShouldAct для MOVE</td>
+<td style="text-align: left;">MOVE не контратакуется; OA — отдельный путь</td>
+<td style="text-align: left;">код</td>
+</tr>
+<tr>
+<td style="text-align: left;">2.9.OO</td>
+<td style="text-align: left;"><code>turnSerial</code></td>
+<td style="text-align: left;">идемпотентный <code>beginTurn(serial)</code>; сериализуется, дефолт 0</td>
+<td style="text-align: left;">код</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. Порядок реализации (предложение)<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Ф1 — ядро экономии (game-breaking):</strong> 2.9.L → 2.9.B → 2.9.A → 2.9.E → 2.9.G →
+   2.9.F (2.7-путь) → 2.9.M/U → 2.9.N → 2.9.Q.</li>
+<li><strong>Ф2 — движение:</strong> 2.9.C → 2.9.D → 2.9.R → 2.9.S → 2.9.T → 2.9.P.</li>
+<li><strong>Ф3 — фичи/данные:</strong> 2.9.K → 2.9.J → 2.9.H → 2.9.O (spec-first).</li>
+<li><strong>Ф4 — тесты:</strong> 2.9.Z (по ходу каждой фазы).</li>
+<li><strong>Отложено:</strong> 2.9.I, 2.9.V, 2.9.W, 2.9.X, 2.9.Y.</li>
+</ol>
+<blockquote>
+<p>Зависимость: Ф2 требует <code>Enemy.isEngaged</code> (2.7.N/L) и полей <code>CharacterState</code> (2.7.H/Ф0-Ф1).
+<code>openapi.yaml</code> обновляется до кода на 2.9.C/O/H.</p>
+</blockquote>
+<hr />
+<h2 id="6">6. Ответы пользователя (зафиксировано)<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Движение (2.9.C):</strong> вводим абстрактный бюджет <code>speed</code> + <code>distance</code> из намерения —
+   <strong>сейчас</strong>, не дожидаясь сетки.</li>
+<li><strong>READY (2.9.H):</strong> <strong>сразу автодетекция</strong> триггеров (реестр <code>ReactionTrigger</code>), не ручной
+   пункт меню.</li>
+<li><strong><code>economyCost</code> (2.9.K):</strong> <strong>полная миграция</strong> всех 5 whitelist-файлов + DSL сразу.</li>
+<li><strong>OA врага (2.9.P):</strong> <strong>авто-триггер</strong> при уходе из melee без <code>DISENGAGE</code>.</li>
+<li><strong>ADR модели хода/раунда:</strong> новый <strong>ADR-0010</strong> «Turn &amp; Round Model» (номер 0007 занят).</li>
+</ol>
+<hr />
+<h2 id="7-29aaoo">7. Уточнения после второго ревью (2.9.AA–OO)<a class="headerlink" href="#7-29aaoo" title="Permanent link">&para;</a></h2>
+<h3 id="29aa-speed">2.9.AA — источник <code>speed</code><a class="headerlink" href="#29aa-speed" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>CharacterState.speed: Int = 30</code> — дефолт. Источник базовой скорости —
+единый <code>SpeedResolver.baseSpeed(raceId, classId, features)</code>; до появления <code>races.yml</code>
+(Блок 2.3) — временная SRD-таблица рас, затем миграция в данные.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">baseSpeed</span><span class="p">(</span><span class="n">raceId</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">raceId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s">"dwarf"</span><span class="p">,</span><span class="w"> </span><span class="s">"halfling"</span><span class="p">,</span><span class="w"> </span><span class="s">"gnome"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="m">25</span>
+<span class="w">    </span><span class="s">"wood_elf"</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="m">35</span><span class="w">            </span><span class="c1">// деревянный эльф (не всякий elf)</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="m">30</span>
+<span class="p">}</span>
+<span class="c1">// SessionService.create: speed = baseSpeed(raceId, features)</span>
+</code></pre></div>
+Единая точка, без «хардкода по месту»; при 2.3 <code>SpeedResolver</code> читает <code>races.yml</code>
+(<code>RacialTrait.speed</code>), поле <code>CharacterState.speed</code> остаётся.</p>
+<hr />
+<h3 id="29bb-enemy">2.9.BB — движение у <code>Enemy</code><a class="headerlink" href="#29bb-enemy" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> Полный <code>ActionEconomy</code> врагу <strong>не даём</strong>. Минимально: <code>Enemy.speed: Int = 30</code>
+(для OA/побега) и <code>Enemy.reactionUsed: Boolean = false</code>. Данные скорости — бестиарий
+(2.15). Враг двигается нарративно; отдельного бюджета движения у него нет.</p>
+<p><strong>Как.</strong> <code>Enemy.speed</code> участвует только в детекции OA (уход из melee, 2.9.P) и в описании.</p>
+<hr />
+<h3 id="29cc-distance">2.9.CC — парсинг <code>distance</code><a class="headerlink" href="#29cc-distance" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>ActionIntent.distance: Int?</code> — опционально, из structured output LLM
+(ADR-0009). Правила:
+- <code>null</code> → движение <strong>не трекаем</strong> (нарратив, свободный ход);
+- задано <code>&gt; remaining</code> → <strong>clamp</strong> до остатка + предупреждение (не отказ — не ломаем
+  естественно-языковую игру);
+- regex-fallback (<code>на N футов</code>) — для оффлайна/тестов.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">dist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intent</span><span class="p">.</span><span class="na">distance</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dist</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* narrative move, no SpendMove */</span><span class="w"> </span><span class="p">}</span>
+<span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">remaining</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentMovement</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">spent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minOf</span><span class="p">(</span><span class="n">dist</span><span class="p">,</span><span class="w"> </span><span class="n">remaining</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">spent</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dist</span><span class="p">)</span><span class="w"> </span><span class="n">warn</span><span class="p">(</span><span class="s">"Недостаточно движения: перемещение ограничено </span><span class="si">$</span><span class="n">remaining</span><span class="s"> фт"</span><span class="p">)</span>
+<span class="w">    </span><span class="n">changes</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">SpendMove</span><span class="p">(</span><span class="n">spent</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="29dd-statechangespendmove">2.9.DD — <code>StateChange.SpendMove</code><a class="headerlink" href="#29dd-statechangespendmove" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> Вариант A — единый паттерн <code>Spend*</code>: <code>StateChange.SpendMove(distance: Int)</code>,
+обрабатывается в <code>applyStateChanges</code> (<code>movementUsed += distance</code>). Отдельный
+<code>StateChange.MarkDash</code> для <code>dashUsedThisTurn</code>.</p>
+<hr />
+<h3 id="29ee-ready">2.9.EE — READY + концентрация<a class="headerlink" href="#29ee-ready" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>ReadiedAction.isConcentration: Boolean</code>. Заклинание исполняется в момент
+триггера, и концентрация начинается <strong>тогда же</strong>; старая концентрация заменяется
+(канон). Концентрация сейчас — заглушка (<code>SessionService.kt:2144-2163</code>, <code>TODO</code>) →
+поле фиксируется, реальная замена — при реализации концентрации.</p>
+<hr />
+<h3 id="29ff-ready">2.9.FF — READY не сработал<a class="headerlink" href="#29ff-ready" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> Если триггер не сработал до начала следующего хода — <code>readiedAction</code>
+<strong>теряется</strong>, Action <strong>не возвращается</strong> (канон).</p>
+<p><strong>Как.</strong> В <code>beginPlayerTurn</code>/<code>beginTurn</code>: <code>if (readiedAction?.roundSet ?: Int.MAX_VALUE &lt; round) readiedAction = null</code>.</p>
+<hr />
+<h3 id="29gg-ready-availablereactions">2.9.GG — READY и <code>availableReactions</code><a class="headerlink" href="#29gg-ready-availablereactions" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>processReactionTurn</code> валидирует реакцию по <code>availableReactions</code>. При
+совпадении триггера READY в <code>availableReactions</code> <strong>синтезируется</strong> запись
+<code>READIED_ACTION</code> (тем же механизмом, что <code>ReactionProposal</code>). Валидация расширяется до
+<code>availableReactions ∪ {READIED_ACTION}</code>. Безопасно, без bypass.</p>
+<p><strong>Как.</strong> При сборке <code>availableReactions</code> после <code>applyEnemyTurn</code> добавить
+<code>READIED_ACTION</code>, если <code>triggerMatches(readiedAction.trigger, enemyEvents)</code>.</p>
+<hr />
+<h3 id="29hh-bonusspellcastthisturn-action-surge">2.9.HH — <code>bonusSpellCastThisTurn</code> и Action Surge<a class="headerlink" href="#29hh-bonusspellcastthisturn-action-surge" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> Ограничение «bonus spell → далее только cantrip» действует <strong>весь ход</strong>.
+Action Surge восстанавливает только Action и <strong>не сбрасывает</strong>
+<code>bonusSpellCastThisTurn</code>. Сбрасывается исключительно <code>beginTurn</code>.</p>
+<hr />
+<h3 id="29ii-enemyreactionused">2.9.II — <code>Enemy.reactionUsed</code><a class="headerlink" href="#29ii-enemyreactionused" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>Enemy.reactionUsed: Boolean</code>, сбрасывается в начале раунда
+(<code>beginPlayerTurn</code> — вместе с экономией игрока). OA тратит его
+(<code>StateChange.EnemyReactionUsed(enemyId)</code>); 1 OA/раунд на врага.</p>
+<hr />
+<h3 id="29jj-beginplayerturn-combatstate-null">2.9.JJ — <code>beginPlayerTurn</code> при <code>combatState == null</code><a class="headerlink" href="#29jj-beginplayerturn-combatstate-null" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> Глобальный счётчик <code>CharacterState.turnSerial: Int</code> инкрементируется на
+каждом <strong>нормальном</strong> ходу независимо от боя. <code>ActionEconomy.turnSerial</code> — его проекция
+для идемпотентности. Бой (<code>combatState</code>) влияет только на enforcement, не на счётчик.</p>
+<p><strong>Как.</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">serial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerState</span><span class="p">.</span><span class="na">turnSerial</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span>
+<span class="n">playerState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerState</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span>
+<span class="w">    </span><span class="n">turnSerial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">serial</span><span class="p">,</span>
+<span class="w">    </span><span class="n">actionEconomy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerState</span><span class="p">.</span><span class="na">actionEconomy</span><span class="p">.</span><span class="na">beginTurn</span><span class="p">(</span><span class="n">serial</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">combatState</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">combatState</span><span class="o">?.</span><span class="na">beginPlayerTurn</span><span class="p">()</span><span class="w">   </span><span class="c1">// round++ (если бой)</span>
+</code></pre></div></p>
+<hr />
+<h3 id="29kk">2.9.KK — движение вне боя<a class="headerlink" href="#29kk" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> Вне боя (<code>combatState == null</code>) <code>MOVE</code> — <strong>свободно/нарративно</strong>;
+<code>SpendMove</code> не эмитится, <code>movementUsed</code> не ограничивается. Enforcement (<code>checkActionEconomy</code>
+по движению) действует только в бою.</p>
+<hr />
+<h3 id="29ll-dash">2.9.LL — формула Dash<a class="headerlink" href="#29ll-dash" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>movementUsed</code> не меняется Dash'ем; меняется доступный максимум:
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">effectiveSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dashUsedThisTurn</span><span class="p">)</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">remaining</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">effectiveSpeed</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">movementUsed</span><span class="p">).</span><span class="na">coerceAtLeast</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+</code></pre></div>
+<code>resolveDash</code> → <code>SpendAction</code> + <code>MarkDash</code>; <code>movementUsed</code> всегда ≥ 0.</p>
+<hr />
+<h3 id="29mm-move_teleport">2.9.MM — <code>MOVE_TELEPORT</code> — не движение<a class="headerlink" href="#29mm-move_teleport" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>MOVE_TELEPORT</code> <strong>не</strong> маппится в <code>ActionType.MOVE</code>. Телепортация — это
+SPELL (Misty Step — bonus, Dimension Door — action) или предмет (<code>USE_ITEM</code>).
+Шаблон сохраняем как маркер, но <code>economyCost</code> берётся из источника (spell/item).</p>
+<hr />
+<h3 id="29nn-enemyshouldact-move">2.9.NN — <code>enemyShouldAct</code> для <code>MOVE</code><a class="headerlink" href="#29nn-enemyshouldact-move" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> <code>MOVE</code> не входит в триггеры контратаки: враг не атакует на движение.
+Единственное исключение — <strong>OA врага</strong> при уходе из melee без <code>DISENGAGE</code> (2.9.P);
+это отдельный путь, а не <code>applyEnemyTurn</code>-контратака.</p>
+<hr />
+<h3 id="29oo-turnserial">2.9.OO — назначение <code>turnSerial</code><a class="headerlink" href="#29oo-turnserial" title="Permanent link">&para;</a></h3>
+<p><strong>Решение.</strong> Идемпотентность сброса + истечение READY.
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">beginTurn</span><span class="p">(</span><span class="n">serial</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">ActionEconomy</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">turnSerial</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">serial</span><span class="p">)</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">ActionEconomy</span><span class="p">(</span><span class="n">turnSerial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">serial</span><span class="p">)</span>
+</code></pre></div>
+Сериализуется в JSON как часть <code>ActionEconomy</code>; дефолт <code>0</code> → обратная совместимость
+старых сессий.</p>
+<hr />
+<h2 id="8-29">8. Финальный чеклист 2.9<a class="headerlink" href="#8-29" title="Permanent link">&para;</a></h2>
+<h3 id="1-game-breaking">🔴 Фаза 1: Ядро экономии (game-breaking)<a class="headerlink" href="#1-game-breaking" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>2.9.L</strong> удалить 4 флага <code>CombatState</code></li>
+<li>[ ] <strong>2.9.B + 2.9.JJ + 2.9.OO</strong> <code>beginPlayerTurn</code> + глобальный <code>turnSerial</code> + идемпотентность</li>
+<li>[ ] <strong>2.9.A</strong> сброс только на нормальном ходу; follow-up реакции не сбрасывает</li>
+<li>[ ] <strong>2.9.E</strong> <code>BONUS_ATTACK</code> → <code>BONUS_ATTACK</code>; <code>ATTACK_MULTI</code> → <code>ATTACK</code></li>
+<li>[ ] <strong>2.9.G</strong> <code>castingTime</code> → <code>Spend*</code></li>
+<li>[ ] <strong>2.9.F</strong> Extra Attack через 2.7.F/2.7.LL</li>
+<li>[ ] <strong>2.9.M/U</strong> <code>ResetActionEconomy</code> из LongRest + <code>RestoreAction</code></li>
+<li>[ ] <strong>2.9.N</strong> убрать сброс из LongRest</li>
+<li>[ ] <strong>2.9.Q + 2.9.HH</strong> <code>bonusSpellCastThisTurn</code> (Action Surge не сбрасывает)</li>
+</ul>
+<h3 id="2_1">🔴 Фаза 2: Движение<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>2.9.C + 2.9.AA + 2.9.BB</strong> <code>CharacterState.speed</code>, <code>Enemy.speed</code>, <code>movementUsed</code>, <code>SpeedResolver</code></li>
+<li>[ ] <strong>2.9.D + 2.9.MM</strong> <code>ActionType.MOVE</code>; <code>MOVE_TELEPORT</code> → SPELL</li>
+<li>[ ] <strong>2.9.DD</strong> <code>StateChange.SpendMove</code></li>
+<li>[ ] <strong>2.9.R + 2.9.LL</strong> Dash: <code>effectiveSpeed = speed + speed</code></li>
+<li>[ ] <strong>2.9.S</strong> Stand Up = половина speed</li>
+<li>[ ] <strong>2.9.T</strong> difficult terrain ×2 через намерение</li>
+<li>[ ] <strong>2.9.P + 2.9.II + 2.9.NN</strong> OA врага + <code>Enemy.reactionUsed</code></li>
+<li>[ ] <strong>2.9.CC</strong> <code>ActionIntent.distance</code> (LLM + regex-fallback)</li>
+<li>[ ] <strong>2.9.KK</strong> движение вне боя свободно</li>
+</ul>
+<h3 id="3_1">🟡 Фаза 3: Фичи/данные<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>2.9.K</strong> <code>economyCost</code> в dsl-registry + 5 whitelist</li>
+<li>[ ] <strong>2.9.J</strong> free interaction 1/ход</li>
+<li>[ ] <strong>2.9.H + 2.9.EE + 2.9.FF + 2.9.GG</strong> READY: триггер, автодетект, концентрация, истечение, <code>availableReactions</code></li>
+<li>[ ] <strong>2.9.O</strong> <code>MechanicsBlock.actionEconomy</code> (spec-first)</li>
+</ul>
+<h3 id="4_1">🟢 Фаза 4: Тесты<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>2.9.Z</strong> unit + component</li>
+</ul>
+<h3 id="_3">⏸️ Отложено<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[ ] <strong>2.9.I</strong> DELAY · <strong>2.9.V</strong> Haste/Slow · <strong>2.9.W</strong> Legendary pool ·
+      <strong>2.9.X</strong> Lair · <strong>2.9.Y</strong> Time Stop</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2374 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0018-xp-semantics/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0018: Семантика XP — устранение расхождения авто-каскада и ручного level-up - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0018-xp-level-up" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0018: Семантика XP — устранение расхождения авто-каскада и ручного level-up
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Суть проблемы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5e-phb-p15-163-165" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Канон 5e (PHB p.15, 163-165)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Факты (файл:строка)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Факты (файл:строка)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Два трактования xp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-gainxp-sessionservicekt2490-2521" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Авто-каскад GainXp (SessionService.kt:2490-2521)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#levelupservice-levelupservicekt94-277" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ручной LevelUpService (LevelUpService.kt:94-277)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Конкретное расхождение
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прочие точки XP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-openapiyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API (openapi.yaml)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-xp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Семантика xp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-level-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Единый путь level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-hp-level-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Формула HP при level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-pendingasi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. pendingASI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-asi-vs-feat-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. ASI-выбор vs Feat в авто-каскаде
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-classresources-level-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. classResources при level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-featuressubclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Features/subclass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-milestone-xp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Milestone-XP за сцену
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-clearxptriggers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. ClearXpTriggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-casting-classlevels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        J. Мультикласс-casting (classLevels)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-legacy-xp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K. Legacy-сессии (xp как остаток)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l-heal-level-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L. Heal-семантика при level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m-level-20-xp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M. Level 20 — что с xp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-spell-slots-level-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        N. Spell slots при level-up в авто
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обязательные фиксации
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-xp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Семантика xp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-level-up_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Единый путь level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-hp-level-up_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Формула HP при level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-pendingasi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. pendingASI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-asi-vs-feat-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. ASI-выбор vs Feat в авто-каскаде
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-classresources-level-up_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. classResources при level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-featuressubclass_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Features/subclass
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-milestone-xp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Milestone-XP за сцену
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-clearxptriggers_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. ClearXpTriggers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-casting-classlevels_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        J. Мультикласс-casting (classLevels)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-legacy-xp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K. Legacy-сессии (xp как остаток)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l-heal-level-up_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L. Heal-семантика при level-up
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m-level-20-xp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M. Level 20 — что с xp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-spell-slots-level-up_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        N. Spell slots при level-up в авто
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски и митигация
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0018-xp-level-up">ADR-0018: Семантика XP — устранение расхождения авто-каскада и ручного level-up<a class="headerlink" href="#adr-0018-xp-level-up" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<h3 id="_1">Суть проблемы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>В движке один и тот же <code>CharacterState.xp</code> трактуется <strong>двумя несовместимыми способами</strong>:</p>
+<ol>
+<li><strong>Авто-каскад</strong> (<code>SessionService.applyChanges</code>, обработчик <code>StateChange.GainXp</code>) — как <strong>остаток XP внутри
+   уровня</strong>: при переходе вычитает <code>xpForNextLevel(level)</code> и сохраняет остаток.</li>
+<li><strong>Ручной путь</strong> (<code>LevelUpService</code> + <code>LevelTableRegistry</code> + фронт/превью) — как <strong>кумулятивный итог</strong>:
+   уровень повышается при <code>xp &gt;= xpFor(level+1)</code> (абсолютный порог из таблицы).</li>
+</ol>
+<p>Расхождение прямо нарушает ADR-0004, где зафиксирована каноничная таблица <code>xp -&gt; level</code> (кумулятив,
+SRD <code>[0,300,900,2700,6500,14000,...]</code>), и ломает прогрессию: один и тот же персонаж на одном уровне имеет
+разные пороги в зависимости от того, каким путём получен XP.</p>
+<h3 id="5e-phb-p15-163-165">Канон 5e (PHB p.15, 163-165)<a class="headerlink" href="#5e-phb-p15-163-165" title="Permanent link">&para;</a></h3>
+<ul>
+<li>XP накапливается <strong>кумулятивно</strong> (суммарно за всю игру).</li>
+<li>Порог следующего уровня — из таблицы: L2=300, L3=900, L4=2700, … L20=355000.</li>
+<li>Level-up происходит <strong>при достижении порога</strong>; избыток XP <strong>сохраняется</strong> (не обнуляется).</li>
+<li>Proficiency bonus растёт по уровню (1-4:+2 … 17-20:+6).</li>
+<li>HP при level-up — среднее по кубику (d6=4, d8=5, d10=6, d12=7) + CON mod (после возможного роста CON).</li>
+</ul>
+<h3 id="_2">Факты (файл:строка)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="xp">Два трактования <code>xp</code><a class="headerlink" href="#xp" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Путь</th>
+<th>Семантика</th>
+<th>Место</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Авто-каскад</td>
+<td>остаток внутри уровня</td>
+<td><code>SessionService.kt:2491-2494</code> (<code>xp += amount</code>; <code>xp -= xpForNextLevel(level)</code>)</td>
+</tr>
+<tr>
+<td>Ручной</td>
+<td>кумулятив</td>
+<td><code>LevelTableRegistry.kt:61-65</code> (<code>canLevelUp</code>: <code>xp &gt;= forLevel(level+1).xpRequired</code>)</td>
+</tr>
+<tr>
+<td>Фронт</td>
+<td>кумулятив</td>
+<td><code>levelUp.ts:12</code> (<code>xp &gt;= xpFor(level+1)</code>); <code>CharacterPanel.tsx:161-166</code></td>
+</tr>
+<tr>
+<td>Таблица</td>
+<td>кумулятив (пороги)</td>
+<td><code>level-table.yml</code>; <code>LevelTableRegistry.kt:52-53,57-65</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="-gainxp-sessionservicekt2490-2521">Авто-каскад GainXp (<code>SessionService.kt:2490-2521</code>)<a class="headerlink" href="#-gainxp-sessionservicekt2490-2521" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>xp += change.amount</code> (<code>:2491</code>), затем <code>while (xp &gt;= xpForNextLevel(level)) { xp -= xpForNextLevel(level); level++ }</code> (<code>:2492-2494</code>).</li>
+<li><code>xpForNextLevel</code> (<code>:2850-2871</code>) — <strong>дельта-таблица</strong> (L1→300, L2→600, L3→1800, … L19→50000). Значения —
+  корректные разности кумулятивных порогов, но семантика «остаток» конфликтует с остальным кодом.</li>
+<li>HP: <code>hpIncrease = (hitDie / 2) + 1 + conMod</code> (<code>:2499</code>), <code>conMod = state.effectiveAttributes.conMod</code> (до ASI);
+  <code>hp = maxHp = newMaxHp</code> (<code>:2500-2502</code>) — <strong>полное восстановление</strong> до нового максимума.</li>
+<li>Слоты: только если <code>canonical.spellcastingAbility != null</code>, <code>SpellSlots.forLevel(level)</code> (<code>:2507-2512</code>) —
+  <strong>полная таблица full caster</strong> для любого заклинателя (не учитывает half/pact).</li>
+<li><code>pendingASI += 1</code> при <code>level in {4,8,12,16,19}</code> (<code>:2513-2515</code>) — <strong>хардкод</strong>, игнорирует <code>cls.asiLevels</code>.</li>
+<li>На 20 уровне <code>xp = 0</code> (<code>:2517-2520</code>).</li>
+<li><strong>Не обрабатывает:</strong> features, subclass, ASI-выбор, classResources, classLevels (нет ни одного вызова
+  <code>LevelUpService</code>/<code>ClassResourceHelper</code>/<code>resourcesForLevelUp</code>).</li>
+</ul>
+<h4 id="levelupservice-levelupservicekt94-277">Ручной LevelUpService (<code>LevelUpService.kt:94-277</code>)<a class="headerlink" href="#levelupservice-levelupservicekt94-277" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>canLevelUp</code> → <code>levelTable.canLevelUp</code> (<code>:92</code>, кумулятив).</li>
+<li><code>needsAsi = cls.asiLevels.contains(nextLevel)</code> (<code>:100-101</code>) — из <code>classes.yml</code>, не хардкод.</li>
+<li>ASI xor Feat (<code>:108</code>): <code>require(hasAsi xor hasFeat)</code>.</li>
+<li>HP: <code>avg = avgHitDie(cls.hitDie)</code> (<code>:178</code>), <code>hpDelta = avg + conModAfter</code> (<code>:179</code>, <strong>после ASI</strong>),
+  ретро-CON <code>(conModAfter - conModBefore) * state.level</code> (<code>:182-186</code>), tough <code>+2*nextLevel</code> (<code>:188-189</code>);
+  <code>newHp = state.hp + hpDelta</code> (<code>:199</code>) — <strong>частичное восстановление</strong> (сохраняет полученный урон).</li>
+<li><code>classResources = ClassResourceHelper.resourcesForLevelUp(...)</code> (<code>:254</code>).</li>
+<li><code>classLevels</code> обновляется (<code>:207-213</code>).</li>
+<li><code>pendingASI = 0</code> — потребляется (<code>:270</code>); инкремента <code>pendingASI</code> здесь <strong>нет</strong>.</li>
+<li>features/subclass/featureChoices/spellChoices — обрабатываются (<code>:124-173,215-247</code>).</li>
+</ul>
+<h4 id="_3">Конкретное расхождение<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Авто L2→L3: вычитает <code>xpForNextLevel(2) = 600</code> (<code>:2852</code>).</li>
+<li>Таблица/ручной: L3 требует <strong>900</strong> кумулятивно (<code>level-table.yml</code>, <code>LevelTableRegistry.kt:53</code>).</li>
+<li>Отсюда «L2→L3 авто = 600, таблица = 900».</li>
+</ul>
+<h4 id="xp_1">Прочие точки XP<a class="headerlink" href="#xp_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Квест-XP</strong>: <code>CompleteQuest</code> пишет <code>xp += change.xpReward ?: q.xpReward</code> <strong>напрямую</strong> (<code>SessionService.kt:2473-2474</code>),
+  минуя авто-каскад (не триггерит level-up).</li>
+<li><strong>Milestone-XP за сцену</strong>: <code>SessionService.kt:2367-2380</code> — на <code>SetScene</code>, если <code>milestone@scene</code> не в
+  <code>xpTriggers</code>, эмитит <code>AddXpTrigger("milestone@$scene")</code> + <code>GainXp(50 * (1 + level/4))</code>. База <code>XpRules.MILESTONE_BASE = 50</code> (<code>XpRules.kt:17</code>).</li>
+<li><strong>Источники GainXp</strong>: <code>ReactionResolver.kt:87</code>; <code>TurnResolver.kt</code> (много: <code>:858,963,971,975,1087,1112,1290,1319,1378,1554,1641,1792,1913,1915,2178,2194,2588,2625,3011,3018</code>); <code>SessionService.kt:2377</code>.</li>
+<li><strong>xpTriggers</strong>: <code>CharacterState.xpTriggers</code> (<code>GameState.kt:431</code>), читается в <code>TurnResolver.kt:1083,1085,3003</code>.
+  <code>AddXpTrigger</code> (<code>GameState.kt:1174</code>) эмитится в <code>TurnResolver.kt:1088,1089,3012,3019</code> и <code>SessionService.kt:2376</code>.
+  <code>ClearXpTriggers</code> (<code>GameState.kt:1175</code>) <strong>обрабатывается</strong> (<code>SessionService.kt:2722-2724</code>), но <strong>нигде не эмитится</strong>
+  → сброс разовых триггеров по смене сцены отсутствует (audit 14.13).</li>
+<li><strong>HP формулы — три места</strong>: авто <code>SessionService.kt:2499</code>; ручной <code>LevelUpService.kt:176-201</code>; превью
+  <code>LevelUpService.kt:360-363</code> (<code>avgHitDie + effectiveAttributes.conMod</code>, без ретро и без ASI).</li>
+</ul>
+<h3 id="api-openapiyaml">API (openapi.yaml)<a class="headerlink" href="#api-openapiyaml" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>CharacterState.xp</code> (<code>:498</code>), <code>pendingASI</code> (<code>:562-565</code>), <code>classLevels</code> (<code>:587-591</code>).</li>
+<li><code>POST /levelup</code> (<code>:2166</code>), <code>GET /levelup/preview</code> (<code>:2200</code>), <code>POST /levelup/asi</code> (<code>:1604</code>).</li>
+</ul>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="a-xp">A. Семантика <code>xp</code><a class="headerlink" href="#a-xp" title="Permanent link">&para;</a></h3>
+<p><strong>A1 — кумулятив (канон).</strong> <code>CharacterState.xp</code> — суммарный XP за всю игру. Авто-каскад переписывается
+под кумулятив: level определяется из <code>LevelTableRegistry</code> (абсолютные пороги), <code>xp</code> не вычитается.
+Совпадает с ADR-0004, ручным путём, фронтом и таблицей. Отвергнуто: A2 (остаток — противоречит канону
+и остальному коду), A3 (два режима — преждевременно).</p>
+<h3 id="b-level-up">B. Единый путь level-up<a class="headerlink" href="#b-level-up" title="Permanent link">&para;</a></h3>
+<p><strong>B2 — два пути с общим ядром.</strong> Общее ядро — <code>LevelUpApplier.applyLevelUp(state, classDef, toLevel)</code>
+применяет HP/слоты/resources/пассивные features <strong>без выборов</strong>. Выборы (ASI/feat/subclass/
+featureChoices/spellChoices) — обязательный ручной шаг (<code>LevelUpService</code> + <code>LevelUpModal</code>).
+Отвергнуто: B1 (единый <code>LevelUpService</code> — авто не может сделать выбор), B3 (дублирование логики).</p>
+<h3 id="c-hp-level-up">C. Формула HP при level-up<a class="headerlink" href="#c-hp-level-up" title="Permanent link">&para;</a></h3>
+<p><strong>C3 — единая формула <code>avgHitDie + conModAfter + ретро-CON</code></strong> (без броска, ADR-0003 clockwork).
+<code>avgHitDie</code>: d6=4, d8=5, d10=6, d12=7. <code>conModAfter</code> — после применения ASI; ретро-CON
+<code>(conModAfter - conModBefore) * level</code>. Отвергнуто: C1 (игнорирует рост CON), C2 (оставляет
+расхождение с авто). Heal-семантика вынесена в L.</p>
+<h3 id="d-pendingasi">D. <code>pendingASI</code><a class="headerlink" href="#d-pendingasi" title="Permanent link">&para;</a></h3>
+<p><strong>D1 — инкремент из <code>cls.asiLevels</code></strong> (канон: warrior <code>[4,6,8,12,14,16,19]</code>, rogue <code>[4,8,10,12,16,19]</code>).
+Авто-каскад читает <code>asiLevels</code> класса, хардкод <code>{4,8,12,16,19}</code> удаляется. Отвергнуто: D2 (хардкод
+неверен для warrior/rogue), D3 (совпадает с D1).</p>
+<h3 id="e-asi-vs-feat-">E. ASI-выбор vs Feat в авто-каскаде<a class="headerlink" href="#e-asi-vs-feat-" title="Permanent link">&para;</a></h3>
+<p><strong>E1 — авто останавливается на ASI-уровне</strong> с <code>pendingASI++</code> и уведомлением игроку (UI). Авто-каскад
+<strong>НЕ проскакивает ASI-уровни</strong>: на ASI-уровне останавливается, UI обязан показать модал выбора.
+Отвергнуто: E2 (копит без выбора — рассинхрон с превью), E3 (запрет — лишнее ограничение UX).</p>
+<h3 id="f-classresources-level-up">F. <code>classResources</code> при level-up<a class="headerlink" href="#f-classresources-level-up" title="Permanent link">&para;</a></h3>
+<p><strong>F1 — авто вызывает <code>resourcesForLevelUp</code></strong> (<code>ClassResourceHelper</code>), унификация с ручным путём.
+Отвергнуто: F2 (персонаж на авто-каскаде не получит прироста ресурсов).</p>
+<h3 id="g-featuressubclass">G. Features/subclass<a class="headerlink" href="#g-featuressubclass" title="Permanent link">&para;</a></h3>
+<p><strong>G2 — авто НЕ обрабатывает features/subclass.</strong> Авто применяет <strong>только пассивные features</strong>
+(без <code>choice</code>/<code>options</code>); features с choice и subclass — только ручным путём. Список пассивных
+features определяется по <code>ClassFeature</code> (отсутствие <code>choice</code>/<code>options</code>). Отвергнуто: G1 (выбор
+подкласса не автоматизируем).</p>
+<h3 id="h-milestone-xp">H. Milestone-XP за сцену<a class="headerlink" href="#h-milestone-xp" title="Permanent link">&para;</a></h3>
+<p><strong>H2 — milestone-XP через единый путь начисления</strong> (<code>GainXp</code>), без отдельной ветки применения.
+Отвергнуто: H1 (отдельная механика), H3 (milestone-as-leveling — смена парадигмы, не сейчас).</p>
+<h3 id="i-clearxptriggers">I. <code>ClearXpTriggers</code><a class="headerlink" href="#i-clearxptriggers" title="Permanent link">&para;</a></h3>
+<p><strong>I1 — эмитить <code>ClearXpTriggers</code> на смену сцены</strong> (<code>SetScene</code>). Закрывает audit 14.13. Отвергнуто:
+I2 (триггеры копятся навсегда), I3 (рефактор модели <code>xpTriggers</code>).</p>
+<h3 id="j-casting-classlevels">J. Мультикласс-casting (<code>classLevels</code>)<a class="headerlink" href="#j-casting-classlevels" title="Permanent link">&para;</a></h3>
+<p><strong>J1 — отдельный ADR</strong> (0017 G2). Отвергнуто: J2 (смешивает два вопроса), J3 (отложить).</p>
+<h3 id="k-legacy-xp">K. Legacy-сессии (<code>xp</code> как остаток)<a class="headerlink" href="#k-legacy-xp" title="Permanent link">&para;</a></h3>
+<p><strong>K1 — миграция реконструкцией:</strong> <code>cumulative = xpFor(level) + remainder</code>. Если результат не сходится
+с <code>level-table.yml</code> — предупреждение + сброс остатка. Отвергнуто: K2 (потеря прогресса), K3 (расхождение
+для активных сессий).</p>
+<h3 id="l-heal-level-up">L. Heal-семантика при level-up<a class="headerlink" href="#l-heal-level-up" title="Permanent link">&para;</a></h3>
+<p><strong>L2 — частичное восстановление HP</strong> (канон): HP растёт на <code>hpDelta</code>, полученный урон сохраняется.
+Отвергнуто: L1 (полное — не канон, расходится с ручным), L3 (два поведения — рассинхрон).</p>
+<h3 id="m-level-20-xp">M. Level 20 — что с <code>xp</code><a class="headerlink" href="#m-level-20-xp" title="Permanent link">&para;</a></h3>
+<p><strong>M2 — <code>xp</code> копится, <code>level</code> не растёт</strong> (канон 5e, нет cap на xp). Сброс отсутствует. Отвергнуто:
+M1 (сброс в 0 — не канон), M3 (блокировка — теряются источники XP).</p>
+<h3 id="n-spell-slots-level-up">N. Spell slots при level-up в авто<a class="headerlink" href="#n-spell-slots-level-up" title="Permanent link">&para;</a></h3>
+<p><strong>N1 — унифицировать через <code>spellSlotsFor(classId, level)</code></strong> (full/half/pact), симметрия с ручным.
+Отвергнуто: N2 (full для любого заклинателя — неверно для half/pact).</p>
+<h3 id="_4">Обязательные фиксации<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Авто-каскад НЕ проскакивает ASI-уровни (E1):</strong> на ASI-уровне останавливается с <code>pendingASI++</code>,
+  UI обязан показать модал выбора.</li>
+<li><strong>Features с choice и subclass — только ручным путём (G2):</strong> авто применяет только пассивные
+  features (без <code>choice</code>/<code>options</code>).</li>
+<li><strong>Heal-семантика — частичная (L2):</strong> урон сохраняется, HP растёт на <code>hpDelta</code>.</li>
+<li><strong>Level 20: <code>xp</code> копится (M2), сброс отсутствует.</strong></li>
+<li><strong>Legacy-миграция K1:</strong> реконструкция <code>cumulative = xpFor(level) + remainder</code>; при расхождении
+  с <code>level-table.yml</code> — предупреждение + сброс остатка.</li>
+<li><strong><code>CompleteQuest</code> (<code>SessionService.kt:2473-2474</code>) использует общий путь начисления (<code>GainXp</code>),
+  не пишет <code>xp</code> напрямую</strong> — фикс NEW_GAP.</li>
+</ul>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<h3 id="a-xp_1">A. Семантика <code>xp</code><a class="headerlink" href="#a-xp_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A1 — кумулятив (канон, как ручной/фронт/таблица).</strong></li>
+<li><code>+</code> Совпадает с PHB, ADR-0004, ручным путём, фронтом, превью; минимальное изменение — только авто-каскад.</li>
+<li><code>−</code> Нужна миграция legacy-сессий, где <code>xp</code> копил остаток (см. K).</li>
+<li><strong>A2 — остаток (текущий авто).</strong></li>
+<li><code>+</code> Совпадает с авто-каскадом; не трогает <code>xpForNextLevel</code>.</li>
+<li><code>−</code> Противоречит PHB, ADR-0004, ручному пути, фронту, таблице; требует переписать XP-бар/превью/таблицу.</li>
+<li><strong>A3 — оба с флагом (world-level режим).</strong></li>
+<li><code>+</code> Гибкость для будущих режимов (milestone vs XP).</li>
+<li><code>−</code> Два пути в рантайме, двойное сопровождение; преждевременно.</li>
+</ul>
+<h3 id="b-level-up_1">B. Единый путь level-up<a class="headerlink" href="#b-level-up_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>B1 — один <code>LevelUpService</code> для обоих.</strong></li>
+<li><code>+</code> Один источник правды (ADR-0011).</li>
+<li><code>−</code> Авто-каскад не может сделать выбор ASI/feat/subclass → всё равно нужен ручной шаг.</li>
+<li><strong>B2 — два пути с общим ядром (применить level-up без выбора) + ручной выбор.</strong></li>
+<li><code>+</code> Авто применяет HP/слоты/resources/features без выбора; выборы — ручным путём.</li>
+<li><code>−</code> Ядро нужно вынести (общий «applyLevelUp»), часть логики делится.</li>
+<li><strong>B3 — оставить оба, унифицировать формулы (HP/pendingASI/classResources) по месту.</strong></li>
+<li><code>+</code> Минимальный объём; быстрый фикс расхождения.</li>
+<li><code>−</code> Дублирование level-up-логики остаётся (риск нового расхождения).</li>
+</ul>
+<h3 id="c-hp-level-up_1">C. Формула HP при level-up<a class="headerlink" href="#c-hp-level-up_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>C1 — <code>(hitDie/2)+1+conMod</code> (авто; эквивалент <code>avgHitDie + conMod(before)</code>).</strong></li>
+<li><code>+</code> Просто; идентично среднему для всех hitDie (6→4, 8→5, 10→6, 12→7).</li>
+<li><code>−</code> Игнорирует рост CON от ASI/фита (нет ретро), полное восстановление HP.</li>
+<li><strong>C2 — <code>avgHitDie + conModAfter + ретро-CON</code> (ручной, канон).</strong></li>
+<li><code>+</code> Учитывает ASI/фит в CON, ретро-рост HP (SRD); частичное восстановление.</li>
+<li><code>−</code> Сложнее (ретро по всем предыдущим уровням), расходится с авто по heal-семантике.</li>
+<li><strong>C3 — зафиксировать единый выбор: среднее (без броска) + conModAfter + ретро, единая heal-семантика.</strong></li>
+<li><code>+</code> Детерминированность (ADR-0003, реплей), один алгоритм.</li>
+<li><code>−</code> Требует отдельного соглашения о heal (полное vs частичное).</li>
+</ul>
+<h3 id="d-pendingasi_1">D. <code>pendingASI</code><a class="headerlink" href="#d-pendingasi_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>D1 — инкремент из <code>cls.asiLevels</code> (канон: warrior +6, rogue +10).</strong></li>
+<li><code>+</code> Соответствует <code>classes.yml</code> и ручному пути.</li>
+<li><code>−</code> Нужно, чтобы авто-каскад читал <code>asiLevels</code> класса.</li>
+<li><strong>D2 — хардкод <code>{4,8,12,16,19}</code> (авто, текущее).</strong></li>
+<li><code>+</code> Ноль зависимостей.</li>
+<li><code>−</code> Неверно для warrior (6,14) и rogue (10); рассинхрон с ручным.</li>
+<li><strong>D3 — унификация: единый источник <code>asiLevels</code> для авто и ручного.</strong></li>
+<li><code>+</code> Устраняет дубль источника.</li>
+<li><code>−</code> Совпадает с D1 по сути, требует рефактор.</li>
+</ul>
+<h3 id="e-asi-vs-feat-_1">E. ASI-выбор vs Feat в авто-каскаде<a class="headerlink" href="#e-asi-vs-feat-_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>E1 — авто на ASI-уровне останавливается: <code>pendingASI++</code>, игрок выбирает позже (<code>/levelup/asi</code> / модал).</strong></li>
+<li><code>+</code> Канон (выбор — действие игрока); xor уже есть (<code>LevelUpService.kt:108</code>).</li>
+<li><code>−</code> Авто-каскад не может «проскочить» ASI-уровень без UI.</li>
+<li><strong>E2 — авто продолжает без выбора, копит <code>pendingASI</code>.</strong></li>
+<li><code>+</code> Просто, не блокирует прогресс.</li>
+<li><code>−</code> ASI/фит откладываются, возможен рассинхрон с превью.</li>
+<li><strong>E3 — авто-каскад запрещён на ASI-уровне (обязательный ручной шаг).</strong></li>
+<li><code>+</code> Явная семантика.</li>
+<li><code>−</code> Дополнительное ограничение UX.</li>
+</ul>
+<h3 id="f-classresources-level-up_1">F. <code>classResources</code> при level-up<a class="headerlink" href="#f-classresources-level-up_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>F1 — авто вызывает <code>resourcesForLevelUp</code> (унификация).</strong></li>
+<li><code>+</code> Единый расчёт ресурсов; устраняет audit 14.12.</li>
+<li><code>−</code> Авто-каскад получает зависимость от <code>ClassResourceHelper</code>.</li>
+<li><strong>F2 — авто не трогает (текущее); только ручной.</strong></li>
+<li><code>+</code> Минимально.</li>
+<li><code>−</code> Персонаж, качающийся только авто-каскадом, не получит прироста ресурсов.</li>
+</ul>
+<h3 id="g-featuressubclass_1">G. Features/subclass<a class="headerlink" href="#g-featuressubclass_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>G1 — авто обрабатывает (нужен UI для подкласса на 3).</strong></li>
+<li><code>+</code> Полный канон для авто-пути.</li>
+<li><code>−</code> Выбор подкласса/фич не автоматизируем → всё равно ручной шаг.</li>
+<li><strong>G2 — авто не обрабатывает (текущее); features/subclass только ручным путём.</strong></li>
+<li><code>+</code> Просто; авто = «голая» прокачка HP/слотов/level.</li>
+<li><code>−</code> Расхождение итогов авто vs ручного уровня сохраняется.</li>
+</ul>
+<h3 id="h-milestone-xp_1">H. Milestone-XP за сцену<a class="headerlink" href="#h-milestone-xp_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>H1 — оставить как есть (отдельная эмиссия <code>GainXp</code>).</strong></li>
+<li><code>+</code> Не трогаем; работает.</li>
+<li><code>−</code> Остаётся отдельная механика начисления, вне общего контура XP.</li>
+<li><strong>H2 — включить в общий контур XP (единый путь начисления/применения).</strong></li>
+<li><code>+</code> Консистентность начисления.</li>
+<li><code>−</code> Больше изменений поверхности.</li>
+<li><strong>H3 — отдельная механика (milestone leveling, не XP).</strong></li>
+<li><code>+</code> Чистое разделение «XP vs milestone».</li>
+<li><code>−</code> Выходит за объём ADR (смена парадигмы прокачки).</li>
+</ul>
+<h3 id="i-clearxptriggers_1">I. <code>ClearXpTriggers</code><a class="headerlink" href="#i-clearxptriggers_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>I1 — эмитить <code>ClearXpTriggers</code> на смену сцены (сброс разовых per-location триггеров).</strong></li>
+<li><code>+</code> Закрывает audit 14.13; XpRules-контракт «сброс сменой сцены» начинает работать.</li>
+<li><code>−</code> Нужно определить точку эмиссии (SetScene vs ENTER_SCENE).</li>
+<li><strong>I2 — не эмитить (текущее).</strong></li>
+<li><code>+</code> Ноль изменений.</li>
+<li><code>−</code> Разовые триггеры копятся навсегда (фарм заблокирован, но память растёт).</li>
+<li><strong>I3 — другая триггерная модель (per-scene раздельные set'ы).</strong></li>
+<li><code>+</code> Точное разделение по локациям.</li>
+<li><code>−</code> Рефактор модели <code>xpTriggers</code>.</li>
+</ul>
+<h3 id="j-casting-classlevels_1">J. Мультикласс-casting (<code>classLevels</code>)<a class="headerlink" href="#j-casting-classlevels_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>J1 — отдельный ADR (0017 G2).</strong></li>
+<li><code>+</code> Не раздувает этот ADR.</li>
+<li><code>−</code> — (фиксация границы).</li>
+<li><strong>J2 — в этом ADR.</strong></li>
+<li><code>−</code> Смешивает два вопроса (семантика XP и мультикласс).</li>
+<li><strong>J3 — отложить.</strong></li>
+</ul>
+<h3 id="k-legacy-xp_1">K. Legacy-сессии (<code>xp</code> как остаток)<a class="headerlink" href="#k-legacy-xp_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>K1 — миграция <code>xp</code> из остатка в кумулятив (пересчёт для существующих сессий).</strong></li>
+<li><code>+</code> Сохраняет прогресс.</li>
+<li><code>−</code> Нужна миграция + тест на граничные случаи.</li>
+<li><strong>K2 — сброс <code>xp</code> в 0.</strong></li>
+<li><code>+</code> Просто; консистентно с новой семантикой.</li>
+<li><code>−</code> Потеря прогресса игроков.</li>
+<li><strong>K3 — игнор (старые сессии как есть; новая семантика только для новых).</strong></li>
+<li><code>+</code> Ноль миграции.</li>
+<li><code>−</code> Расхождение для активных сессий остаётся.</li>
+</ul>
+<h3 id="l-heal-level-up_1">L. Heal-семантика при level-up<a class="headerlink" href="#l-heal-level-up_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>L1 — полное восстановление HP (авто, текущее).</strong></li>
+<li><code>+</code> Удобно.</li>
+<li><code>−</code> Не канон 5e; расходится с ручным.</li>
+<li><strong>L2 — частичное: HP растёт на delta, урон сохраняется (канон, ручной).</strong></li>
+<li><code>+</code> Канон.</li>
+<li><code>−</code> Игрок должен сам лечиться после level-up.</li>
+<li><strong>L3 — выбор per-mode (EASY=full, NORMAL/HARDCORE=partial).</strong></li>
+<li><code>−</code> Два поведения, рассинхрон.</li>
+</ul>
+<h3 id="m-level-20-xp_1">M. Level 20 — что с <code>xp</code><a class="headerlink" href="#m-level-20-xp_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>M1 — xp сбрасывается в 0 (авто, текущее).</strong></li>
+<li><code>−</code> Не канон.</li>
+<li><strong>M2 — xp копится, level не растёт (канон).</strong></li>
+<li><code>+</code> Канон 5e (нет cap на xp).</li>
+<li><strong>M3 — xp блокируется, не начисляется.</strong></li>
+<li><code>−</code> Теряются источники XP.</li>
+</ul>
+<h3 id="n-spell-slots-level-up_1">N. Spell slots при level-up в авто<a class="headerlink" href="#n-spell-slots-level-up_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>N1 — унифицировать через <code>spellSlotsFor(classId, level)</code> — full/half/pact.</strong></li>
+<li><code>+</code> Канон; симметрия с ручным.</li>
+<li><strong>N2 — оставить full для любого заклинателя (авто, текущее).</strong></li>
+<li><code>−</code> Неверно для half/pact.</li>
+</ul>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_5">Плюсы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Единая семантика <code>xp</code> (кумулятив) для авто/ручного/фронта/таблицы (A1).</li>
+<li>Единый путь level-up с общим ядром <code>LevelUpApplier</code> (B2) — один источник формул HP/слотов/resources.</li>
+<li><code>pendingASI</code> из <code>cls.asiLevels</code> (D1) — канон для warrior/rogue.</li>
+<li>Унификация <code>classResources</code> (F1), spell slots (N1), HP-формулы (C3).</li>
+<li><code>ClearXpTriggers</code> работает (I1) — разовые триггеры сбрасываются сменой сцены.</li>
+<li>Level 20 — канон: <code>xp</code> копится (M2).</li>
+<li>Частичный heal — канон (L2).</li>
+<li><code>CompleteQuest</code> через <code>GainXp</code> (NEW_GAP) — квест-XP идёт общим контуром.</li>
+</ul>
+<h3 id="_6">Минусы<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Миграция legacy <code>xp</code> (реконструкция K1) — дополнительный шаг + тесты на граничные случаи.</li>
+<li>Авто-каскад теперь может «останавливаться» на ASI-уровне (E1) — обязательство для UI.</li>
+<li>G2 требует явного списка пассивных features (по <code>ClassFeature</code> без <code>choice</code>/<code>options</code>).</li>
+<li>Ядро <code>LevelUpApplier</code> — новый компонент.</li>
+</ul>
+<h3 id="_7">Риски и митигация<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>K1 — реконструкция может не сойтись</strong> → предупреждение + сброс остатка.</li>
+<li><strong>B2 — общее ядро легко рассинхронизируется</strong> → unit-тесты ядра на всех классах.</li>
+<li><strong>I1 — эмиссия <code>ClearXpTriggers</code> на неверной точке</strong> → привязка к <code>SetScene</code>, тест.</li>
+</ul>
+<h3 id="_8">Отложено<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>J1 (мультикласс-casting) — отдельный ADR.</li>
+<li>Milestone-as-leveling (H3) — не сейчас.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Spell slots / mana-миграция (ADR-0016)</strong> — ресурс заклинаний не трогаем (миграция кода ещё не выполнена).</li>
+<li><strong>Spell save DC (ADR-0017)</strong> — расчёт DC не трогаем.</li>
+<li><strong>Мультикласс-casting (J1)</strong> — отдельный ADR (0017 G2, развилка J).</li>
+<li><strong>Milestone-as-leveling (H3)</strong> — не сейчас.</li>
+<li><strong>Расы/фоны/скиллы (ФАЗА 2/3)</strong> — вне объёма.</li>
+<li><strong>ClassResourceHelper / spell slots</strong> — не рефакторим.</li>
+<li><strong>Pact Magic / upcast</strong> — вне объёма.</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ADR-0004 (leveling system — уже фиксирует кумулятивную таблицу <code>xp -&gt; level</code>).</li>
+<li>ADR-0011 (single source of truth — дубль формул/источников).</li>
+<li>ADR-0003 (clockwork mechanics — детерминированность/реплей, HP без броска).</li>
+<li>ADR-0016 (mana → spell slots — гран. контекст, ещё не мигрирован).</li>
+<li>ADR-0017 (computed spell save DC — G2 мультикласс).</li>
+<li>D&amp;D 5e PHB p.15, p.163-165 (XP-таблица, level-up, proficiency bonus).</li>
+<li><code>SessionService.kt</code> (GainXp <code>:2490-2521</code>, milestone <code>:2367-2380</code>, ClearXpTriggers <code>:2719-2724</code>,
+  <code>xpForNextLevel</code> <code>:2850-2871</code>, CompleteQuest <code>:2473-2474</code>, allocateASI <code>:1985-2054</code>).</li>
+<li><code>LevelUpService.kt</code> (levelUp <code>:94-277</code>, HP <code>:176-201</code>, asiLevels <code>:100-101</code>, avgHitDie <code>:306-308</code>,
+  hpDeltaFor <code>:360-363</code>).</li>
+<li><code>LevelTableRegistry.kt</code> (<code>:52-65</code>), <code>level-table.yml</code>.</li>
+<li><code>XpRules.kt</code> (константы <code>:14-17</code>, triggerKey <code>:37-40</code>).</li>
+<li><code>GameState.kt</code> (xp <code>:343</code>, xpTriggers <code>:431</code>, pendingASI <code>:444</code>, classLevels <code>:483</code>,
+  StateChange <code>:1173-1175</code>).</li>
+<li><code>frontend/lib/levelUp.ts</code> (LEVEL_TABLE <code>:3-9</code>, canLevelUp <code>:12</code>, ASI_LEVELS <code>:14-18</code>).</li>
+<li><code>frontend/components/game/CharacterPanel.tsx</code> (XP-бар <code>:161-166,235-241,286-296</code>).</li>
+<li><code>frontend/components/game/LevelUpModal.tsx</code> (ASI/feat UI).</li>
+<li><code>api-specification/openapi.yaml</code> (<code>:498,562-565,587-591,1604,2166,2200</code>).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

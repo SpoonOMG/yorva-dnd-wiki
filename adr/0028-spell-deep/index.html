@@ -1,0 +1,2218 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0028-spell-deep/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0028: SpellDeep — расширение модели заклинания (upcast, components, range, area, targets, ritual) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0028-spelldeep-upcast-components-range-area-targets-ritual" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0028: SpellDeep — расширение модели заклинания (upcast, components, range, area, targets, ritual)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Заклинания сегодня
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grep-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Чего НЕ найдено (grep → 0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проблема
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прецеденты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dd-5e-phb-10-spellcasting-11-spells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Канон D&amp;D 5e (PHB гл.10 «Spellcasting», гл.11 «Spells»)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Место хранения (A2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-upcast-b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Upcast (B1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-components-c1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Components (C1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-material-consumed-d1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Material consumed (D1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-spellrange-e1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SpellRange (E1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-spellarea-f1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. SpellArea (F1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-target-count-g1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Target count (G1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-concentration-h1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Concentration (H1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-ritual-i1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Ritual (I1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-rangeaoe-actiontemplate-j1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Пересечение Range/Aoe с ActionTemplate (J1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-k1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Объём (K1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Скетчи (минимальные)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Чек-лист решений A–K
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0028-spelldeep-upcast-components-range-area-targets-ritual">ADR-0028: SpellDeep — расширение модели заклинания (upcast, components, range, area, targets, ritual)<a class="headerlink" href="#adr-0028-spelldeep-upcast-components-range-area-targets-ritual" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>Заклинания сегодня — это урезанная модель <code>Spell</code> (<code>spells/Spell.kt</code>): базовый урон/
+лечение/бафф/дебафф + спасбросок, без upcast, area-геометрии, ritual и полноценных
+компонентов. Собранные факты (файл:строка):</p>
+<h3 id="_1">Заклинания сегодня<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Файл:строка</th>
+<th>Что найдено</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>spells/Spell.kt:10-31</code></td>
+<td><code>data class Spell(id: String, name, level: Int, school: String, castingTime: CastingTime, range: Int, components: Components, targets: TargetType, savingThrow: SavingThrow?, saveEffect: SaveEffect = NONE, effect: SpellEffect, description, classes: List&lt;String&gt;, fixedDc: Int? = null)</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>spells/Spell.kt:36-40</code></td>
+<td><code>data class Components(verbal: Boolean, somatic: Boolean, material: String?)</code> — <strong>V/S/M уже есть</strong> (3 булевы + строка-описание материала). Нет <code>materialConsumed</code> / <code>materialCost</code>.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>spells/Spell.kt:45-49</code></td>
+<td><code>enum CastingTime { ACTION, BONUS_ACTION, REACTION }</code>.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>spells/Spell.kt:54-60</code></td>
+<td><code>enum TargetType { SELF, SINGLE_ENEMY, MULTIPLE_ENEMIES, ALL_ENEMIES, SINGLE_ALLY }</code> — без геометрии.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>spells/Spell.kt:65-67</code></td>
+<td><code>data class SavingThrow(ability: String)</code> — способность спасброска ЦЕЛИ.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>spells/Spell.kt:72-111</code></td>
+<td><code>sealed class SpellEffect</code> — <code>Damage(diceCount, diceType, damageType, modifier, perTarget)</code>, <code>Healing</code>, <code>Buff(statModifiers, durationRounds, concentration)</code>, <code>Debuff(condition, savingThrow, durationRounds, concentration)</code>.</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>spells/Spell.kt:16</code></td>
+<td><code>range: Int</code> — футы, <code>0 = касание/self</code>. <strong>Число, не sealed-тип</strong> (нет Self/Touch/Ranged/Special).</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>spells/SpellRegistry.kt:14-28</code></td>
+<td><code>loadSpells()</code> — парсит <code>resources/spells.json</code> при старте.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>spells/SpellRegistry.kt:30-105</code></td>
+<td><code>parseSpell(node)</code> — читает <code>effect</code> (:32-72), <code>components</code> (:74-79), <code>savingThrow</code> (:81-86), <code>classes</code> (:88), <code>range</code> (:96), <code>targets</code> (:98), <code>fixedDc</code> (:103). <strong><code>maxTargets</code> из JSON НЕ читается</strong> (поле в данных есть, в модель не попадает).</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>spells/SpellRegistry.kt:107-114</code></td>
+<td><code>getSpell(id)</code> / <code>getSpellsForClass(className, maxLevel)</code> / <code>getAllSpells()</code>.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>spells/SpellService.kt:54-82</code></td>
+<td><code>canCast(caster, spell)</code> — гейты слотов (cantrip L0, pact slots warlock, <code>spellSlots.slots[level]</code>); <strong>материальные компоненты не проверяются</strong> (:80).</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>spells/SpellService.kt:88-138</code></td>
+<td><code>castSpell</code> — списание ячейки через <code>StateChange.CastSpell</code>, разрешение эффекта по целям. <strong>Upcast нет</strong> (всегда base-level).</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>spells/SpellService.kt:157-209</code></td>
+<td><code>resolveDamage</code> — кубы + спасбросок (<code>resolveEnemySave</code>) + <code>SaveEffect.HALF/NEGATES</code> + <code>DamageResolver.apply</code>. <strong>Spell attack roll не резолвится</strong> (только спасброски).</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>spells/SpellService.kt:294-303</code></td>
+<td><code>spellSaveDc(spell, caster)</code> — <code>CastingStats.of</code> (ADR-0017) или <code>fixedDc</code> / default 13.</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>spells/CastingStats.kt:16-25</code></td>
+<td><code>CastingStats.of(ability, level, attributes)</code> → <code>SpellcastingStats(spellSaveDc = 8+PB+mod, spellAttackBonus = PB+mod)</code> (ADR-0017 A2/C2).</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>spells/SpellcastingStats.kt:10-13</code></td>
+<td><code>data class SpellcastingStats(spellSaveDc, spellAttackBonus)</code>.</td>
+</tr>
+<tr>
+<td>17</td>
+<td><code>spells/SpellcastingAbility.kt:11-26</code></td>
+<td><code>enum SpellcastingAbility { INT, WIS, CHA }</code> + <code>fromString</code> (ADR-0017 B4).</td>
+</tr>
+<tr>
+<td>18</td>
+<td><code>rules/SavingThrowResolver.kt:33-95, :109-160</code></td>
+<td><code>resolvePlayerSave</code> / <code>resolveEnemySave</code>; <code>SaveEffect { HALF, NEGATES, NONE }</code> (:181-190).</td>
+</tr>
+<tr>
+<td>19</td>
+<td><code>rules/conditions/ConcentrationManager.kt:18-29</code></td>
+<td>Концентрация (ADR-0014 K1): <code>tick</code> снимает «зависшую» концентрацию. Drop при уроне/incapacitated — в <code>SessionService.applyStateChanges</code>.</td>
+</tr>
+<tr>
+<td>20</td>
+<td><code>rules/TurnResolver.kt:1841-1909</code></td>
+<td><code>resolveCastSpell</code> — <code>spellService.castSpell</code> (:1878), списание слота (pact slot :1883 / <code>SpendSpellSlot(level)</code> :1885), enemy-урон через <code>Enemy.copy</code> (:1891-1897).</td>
+</tr>
+<tr>
+<td>21</td>
+<td><code>spells/SpellDto.kt:9-28, :82-117</code></td>
+<td><code>SpellDto</code> — <code>range: String</code> (собирается <code>"$range фт"</code> :101), <code>duration: String?</code>, <code>concentration: Boolean</code> (вычисляются из <code>effect</code>).</td>
+</tr>
+<tr>
+<td>22</td>
+<td><code>leveling/LevelUpApplier.kt:56, :95-99</code></td>
+<td><code>spellSlotsFor(classDef, level)</code> — выдача слотов по кастер-типу (FULL/HALF/THIRD). Выборы (<code>spellChoices</code>) НЕ трогает.</td>
+</tr>
+<tr>
+<td>23</td>
+<td><code>leveling/LevelUpService.kt:177-218</code></td>
+<td>Выдача заклинаний: wizard <code>spellbook</code> +2/уровень, остальные <code>spellsKnown</code>.</td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>resources/spells.json</code></td>
+<td><strong>90 заклинаний</strong> (НЕ 300+). Уровни <strong>0–3</strong> (0: 22, 1: 39, 2: 15, 3: 14).</td>
+</tr>
+<tr>
+<td>25</td>
+<td><code>resources/spells.json</code> (схема)</td>
+<td>Ключи: <code>id, name, level, school, castingTime, components, targets, maxTargets, savingThrow, effect, description, classes</code>. Нет <code>duration/ritual/area/upcast/concentration/fixedDc</code> (fixedDc парсится реестром, но в данных 0).</td>
+</tr>
+<tr>
+<td>26</td>
+<td><code>resources/spells.json</code> (компоненты)</td>
+<td>Формы V/S/M: <code>(V,S,безM)=76</code>, <code>(V,безS,безM)=8</code>, <code>(безV,S,безM)=3</code>, <code>(V,S,M)=3</code>. Материал (строка) у <strong>3</strong> заклинаний; <code>cost</code>/<code>consumed</code> флагов нет.</td>
+</tr>
+<tr>
+<td>27</td>
+<td><code>resources/spells.json</code> (targets/maxTargets)</td>
+<td><code>targets</code>: SINGLE_ENEMY 29, SELF 25, SINGLE_ALLY 18, ALL_ENEMIES 15, MULTIPLE_ENEMIES 3. <code>maxTargets</code> ∈ {1, 3, 5, 6, 10, 99}.</td>
+</tr>
+<tr>
+<td>28</td>
+<td><code>resources/spells.json</code> (castingTime/school)</td>
+<td><code>castingTime</code>: ACTION/BONUS_ACTION/REACTION. 8 школ (evocation 22 … necromancy 4).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="grep-0">Чего НЕ найдено (grep → 0)<a class="headerlink" href="#grep-0" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>UpcastEffect</code> / <code>upcast</code> / <code>PerLevelUpcast</code> / <code>FixedUpcast</code> — <strong>ноль</strong> (base-level только).</li>
+<li><code>SpellRange</code> (sealed) / <code>SpellArea</code> / <code>Sphere</code> / <code>Cone</code> / <code>Line</code> / <code>Cube</code> / <code>Cylinder</code> — <strong>ноль</strong>. <code>range</code> только <code>Int</code>.</li>
+<li><code>ritual</code> — <strong>ноль</strong> (ни в модели, ни в JSON).</li>
+<li><code>materialConsumed</code> / <code>materialCost</code> — <strong>ноль</strong> (в <code>Components</code> только строка-описание).</li>
+<li>Top-level <code>duration</code> / <code>concentration</code> у <code>Spell</code> — <strong>ноль</strong> (только внутри <code>Buff</code>/<code>Debuff</code>, факт #6).</li>
+<li><code>targetCount</code> в модели <code>Spell</code> — <strong>ноль</strong> (<code>maxTargets</code> есть в JSON, но не парсится, факт #9).</li>
+<li>Пересечение <code>Range</code>/<code>Aoe</code> с <code>ActionTemplate</code>/Catalog — <strong>ноль</strong> (см. J1).</li>
+</ul>
+<h3 id="_2">Проблема<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><code>Spell</code> — урезан до «урон/лечение/бафф/дебафф + спасбросок». Нет upcast (Fireball
+при касте слотом 4-го уровня не растёт), нет area-геометрии (нельзя задать сферу/конус),
+нет ritual, компоненты не полны (нет consumed/cost), range — «голое» число без
+семантики Self/Touch/Special. Каждое новое правило (upcast, area) потребует
+расширения модели и реестра. Нужен полный PHB-контракт заклинания как <strong>расширение</strong>
+существующей модели (не greenfield — <code>Spell</code>/<code>SpellRegistry</code>/<code>spells.json</code> уже есть).</p>
+<p>Важно: <strong>данных 90 заклинаний L0–L3</strong> (факт #24), а не полный PHB 300+. ADR
+закладывает полную форму на будущее, но реализация в 3.6 наполняет её только для
+текущих 90 — расширение справочника до полного PHB — отдельная data-задача.</p>
+<h3 id="_3">Прецеденты<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ADR-0016 (<code>remove mana → spell slots only</code>) — прецедент «поля слота», форма расширения Spell.</li>
+<li>ADR-0017 (<code>CastingStats</code>, <code>fixedDc</code>) — прецедент добавления вычисляемого поля + fallback.</li>
+<li>ADR-0014 (<code>ConcentrationManager</code>) — концентрация уже реализована (H1 не трогает).</li>
+<li>ADR-0022 (<code>FeatEffect</code> sealed: Passive/Active/Triggered) — прецедент sealed-иерархии эффектов (для B1/F1).</li>
+<li>ADR-0027 (<code>SkillResolver</code>) — образец design-ADR (формат, чек-лист A–K).</li>
+</ul>
+<h3 id="dd-5e-phb-10-spellcasting-11-spells">Канон D&amp;D 5e (PHB гл.10 «Spellcasting», гл.11 «Spells»)<a class="headerlink" href="#dd-5e-phb-10-spellcasting-11-spells" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Upcast: заклинание кастуется слотом <strong>выше</strong> базового — растёт урон (+1d6/уровень),
+  цели (+1/уровень) или длительность; фикс-апкаст (напр. «на 4-м уровне — 2 цели»).</li>
+<li>Components: <strong>V</strong> (verbal, нужен голос), <strong>S</strong> (somatic, нужны свободные руки),
+  <strong>M</strong> (material; если есть cost/consumed — тратится; focus/component pouch
+  заменяет M без cost).</li>
+<li>Range: Self / Touch / Ranged (в футах) / Special (описание) / Sight / Unlimited.</li>
+<li>Area: sphere (radius), cone (length, 53°), line (length×width), cube (side),
+  cylinder (radius×height).</li>
+<li>Targets: fixed count (Magic Missile 3, Scorching Ray 3, Eldritch Blast 1 beam +
+  scaling).</li>
+<li>Ritual: каст без слота, +10 минут; только если заклинание имеет тег ritual.</li>
+<li>Cantrip scaling: растёт с уровнем персонажа (Fire Bolt 1d10→4d10, Eldritch Blast
+  2/3/4 луча на L5/11/17) — <strong>не тратит слот</strong> (отдельно от upcast).</li>
+</ul>
+<p>Ссылка: https://dungeonsanddragons.ru/bookfull/5ed/5e%20Players%20Handbook%20-%20Книга%20игрока%20RUS.pdf</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="1-a2">1. Место хранения (A2)<a class="headerlink" href="#1-a2" title="Permanent link">&para;</a></h3>
+<p>Расширяем существующий <code>spells.json</code> + <code>SpellRegistry</code> (факты #8-9). Отдельного
+файла не вводим — второй источник. <code>SpellRegistry.parseSpell</code> дочитывает новые поля
+(upcast/components-consumed/range-sealed/area/targetCount/ritual); отсутствующие в
+JSON ключи → значения по умолчанию (backward-compatible).</p>
+<h3 id="2-upcast-b1">2. Upcast (B1)<a class="headerlink" href="#2-upcast-b1" title="Permanent link">&para;</a></h3>
+<p><code>sealed interface UpcastEffect</code> (симметрия <code>FeatEffect</code>, ADR-0022):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nc">UpcastEffect</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">PerLevelUpcast</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">damagePerLevel</span><span class="p">:</span><span class="w"> </span><span class="n">Dice?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">      </span><span class="c1">// +1d6 fire per level</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">targetsPerLevel</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">          </span><span class="c1">// +1 target per level</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">durationPerLevel</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">other</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">             </span><span class="c1">// narrative</span>
+<span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">UpcastEffect</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">FixedUpcast</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">atLevel</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">effect</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">UpcastEffect</span>
+
+<span class="c1">// В Spell: upcast: UpcastEffect? = null</span>
+</code></pre></div>
+<p>Примечание: <code>Dice?</code> в скетче — условное обозначение «значения кубика»
+(<code>diceCount</code> + <code>diceType</code>, как в <code>SpellEffect.Damage</code>). <strong>Не</strong> roller-класс
+<code>com.yorva.rules.Dice</code> (<code>TurnResolver.kt:32</code>). Имя типа значения зафиксировать
+в 3.6 (напр. <code>DiceValue</code>/<code>DiceExpr</code>).</p>
+<h3 id="3-components-c1">3. Components (C1)<a class="headerlink" href="#3-components-c1" title="Permanent link">&para;</a></h3>
+<p>Расширение существующего <code>Components</code> (факт #2) — V/S/M уже есть, добавляем cost/
+consumed:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ComponentType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">SpellComponents</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">types</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">ComponentType</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">material</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">          </span><span class="c1">// «a tiny ball of bat guano»</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">materialConsumed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// Fireball — no, Revivify — yes</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">materialCost</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">         </span><span class="c1">// gp, если указано</span>
+<span class="p">)</span>
+
+<span class="c1">// В Spell: components: SpellComponents? = null  (заменяет Components)</span>
+</code></pre></div>
+<h3 id="4-material-consumed-d1">4. Material consumed (D1)<a class="headerlink" href="#4-material-consumed-d1" title="Permanent link">&para;</a></h3>
+<p>Только флаг <code>materialConsumed</code> + <code>materialCost</code> (данные). Механика потребления
+(трата предмета из inventory) — future (ФАЗА 4 Inventory). <code>canCast</code> (:80) пока
+остаётся «MVP: материал не проверяем».</p>
+<h3 id="5-spellrange-e1">5. SpellRange (E1)<a class="headerlink" href="#5-spellrange-e1" title="Permanent link">&para;</a></h3>
+<p><code>range: Int</code> (факт #7) → sealed <code>SpellRange</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nc">SpellRange</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">SelfRange</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellRange</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="nc">TouchRange</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellRange</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Ranged</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">feet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellRange</span><span class="w">        </span><span class="c1">// 30/60/120/...</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Special</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellRange</span>
+<span class="c1">// SightRange, UnlimitedRange — не SRD-канон (нет в PHB), но форма закладывается.</span>
+</code></pre></div>
+<p>Миграция: <code>range: 0</code> → <code>TouchRange</code>; <code>range: N&gt;0</code> → <code>Ranged(N)</code>; <code>self</code>-таргетинг
+(<code>targets = SELF</code>) не тождественен <code>SelfRange</code> (канон: range-self ≠ target-self).</p>
+<h3 id="6-spellarea-f1">6. SpellArea (F1)<a class="headerlink" href="#6-spellarea-f1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nc">SpellArea</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Sphere</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">radiusFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellArea</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Cone</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">lengthFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">widthFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellArea</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Line</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">lengthFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">widthFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellArea</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Cube</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">sideFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellArea</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Cylinder</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">radiusFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">heightFeet</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">SpellArea</span>
+<span class="c1">// В Spell: area: SpellArea? = null</span>
+</code></pre></div>
+<h3 id="7-target-count-g1">7. Target count (G1)<a class="headerlink" href="#7-target-count-g1" title="Permanent link">&para;</a></h3>
+<p><code>maxTargets</code> (JSON, не парсится — факт #9) → <code>targetCount</code> в модели:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// В Spell: targetCount: Int = 1</span>
+<span class="c1">// Magic Missile: 3 (+1 per upcast level, cap 11)</span>
+<span class="c1">// Scorching Ray: 3 (upcast +1)</span>
+<span class="c1">// Eldritch Blast: 1 (cantrip, 2/3/4 beams at L5/11/17 — особый случай, через cantripScaling)</span>
+</code></pre></div>
+<p><code>MULTIPLE_ENEMIES</code> требует <code>targetCount &gt; 1</code>; <code>ALL_ENEMIES</code>/<code>SELF</code> — <code>targetCount</code>
+нерелевантен (=1). Валидация в 3.6.</p>
+<h3 id="8-concentration-h1">8. Concentration (H1)<a class="headerlink" href="#8-concentration-h1" title="Permanent link">&para;</a></h3>
+<p><strong>Не трогаем.</strong> Концентрация уже реализована (ADR-0014 K1, факт #19); признак
+<code>concentration</code> сегодня живёт внутри <code>SpellEffect.Buff/Debuff</code> (факт #6). Вынос
+top-level <code>concentration: Boolean</code> в <code>Spell</code> — не часть этого ADR (отдельное
+решение при рефакторинге SpellEffect в будущем).</p>
+<h3 id="9-ritual-i1">9. Ritual (I1)<a class="headerlink" href="#9-ritual-i1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// В Spell: ritual: Boolean = false</span>
+<span class="c1">// Механика (ритуал-каст без слота, +10 min) — future.</span>
+</code></pre></div>
+<h3 id="10-rangeaoe-actiontemplate-j1">10. Пересечение Range/Aoe с ActionTemplate (J1)<a class="headerlink" href="#10-rangeaoe-actiontemplate-j1" title="Permanent link">&para;</a></h3>
+<p>Проверено: <code>ActionTemplateRow</code> (<code>catalog/CatalogService.kt:42-51</code>) — поля
+<code>code/category/nameRu/attribute/skill/dcMedium/description/keywords</code>. Таблица
+<code>action_templates</code> (changelog 0015) — <strong>нет</strong> колонок range/area/radius. Единственное
+«range» в каталоге — категория оружия <code>RANGED_WEAPON</code> и <code>weapons.properties</code> JSON
+(<code>ammo</code>/<code>heavy</code>/<code>burst</code>) — это <strong>не</strong> общий словарь дальности/зоны. Пересечения нет:
+<code>SpellRange</code>/<code>SpellArea</code> остаются Spell-local, <strong>новый дубль #14 в ADR-0011 НЕ
+регистрируем</strong>.</p>
+<h3 id="11-k1">11. Объём (K1)<a class="headerlink" href="#11-k1" title="Permanent link">&para;</a></h3>
+<p>Только ADR (design, без кода). Реализация — цикл 3.6.</p>
+<h2 id="_4">Скетчи (минимальные)<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">// Полный Spell с расширениями (3.6)</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Spell</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">level</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">school</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">castingTime</span><span class="p">:</span><span class="w"> </span><span class="n">CastingTime</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">range</span><span class="p">:</span><span class="w"> </span><span class="n">SpellRange</span><span class="p">,</span><span class="w">                    </span><span class="c1">// E1 (было Int)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">components</span><span class="p">:</span><span class="w"> </span><span class="n">SpellComponents?</span><span class="p">,</span><span class="w">         </span><span class="c1">// C1 (было Components)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">targets</span><span class="p">:</span><span class="w"> </span><span class="n">TargetType</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">targetCount</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">                 </span><span class="c1">// G1 (было maxTargets в JSON, не парсилось)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">ritual</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">              </span><span class="c1">// I1</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">upcast</span><span class="p">:</span><span class="w"> </span><span class="n">UpcastEffect?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">         </span><span class="c1">// B1</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">area</span><span class="p">:</span><span class="w"> </span><span class="n">SpellArea?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">              </span><span class="c1">// F1</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">savingThrow</span><span class="p">:</span><span class="w"> </span><span class="n">SavingThrow?</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">saveEffect</span><span class="p">:</span><span class="w"> </span><span class="n">SaveEffect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SaveEffect</span><span class="p">.</span><span class="na">NONE</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">effect</span><span class="p">:</span><span class="w"> </span><span class="n">SpellEffect</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">classes</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">fixedDc</span><span class="p">:</span><span class="w"> </span><span class="kt">Int?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Примечание к скетчу: типы <code>SpellComponents</code>/<code>SpellRange</code>/<code>SpellArea</code>/<code>UpcastEffect</code>
+вводятся в 3.6; <code>Components</code> (старый) становится deprecated-алиасом или удаляется
+(решение в 3.6 по миграции 90 записей). Финальные сигнатуры — цикл 3.6.</p>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<p>Развилки с вариантами, рекомендация архитектора помечена.</p>
+<p><strong>A. Место.</strong>
+- A1: отдельный <code>spells_deep.json</code> + новый реестр — второй источник, рассинхрон.
+- A2: <strong>расширить <code>spells.json</code> + <code>SpellRegistry</code> — рекомендация архитектора.</strong>
+  Единый источник, backward-compatible (дефолты для отсутствующих ключей).</p>
+<p><strong>B. Upcast.</strong>
+- B1: <strong><code>sealed UpcastEffect</code> (PerLevel/Fixed) — рекомендация архитектора.</strong>
+  Типизировано, симметрия <code>FeatEffect</code>.
+- B2: строковое поле <code>upcast: String?</code> — не типизировано, парсинг руками.
+- B3: не делать — upcast недоступен (теряем каноничный рост Fireball/Magic Missile).</p>
+<p><strong>C. Components.</strong>
+- C1: <strong>расширить <code>Components</code> → <code>SpellComponents</code> (types + material + consumed +
+  cost) — рекомендация архитектора.</strong> V/S/M уже есть (факт #2), добавляем cost/consumed.
+- C2: оставить <code>Components</code> как есть — нет consumed/cost (Revivify нельзя отличить).
+- C3: строковый JSON-блоб — не типизировано.</p>
+<p><strong>D. Material consumed.</strong>
+- D1: <strong>флаг <code>materialConsumed</code> + <code>materialCost</code> (данные) — рекомендация архитектора.</strong>
+  Механика — ФАЗА 4 (Inventory).
+- D2: сразу механика траты из inventory — преждевременно (inventory ещё нет).</p>
+<p><strong>E. Range.</strong>
+- E1: <strong>sealed <code>SpellRange</code> (Self/Touch/Ranged/Special) — рекомендация архитектора.</strong>
+  Заменяет <code>range: Int</code> (факт #7); Sight/Unlimited — резерв.
+- E2: оставить <code>Int</code> + строковый <code>rangeDescription</code> — смешение, не типизировано.</p>
+<p><strong>F. Area.</strong>
+- F1: <strong>sealed <code>SpellArea</code> (Sphere/Cone/Line/Cube/Cylinder) — рекомендация архитектора.</strong>
+  Типизировано, таргетинг зоны — 3.6 + ФАЗА 5 (Grid).
+- F2: строковое <code>area: String?</code> — не типизировано, таргетинг невозможно валидировать.</p>
+<p><strong>G. Target count.</strong>
+- G1: <strong><code>targetCount: Int = 1</code> (поверх <code>maxTargets</code> из JSON) — рекомендация архитектора.</strong>
+- G2: оставить только <code>TargetType</code> — Magic Missile (3 дротика) невыразим.</p>
+<p><strong>H. Concentration.</strong>
+- H1: <strong>не трогать (ADR-0014 уже реализован) — рекомендация архитектора.</strong>
+- H2: выносить top-level <code>concentration</code> — преждевременный рефакторинг SpellEffect.</p>
+<p><strong>I. Ritual.</strong>
+- I1: <strong><code>ritual: Boolean = false</code> (данные) — рекомендация архитектора.</strong> Механика — future.
+- I2: сразу механика ритуал-каста (+10 min без слота) — объём вне 3.6.</p>
+<p><strong>J. Пересечение с ActionRange.</strong>
+- J1: <strong>пересечения нет — <code>SpellRange</code>/<code>SpellArea</code> остаются Spell-local, дубль #14
+  НЕ регистрируем — рекомендация архитектора.</strong> (Каталог <code>action_templates</code> не имеет
+  range/area; <code>RANGED_WEAPON</code> — категория оружия, не общий словарь.)
+- J2: зарегистрировать #14 в ADR-0011 — преждевременно (нет реального пересечения).</p>
+<p><strong>K. Объём.</strong>
+- K1: <strong>только ADR; реализация — цикл 3.6 — рекомендация архитектора.</strong>
+- K2: ADR + частичная реализация — нарушает «один цикл = один фокусный шаг».</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_5">Плюсы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>Spell</code> расширяется до полной PHB-модели (upcast, components, range, area,
+  targets, ritual) — основа для 3.6.</li>
+<li>Sealed-формы <code>UpcastEffect</code>/<code>SpellRange</code>/<code>SpellArea</code> типизированы (симметрия
+  <code>FeatEffect</code>, ADR-0022).</li>
+<li>Compatible с ADR-0016 (mana removal — поля слота), ADR-0017 (DC от кастера),
+  ADR-0014 (концентрация, H1 не трогает).</li>
+<li>Backward-compatible: отсутствующие в JSON ключи → дефолты, 90 записей не ломаются.</li>
+</ul>
+<h3 id="_6">Минусы<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>spells.json</code> растёт (для 90 заклинаний — upcast/components/range/area; для полного
+  PHB 300+ — объём кратно больше).</li>
+<li>V/S/M — механика компонентов (вербальный при silence, somatic при restraint) —
+  future, но поля вводятся сейчас.</li>
+<li><code>Material consumed</code> — без inventory (ФАЗА 4) не работает; только флаг.</li>
+</ul>
+<h3 id="_7">Риски<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Upcast damage: ScalingDice (1d6/level) vs fixed (2d6 → 4d6).</strong> Форма
+  <code>PerLevelUpcast</code> покрывает, но требует валидации в 3.6 (какое заклинание какой
+  вариант использует).</li>
+<li><strong>Area: PHB не даёт единой формулы</strong> (sphere — radius, cone — length+угол 53°).
+  Форма закладывает, детали (кто в зоне) — 3.6.</li>
+<li><strong>Cantrip scaling (Eldritch Blast beams, Fire Bolt 1d10→4d10) — отдельно от upcast</strong>
+  (не тратит слот). Форма в этом ADR не фиксируется (<code>cantripScaling</code> — уточнить
+  отдельным решением в 3.6).</li>
+<li><strong>Components: PHB требует вербальный/соматический для каста</strong> — если у персонажа
+  нет голоса/рук, каст невозможен. Механика — future, но флаг нужен сейчас.</li>
+<li><strong>Ritual: каст без слота — механика (10 min extra) — future.</strong></li>
+<li><strong>Коллизия имени <code>Dice</code>:</strong> в скетче B1 <code>Dice?</code> — «значение кубика», а
+  <code>com.yorva.rules.Dice</code> (<code>TurnResolver.kt:32</code>) — roller-класс. В 3.6 зафиксировать
+  имя типа значения (<code>DiceValue</code>/<code>DiceExpr</code>) во избежание путаницы.</li>
+<li><strong>Upcast wiring (стоп 3.6 #2):</strong> <code>canCast</code>/<code>castSpell</code> поддерживают <code>upcastLevel</code>,
+  но <code>ActionRequest</code> не несёт уровень слота — интент приходит сырой строкой
+  (<code>"cast &lt;spell_id&gt;"</code>). Реальная активация upcast требует расширения контракта
+  интента (LLM-промпт + парсер/классификатор). Backend-логика готова, wiring —
+  отдельная задача (зона LLM Engineer). В реальном геймплее пока upcast «спит»
+  (<code>upcastLevel = null</code>).</li>
+<li><strong>SpellDto range format (стоп 3.6 #3):</strong> исходная human-readable миграция
+  (Touch/Self) сломала frontend-эвристику <code>Number(range)===0</code>
+  (<code>SpellDetailModal.tsx:54</code>, <code>SelectionSpellCard.tsx:110</code>). Правка: <code>range</code>
+  остаётся numeric-совместимым (<code>"0 фт"</code>), семантика — в новом поле <code>rangeType</code>.
+  Frontend мигрирует на <code>rangeType</code> — ФАЗА 6.</li>
+</ul>
+<h3 id="_8">Отложено<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Механика V/S/M (silence, restraint) — future.</li>
+<li>Material consumed → inventory — ФАЗА 4.</li>
+<li>Cantrip scaling — 3.6 (форма — отдельное решение).</li>
+<li>Ritual-каст — future.</li>
+<li>Area-таргетинг (кто в зоне) — 3.6 + ФАЗА 5 (Movement/Grid).</li>
+<li>Расширение справочника до полного PHB (300+) — data-задача.</li>
+</ul>
+<h3 id="-ak">Чек-лист решений A–K<a class="headerlink" href="#-ak" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A = A2 — расширить <code>spells.json</code> + <code>SpellRegistry</code> (единый источник).</li>
+<li>B = B1 — <code>sealed UpcastEffect</code> (PerLevel/Fixed).</li>
+<li>C = C1 — <code>SpellComponents</code> (types + material + consumed + cost), расширение <code>Components</code>.</li>
+<li>D = D1 — <code>materialConsumed</code>/<code>materialCost</code> — флаг; механика — ФАЗА 4.</li>
+<li>E = E1 — <code>sealed SpellRange</code> (Self/Touch/Ranged/Special), заменяет <code>range: Int</code>.</li>
+<li>F = F1 — <code>sealed SpellArea</code> (Sphere/Cone/Line/Cube/Cylinder).</li>
+<li>G = G1 — <code>targetCount: Int = 1</code> (поверх <code>maxTargets</code>).</li>
+<li>H = H1 — концентрация не трогаем (ADR-0014).</li>
+<li>I = I1 — <code>ritual: Boolean = false</code>; механика — future.</li>
+<li>J = J1 — пересечения с ActionRange нет; Spell-local; дубль #14 НЕ регистрируем.</li>
+<li>K = K1 — только ADR; реализация — цикл 3.6.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Код (<code>Spell.kt</code>, <code>SpellRegistry.kt</code>, <code>spells.json</code>, <code>SpellService.kt</code>, <code>SpellDto.kt</code>,
+  <code>CastingStats.kt</code>, <code>ConcentrationManager.kt</code>, <code>TurnResolver.kt</code>, <code>LevelUpApplier.kt</code>,
+  <code>LevelUpService.kt</code>) — цикл 3.6.</li>
+<li>Концентрация — ADR-0014, не трогать (H1).</li>
+<li>Spell DC — ADR-0017, не трогать.</li>
+<li>ADR-0011/0013/0014/0016/0017/0019/0022/0027 — не меняются.</li>
+<li>Frontend (выбор upcast, area-preview) — ФАЗА 6.</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>PHB 5e: Chapter 10 (Spellcasting — components, range, area, targets, upcast,
+  ritual), Chapter 11 (Spells).</li>
+<li>ADR-0014 (<code>ConcentrationManager</code> — H1 не трогает).</li>
+<li>ADR-0016 (mana removal, spell slots only — прецедент формы расширения).</li>
+<li>ADR-0017 (<code>CastingStats</code>, spell attack, DC — прецедент добавления поля + fallback).</li>
+<li>ADR-0019 (<code>Ability</code> enum — для компонентов/спасбросков).</li>
+<li>ADR-0022 (<code>FeatEffect</code> sealed — образец sealed-иерархии для B1/F1).</li>
+<li>ADR-0027 (<code>SkillResolver</code> — образец design-ADR, формат).</li>
+<li>ADR-0011 (single source of truth — J1: пересечения нет, #14 не регистрируем).</li>
+<li><code>Spell.kt</code>; <code>SpellRegistry.kt</code>; <code>spells.json</code>; <code>SpellService.kt</code>; <code>SpellDto.kt</code>;
+  <code>CastingStats.kt</code>; <code>SpellcastingStats.kt</code>; <code>SpellcastingAbility.kt</code>;
+  <code>SavingThrowResolver.kt</code>; <code>ConcentrationManager.kt</code>; <code>TurnResolver.kt:1841-1909</code>;
+  <code>CatalogService.kt:42-51</code>; <code>LevelUpApplier.kt:56, :95-99</code>; <code>LevelUpService.kt:177-218</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

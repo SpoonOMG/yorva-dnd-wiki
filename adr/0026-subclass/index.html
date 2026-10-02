@@ -1,0 +1,2087 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0026-subclass/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0026: Подкласс (Subclass) — форма + расширение SubclassRegistry + выбор - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0026-subclass-subclassregistry" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0026: Подкласс (Subclass) — форма + расширение SubclassRegistry + выбор
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Подклассы сегодня
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проблема
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прецеденты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dd-5e-phb-3-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Канон D&amp;D 5e (PHB гл.3 «Classes»)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Место хранения (A2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-subclass-b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Форма Subclass (B1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-subclassfeature-classfeature-c1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SubclassFeature = ClassFeature (C1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-subclass-choices-classchoice-d1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Subclass choices = ClassChoice (D1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-subclassid-enum-e1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SubclassId enum (E1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-f1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Выбор подкласса (F1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-g1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Допарсинг реестра (G1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-parent-validation-h1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Parent validation + резолвер (H1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-multiclass-subclasses-i1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Multiclass subclasses (I1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-subclass-j1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Дубль subclass (J1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-k1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Объём цикла (K1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Чек-лист решений A–K
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0026-subclass-subclassregistry">ADR-0026: Подкласс (Subclass) — форма + расширение SubclassRegistry + выбор<a class="headerlink" href="#adr-0026-subclass-subclassregistry" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p><code>SubclassRegistry</code> существует и парсит <code>subclasses.yml</code> (31 подкласс),
+но теряет половину формы: парсит только <code>name/level/description</code>,
+игнорируя <code>actionType/resourceId/choice</code> (которых нет даже в YAML).
+Выбор подкласса работает жёстко (обязателен на 3), без pending-контракта.
+Собранные факты (файл:строка):</p>
+<h3 id="_1">Подклассы сегодня<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Файл:строка</th>
+<th>Что найдено</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>resources/subclasses.yml:1-318</code></td>
+<td><strong>31 подкласс</strong>, 12/12 классов покрыты: warrior 3 (champion, battle_master, eldritch_knight), wizard 3 (evocation, abjuration, necromancy), rogue 3 (thief, assassin, arcane_trickster), cleric 3 (life, light, war), barbarian 2 (berserker, totem_warrior), bard 2 (lore, valor), druid 2 (land, moon), monk 3 (open_hand, shadow, four_elements), paladin 3 (devotion, ancients, vengeance), ranger 2 (hunter, beast_master), sorcerer 2 (draconic, wild_magic), warlock 3 (archfey, fiend, great_old_one). Схема: <code>id/classId/name/description/features[]</code> (<code>name/level/description</code> в фиче). <code>actionType/resourceId/choice/usesPerLevel/recharge</code> — нет ни в YAML, ни в парсинге.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>resources/subclasses.yml</code> (уровни)</td>
+<td>Почти все фичи — <code>level: 3</code>; исключения: wizard-школы с <code>level: 2</code> (evocation <code>:40</code>, abjuration <code>:49</code>, necromancy <code>:58</code>); пометка <code>:94</code> «канонично на 1, у нас на 3 для униформы» (cleric-домены — <code>level: 3</code>, <code>:100-101</code>). Единого <code>Subclass.level</code> (уровня выбора) нет — факт для B1/F1.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>classes/SubclassRegistry.kt:9-15, :27-58</code></td>
+<td><code>Subclass(id/classId/name/description/features: List&lt;ClassFeature&gt;)</code>; парсинг <code>:36-47</code> заполняет только <code>name/level/description</code> — <strong>теряет <code>actionType/resourceId/usesPerLevel/recharge/choice</code></strong> (подтверждение факта #3 из ADR-0023). <code>getForClass</code> есть (<code>:64</code>). Расширение, не создание — факт для A2/G1.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>classes/CharacterClass.kt:53-67</code></td>
+<td><code>ClassFeature</code> уже содержит <code>actionType/resourceId/usesPerLevel/recharge/choice</code> — форма готова, наполнителя нет (реестр её не заполняет). Факт для C1/G1.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>rules/GameState.kt:487</code></td>
+<td><code>subclassId: String?</code> (null-задел). Enum нет — факт для E1/J1.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Выбор на 3 (жёсткий, без pending)</td>
+<td><code>LevelUpService.kt:125-133</code>: <code>needsSubclass</code> (3 + null), обязательный <code>subclassId</code> (<code>:127</code>), parent-валидация <strong>уже есть</strong> (<code>:129</code>: <code>sub.classId == cls.id</code>); смена запрещена (<code>:131-133</code>). Preview: <code>subclassChoice + subclassOptions</code> (<code>:63-65, :86-87</code>); фичи подкласса добавляются (<code>:67-70</code>); choices подкласса собираются (<code>:141-147</code>, но <code>choice</code> всегда null — см. факт #3). Pending-контракта нет — факт для F1.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Хардкод подклассов</td>
+<td><code>LevelUpApplier.kt:75</code> (<code>critRangeFor</code>: <code>champion</code> → 19 — Champion, факт для C1); <code>SessionService.kt:253-264</code> (<code>when</code> на русских именах фич: patronSpells для archfey/fiend/great_old_one, <code>draconicHpBonus = 1</code> + <code>draconicAcFloor = 13</code> для draconic — Draconic Resilience); <code>:801</code> (<code>subclass</code> в карте LLM-контекста). Больше <code>when(subclassId)</code> нет.</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Связки с ресурсами (только текст)</td>
+<td>Battle Master «4 кости d8, 3 приёма» (<code>:18</code>) — связи с SUPERIORITY (ADR-0024) нет; Life «Канал: Сохранение жизни» (<code>:101</code>) — связи с CHANNEL_DIVINITY нет; Moon «Боевой дикий облик» (<code>:182-185</code>) — связи с WILD_SHAPE нет. Факт для C1/H1.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Отсутствует</td>
+<td><code>SubclassId</code> enum (grep → 0), <code>SubclassResolver</code> (grep → 0), <code>pendingSubclassChoice</code> (grep → 0).</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>CharacterClass.subclasses</code></td>
+<td><code>CharacterClass.kt:23</code> — <code>subclasses: List&lt;String&gt;</code> («задел», выбор на 3). Не заполняется реестром (вторая копия связи класс→подклассы) — факт для A2 (единый источник — <code>SubclassRegistry.getForClass</code>).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">Проблема<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Подкласс — текст с обрезанной формой: реестр теряет <code>actionType/
+resourceId/choice</code> (факты #3–4), механика — два хардкода (факт #7),
+ресурсные связки — только текст (факт #8), выбор — жёсткое требование
+без pending-контракта (факт #6). Новая рабочая фича подкласса =
+новый <code>if</code> в движке. Нужны: полная форма <code>Subclass</code> + допарсинг
+реестра + pending-контракт выбора — при живом реестре (расширение).</p>
+<h3 id="_3">Прецеденты<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ADR-0023 B1/I1 — sealed <code>ClassFeature</code>; <code>SubclassFeature = ClassFeature</code>
+  (I1 уже решён там — здесь C1 его исполняет).</li>
+<li>ADR-0025 B1/D1/F1 — sealed <code>ClassChoice</code>; <code>pendingChoices</code> +
+  <code>allocateChoice</code>; серверная валидация → 400 (образцы для D1/F1/H1).</li>
+<li>ADR-0024 — пулы SUPERIORITY/CHANNEL_DIVINITY/WILD_SHAPE
+  (точки привязки для факта #8).</li>
+<li>ADR-0018 D1/E1 — <code>pendingASI</code> + остановка каскада (образец для F1).</li>
+<li>ADR-0020 E1 / ADR-0021 D1 — <code>RaceId</code> / <code>BackgroundId</code> enum
+  (образец для E1).</li>
+<li>ADR-0020 H1a / ADR-0021 E1 / ADR-0022 G1b — stateless-резолверы
+  (<code>RaceResolver</code>/<code>BackgroundResolver</code>/валидатор; образец для H1).</li>
+</ul>
+<h3 id="dd-5e-phb-3-classes">Канон D&amp;D 5e (PHB гл.3 «Classes»)<a class="headerlink" href="#dd-5e-phb-3-classes" title="Permanent link">&para;</a></h3>
+<p>12 классов × 2–8 подклассов (всего ~50–80): Barbarian (Berserker, Totem),
+Bard (Lore, Valor), Cleric (Life, Light, … — домен на <strong>1</strong>),
+Druid (Land, Moon — круг на <strong>2</strong>), Fighter (Champion, Battle Master,
+Eldritch Knight), Monk (Open Hand, Shadow, Four Elements),
+Paladin (Devotion, Ancients, Vengeance), Ranger (Hunter, Beast Master),
+Rogue (Thief, Assassin, Arcane Trickster), Sorcerer (Draconic, Wild Magic),
+Warlock (Archfey, Fiend, Great Old One — покровитель на <strong>1</strong>),
+Wizard (школы — на <strong>2</strong>). Уровень выбора разный (1/2/3) — факт для F1.</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="1-a2">1. Место хранения (A2)<a class="headerlink" href="#1-a2" title="Permanent link">&para;</a></h3>
+<p>Секция <code>subclasses:</code> в <code>subclasses.yml</code> (существует, факт #1) +
+<code>SubclassRegistry</code> (<strong>расширяется, НЕ создаётся</strong> — факт #3).
+Симметрия 0020/0021/0022/0023/0024/0025 — без второго источника.
+Расширение реестра: допарсинг <code>actionType/resourceId/usesPerLevel/
+recharge/choice</code> (G1). <code>CharacterClass.subclasses</code> (факт #10) —
+не дублировать: единый источник связи — <code>getForClass</code> (факт #3, <code>:64</code>).</p>
+<h3 id="2-subclass-b1">2. Форма Subclass (B1)<a class="headerlink" href="#2-subclass-b1" title="Permanent link">&para;</a></h3>
+<p><code>data class</code>, НЕ sealed. Обоснование: подклассы однотипны (часть класса
++ фичи); sealed-по-подклассам = взрыв типов (31 сейчас, 50–80 в 3.4):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Subclass</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">SubclassId</span><span class="p">,</span><span class="w">               </span><span class="c1">// E1</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">parentClassId</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">        </span><span class="c1">// canonicalClassId («warrior», …)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">level</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w">                   </span><span class="c1">// 1/2/3 — когда выбирается (факт #2, F1)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">features</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ClassFeature</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">// C1</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">choices</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ClassChoice</span><span class="o">&gt;</span><span class="p">,</span><span class="w">   </span><span class="c1">// D1</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>level</code> — обязательное поле: уровень выбора разный по классам
+(канон: cleric/warlock — 1, wizard/druid — 2, остальные — 3).
+Сегодня в данных униформа «3» (факт #2, пометка <code>:94</code>) — канон
+возвращается в 3.4 вместе с наполнением.</p>
+<h3 id="3-subclassfeature-classfeature-c1">3. SubclassFeature = ClassFeature (C1)<a class="headerlink" href="#3-subclassfeature-classfeature-c1" title="Permanent link">&para;</a></h3>
+<p>Отдельного типа нет — исполнение I1 из ADR-0023. Форма готова
+(факт #4), наполнителя нет (факт #3) — допарсинг G1 закрывает разрыв.
+Хардкоды факта #7 мигрируют: <code>champion</code> → <code>PassiveClassFeature</code>
+(critRange-шаблон); draconic — в <code>PassiveClassFeature</code> (HP/AC-floor);
+patron/domain-spells — в <code>ChoiceClassFeature</code> (списки заклинаний).
+Связки факта #8: Battle Master → SUPERIORITY, Life → CHANNEL_DIVINITY,
+Moon → WILD_SHAPE — через <code>resourceId</code> (ADR-0024), без копирования
+механики (симметрия H1 из 0022).</p>
+<h3 id="4-subclass-choices-classchoice-d1">4. Subclass choices = ClassChoice (D1)<a class="headerlink" href="#4-subclass-choices-classchoice-d1" title="Permanent link">&para;</a></h3>
+<p><code>ManeuverChoice</code> (Battle Master), Domain-spells, Totem-варианты —
+подклассовые <code>ClassChoice</code> (ADR-0025 B1). Код уже собирает
+подклассовые choices (<code>:141-147</code>), но <code>choice</code> всегда null (факт #3) —
+G1 наполняет, код начинает работать без изменений. Отдельной формы
+выборов подкласса нет.</p>
+<h3 id="5-subclassid-enum-e1">5. SubclassId enum (E1)<a class="headerlink" href="#5-subclassid-enum-e1" title="Permanent link">&para;</a></h3>
+<p><code>subclassId: String?</code> (факт #5) → <code>SubclassId</code> enum. Симметрия
+<code>RaceId</code> (0020 E1) / <code>BackgroundId</code> (0021 D1). Breaking change;
+сессии тестовые. 31 значение сейчас, 50–80 в 3.4 (генерация enum
+из реестра — в 3.4, здесь только решение о форме).</p>
+<h3 id="6-f1">6. Выбор подкласса (F1)<a class="headerlink" href="#6-f1" title="Permanent link">&para;</a></h3>
+<p><code>pendingSubclassChoice</code> — зеркало <code>pendingASI</code> (ADR-0018 D1) /
+<code>pendingChoices</code> (ADR-0025 D1). Остановка каскада на уровне выбора
+(<code>Subclass.level</code> из B1 — 1/2/3, не хардкод «3»). <code>allocateSubclass</code> —
+резюме каскада, зеркало <code>allocateASI</code>/<code>allocateChoice</code>. Уточнение:
+level-up уже требует subclass на 3 (факт #6), parent-валидация уже
+есть (<code>:129</code>) — F1 вводит только pending-контракт, не новую логику
+проверок. Третьей pending-очереди не возникает сверх двух
+существующих (митигация — та же, что G1b в 0022).</p>
+<h3 id="7-g1">7. Допарсинг реестра (G1)<a class="headerlink" href="#7-g1" title="Permanent link">&para;</a></h3>
+<p>Сегодня парсинг — только <code>name/level/description</code> (факт #3).
+Расширить на <code>actionType</code>, <code>resourceId</code>, <code>usesPerLevel</code>, <code>recharge</code>,
+<code>choice</code> (все поля уже есть в <code>ClassFeature</code>, факт #4). Предусловие
+C1/D1/H1. Миграция данных (заполнение полей в <code>subclasses.yml</code>) —
+цикл 3.4; форма парсинга — здесь.</p>
+<h3 id="8-parent-validation-h1">8. Parent validation + резолвер (H1)<a class="headerlink" href="#8-parent-validation-h1" title="Permanent link">&para;</a></h3>
+<p><code>Subclass.parentClassId</code> должен совпадать с
+<code>CharacterState.canonicalClassId</code> при выборе. Проверка уже есть
+в <code>levelUp</code> (<code>:129</code>) — переносится в <strong><code>SubclassResolver.apply(state,
+subclass)</code></strong> (stateless, симметрия <code>RaceResolver</code>/<code>BackgroundResolver</code>).
+Валидация parent — там же. <code>ClassChoiceResolver</code> не трогаем (чужой
+домен — урок E1 из 0022).</p>
+<h3 id="9-multiclass-subclasses-i1">9. Multiclass subclasses (I1)<a class="headerlink" href="#9-multiclass-subclasses-i1" title="Permanent link">&para;</a></h3>
+<p>НЕ поддерживать (post-MVP). Один класс — один подкласс. PHB
+multiclass — optional-правила, вне ядра. Пересечений с multiclass
+в коде не найдено (<code>classLevels</code> — задел без подклассовой логики).</p>
+<h3 id="10-subclass-j1">10. Дубль subclass (J1)<a class="headerlink" href="#10-subclass-j1" title="Permanent link">&para;</a></h3>
+<p><code>CharacterState.subclassId</code> (факт #5) vs <code>SubclassRegistry</code> — новый
+дубль #11 (после #10 из 0022). Запись в ADR-0011 — отдельным циклом
+после реализации (аналогично 0020–0025 J1). Правило ADR-0011:
+новый дубль — с пометкой <code>Resolved in ADR-0026</code>.</p>
+<h3 id="11-k1">11. Объём цикла (K1)<a class="headerlink" href="#11-k1" title="Permanent link">&para;</a></h3>
+<p>Только ADR. Реализация (расширение <code>SubclassRegistry</code>,
+<code>SubclassResolver</code>, <code>SubclassId</code>, данные 50–80 подклассов,
+<code>pendingSubclassChoice</code>) — цикл 3.4. Перечисление подклассов PHB —
+данные, не архитектура (сокращённый scope).</p>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<p><strong>A. Место хранения.</strong>
+- A1: новый <code>subclass-features.yml</code> — второй источник при живом YAML.
+- A2: <strong><code>subclasses:</code> + расширение <code>SubclassRegistry</code> — рекомендация
+  архитектора.</strong> Реестр жив (факт #3); <code>getForClass</code> — единый источник
+  связи (факт #10 не дублируем).
+- A3: фичи подклассов в <code>classes.yml</code> — смешение уровней (класс vs
+  подкласс), файл и так ~1220 строк.</p>
+<p><strong>B. Форма Subclass.</strong>
+- B1: <strong><code>data class</code> + <code>SubclassId</code>/<code>level</code>/<code>features</code>/<code>choices</code> —
+  рекомендация архитектора.</strong> <code>level</code> покрывает разный уровень выбора.
+- B2: sealed-по-подклассам — 31 тип сейчас, 80 потом.
+- B3: плоский <code>Subclass</code> без <code>level</code>/<code>choices</code> — уровень выбора
+  хардкодится («3»), choices теряются.</p>
+<p><strong>C. Форма фич подкласса.</strong>
+- C1: <strong><code>SubclassFeature = ClassFeature</code> (исполнение 0023 I1) —
+  рекомендация архитектора.</strong> Форма готова (факт #4); хардкоды
+  мигрируют в шаблоны; связки — через <code>resourceId</code>.
+- C2: отдельный <code>SubclassFeature</code>-sealed — параллельная иерархия,
+  дублирование 0023.
+- C3: оставить текст (как сегодня) — новые фичи = новые <code>if</code>.</p>
+<p><strong>D. Выборы подкласса.</strong>
+- D1: <strong><code>ClassChoice</code> (0025 B1), код <code>:141-147</code> начинает работать —
+  рекомендация архитектора.</strong>
+- D2: отдельная форма выборов подкласса — дубль 0025.
+- D3: выборы строками в description — механики нет.</p>
+<p><strong>E. Идентификатор.</strong>
+- E1: <strong><code>SubclassId</code> enum (симметрия RaceId/BackgroundId) —
+  рекомендация архитектора.</strong> Breaking, сессии тестовые.
+- E2: оставить <code>String?</code> — опечатки в id, валидация строками.
+- E3: <code>String</code> non-null — ломает создание до выбора.</p>
+<p><strong>F. Контракт выбора.</strong>
+- F1: <strong><code>pendingSubclassChoice</code> + остановка по <code>Subclass.level</code> +
+  <code>allocateSubclass</code> — рекомендация архитектора.</strong> Третья очередь,
+  но по тому же контракту (митигация — как 0022 G1b).
+- F2: оставить жёсткое требование (факт #6) — каскад падает
+  исключением на уровне выбора навсегда.
+- F3: выбор только ручным <code>levelUp</code> без pending — каскад и preview
+  (<code>subclassChoice</code>) висят без резюме.</p>
+<p><strong>G. Допарсинг.</strong>
+- G1: <strong>парсинг всех полей <code>ClassFeature</code> — рекомендация архитектора.</strong>
+  Предусловие C1/D1/H1.
+- G2: парсить частично (только <code>choice</code>) — <code>resourceId</code>/<code>actionType</code>
+  теряются дальше.
+- G3: не допарсивать — C1/D1 не исполнимы, факт #3 из 0023 живёт.</p>
+<p><strong>H. Валидация parent.</strong>
+- H1: <strong>новый stateless <code>SubclassResolver.apply</code> (проверка + применение);
+  <code>ClassChoiceResolver</code> не трогаем — рекомендация архитектора.</strong>
+- H2: валидация в <code>ClassChoiceResolver</code> — чужой домен (урок 0022 E1).
+- H3: оставить проверку в <code>levelUp</code> (<code>:129</code>) — логика в сервисе,
+  резолвер-паттерн нарушен (Race/Background уже вынесены).</p>
+<p><strong>I. Multiclass.</strong>
+- I1: <strong>не поддерживать (post-MVP) — рекомендация архитектора.</strong>
+  Пересечений в коде нет.
+- I2: второй подкласс при multiclass — PHB-optional, форма не готова.
+- I3: умолчать — реализатор угадывает.</p>
+<p><strong>J. Дубль.</strong>
+- J1: <strong>регистрировать (#11, <code>Resolved in ADR-0026</code>, запись после
+  реализации) — рекомендация архитектора.</strong>
+- J2: не регистрировать — нарушение правила ADR-0011.
+- J3: резолвить записью сейчас — преждевременно, расширения нет.</p>
+<p><strong>K. Объём.</strong>
+- K1: <strong>только ADR; реализация + данные — 3.4 — рекомендация
+  архитектора.</strong>
+- K2: ADR + допарсинг без данных — парсер без наполненных полей.
+- K3: полный цикл с 50–80 подклассами — нарушает «один цикл =
+  один фокусный шаг» и сокращённый scope.</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Плюсы<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Subclass формализуется (одна форма для всех 12 классов × N подклассов).</li>
+<li><code>SubclassFeature = ClassFeature</code> (0023 I1) — единая форма,
+  без параллельной иерархии.</li>
+<li><code>SubclassChoice = ClassChoice</code> (0025 B1) — Maneuvers, Domain-spells,
+  Totem-варианты через общую форму; код <code>:141-147</code> оживает без изменений.</li>
+<li>Симметрия: <code>pendingSubclassChoice</code> — зеркало <code>pendingASI</code>/<code>pendingChoices</code>;
+  <code>SubclassResolver</code> — зеркало <code>RaceResolver</code>/<code>BackgroundResolver</code>.</li>
+<li>Допарсинг устраняет факт #3 из ADR-0023 (потери реестра).</li>
+<li>Parent-валидация уже есть (<code>:129</code>) — переносится, не пишется заново.</li>
+<li>Все формы проекта (Race / Background / Feat / ClassFeature /
+  ClassResource / ClassChoice / Subclass) — зафиксированы ADR.
+  <strong>Мини-ФАЗА 0 закрыта.</strong></li>
+</ul>
+<h3 id="_5">Минусы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Расширение <code>SubclassRegistry</code> (не создание) + миграция <code>subclasses.yml</code>.</li>
+<li>50–80 подклассов — наполнение данных цикла 3.4 (объём).</li>
+<li><code>SubclassId</code> enum — breaking change.</li>
+<li><code>SubclassResolver</code> — девятый реестр/резолвер по паттерну.</li>
+<li><code>CharacterClass.subclasses</code> (факт #10) — мёртвый задел до 3.4
+  (либо чистка, либо синхронизация с <code>getForClass</code>).</li>
+</ul>
+<h3 id="_6">Риски<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>50–80 подклассов — большой объём данных</strong>; риск неполного
+  <code>subclasses.yml</code> (как <code>backgrounds.yml</code>). Митигация: G1 — сверка
+  с PHB при миграции (31/12 уже зафиксировано, факт #1); форма
+  сейчас, данные — 3.4.</li>
+<li><strong>Полиморфизм подклассов</strong> (Champion — пассив, Battle Master —
+  choices, Wild Magic — триггеры): <code>data class</code> достаточно, потому что
+  sealed <code>ClassFeature</code> уже покрывает все подвиды. Митигация: C1.</li>
+<li><strong>Уровень выбора разный</strong> (канон 1/2/3; факт #2 — униформа «3»,
+  wizard — «2»). F1 (pending) должен знать уровень из <code>Subclass.level</code>.
+  Митигация: поле <code>level</code> в B1; канон возвращается в 3.4.</li>
+<li><strong>Multiclass subclasses (I1)</strong> — отказ; второй подкласс невозможен.
+  Продуктовое решение (PHB multiclass — optional).</li>
+<li><strong>Три pending-очереди</strong> (ASI/choices/subclass) — риск путаницы.
+  Митигация: единый контракт (зеркала 0018/0025); очереди не смешиваются
+  (разные уровни-триггеры).</li>
+</ul>
+<h3 id="_7">Отложено<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Реализация (расширение <code>SubclassRegistry</code>, <code>SubclassResolver</code>,
+  <code>SubclassId</code>, <code>pendingSubclassChoice</code> + <code>allocateSubclass</code>) — цикл 3.4.</li>
+<li>Данные 50–80 подклассов (<code>subclasses.yml</code> наполнение + канон
+  уровней выбора) — цикл 3.4.</li>
+<li>Multiclass subclasses — post-MVP (I1).</li>
+<li>Судьба <code>CharacterClass.subclasses</code> (факт #10) — 3.4.</li>
+<li>Frontend (wizard выбора подкласса) — ФАЗА 6.</li>
+<li>Запись дубля #11 в ADR-0011 — после реализации (J1).</li>
+</ul>
+<h3 id="-ak">Чек-лист решений A–K<a class="headerlink" href="#-ak" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A = A2 — <code>subclasses:</code> + расширение <code>SubclassRegistry</code>;
+  <code>CharacterClass.subclasses</code> не дублируем.</li>
+<li>B = B1 — <code>data class Subclass</code> (НЕ sealed; <code>SubclassId</code>/<code>parentClassId</code>/
+  <code>level</code> 1-2-3/<code>features</code>/<code>choices</code>).</li>
+<li>C = C1 — <code>SubclassFeature = ClassFeature</code> (исполнение 0023 I1);
+  хардкоды → шаблоны; связки → <code>resourceId</code>.</li>
+<li>D = D1 — подклассовые выборы = <code>ClassChoice</code> (код <code>:141-147</code> оживает).</li>
+<li>E = E1 — <code>SubclassId</code> enum (симметрия RaceId/BackgroundId); breaking.</li>
+<li>F = F1 — <code>pendingSubclassChoice</code> + остановка по <code>Subclass.level</code> +
+  <code>allocateSubclass</code>; проверок новых нет (<code>:129</code> уже есть).</li>
+<li>G = G1 — допарсинг всех полей <code>ClassFeature</code>; данные — 3.4.</li>
+<li>H = H1 — новый stateless <code>SubclassResolver.apply</code> (parent-валидация там).</li>
+<li>I = I1 — multiclass-подклассы не поддерживаем (post-MVP).</li>
+<li>J = J1 — дубль #11 (<code>Resolved in ADR-0026</code>), запись после реализации.</li>
+<li>K = K1 — только ADR; реализация + данные — 3.4.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Код (<code>SubclassRegistry.kt</code>, <code>LevelUpService.kt</code>, <code>LevelUpApplier.kt</code>,
+  <code>SessionService.kt</code>, <code>CharacterState.subclassId</code>) — цикл 3.4.</li>
+<li>Данные 50–80 подклассов — цикл 3.4 (K1; перечисления нет).</li>
+<li>Multiclass subclasses — post-MVP (I1).</li>
+<li>ADR-0011 — запись дубля #11 после реализации (J1; в этом цикле НЕ правим).</li>
+<li>Frontend — ФАЗА 6.</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>PHB 5e: Chapter 3 (Classes) — подклассы 12 классов (Berserker/Totem;
+  Lore/Valor; Life/Light/…; Land/Moon; Champion/Battle Master/Eldritch
+  Knight; Open Hand/Shadow/Four Elements; Devotion/Ancients/Vengeance;
+  Hunter/Beast Master; Thief/Assassin/Arcane Trickster; Draconic/Wild
+  Magic; Archfey/Fiend/Great Old One; школы Wizard).
+  Ссылка: https://dungeonsanddragons.ru/bookfull/5ed/5e%20Players%20Handbook%20-%20Книга%20игрока%20RUS.pdf</li>
+<li>ADR-0023 B1/I1 (sealed <code>ClassFeature</code>; <code>SubclassFeature = ClassFeature</code>;
+  факт #3 — потери <code>SubclassRegistry</code>).</li>
+<li>ADR-0025 B1/D1/F1 (<code>ClassChoice</code>; <code>pendingChoices</code>/<code>allocateChoice</code>;
+  серверная валидация).</li>
+<li>ADR-0024 (SUPERIORITY / CHANNEL_DIVINITY / WILD_SHAPE — точки привязки).</li>
+<li>ADR-0018 D1/E1 (<code>pendingASI</code> + остановка каскада — образец для F1).</li>
+<li>ADR-0020 E1 (<code>RaceId</code>), ADR-0021 D1 (<code>BackgroundId</code>) — образцы для E1.</li>
+<li>ADR-0020 H1a / ADR-0021 E1 / ADR-0022 G1b (stateless-резолверы,
+  pending-зеркала — образцы для H1/F1).</li>
+<li>ADR-0011 (single source of truth — будущий дубль #11, J1).</li>
+<li><code>SubclassRegistry.kt:9-15, :27-58, :64</code>; <code>subclasses.yml:1-318</code>
+  (<code>:18, :94, :101, :182-185, :276</code>); <code>GameState.kt:487</code>;
+  <code>LevelUpService.kt:63-70, :86-87, :124-147, :212</code>;
+  <code>LevelUpApplier.kt:46, :75</code>; <code>SessionService.kt:253-264, :801</code>;
+  <code>CharacterClass.kt:23, :53-67</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2166 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0021-background-registry/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0021: Реестр предысторий (BackgroundRegistry) — оживление backgrounds.yml - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0021-backgroundregistry-backgroundsyml" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0021: Реестр предысторий (BackgroundRegistry) — оживление backgrounds.yml
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фон сегодня
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backgroundsyml-vs-phb-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Список фонов: backgrounds.yml vs PHB гл.4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проблема
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прецеденты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dd-5e-phb-4-personality-and-backgrounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Канон D&amp;D 5e (PHB гл.4 «Personality and Backgrounds»)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Место хранения (A2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-background-b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Форма Background (B1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-c1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Фича фона (C1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-d1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Интеграция с состоянием (D1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-e1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Применение при создании (E1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-f1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Удаление хардкода (F1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-g1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Миграция мёртвого файла (G1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-h1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Черты характера (H1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-custom-background-i1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Custom Background (I1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-j1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Дубль фона (J1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-k1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Объём цикла (K1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Чек-лист решений A–K
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0021-backgroundregistry-backgroundsyml">ADR-0021: Реестр предысторий (BackgroundRegistry) — оживление backgrounds.yml<a class="headerlink" href="#adr-0021-backgroundregistry-backgroundsyml" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p><code>backgrounds.yml</code> существует (92 строки, все 13 фонов PHB), но загрузчика
+нет — фон применяется двумя <code>when</code>-хардкодами в <code>SessionService</code>.
+Собранные факты (файл:строка):</p>
+<h3 id="_1">Фон сегодня<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Файл:строка</th>
+<th>Что найдено</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>resources/backgrounds.yml:1-92</code></td>
+<td>Все 13 фонов PHB: acolyte, charlatan, criminal, entertainer, folk_hero, guild_artisan, hermit, noble, outlander, sage, sailor, soldier, urchin. Схема на фон: <code>id/name/skills/tools/languages(feature-строка)</code>. Комментариев/дат нет — давность не установить; содержание канонично (не legacy по данным).</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>resources/backgrounds.yml</code> (отсутствует)</td>
+<td>Нет vs PHB гл.4: <code>equipment</code> (стартовое снаряжение), <code>suggestedCharacteristics</code> (Traits/Ideal/Bond/Flaw), механической формы <code>feature</code> (только строка: «Приют верующих», «Криминальные связи», «Привилегия положения»…). Структурно неполный — факт для G1.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>sessions/SessionService.kt:88-104</code></td>
+<td><code>getBackgroundProficiencies</code>: <code>when</code> на 13 фонов (skills + tools). Дублирует данные факта #1. <strong>Дрейф уже есть</strong>: <code>guild_artisan</code> tools в коде <code>[smith_tools]</code> (<code>:95</code>), в YAML <code>[artisan_tools]</code> (<code>backgrounds.yml:41</code>).</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>sessions/SessionService.kt:453-461, :495</code></td>
+<td><code>backgroundId</code> → skills/tools (<code>:454-456</code>, факт #4 из 0025); языки — второй <code>when</code> (<code>:457-461</code>: acolyte/sage → Common+Elvish; hermit/guild_artisan/noble/outlander → Common+Dwarvish; иначе пусто); запись <code>backgroundId/toolProficiencies/languages</code> в state (<code>:495</code>).</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>rules/GameState.kt:446-450</code></td>
+<td><code>backgroundId: String?</code> (<code>:446</code>); <code>toolProficiencies: List&lt;String&gt;</code> (<code>:448</code>); <code>languages: List&lt;String&gt;</code> (<code>:450</code>). Типизации фона нет.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>sessions/SessionDtos.kt:32-34</code></td>
+<td><code>backgroundId: String?</code> (<code>@Size(max=64)</code>) — строкой с клиента.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Языки: racial / class</td>
+<td>Racial languages — <strong>отсутствуют</strong> (ADR-0020 не реализован; grep <code>racialLanguages</code> → 0). Class languages — <strong>отсутствуют</strong> (hardcode только background, факт #4). Мержить нечего — пересечение с ADR-0020 фиксируется как open question (см. Риски).</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>BackgroundRegistry</code> / <code>backgrounds.json</code> / <code>BackgroundId</code></td>
+<td><strong>Отсутствуют</strong> (grep kt → 0). <code>backgrounds.yml</code> в коде не упоминается (факт #8 из ADR-0020: <code>docs/adr/0020-race-registry.md:23</code>).</td>
+</tr>
+<tr>
+<td>9</td>
+<td>БД (<code>resources/db</code>)</td>
+<td>Таблицы backgrounds — <strong>нет</strong> (grep <code>background</code> → 0). Фон — только поле <code>backgroundId</code> в JSON состояния.</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Equipment фона → инвентарь</td>
+<td>Связок <strong>нет</strong> (grep <code>background.*equipment/inventory/item</code> → 0). При создании <code>inventory = emptyList()</code> (<code>SessionService.kt:492</code>). Equipment не выдаётся вообще — факт для шва к ФАЗЕ 4.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Personality / Ideal / Bond / Flaw</td>
+<td><strong>Ноль</strong> (grep → 0 в kt). Черты/идеалы/узы/изъяны нигде не упоминаются — факт для H1.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="backgroundsyml-vs-phb-4">Список фонов: backgrounds.yml vs PHB гл.4<a class="headerlink" href="#backgroundsyml-vs-phb-4" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>backgrounds.yml</th>
+<th>PHB гл.4</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>acolyte (Послушник)</td>
+<td>Acolyte</td>
+<td>✓ есть</td>
+</tr>
+<tr>
+<td>charlatan (Шарлатан)</td>
+<td>Charlatan</td>
+<td>✓ есть</td>
+</tr>
+<tr>
+<td>criminal (Преступник)</td>
+<td>Criminal (+ Criminal Variant: Spy)</td>
+<td>✓ есть (вариант Spy — вне scope, см. I1)</td>
+</tr>
+<tr>
+<td>entertainer (Артист)</td>
+<td>Entertainer (+ Gladiator variant)</td>
+<td>✓ есть (вариант — вне scope)</td>
+</tr>
+<tr>
+<td>folk_hero (Народный герой)</td>
+<td>Folk Hero</td>
+<td>✓ есть</td>
+</tr>
+<tr>
+<td>guild_artisan (Гильдейский ремесленник)</td>
+<td>Guild Artisan (+ Guild Merchant variant)</td>
+<td>✓ есть, дрейф tools (факт #3)</td>
+</tr>
+<tr>
+<td>hermit (Отшельник)</td>
+<td>Hermit</td>
+<td>✓ есть</td>
+</tr>
+<tr>
+<td>noble (Дворянин)</td>
+<td>Noble (+ Knight variant, retainers)</td>
+<td>✓ есть (retainers — вне scope)</td>
+</tr>
+<tr>
+<td>outlander (Чужеземец)</td>
+<td>Outlander</td>
+<td>✓ есть</td>
+</tr>
+<tr>
+<td>sage (Мудрец)</td>
+<td>Sage</td>
+<td>✓ есть</td>
+</tr>
+<tr>
+<td>sailor (Моряк)</td>
+<td>Sailor (+ Pirate variant)</td>
+<td>✓ есть (вариант — вне scope)</td>
+</tr>
+<tr>
+<td>soldier (Солдат)</td>
+<td>Soldier</td>
+<td>✓ есть</td>
+</tr>
+<tr>
+<td>urchin (Беспризорник)</td>
+<td>Urchin</td>
+<td>✓ есть</td>
+</tr>
+</tbody>
+</table>
+<p>13/13 — расхождения набора нет (стоп-условие #1 не сработало); варианты
+фонов (Spy/Gladiator/Knight/Pirate) — вне scope, как Custom Background (I1).</p>
+<h3 id="_2">Проблема<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Фон — мёртвые данные + живой хардкод: <code>backgrounds.yml</code> никто не читает
+(факт #8), а <code>SessionService</code> дублирует те же 13 фонов двумя <code>when</code>
+(факты #3–4) — дрейф уже начался (факт #3). Фичи фонов («Приют верующих»,
+«Криминальные связи») — строки без механики; equipment/characteristics —
+вне модели (факты #2, #10, #11). Нужны: оживление YAML + <code>BackgroundRegistry</code>
++ типизация + резолвер применения + регистрация дубля.</p>
+<h3 id="_3">Прецеденты<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ADR-0020 A2/E1/F1 — <code>races.yml</code> + реестр, <code>RaceId</code>, <code>RaceResolver</code>
+  (образцы для A2/D1/E1); урок <code>backgrounds.yml</code>-синдрома
+  (<code>0020-race-registry.md:23, :66, :199, :278</code>) — реестр вводится вместе
+  с данными, не после.</li>
+<li>ADR-0023 B1 — sealed <code>ClassFeature</code> (образец для C1 <code>BackgroundFeature</code>).</li>
+<li>ADR-0025 C1 — <code>CharacterCreationService</code> (создаётся там; E1 ложится на него).</li>
+<li>ADR-0024 A2 — секция + реестр (образец для A2).</li>
+</ul>
+<h3 id="dd-5e-phb-4-personality-and-backgrounds">Канон D&amp;D 5e (PHB гл.4 «Personality and Backgrounds»)<a class="headerlink" href="#dd-5e-phb-4-personality-and-backgrounds" title="Permanent link">&para;</a></h3>
+<p>13 фонов; каждый: 2 skill proficiency + tools (+ языки 0–2) + equipment +
+feature (Shelter of the Faithful, False Identity, Criminal Contact, By Popular
+Demand, Rustic Hospitality, Guild Membership, Discovery, Position of Privilege,
+Wanderer, Researcher, Ship's Passage, Military Rank, City Secrets) +
+suggested characteristics (d8 Personality Traits / d6 Ideal / d6 Bond /
+d6 Flaw) — подсказки ролеплея, не механика. Custom Background — опция
+(свои 2 навыка + 2 инструмента/языка + equipment).</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="1-a2">1. Место хранения (A2)<a class="headerlink" href="#1-a2" title="Permanent link">&para;</a></h3>
+<p>Оживить <code>backgrounds.yml</code> + <code>BackgroundRegistry.kt</code>. Файл уже существует
+(факт #1), загрузчик отсутствует — вводится вместе с реестром (урок
+<code>backgrounds.yml</code>-синдрома из ADR-0020 A2: данные без регистра = мёртвый
+файл). Содержимое канонично, но структурно неполно (факт #2) — миграция
+данных (добивка <code>equipment/feature/suggestedCharacteristics</code>) входит
+в цикл 3.4 (см. G1).</p>
+<h3 id="2-background-b1">2. Форма Background (B1)<a class="headerlink" href="#2-background-b1" title="Permanent link">&para;</a></h3>
+<p><code>data class</code> — НЕ sealed. Обоснование: фон — данные (13 записей PHB),
+у всех одна природа. Отличие от <code>ClassFeature</code> (B1 sealed в 0023): там
+природа принципиально разная (пассив/актив/триггер/выбор), здесь — все
+фоны однотипны (навыки + инструменты + языки + снаряжение + фича):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Background</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">BackgroundId</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">skillProficiencies</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">toolProficiencies</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">languages</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w">              </span><span class="c1">// сколько языков на выбор (обычно 0/1/2)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">equipment</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span><span class="w">     </span><span class="c1">// стартовое снаряжение (шов к ФАЗЕ 4)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">feature</span><span class="p">:</span><span class="w"> </span><span class="n">BackgroundFeature?</span><span class="p">,</span><span class="w"> </span><span class="c1">// уникальная фича фона (C1)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">suggestedCharacteristics</span><span class="p">:</span><span class="w"> </span><span class="n">SuggestedCharacteristics?</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><code>languages: Int</code> (счётчик «сколько на выбор»), а не список — фактический
+выбор языков делает <code>CharacterCreationService</code> (см. Риски: три источника).</p>
+<h3 id="3-c1">3. Фича фона (C1)<a class="headerlink" href="#3-c1" title="Permanent link">&para;</a></h3>
+<p><code>BackgroundFeature</code> — <code>sealed interface</code> (Passive/Triggered). Симметрично
+<code>RacialTrait</code> (0020 B1) / <code>ClassFeature</code> (0023 B1). Примеры: Acolyte «Приют
+верующих» (пассивная), Criminal «Криминальные связи» (пассивная), Noble
+«Привилегия положения» (пассивная), Soldier «Воинское звание» (пассивная).
+Триггерные фичи фона в PHB — редкость, но форма закладывается (как
+<code>RacialTrigger</code> в 0020 — на вырост, без YAGNI-нагрузки: 2 подтипа).</p>
+<h3 id="4-d1">4. Интеграция с состоянием (D1)<a class="headerlink" href="#4-d1" title="Permanent link">&para;</a></h3>
+<p><code>CharacterState.backgroundId: String</code> → <code>BackgroundId</code> enum. Симметрия
+<code>RaceId</code> (E1 из 0020). Breaking change; сессии тестовые — миграция
+не требуется. <code>CreateSessionRequest.backgroundId</code> (<code>SessionDtos.kt:34</code>)
+принимает строку, резолвер валидирует в enum (невалидный → 400, прецедент
+F1 из 0025).</p>
+<h3 id="5-e1">5. Применение при создании (E1)<a class="headerlink" href="#5-e1" title="Permanent link">&para;</a></h3>
+<p><code>CharacterCreationService</code> (создаётся в ADR-0025 C1) +
+<code>BackgroundResolver.apply(state, background)</code> — stateless object,
+симметрично <code>RaceResolver</code> (0020 F1). Не сваливать в <code>SessionService</code>
+(там уже 3983 строки; факты #3–4 — два <code>when</code> оттуда уходят, см. F1).
+Порядок применения в создании: race → class → background
+(аддитивные proficiency/languages складываются; см. Риски).</p>
+<h3 id="6-f1">6. Удаление хардкода (F1)<a class="headerlink" href="#6-f1" title="Permanent link">&para;</a></h3>
+<p><code>SessionService.kt:89</code> (<code>getBackgroundProficiencies</code>) и <code>:457-461</code> (языки)
+заменяются обращением к <code>BackgroundRegistry</code>. Дублирующий <code>when</code> —
+источник рассинхрона (дрейф <code>guild_artisan</code> уже зафиксирован, факт #3:
+канон — выбор artisan-инструмента, YAML — заглушка <code>artisan_tools</code>,
+код — <code>smith_tools</code>; при миграции побеждает канон с выбором).</p>
+<h3 id="7-g1">7. Миграция мёртвого файла (G1)<a class="headerlink" href="#7-g1" title="Permanent link">&para;</a></h3>
+<p>Содержимое 92 строк канонично (факт #1), но структура неполна (факт #2:
+нет <code>equipment/feature-формы/suggestedCharacteristics</code>). ADR фиксирует
+целевую схему (B1+C1+H1); добивка данных — цикл 3.4. Разведка показала:
+legacy по давности не установить (комментариев нет), legacy по содержанию —
+нет; это «скелет», а не «мусор».</p>
+<h3 id="8-h1">8. Черты характера (H1)<a class="headerlink" href="#8-h1" title="Permanent link">&para;</a></h3>
+<p><code>SuggestedCharacteristics</code> (Personality Traits / Ideal / Bond / Flaw) —
+данные для narrative. Механики нет (PHB: подсказки ролеплея). Поля
+в data class, использование — LLM narrative. Явная пометка «не механика»
+(см. Риски: LLM не должен давать бонусы за черты).</p>
+<h3 id="9-custom-background-i1">9. Custom Background (I1)<a class="headerlink" href="#9-custom-background-i1" title="Permanent link">&para;</a></h3>
+<p>PHB-optional (игрок сам собирает фон: 2 навыка + инструменты/языки +
+equipment) — НЕ поддерживаем (post-MVP). Варианты фонов (Spy, Gladiator,
+Knight, Pirate — см. таблицу) — туда же. Форма <code>Background</code> custom
+не запрещает технически — решение продуктовое.</p>
+<h3 id="10-j1">10. Дубль фона (J1)<a class="headerlink" href="#10-j1" title="Permanent link">&para;</a></h3>
+<p>Фон в state (<code>backgroundId</code>, факт #5) vs реестр — новый дубль #9
+(после #8 из 0025; O занят). Запись в ADR-0011 — отдельным циклом
+после реализации (аналогично 0020 J1 / 0023 J1 / 0024 H1 / 0025 J1).
+Правило ADR-0011: новый дубль — с пометкой <code>Resolved in ADR-0021</code>.</p>
+<h3 id="11-k1">11. Объём цикла (K1)<a class="headerlink" href="#11-k1" title="Permanent link">&para;</a></h3>
+<p>Только ADR. Реализация (<code>BackgroundRegistry.kt</code>, <code>BackgroundResolver.kt</code>,
+миграция хардкода фактов #3–4, оживление <code>backgrounds.yml</code> по схеме G1) —
+цикл 3.4.</p>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<p><strong>A. Место хранения.</strong>
+- A1: новый <code>backgrounds.json</code>/другой файл — второй источник при живом
+  <code>backgrounds.yml</code> (тот же аргумент, что отклонил <code>features.yml</code>/<code>resources.yml</code>).
+- A2: <strong>оживить <code>backgrounds.yml</code> + <code>BackgroundRegistry.kt</code> — рекомендация
+  архитектора.</strong> Файл каноничен (факт #1); реестр — сразу (урок 0020).
+- A3: фон только в коде (enum + таблицы) — данные PHB в коде, правка = релиз.</p>
+<p><strong>B. Форма Background.</strong>
+- B1: <strong><code>data class</code> (НЕ sealed) — рекомендация архитектора.</strong> Одна природа —
+  одна форма; 13 записей.
+- B2: sealed по фонам (AcolyteBackground, …) — взрыв типов: 13 классов
+  без поведенческих различий.
+- B3: оставить строки (<code>backgroundId: String</code> + <code>when</code>) — сегодня так
+  (факты #3–5); дрейф уже есть.</p>
+<p><strong>C. Фича фона.</strong>
+- C1: <strong>sealed <code>BackgroundFeature</code> (Passive/Triggered) — рекомендация
+  архитектора.</strong> Симметрия 0020/0023; механика фич — позже, форма — сейчас.
+- C2: строка как сегодня (факт #1: <code>feature: "Приют верующих"</code>) —
+  фичи остаются ярлыками навсегда.
+- C3: фичи фонов — сразу с механикой в 0021 — тянет 13 реализаций
+  (контакты/приюты/ранги — преимущественно narrative).</p>
+<p><strong>D. Тип backgroundId.</strong>
+- D1: <strong><code>BackgroundId</code> enum (breaking change) — рекомендация архитектора.</strong>
+  Симметрия <code>RaceId</code>; опечатки ловятся компилятором.
+- D2: оставить <code>String</code> — валидация только рантайм; рассинхрон с реестром.
+- D3: <code>String</code> + валидация в резолвере без enum — половина типизации.</p>
+<p><strong>E. Точка применения.</strong>
+- E1: <strong><code>CharacterCreationService</code> + <code>BackgroundResolver.apply</code> —
+  рекомендация архитектора.</strong> Порядок race → class → background.
+- E2: оставить в <code>SessionService</code> — файл 3983 строки, <code>when</code> остаются.
+- E3: применение в <code>BackgroundRegistry</code> (реестр + логика) — нарушение
+  границ (реестр — данные, резолвер — применение; прецедент 0020 F1).</p>
+<p><strong>F. Хардкод.</strong>
+- F1: <strong>удалить оба <code>when</code>, обращение к реестру — рекомендация архитектора.</strong>
+  Дрейф guild_artisan резолвится каноном.
+- F2: оставить хардкод + реестр рядом — два источника (новый дубль).
+- F3: удалить только skills-<code>when</code>, языки оставить — половина миграции.</p>
+<p><strong>G. Миграция файла.</strong>
+- G1: <strong>целевую схему — сейчас, добивку данных — 3.4 — рекомендация
+  архитектора.</strong> Скелет каноничен, readings достаточно.
+- G2: добить данные в этом цикле (без кода) — данные без регистра =
+  второй <code>backgrounds.yml</code>-синдром (K2 из 0020).
+- G3: признать файл legacy и переписать с нуля — не требуется:
+  содержание канонично (факт #1).</p>
+<p><strong>H. Characteristics.</strong>
+- H1: <strong>данные для narrative, без механики — рекомендация архитектора.</strong>
+- H2: механика вдохновения за отыгрыш черт — отдельная подсистема,
+  не PHB-ядро.
+- H3: не включать вообще — теряем ролеплей-контекст для LLM.</p>
+<p><strong>I. Custom Background.</strong>
+- I1: <strong>не поддерживать (post-MVP) — рекомендация архитектора.</strong>
+- I2: поддержать сразу — тянет конструктор фонов + валидацию комбинаций.
+- I3: умолчать — реализатор угадывает.</p>
+<p><strong>J. Дубль.</strong>
+- J1: <strong>регистрировать (#9, <code>Resolved in ADR-0021</code>, запись после
+  реализации) — рекомендация архитектора.</strong> Аналогично 0020/0023/0024/0025.
+- J2: не регистрировать — нарушение правила ADR-0011.
+- J3: резолвить записью сейчас — преждевременно, реестра нет.</p>
+<p><strong>K. Объём.</strong>
+- K1: <strong>только ADR; реализация — 3.4 — рекомендация архитектора.</strong>
+- K2: ADR + реестр без миграции хардкода — два источника (вариант F2).
+- K3: полный цикл с реализацией — нарушает «один цикл = один фокусный шаг».</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Плюсы<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Мёртвый <code>backgrounds.yml</code> оживает (устраняется <code>backgrounds.yml</code>-синдром
+  из ADR-0020 — тот самый файл, на котором урок был сформулирован).</li>
+<li>Фон как сущность формализуется (13 фонов PHB, таблица сверки — 13/13).</li>
+<li>Симметрия с ADR-0020 (<code>RaceRegistry</code>): оба — реестры данных PHB
+  (A2/D1/E1 зеркальны).</li>
+<li>Удаляется хардкод <code>when</code> в <code>SessionService</code> (факты #3–4, 16 строк).</li>
+<li>Ложится на <code>CharacterCreationService</code> (ADR-0025 C1): порядок
+  race → class → background.</li>
+</ul>
+<h3 id="_5">Минусы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Breaking change <code>backgroundId: String</code> → <code>BackgroundId</code> (D1).</li>
+<li><code>BackgroundRegistry</code> — восьмой регистр по паттерну.</li>
+<li>Миграция 92 строк <code>backgrounds.yml</code> (добивка equipment/feature/
+  characteristics; дрейф guild_artisan резолвится каноном).</li>
+<li>Equipment фона — шов к ФАЗЕ 4 (Inventory), в 3.4 не применяется.</li>
+<li>Языки фона: temporary regression в 3.2 (state.languages =
+  emptyList() до LanguageResolver).</li>
+</ul>
+<h3 id="_6">Риски<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл может содержать скрытые неточности</strong> (комментариев/истории нет,
+  факт #1). Митигация: G1 (сверка с PHB гл.4 при миграции; skills/tools/
+  languages уже сверены — 13/13; осталась equipment-добивка).</li>
+<li><strong>Languages: racial + class + background — три источника.</strong> Сегодня
+  мёржить нечего (факт #7: racial/class отсутствуют). Митигация:
+  <code>BackgroundResolver</code> возвращает «сколько на выбор» (<code>languages: Int</code>,
+  B1); фактический выбор — <code>CharacterCreationService</code> (или отдельный
+  <code>LanguageResolver</code> в 3.4). Пересечение с языками ADR-0020 —
+  open question 3.4.</li>
+<li><strong>Languages фона: temporary regression (3.2).</strong> До 3.2 languages
+  применялись hardcoded (<code>[Common, Elvish]</code> для acolyte/sage;
+  <code>[Common, Dwarvish]</code> для hermit/guild_artisan/noble/outlander).
+  В 3.2 hardcoded-применение удалено (BackgroundResolver languages
+  не трогает, <code>state.languages = emptyList()</code>). Обоснование: PHB
+  для этих фонов говорит «one/two languages of your choice» —
+  hardcoded был уже неточен. Восстановление — LanguageResolver в
+  3.3/3.4 (правильный choice-механизм по PHB). До тех пор —
+  известное ограничение. Архитектор подтвердил Вариант A
+  (temporary, не stopgap).</li>
+<li><strong>Equipment → <code>InventoryItem</code> (ФАЗА 4).</strong> До тех пор <code>equipment</code> —
+  данные без применения (факт #10: инвентарь при создании пуст).
+  Митигация: зафиксировано в Отложено; схема хранит список строк,
+  не объектов.</li>
+<li><strong><code>SuggestedCharacteristics</code> как механика.</strong> Риск: LLM начнёт давать
+  бонусы за черты. Митигация: H1 — только narrative, явная пометка
+  «не механика» в схеме и промпте (цикл 3.4 — пометка, промпт — позже).</li>
+<li><strong>Дрейф guild_artisan</strong> (факт #3). Митигация: F1 — при миграции
+  побеждает канон (выбор artisan-инструмента), обе записи заменяются.</li>
+</ul>
+<h3 id="_7">Отложено<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Реализация (<code>BackgroundRegistry</code>, <code>BackgroundResolver</code>) — цикл 3.4.</li>
+<li>Миграция <code>backgrounds.yml</code> (equipment/feature/characteristics) — 3.4.</li>
+<li>Equipment → инвентарь — ФАЗА 4 (шов в B1).</li>
+<li><code>LanguageResolver</code> — цикл 3.3/3.4. Покрывает choice-языки
+  (race/class/background). Заменяет temporary regression 3.2.</li>
+<li>Custom Background + варианты фонов (Spy/Gladiator/Knight/Pirate) — post-MVP.</li>
+<li>Frontend (wizard выбора фона) — ФАЗА 6.</li>
+<li>Запись дубля #9 в ADR-0011 — после реализации (J1).</li>
+</ul>
+<h3 id="-ak">Чек-лист решений A–K<a class="headerlink" href="#-ak" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A = A2 — оживить <code>backgrounds.yml</code> + <code>BackgroundRegistry.kt</code> (реестр сразу).</li>
+<li>B = B1 — <code>data class Background</code> (НЕ sealed; <code>languages: Int</code>,
+  <code>equipment</code>, <code>feature?</code>, <code>suggestedCharacteristics?</code>).</li>
+<li>C = C1 — sealed <code>BackgroundFeature</code> (Passive/Triggered).</li>
+<li>D = D1 — <code>backgroundId</code> → <code>BackgroundId</code> enum (breaking change).</li>
+<li>E = E1 — <code>CharacterCreationService</code> + <code>BackgroundResolver.apply</code>
+  (порядок race → class → background).</li>
+<li>F = F1 — удалить оба <code>when</code> (<code>:89</code>, <code>:457-461</code>); дрейф guild_artisan — канон.</li>
+<li>G = G1 — схема сейчас, добивка данных — 3.4 (скелет, не мусор).</li>
+<li>H = H1 — characteristics для narrative, без механики.</li>
+<li>I = I1 — Custom Background не поддерживаем (post-MVP).</li>
+<li>J = J1 — дубль #9 (<code>Resolved in ADR-0021</code>), запись после реализации.</li>
+<li>K = K1 — только ADR; реализация — 3.4.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Код (<code>BackgroundRegistry.kt</code>, <code>BackgroundResolver.kt</code>, <code>backgrounds.yml</code>,
+  <code>CharacterState</code>, <code>SessionService.kt:89, :457-461</code>) — цикл 3.4.</li>
+<li>Equipment → Inventory — ФАЗА 4 (шов, не реализация).</li>
+<li>Custom Background + варианты фонов — post-MVP (I1).</li>
+<li>ADR-0011 — запись дубля #9 после реализации (J1; в этом цикле НЕ правим).</li>
+<li>ADR-0026 (Subclass), ADR-0022 (FeatEffect) — отдельные циклы.</li>
+<li>Frontend — ФАЗА 6.</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>PHB 5e: Chapter 4 (Backgrounds) — 13 фонов, equipment, features,
+  suggested characteristics, custom background (optional).
+  Ссылка: https://dungeonsanddragons.ru/bookfull/5ed/5e%20Players%20Handbook%20-%20Книга%20игрока%20RUS.pdf</li>
+<li>ADR-0020 (RaceRegistry — параллельный реестр; урок <code>backgrounds.yml</code>:
+  <code>:23, :66, :199, :278</code>).</li>
+<li>ADR-0023 B1 (sealed <code>ClassFeature</code> — образец для C1).</li>
+<li>ADR-0025 C1 (<code>CharacterCreationService</code> — точка E1) и F1 (400-прецедент для D1).</li>
+<li>ADR-0024 A2 (секция + реестр — образец для A2).</li>
+<li>ADR-0011 (single source of truth — будущий дубль #9, J1).</li>
+<li><code>backgrounds.yml:1-92</code>; <code>SessionService.kt:88-104, :453-461, :492, :495</code>;
+  <code>GameState.kt:446-450</code>; <code>SessionDtos.kt:32-34</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

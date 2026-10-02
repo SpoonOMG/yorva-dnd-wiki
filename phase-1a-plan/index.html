@@ -1,0 +1,2000 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/phase-1a-plan/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Фаза 1a — план точечных регрессий движка - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1a" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Фаза 1a — план точечных регрессий движка
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regression-1-tough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regression #1 — tough (Живучий)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regression #1 — tough (Живучий)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что нужно
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fileline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Текущее состояние (file:line)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Связь с ADR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Файлы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Подход (вариант)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оценка сложности
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regression-2-improved-critical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regression #2 — Improved Critical (Улучшенный критический удар)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regression #2 — Improved Critical (Улучшенный критический удар)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что нужно
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fileline_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Текущее состояние (file:line)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adr_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Связь с ADR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Файлы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Подход (вариант)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оценка сложности
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regression-3-con" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regression #3 — Спасбросок врага использует CON игрока
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regression #3 — Спасбросок врага использует CON игрока">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что нужно
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fileline_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Текущее состояние (file:line)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adr_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Связь с ADR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Файлы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sagame-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Подход (варианты, решить на SA/Game Design)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Оценка сложности
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="1a">Фаза 1a — план точечных регрессий движка<a class="headerlink" href="#1a" title="Permanent link">&para;</a></h1>
+<p>Working doc (не ADR, статус Accepted не требуется).</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Три точечные регрессии правил, найденные аудитом
+(<code>docs/spell-review/chek-lists/audit/</code>). Реализуются по одной, каждая — маленький
+коммит. Ни одна не трогает контракт API (все изменения — внутри правил движка и
+состояния <code>CharacterState</code>/<code>Enemy</code>).</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Регрессия</th>
+<th>Суть</th>
+<th>Сложность</th>
+<th>Открытых вопросов</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>tough (Живучий)</td>
+<td><code>+2 HP/уровень</code> начисляется неверно/не ретро</td>
+<td>средняя</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Improved Critical</td>
+<td>крит захардкожен <code>== 20</code>, <code>critRange</code> нет</td>
+<td>средняя</td>
+<td>1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Спас врага</td>
+<td>к спасу врага прибавляется CON <strong>игрока</strong></td>
+<td>средняя</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Класс задачи: <code>[flash]</code> (документация/планирование; реализация — позже, по модели
+по каждой регрессии отдельно).</p>
+<h2 id="order">Order<a class="headerlink" href="#order" title="Permanent link">&para;</a></h2>
+<p>Рекомендуемый порядок реализации — по возрастанию открытых вопросов:</p>
+<ol>
+<li><strong>#1 tough</strong> — самодостаточно, канон однозначен (SRD), данные не трогает БД.</li>
+<li><strong>#2 Improved Critical</strong> — одно новое поле <code>critRange</code> + 2 крит-точки в <code>TurnResolver</code>.</li>
+<li><strong>#3 Спас врага</strong> — требует решения по источнику данных (SA / Game Design), делается последней.</li>
+</ol>
+<hr />
+<h2 id="regression-1-tough">Regression #1 — tough (Живучий)<a class="headerlink" href="#regression-1-tough" title="Permanent link">&para;</a></h2>
+<h3 id="_1">Что нужно<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>Канон (SRD, feat Tough): максимум HP увеличивается на <code>+2 за каждый уровень</code>,
+<strong>ретроактивно</strong> (включая уровни, прожитые до взятия черты). Далее <code>+2</code> на каждом
+новом уровне.</p>
+<h3 id="fileline">Текущее состояние (file:line)<a class="headerlink" href="#fileline" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/leveling/LevelUpService.kt:187-196</code> — в <code>levelUp</code>:</li>
+<li><code>if (req.featId == "tough") hpDelta += 2 * nextLevel</code> (<code>:188-193</code>) — начисляет
+    <code>+2*nextLevel</code> только в момент взятия; комментарий в коде фиксирует путаницу с
+    двойным счётом.</li>
+<li><code>else if ("tough" in newFeats) { }</code> (<code>:194-196</code>) — <strong>пустая ветка</strong>: на последующих
+    уровнях (когда <code>tough</code> уже в <code>state.feats</code>) <code>+2</code> не начисляется.</li>
+<li>Ретро-трекера уровня взятия нет.</li>
+<li><code>LevelUpService.kt:360-363</code> — <code>hpDeltaFor</code> (для <code>preview</code>) возвращает только
+  <code>avgHitDie + conMod</code>, <strong>вообще не учитывает tough</strong> → preview расходится с actual.</li>
+<li><code>LevelUpService.kt:117-119</code> — момент взятия черты: <code>newFeats = newFeats + feat.id</code>.</li>
+<li>Авто-каскад <code>StateChange.GainXp</code> (ADR-0018 E1) не обрабатывает <code>feats</code> —
+  <code>SessionService.kt:2188-2219</code> (см. audit-05:2.4.A / 2.4.J).</li>
+<li><code>GameState.kt:453</code> — <code>feats: List&lt;String&gt;</code> есть; отдельного трекера <code>tough</code> нет.</li>
+</ul>
+<h3 id="adr">Связь с ADR<a class="headerlink" href="#adr" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ADR-0018 <strong>C3</strong> — единая HP-формула <code>avgHitDie + conModAfter + ретро-CON</code>
+  (<code>avgHitDie</code>: d6=4/d8=5/d10=6/d12=7; ретро-CON <code>(conModAfter - conModBefore) * level</code>).</li>
+<li>ADR-0018 <strong>B2</strong> — единое ядро <code>LevelUpApplier.applyLevelUp</code> (два пути: ручной/авто).</li>
+<li>ADR-0003 — clockwork детерминированная механика (без броска HP).</li>
+</ul>
+<h3 id="_2">Файлы<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/leveling/LevelUpService.kt</code> (<code>:175-201</code>, <code>:360-363</code>).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt</code> (<code>:2188-2219</code> — GainXp).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/GameState.kt</code> (<code>:453</code> — <code>feats</code>; возможно новый трекер).</li>
+</ul>
+<h3 id="_3">Подход (вариант)<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Унифицировать прирост HP в одном источнике, вызываемом и из <code>preview</code>, и из
+<code>levelUp</code>, и из <code>GainXp</code>:
+1. базовый: <code>avgHitDie + conModAfter</code>;
+2. ретро-CON (уже есть, <code>:182-186</code>);
+3. tough: если <code>"tough" in newFeats</code> → <code>+2</code> за новый уровень; при первом взятии —
+   ретро <code>+2 * (уровней до взятия)</code>. Для ретро нужен либо трекер
+   (<code>toughTakenAtLevel: Int?</code>), либо формула «при взятии начислить <code>2 * (nextLevel - 1)</code>
+   сверх +2 текущего уровня». Решение — за реализующей ролью (Backend), согласовать
+   с ADR-0018 C3.</p>
+<h3 id="_4">Тесты<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>Gherkin (русский) в <code>component-tests/</code> + unit:
+- tough на ASI-уровне → <code>+2*level</code> суммарно, без двойного счёта;
+- следующий уровень после tough → <code>avg + con + 2</code>;
+- <code>preview.hpDelta</code> == фактическому <code>hpDelta</code> из <code>levelUp</code>;
+- авто-каскад <code>GainXp</code> с уже взятой <code>tough</code> → <code>+2</code>.</p>
+<h3 id="_5">Риски<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Двойной счёт (уже отражён в комментариях <code>:189-193</code>).</li>
+<li>Рассинхрон preview/actual (<code>hpDeltaFor</code> не учитывает tough).</li>
+<li>Миграция существующих персонажей с уже взятой <code>tough</code> (нужен ли ретро-пересчёт HP?).</li>
+</ul>
+<h3 id="_6">Оценка сложности<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Средняя (логика + консистентность двух путей ручной/авто).</p>
+<hr />
+<h2 id="regression-2-improved-critical">Regression #2 — Improved Critical (Улучшенный критический удар)<a class="headerlink" href="#regression-2-improved-critical" title="Permanent link">&para;</a></h2>
+<h3 id="_7">Что нужно<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>Подкласс Чемпион (<code>subclasses.yml:7-8</code>, <code>:11</code>): на 3 уровне крит <strong>19-20</strong>, на 15 —
+<strong>18-20</strong>. Поле <code>critRange</code> в состоянии персонажа; крит = <code>attackRoll &gt;= critRange</code>.</p>
+<h3 id="fileline_1">Текущее состояние (file:line)<a class="headerlink" href="#fileline_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>critRange</code> в коде <strong>отсутствует</strong> (0 вхождений); в <code>LevelUpService</code> не вычисляется/не хранится.</li>
+<li><code>backend/app/src/main/resources/subclasses.yml:7-8</code> — «Улучшенный критический удар, level 3, крит на 19-20»; <code>:11</code> — «Превосходный, level 15, крит на 18-20».</li>
+<li><code>TurnResolver.kt</code> — крит всегда <code>== 20</code>, всего <strong>21 место</strong> (см. отчёт). Боевые криты с
+  удвоением урона — ровно <strong>2</strong>:</li>
+<li><code>:813</code> (<code>resolveAttackCatalog</code>) — <code>val crit = attackRoll == 20</code>; <code>:828</code> <code>hit = crit || ...</code>; <code>:831</code> <code>critDoubles</code>.</li>
+<li><code>:1713</code> (<code>resolveAttack</code>) — <code>val crit = attackRoll == 20</code>; <code>:1751</code> hit; <code>:1755</code> critDoubles.</li>
+<li>Остальные 19 мест — <strong>не криты</strong>: авто-попадание/авто-успех (<code>roll == 20</code> для
+  проверок, спасбросков, death save, social) — их Improved Critical НЕ меняет.</li>
+</ul>
+<h3 id="adr_1">Связь с ADR<a class="headerlink" href="#adr_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ADR-0018 <strong>B2</strong> — <code>critRange</code> вычисляется в едином ядре levelUp (при выборе подкласса Champion на L3 / апгрейде на L15).</li>
+<li>ADR-0012 — damage resolver (крит влияет на урон — без изменения контракта).</li>
+</ul>
+<h3 id="_8">Файлы<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/GameState.kt:338-510</code> — добавить <code>critRange: Int = 20</code>.</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/leveling/LevelUpService.kt</code> — при levelUp: если <code>subclassId == "champion"</code> и <code>level &gt;= 3</code> → <code>19</code>; <code>&gt;= 15</code> → <code>18</code>.</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/TurnResolver.kt:813, 828, 831, 1713, 1751, 1755</code> — заменить <code>attackRoll == 20</code> на <code>attackRoll &gt;= character.critRange</code>.</li>
+</ul>
+<h3 id="_9">Подход (вариант)<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Поле <code>critRange: Int = 20</code> в <code>CharacterState</code> (инициализация по умолчанию сохраняет
+   обратную совместимость со старыми сессиями).</li>
+<li>В <code>LevelUpService.levelUp</code> после обработки подкласса пересчитать <code>critRange</code> по <code>subclassId</code> + <code>level</code>.</li>
+<li>В <code>TurnResolver</code> заменить <code>crit = attackRoll == 20</code> на <code>crit = attackRoll &gt;= character.critRange</code>
+   в двух точках <code>:813</code>, <code>:1713</code>.</li>
+</ol>
+<h3 id="_10">Тесты<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Champion L3: roll 19 → крит (удвоение урона), roll 18 → нет.</li>
+<li>Champion L15: roll 18 → крит.</li>
+<li>Не-Champion / Champion L&lt;3: <code>critRange == 20</code>, roll 19 → нет.</li>
+</ul>
+<h3 id="_11">Риски<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Перепутать 21 место (auto-hit/auto-success) с критом — менять только <code>:813</code>, <code>:1713</code>.</li>
+<li>Spell attack (<code>resolveSpellOrSummon:1897</code>) и специальные атаки (<code>resolveSpecialAttack</code>)
+  тоже могут критовать в 5e — открытый вопрос (см. отчёт).</li>
+<li>Смежно <code>sneakDice</code> (audit-03:2.2.18) — <strong>out of scope</strong> этой фазы.</li>
+</ul>
+<h3 id="_12">Оценка сложности<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>Средняя (новое поле + широкий, но локальный разброс по <code>TurnResolver</code>).</p>
+<hr />
+<h2 id="regression-3-con">Regression #3 — Спасбросок врага использует CON игрока<a class="headerlink" href="#regression-3-con" title="Permanent link">&para;</a></h2>
+<h3 id="_13">Что нужно<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>Спасбросок врага (в т.ч. против оглушающих статусов в начале хода) должен
+использовать модификаторы <strong>врага</strong>, не игрока. В 5e: <code>d20 + ability_mod врага (+ proficiency)</code>.</p>
+<h3 id="fileline_2">Текущее состояние (file:line)<a class="headerlink" href="#fileline_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>TurnResolver.kt:2683-2688</code> (<code>applyEnemyTurn</code>):</li>
+<li><code>:2687</code> <code>saveTotal = saveRoll + character.effectiveAttributes.conMod + enemy.statusSaveBonus</code> — прибавляется <code>conMod</code> <strong>игрока</strong>.</li>
+<li><code>:2698</code> отображение <code>modifier = character.effectiveAttributes.conMod</code>.</li>
+<li>Несогласованность: <code>SavingThrowResolver.kt:62-86</code> (<code>resolveEnemySave</code>) для спасов от
+  заклинаний использует только <code>enemy.statusSaveBonus</code> (без ability mod) — <strong>два разных расчёта</strong>.</li>
+<li><code>Enemy</code> (<code>GameState.kt:682-725</code>) НЕ имеет ability-модификаторов (<code>conMod</code>/<code>strMod</code>/…).</li>
+<li><code>creature_archetypes</code> (таблица БД, <code>0036-creature-archetypes.yaml</code>) НЕ имеет
+  ability-колонок — только <code>save_bonus_vs_status</code> (boss=4, epic=6; остальные 0).
+  <code>ArchetypeRow</code> — <code>CatalogService.kt:297-333</code>.</li>
+</ul>
+<h3 id="adr_2">Связь с ADR<a class="headerlink" href="#adr_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ADR-0019 <strong>I1</strong> — enum <code>Ability</code> + <code>AbilityResolver.resolveAbility</code> (единый резолв ability) — механизм для ability-модификаторов.</li>
+<li>ADR-0017 <strong>H2</strong> — единый <code>proficiencyBonus</code>.</li>
+<li>ADR-0011 — single source of truth: устранить дубль двух расчётов спаса врага (<code>resolveEnemySave</code> vs inline в <code>applyEnemyTurn</code>).</li>
+</ul>
+<h3 id="_14">Файлы<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/TurnResolver.kt:2683-2698</code>.</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/SavingThrowResolver.kt:62-86</code>.</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/GameState.kt:682-725</code> (добавить <code>attributes: Attributes</code> в <code>Enemy</code>).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/catalog/CatalogService.kt:297-333</code> + liquibase-миграция <code>0036-creature-archetypes.yaml</code> (если добавляем ability-колонки).</li>
+</ul>
+<h3 id="sagame-design">Подход (варианты, решить на SA/Game Design)<a class="headerlink" href="#sagame-design" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Добавить ability-колонки в <code>creature_archetypes</code> (новая liquibase-миграция) → <code>Enemy.attributes</code> → спас врага от ability врага.</li>
+<li>Выводить <code>conMod</code> врага детерминированно из ранга/уровня (без миграции).</li>
+<li>Минимально: убрать <code>character.effectiveAttributes.conMod</code> (заменить на вражий источник либо <code>0</code>) — но это не полноценный спас.</li>
+<li>Рекомендация: унифицировать оба расчёта через <code>SavingThrowResolver.resolveEnemySave</code>,
+  прокинув ability-модификатор врага как вход. Источник данных — открытый вопрос.</li>
+</ol>
+<h3 id="_15">Тесты<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Спас врага против статуса НЕ зависит от CON игрока (фиксируем enemy-источник, меняем
+  CON игрока → результат неизменен).</li>
+<li><code>resolveEnemySave</code> и inline-расчёт в <code>applyEnemyTurn</code> дают согласованный результат.</li>
+</ul>
+<h3 id="_16">Риски<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Решение по источнику данных (миграция БД vs derivation) — блокирует точную реализацию.</li>
+<li>Влияние на баланс: у boss/epic уже <code>save_bonus_vs_status = 4/6</code>; добавление ability mod
+  усилит их спас — согласовать с Game Design.</li>
+</ul>
+<h3 id="_17">Оценка сложности<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>Средняя (данные + унификация двух расчётов).</p>
+<hr />
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<h1 id="1-2-levelupservice-hp-critrange-levelup">1 и #2 обе пишут в <code>LevelUpService</code> (HP и <code>critRange</code> в едином ядре levelUp) — можно объединить.<a class="headerlink" href="#1-2-levelupservice-hp-critrange-levelup" title="Permanent link">&para;</a></h1>
+</li>
+<li>
+<h1 id="2-3-turnresolver-8131713-vs-2687">2 и #3 обе пишут в <code>TurnResolver</code>, но в непересекающихся местах (<code>:813/:1713</code> vs <code>:2687</code>).<a class="headerlink" href="#2-3-turnresolver-8131713-vs-2687" title="Permanent link">&para;</a></h1>
+</li>
+<li>
+<h1 id="3-ability-sa-game-design">3 зависит от решения по источнику ability-модификаторов врага (SA / Game Design) — делается последней.<a class="headerlink" href="#3-ability-sa-game-design" title="Permanent link">&para;</a></h1>
+</li>
+<li>Общая зависимость: ADR-0018 <strong>B2</strong> (<code>LevelUpApplier.applyLevelUp</code>) — единая точка для #1/#2.</li>
+</ul>
+<h2 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>#4 mana vs slots</strong> — эпик, реализация ADR-0016 — вне этого цикла.</li>
+<li><code>sneakDice</code> (audit-03:2.2.18) — смежен с #2, но не входит в эту фазу.</li>
+<li>Реализация <code>AbilityResolver</code> (ADR-0019 N1) — ФАЗА 2; здесь только <code>enum Ability</code> как
+  точка опоры для #3.</li>
+<li>ФАЗА 2+ не планируется.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

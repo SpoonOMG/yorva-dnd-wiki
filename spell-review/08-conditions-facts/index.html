@@ -1,0 +1,1952 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/08-conditions-facts/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Аудит состояний — Блок 2.8: Состояния (conditions) (facts) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#28-conditions-facts" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Аудит состояний — Блок 2.8: Состояния (conditions) (facts)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#281" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.1: РЕЕСТР СОСТОЯНИЙ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#282" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.2: НАЛОЖЕНИЕ СОСТОЯНИЙ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#283" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.3: СНЯТИЕ СОСТОЯНИЙ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#284" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.4: ДЛИТЕЛЬНОСТЬ И ТИК
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#285-save-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.5: SAVE-END
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#286-advantage-disadvantage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.6: ADVANTAGE / DISADVANTAGE ОТ СОСТОЯНИЙ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#287-canact-canmove-canspeak-canattack-canperceive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.7: МОДЕЛЬ ВОЗМОЖНОСТЕЙ (canAct / canMove / canSpeak / canAttack / canPerceive)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#288-srd-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.8: SRD-СОСТОЯНИЯ: РЕЕСТР И СОПОСТАВЛЕНИЕ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#289-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.9: ИСТОЩЕНИЕ (exhaustion)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2810" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.10: НЕДЕЕСПОСОБНОСТЬ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2811" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.11: ОЧАРОВАНИЕ / ИСПУГ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2812" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.12: СМЕРТЬ, БЕЗ СОЗНАНИЯ И СТАБИЛИЗАЦИЯ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2813" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.13: ИММУНИТЕТЫ И КОНТРСПАСБРОСКИ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2814-rest-api-dsl-whitelist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.14: REST API / DSL / WHITELIST ПО СОСТОЯНИЯМ
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="28-conditions-facts">Аудит состояний — Блок 2.8: Состояния (conditions) (facts)<a class="headerlink" href="#28-conditions-facts" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Только факты из кода, без оценок. «Отсутствует» — если нет в коде.
+Паттерны: состояния хранятся как <strong>свободные строки</strong> <code>List&lt;String&gt;</code> в <code>CharacterState</code>/<code>Enemy</code>
+и <code>statusDurations: Map&lt;String, Int&gt;</code>. Системные наборы статусов — companion-константы
+<code>GameState.kt</code>. Справочный словарь (не загружается) — <code>whitelist/action-whitelist-core.yaml</code>.
+DSL-категория <code>CONDITION</code> — <code>dsl-registry.yml</code>. Заклинания — <code>spells.json</code> (<code>effect.condition</code>).</p>
+</blockquote>
+<hr />
+<h2 id="281">2.8.1: РЕЕСТР СОСТОЯНИЙ<a class="headerlink" href="#281" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.1.1. Файл-каталог состояний</strong> — <strong>отсутствует</strong>. Нет <code>conditions.yml</code>, <code>conditions.json</code>
+или иного реестра/справочника состояний, который читал бы движок. Состояния — строковые
+литералы, разбросанные по Kotlin-коду (см. 2.8.1.6).</p>
+<p><strong>2.8.1.2. Загрузчик</strong> — <strong>отсутствует</strong>. Нет <code>ConditionRegistry</code>, <code>@PostConstruct load()</code> для
+состояний, нет <code>get(id)</code>/<code>getAll()</code>. Единственное вхождение ключа <code>conditions:</code> —
+<code>backend/app/src/main/resources/whitelist/action-whitelist-core.yaml:240-264</code>, но загрузчик
+<code>ActionWhitelist</code> (<code>com.yorva.dsl.ActionWhitelist.kt:22-81</code>) читает <strong>только</strong> ключ
+<code>root["action_whitelist"]</code> (<code>:27</code>) и ключ <code>conditions</code> не обрабатывает. То есть этот список в
+движок не попадает и остаётся справочной документацией (комментарий «СЛОВАРЬ СОСТОЯНИЙ»).</p>
+<p><strong>2.8.1.3. Модель/enum <code>Condition</code></strong> — <strong>отсутствует</strong>. Нет <code>enum class Condition</code>, <code>data class
+Condition</code>, интерфейса или фабрики. Хранение состояний:
+| Где | Тип | Файл |
+|---|---|---|
+| <code>CharacterState.statuses</code> | <code>List&lt;String&gt;</code> (свободные строки) | <code>rules/GameState.kt</code> |
+| <code>CharacterState.statusDurations</code> | <code>Map&lt;String, Int&gt;</code> (раунды до снятия) | <code>rules/GameState.kt</code> |
+| <code>Enemy.statuses</code> | <code>List&lt;String&gt;</code> | <code>rules/GameState.kt:643</code> |
+| <code>NpcState</code>/<code>CombatState</code> | <code>statuses</code> (<code>:909</code> — <code>isIncapacitated</code> = <code>"Недееспособен"</code>) | <code>rules/GameState.kt</code> |
+| <code>exhaustion</code> | <code>Int</code> 0..6, <strong>отдельное поле</strong>, не элемент <code>statuses</code> | <code>rules/GameState.kt:363,484</code> |</p>
+<p>Операции над состояниями — через sealed <code>StateChange</code> (<code>rules/GameState.kt</code>):
+<code>ApplyStatus(status: String, target, durationRounds)</code>, <code>RemoveStatus(status, target)</code>,
+<code>AddCondition(condition: String)</code> (<code>:1112</code>), <code>ApplyDebuff(condition: String, durationRounds: Int)</code>
+(<code>:1184</code>), <code>Stabilized</code> (<code>:1161</code>).</p>
+<p><strong>2.8.1.4. Системные наборы статусов (хардкод-константы)</strong> — <code>rules/GameState.kt:604-620</code> и <code>:675</code>:
+<div class="highlight"><pre><span></span><code><span class="c1">// CharacterState.companion (GameState.kt:604-620)</span>
+<span class="n">INCAPACITATING_STATUSES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">"Заморожен"</span><span class="p">,</span><span class="s">"Ошеломлён"</span><span class="p">,</span><span class="s">"Парализован"</span><span class="p">,</span><span class="s">"Оглушён"</span><span class="p">,</span><span class="s">"Сон"</span><span class="p">,</span><span class="s">"Недееспособен"</span><span class="p">)</span>
+<span class="n">NO_MOVE_STATUSES</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">"Связан"</span><span class="p">,</span><span class="s">"Опутанный"</span><span class="p">,</span><span class="s">"Опутан"</span><span class="p">,</span><span class="s">"Грапплинг"</span><span class="p">,</span><span class="s">"Захвачен"</span><span class="p">,</span><span class="s">"Удержан"</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">"Сбит с ног"</span><span class="p">,</span><span class="s">"Сбита с ног"</span><span class="p">,</span><span class="s">"Лежит"</span><span class="p">,</span><span class="s">"Ничком"</span><span class="p">)</span>
+<span class="n">NO_SPEAK_STATUSES</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">"Немота"</span><span class="p">,</span><span class="s">"Зачарован"</span><span class="p">,</span><span class="s">"Ошеломлён"</span><span class="p">)</span>
+<span class="n">NO_ATTACK_STATUSES</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">"Сон"</span><span class="p">,</span><span class="s">"Без сознания"</span><span class="p">,</span><span class="s">"Стабилен"</span><span class="p">)</span>
+<span class="n">NO_PERCEPTION_STATUSES</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">"Ослеплён"</span><span class="p">,</span><span class="s">"Оглушён"</span><span class="p">,</span><span class="s">"Глух"</span><span class="p">)</span>
+<span class="n">SAVE_END_STATUSES</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">"Парализован"</span><span class="p">,</span><span class="s">"Ошеломлён"</span><span class="p">,</span><span class="s">"Заморожен"</span><span class="p">,</span><span class="s">"Ослеплён"</span><span class="p">,</span><span class="s">"Испуган"</span><span class="p">,</span>
+<span class="w">                                </span><span class="s">"Отравлен"</span><span class="p">,</span><span class="s">"Опутанный"</span><span class="p">,</span><span class="s">"Опутан"</span><span class="p">)</span>
+<span class="c1">// Enemy.companion (GameState.kt:675)</span>
+<span class="n">INCAPACITATING_STATUSES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">"Заморожен"</span><span class="p">,</span><span class="s">"Ошеломлён"</span><span class="p">,</span><span class="s">"Парализован"</span><span class="p">,</span><span class="s">"Оглушён"</span><span class="p">,</span><span class="s">"Сон"</span><span class="p">)</span>
+</code></pre></div>
+Производные геттеры на тех же строках: <code>isIncapacitated</code> (<code>:492</code>), <code>isRestrained</code> (<code>:495</code>),
+<code>isProne</code> (<code>:498</code>), <code>isBlinded</code> (<code>:501</code>), <code>isUnconscious</code> (<code>:489</code> — <code>hp==0 &amp;&amp; !isDead &amp;&amp;
+deathSaveFail&lt;3 &amp;&amp; "Стабилен" !in statuses</code>), <code>canAct</code>/<code>canMove</code>/<code>canSpeak</code>/<code>canPerceive</code>
+(<code>:507-523</code>). У <code>Enemy</code> — <code>isIncapacitated</code> (<code>:666</code>), <code>isProne</code> (<code>:669</code>), <code>isRestrained</code> (<code>:672</code>).</p>
+<p><strong>2.8.1.5. Справочный словарь (whitelist, не загружается)</strong> —
+<code>whitelist/action-whitelist-core.yaml:240-264</code>, 24 English-кода:
+<code>BLINDED, CHARMED, DEAFENED, FRIGHTENED, GRAPPLED, INCAPACITATED, INVISIBLE, PARALYZED, PETRIFIED,
+POISONED, PRONE, RESTRAINED, STUNNED, UNCONSCIOUS, EXHAUSTION, STABLE, CONCENTRATING, RAGING,
+INSPIRED, HASTED, SLOWED, BLESSED, CURSED, MARKED</code>. Первые 15 совпадают с каноническими
+состояниями SRD 5e; остальные — служебные (концентрация, ярость, баффы/дебаффы, истощение).
+Соответствия English-код ↔ русская строка в коде <strong>нет</strong> (маппинг нигде не задан).</p>
+<p><strong>2.8.1.6. Полный список строковых состояний, реально встречающихся в коде:</strong></p>
+<p>Источник A — <code>GameState.kt:604-620,675</code> (см. 2.8.1.4).
+Источник B — <code>GameState.kt:489-501</code> (геттеры): <code>Стабилен</code>, <code>Ослеплён</code>.
+Источник C — <code>TurnResolver.kt</code> (<code>StateChange.ApplyStatus</code>/<code>RemoveStatus</code> и проверки):
+| Строка состояния | Где | Триггер |
+|---|---|---|
+| <code>Уклонение</code> | <code>:461</code> | действие Dodge |
+| <code>Скрыт</code> | <code>:498,537</code> | успешная Скрытность |
+| <code>Сбит с ног</code> | <code>:933,1985,1988</code> | манёвр trip/shove (на врага) |
+| <code>Ошеломлён</code> | <code>:739</code> | крит-провал заклинания (на игрока, 1 раунд) |
+| <code>Врасплох</code> | <code>:1128,2261</code> | провал инициативы / успешная Скрытность (на врага) |
+| <code>Отравлен</code> | <code>:2415</code> | фича <code>poison_strike</code> (CON DC13) |
+| <code>Ярость</code> | <code>:2346</code> | фича <code>enrage</code> врага (&lt;50% HP) |
+| <code>Заморожен</code>,<code>Ошеломлён</code>,<code>Истощён</code>,<code>Под эффектом</code> | <code>:1149-1154</code> | <code>statusNameForFamily</code> (frost/lightning/necrotic) |
+| <code>Без сознания</code>, <code>Стабилен</code> | <code>SessionService.kt:1915-1928</code>, <code>TurnResolver.kt:434,1794-1795</code> | 3 успеха death save / Stabilized / long rest |
+Источник D — проверки помехи/преимущества: <code>Отравлен, Ошеломлён, Испуган, Связан, Опутанный,
+Оглушён, Ослеплён, Сбит с ног, Сон, Заморожен, Без сознания, Парализован</code> (<code>TurnResolver.kt:1979-1988</code>).
+Источник E — <code>spells.json</code>, <code>effect.condition</code> у debuff-заклинаний (18 вхождений, 13 различных):
+<code>Ослеплён</code>(3), <code>Очарован</code>(3), <code>Опутанный</code>(2), <code>Ошеломлён</code>, <code>Освещён</code>, <code>Сбит с ног</code>, <code>Проклят</code>,
+<code>Метка</code>, <code>Сон</code>, <code>Парализован</code>, <code>Прервано</code>, <code>Рассеяно</code>, <code>Замедлен</code>.
+Источник F — DB-миграции: <code>weapon_traits.status="Отравлен"</code> (<code>0015-action-catalog.yaml:116</code>),
+<code>effect_templates.name_ru="Отравлен"</code> (<code>0015:138</code>), <code>environmental_hazards.onFailStatus="Отравлен"</code>
+(<code>0035-environmental-hazards.yaml:25</code>).
+Источник G — whitelist-словарь (не загружается, см. 2.8.1.5).</p>
+<p>Сводно различаемые наборы строк (объединение источников A-G): <code>Заморожен, Ошеломлён, Парализован,
+Оглушён, Сон, Недееспособен, Связан, Опутанный, Опутан, Грапплинг, Захвачен, Удержан, Сбит с ног,
+Сбита с ног, Лежит, Ничком, Немота, Зачарован, Без сознания, Стабилен, Ослеплён, Глух, Испуган,
+Отравлен, Уклонение, Скрыт, Врасплох, Ярость, Истощён, Под эффектом, Очарован, Освещён, Проклят,
+Метка, Прервано, Рассеяно, Замедлен</code> + поле <code>exhaustion: Int</code>.</p>
+<p><strong>Соответствие 15 каноническим состояниям SRD 5e:</strong>
+| Канон SRD | Строка(и) в коде | Реализация |
+|---|---|---|
+| Blinded | <code>Ослеплён</code> | <code>isBlinded</code>, помеха, <code>targetGrantsAdvantage</code> |
+| Charmed | <code>Очарован</code>/<code>Зачарован</code> | только как дебафф заклинаний / <code>NO_SPEAK</code> |
+| Deafened | <code>Оглушён</code>/<code>Глух</code> | <code>NO_PERCEPTION</code> (+ <code>Оглушён</code> в <code>INCAPACITATING</code>) |
+| Exhaustion | поле <code>exhaustion: Int</code> (+ статус <code>Истощён</code>) | уровень 0..6, long rest −1 |
+| Frightened | <code>Испуган</code> | помеха атакам, <code>SAVE_END</code>, <code>targetGrantsAdvantage</code> |
+| Grappled | <code>Грапплинг</code>/<code>Захвачен</code>/<code>Удержан</code> | только <code>NO_MOVE</code>, отдельного геттера нет |
+| Incapacitated | <code>Недееспособен</code> (+ производный <code>isIncapacitated</code>) | <code>canAct</code> |
+| Invisible | — | <strong>отсутствует</strong> (есть только название заклинания «Невидимость») |
+| Paralyzed | <code>Парализован</code> | incapacitating, advantage for attackers, <code>SAVE_END</code> |
+| Petrified | — (<code>PETRIFIED</code>/<code>Окаменел</code> только в whitelist-словаре) | <strong>отсутствует</strong> в движке |
+| Poisoned | <code>Отравлен</code> | помеха, <code>SAVE_END</code>, фичи/оружие/опасности |
+| Prone | <code>Сбит с ног</code>/<code>Сбита с ног</code>/<code>Лежит</code>/<code>Ничком</code> | <code>isProne</code>, помеха атакам |
+| Restrained | <code>Опутанный</code>/<code>Опутан</code> | <code>isRestrained</code>, <code>NO_MOVE</code>, помеха |
+| Stunned | <code>Ошеломлён</code> | incapacitating, <code>SAVE_END</code> |
+| Unconscious | <code>Без сознания</code> | <code>isUnconscious</code>, <code>NO_ATTACK</code> |</p>
+<p><strong>Отсутствует:</strong> единый реестр/enum/id-состояний; маппинг English-код ↔ русская строка;
+отдельные полноценные реализации <code>Invisible</code> и <code>Petrified</code>; единая точка регистрации
+длительностей/спасбросков для статусов (наборы заданы хардкодом по файлам).</p>
+<hr />
+<h2 id="282">2.8.2: НАЛОЖЕНИЕ СОСТОЯНИЙ<a class="headerlink" href="#282" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.2.1. Каналы наложения — <code>StateChange</code></strong> (<code>rules/GameState.kt:1107-1211</code>):
+| StateChange | Поля | Файл:строка |
+|---|---|---|
+| <code>ApplyStatus</code> | <code>status: String</code>, <code>target: String</code>, <code>durationRounds: Int = 1</code> | <code>GameState.kt:1110</code> |
+| <code>RemoveStatus</code> | <code>status</code>, <code>target</code> | <code>GameState.kt:1111</code> |
+| <code>AddCondition</code> | <code>condition: String</code> (нет target, нет длительности) | <code>GameState.kt:1112</code> |
+| <code>ApplyDebuff</code> | <code>condition: String</code>, <code>durationRounds: Int</code> (нет target) | <code>GameState.kt:1184</code> |
+| <code>ApplyBuff</code> | <code>modifier: StatModifier</code>, <code>requiresConcentration: Boolean</code> | <code>GameState.kt:1177-1182</code> |
+| <code>Stabilized</code> | — | <code>GameState.kt:1161</code> |</p>
+<p><strong>2.8.2.2. Применение в <code>SessionService.applyStateChanges</code></strong> — <code>SessionService.kt:1712-2190</code>:
+- <code>ApplyStatus</code> (<code>:1808-1815</code>): добавляет строку в <code>statuses</code>, <strong>только если <code>target == PLAYER</code></strong> и
+  статуса ещё нет. Запись длительности в <code>statusDurations[status] = durationRounds</code> <strong>не гейтится по
+  target</strong> (<code>:1813-1815</code>): при <code>target == ENEMY</code> строка в <code>statuses</code> не добавится, но длительность
+  в карту игрока всё равно попадёт (загрязнение <code>statusDurations</code>). При <code>durationRounds &lt;= 0</code>
+  длительность не пишется (трактуется как «бесконечный / до long rest»).
+- <code>RemoveStatus</code> (<code>:1817-1819</code>): <code>statuses.remove</code> только при <code>target == PLAYER</code>.
+- <code>AddCondition</code> (<code>:2031-2033</code>): <code>if (condition !in statuses) statuses.add(condition)</code> — <strong>всегда игроку</strong>,
+  target отсутствует, длительность не пишется.
+- <code>ApplyDebuff</code> (<code>:2055-2057</code>): <code>if (condition !in statuses) statuses.add(condition)</code> — <strong>всегда игроку</strong>;
+  поле <code>durationRounds</code> <strong>не читается</strong> (не влияет ни на <code>statuses</code>, ни на <code>statusDurations</code>).
+- <code>ApplyBuff</code> (<code>:2041-2053</code>): добавляет <code>modifier</code> в <code>activeModifiers</code>; при <code>requiresConcentration</code>
+  снимает предыдущую концентрацию (<code>activeModifiers.removeAll { it.source == concentrationSpell }</code>)
+  и выставляет <code>concentrationSpell = change.modifier.source</code>.
+- <code>CastSpell</code> (<code>:2034-2039</code>): безусловно <code>concentrationSpell = null</code> (комментарий «MVP: заглушка»).</p>
+<p><strong>2.8.2.3. Наложение на <code>Enemy</code></strong> — через <code>ApplyStatus</code>/<code>ApplyDebuff</code> <strong>не работает</strong>
+(<code>StateTarget.ENEMY</code> в <code>applyStateChanges</code> не обрабатывается — <code>:1809,1818</code>; <code>change.target</code>
+проверяется только для <code>PLAYER</code>). Враг обновляется только прямыми <code>enemy.copy(statuses = ...)</code>
+в <code>TurnResolver</code>:
+- <code>Врасплох</code> — накладывается (<code>:1128</code> — провал инициативы, <code>:2261</code> — успешная Скрытность) и
+  снимается (<code>:594,1469,2287</code>);
+- <code>Ярость</code> — <code>enemy.copy(statuses + "Ярость", ac-2, damageBonus+2)</code> (<code>:2347</code>);
+- статус от <code>statusNameForFamily</code> при стихийной атаке (<code>:757</code>).</p>
+<p><strong>2.8.2.3.1. Дефект: боевые приёмы на врага теряются.</strong> <code>trip/shove/overrun/tumble → ApplyStatus("Сбит с ног", StateTarget.ENEMY)</code>
+(<code>TurnResolver.kt:933</code>), <code>grapple → "Связан"</code> (<code>:934</code>), <code>dirty_trick → "Ослеплён"</code> (<code>:935</code>),
+<code>feint → "Испуган"</code> (<code>:936</code>). В <code>applyStateChanges</code> эти <code>StateChange</code> не применяются ни к игроку
+(target != PLAYER), ни к врагу — эффект приёма фактически отсутствует (описание есть, статус не
+накладывается).</p>
+<p><strong>2.8.2.4. Критическая находка — дебафф заклинания уходит игроку, а не врагу.</strong>
+<code>SpellService.resolveDebuff</code> (<code>spells/SpellService.kt:214-238</code>) резолвится для <code>target: Enemy</code>,
+но при провале спасброска создаёт:
+<div class="highlight"><pre><span></span><code><span class="n">stateChanges</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">StateChange</span><span class="p">.</span><span class="na">AddCondition</span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="na">condition</span><span class="p">))</span><span class="w">        </span><span class="c1">// :230</span>
+<span class="n">stateChanges</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">StateChange</span><span class="p">.</span><span class="na">ApplyDebuff</span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="na">condition</span><span class="p">,</span><span class="w"> </span><span class="n">effect</span><span class="p">.</span><span class="na">durationRounds</span><span class="p">))</span><span class="w"> </span><span class="c1">// :231-234</span>
+</code></pre></div>
+Оба варианта в <code>SessionService</code> применяются к <code>CharacterState.statuses</code> игрока
+(<code>:2031-2033</code>, <code>:2055-2057</code>), <code>Enemy</code> не изменяется. То есть <code>cast &lt;debuff&gt;</code> накладывает
+состояние на игрока, а не на цель.</p>
+<p><strong>2.8.2.5. Стек/дубликаты.</strong> Повторное наложение того же статуса не создаёт второй элемент
+(<code>if (... !in statuses)</code>), но <code>durationRounds</code> перезаписывается. Для <code>ApplyStatus</code> перезапись
+происходит даже если статус уже был. Счётчиков стаков (stacks) нет — исключение <code>exhaustion: Int</code>.</p>
+<p><strong>2.8.2.6. Валидация.</strong> Строка статуса нигде не проверяется по реестру/enum — принимается любая
+произвольная строка (см. 2.8.1.3).</p>
+<hr />
+<h2 id="283">2.8.3: СНЯТИЕ СОСТОЯНИЙ<a class="headerlink" href="#283" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.3.1. Явное снятие</strong> — только <code>StateChange.RemoveStatus</code> (<code>SessionService.kt:1817-1819</code>) и
+<code>statuses.remove(...)</code> в обработчиках:
+- <code>Heal</code> (<code>:1800-1805</code>): при переходе <code>hp 0 → &gt;0</code> снимаются <code>Без сознания</code> и <code>Стабилен</code>,
+  сбрасываются <code>deathSaveSuccess/deathSaveFail</code>.
+- <code>DeathSaveSuccess</code> (<code>:1912-1921</code>): при 3 успехах снимается <code>Без сознания</code>, добавляется <code>Стабилен</code>, <code>hp = 1</code>.
+- <code>Stabilized</code> (<code>:1930-1937</code>): то же + сброс счётчиков.
+- Long rest (<code>TurnResolver.kt:1794-1795</code>): <code>RemoveStatus("Стабилен")</code> и, если <code>hp &gt; 0</code>,
+  <code>RemoveStatus("Без сознания")</code>.
+- Уклонение (<code>TurnResolver.kt:2366</code>): <code>RemoveStatus("Уклонение")</code> в конце хода врага.</p>
+<p><strong>2.8.3.2. Дефект: <code>RemoveStatus</code> не чистит <code>statusDurations</code>.</strong> В <code>:1817-1819</code> удаляется только
+строка из <code>statuses</code>; запись в <code>statusDurations</code> остаётся и продолжает тикать до истечения.</p>
+<p><strong>2.8.3.3. Автоснятие по длительности</strong> — <code>tickDurations</code> (см. 2.8.4).</p>
+<p><strong>2.8.3.4. Снятие заклинанием</strong> — обработчика нет. <code>REMOVE_CONDITION</code> присутствует в
+<code>dsl-registry.yml:120</code>, но в <code>ActionParser</code> не разобран (см. 2.8.14).</p>
+<p><strong>2.8.3.5. End-условия типа «спасбросок в конце хода»</strong> — <code>resolveSaveEnds</code> (см. 2.8.5).</p>
+<hr />
+<h2 id="284">2.8.4: ДЛИТЕЛЬНОСТЬ И ТИК<a class="headerlink" href="#284" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.4.1. Хранилище</strong> — <code>CharacterState.statusDurations: Map&lt;String, Int&gt;</code> (<code>GameState.kt:441</code>,
+комментарий «когда значение &lt;= 0, статус удаляется из <code>statuses</code> в tickDurations»).
+У <code>Enemy</code> поля <code>statusDurations</code> <strong>нет</strong> — вражеские статусы бессрочны.</p>
+<p><strong>2.8.4.2. Тик</strong> — <code>SessionService.tickDurations</code> (<code>:2188-2208</code>), вызывается в <code>:844</code> после
+<code>applyStateChanges</code> и до <code>resolveSaveEnds</code>:
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">updatedDurations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">statusDurations</span><span class="p">.</span><span class="na">mapValues</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">}</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">expired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">updatedDurations</span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">(</span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">}.</span><span class="na">keys</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">remainingStatuses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="na">statuses</span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="k">!in</span><span class="w"> </span><span class="n">expired</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+Заодно уменьшает <code>activeModifiers.durationRounds</code> и удаляет истёкшие модификаторы (<code>:2189-2196</code>).</p>
+<p><strong>2.8.4.3. Единица тика</strong> — 1 ход игрока (вызов в конце <code>resolve</code>). Тик происходит даже если
+состояние наложено в этом же ходу с <code>durationRounds = 1</code>: <code>ApplyStatus</code> пишет 1, затем
+<code>tickDurations</code> уменьшает до 0 и снимает — статус живёт до конца текущего хода.</p>
+<p><strong>2.8.4.4. Источники длительности:</strong>
+- <code>ApplyStatus</code> — <code>durationRounds</code> из <code>StateChange</code> (по умолчанию 1).
+- <code>ApplyDebuff</code> — <code>durationRounds</code> <strong>игнорируется</strong> (<code>SessionService.kt:2055-2057</code>).
+- <code>AddCondition</code> — длительность не задаётся вовсе.
+- <code>spells.json</code> — поле <code>durationRounds</code> у debuff-эффектов (<code>SpellService.kt:233</code>), но путь
+  обрывается дефектом 2.8.2.4.</p>
+<p><strong>2.8.4.5. «Бесконечные» статусы</strong> — те, у которых нет записи в <code>statusDurations</code>
+(<code>durationRounds &lt;= 0</code>): тик их не удаляет. Снимаются только явно.</p>
+<hr />
+<h2 id="285-save-end">2.8.5: SAVE-END<a class="headerlink" href="#285-save-end" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.5.1. Игрок</strong> — <code>TurnResolver.resolveSaveEnds</code> (<code>TurnResolver.kt:49-82</code>):
+- Отбор: <code>status in statuses</code> <strong>и</strong> <code>status in statusDurations</code> <strong>и</strong> <code>status in SAVE_END_STATUSES</code>.
+- Спасбросок <strong>Телосложения</strong>, <code>DC 12</code> (параметр <code>dc: Int = 12</code>).
+- Бонус: <code>effectiveAttributes.conMod + proficiencyBonus</code> (уровневая заглушка: <code>&gt;=5 → 3</code>, <code>&gt;=1 → 2</code>, иначе 0).
+- <code>d20 == 20</code> — автоуспех; <code>d20 == 1</code> — автопровал; иначе <code>total &gt;= 12</code>.
+- При успехе снимаются и <code>statuses</code>, и <code>statusDurations</code>.
+- Вызов — <code>SessionService.kt:845-848</code> <strong>после</strong> <code>tickDurations</code>; броски уходят в
+  <code>mechanics.diceRolls</code>/нарратив.
+- Статусы с длительностью, но без записи в <code>statusDurations</code> (бесконечные) спасбросок не проходят.</p>
+<p><strong>2.8.5.2. Враг</strong> — <code>TurnResolver.applyEnemyTurn</code> (<code>TurnResolver.kt:2291-2320</code>):
+- Срабатывает в начале хода врага при <code>enemy.isIncapacitated</code>.
+- <code>saveDc = 13 + profile.mechanics.dcOffset</code>.
+- Бросок <code>d20 + character.effectiveAttributes.conMod + enemy.statusSaveBonus</code> (используется
+  модификатор <strong>игрока</strong>, а не врага).
+- <code>20</code> — автоуспех, <code>1</code> — автопровал.
+- При успехе снимаются статусы из <code>Enemy.INCAPACITATING_STATUSES</code>, пересечённые с <code>enemy.statuses</code>.
+- <code>statusSaveBonus</code> задаётся архетипом (<code>SavingThrowResolver.kt:68</code>, <code>TurnResolver.kt:1127</code>).</p>
+<p><strong>2.8.5.3. <code>SAVE_END_STATUSES</code></strong> (<code>GameState.kt:620</code>): <code>Парализован, Ошеломлён, Заморожен,
+Ослеплён, Испуган, Отравлен, Опутанный, Опутан</code>.</p>
+<p><strong>2.8.5.4. Отдельные спасброски по видам</strong> (<code>SAVE_DEATH/POISON/FIRE/FEAR/CHARM</code>) — маппятся в
+<code>ActionType.CHECK</code> (<code>ActionParser.kt:517</code>), специализированной логики снятия состояния нет
+(см. 2.8.14).</p>
+<hr />
+<h2 id="286-advantage-disadvantage">2.8.6: ADVANTAGE / DISADVANTAGE ОТ СОСТОЯНИЙ<a class="headerlink" href="#286-advantage-disadvantage" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.6.1. Хелперы</strong> — <code>TurnResolver.kt:1978-1988</code>:
+| Хелпер | Логика |
+|---|---|
+| <code>hasDisadvantageOnChecks</code> (<code>:1978-1979</code>) | статусы <code>Отравлен, Ошеломлён, Испуган, Связан, Опутанный, Оглушён, Ослеплён</code> |
+| <code>hasDisadvantageOnAttacks</code> (<code>:1984-1985</code>) | те же + <code>Сбит с ног</code> <strong>или</strong> <code>isProne</code> |
+| <code>hasAdvantageOnSkill</code> (<code>:1981-1982</code>) | только <code>stealth</code> при статусе <code>Скрыт</code> |
+| <code>targetGrantsAdvantage</code> (<code>:1987-1988</code>) | у врага: <code>Связан, Опутанный, Без сознания, Парализован, Ошеломлён, Сон, Заморожен, Ослеплён, Сбит с ног</code> <strong>или</strong> <code>isIncapacitated</code> <strong>или</strong> <code>isProne</code> |</p>
+<p><strong>2.8.6.2. Точки применения:</strong> атака по врагу — <code>:592-593</code>, <code>:1467-1468</code>; проверки навыков —
+<code>:815-816</code>, <code>:908-909</code>, <code>:1194</code>, <code>:2001</code>, <code>:2110</code>.</p>
+<p><strong>2.8.6.3. Атака врага по игроку</strong> — <code>:2352-2360</code>: <code>playerGrantsAdv = character.isIncapacitated</code>;
+помеха врагу при <code>Отравлен/Ошеломлён/Испуган</code> у врага (<code>:2353</code>) или при Dodge (<code>isDodge</code>).
+Расхождение: у врага отсутствуют <code>Связан/Опутанный/Ослеплён</code> в наборе помехи атаки (<code>:2353</code>),
+хотя у игрока они есть (<code>:1985</code>).</p>
+<p><strong>2.8.6.4. Правила SRD, отсутствующие:</strong> преимущество атакующих по <code>Paralyzed/Unconscious</code>
+реализовано через <code>targetGrantsAdvantage</code>; <strong>advantage на спасброски</strong> от состояний
+(напр. <code>Restrained</code> → disadvantage на DEX saves) не реализовано; авто-провал DEX/STR save у
+<code>Paralyzed/Stunned/Unconscious</code> — отсутствует; <code>Blinded</code> → disadvantage на проверки, зависящие
+от зрения — отдельно не выделено (входит в общий <code>hasDisadvantageOnChecks</code>).</p>
+<hr />
+<h2 id="287-canact-canmove-canspeak-canattack-canperceive">2.8.7: МОДЕЛЬ ВОЗМОЖНОСТЕЙ (canAct / canMove / canSpeak / canAttack / canPerceive)<a class="headerlink" href="#287-canact-canmove-canspeak-canattack-canperceive" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.7.1. Геттеры <code>CharacterState</code></strong> (<code>GameState.kt:507-540</code>):
+| Геттер | Формула |
+|---|---|
+| <code>canAct</code> | <code>!isIncapacitated</code> (<code>:507</code>); <code>isIncapacitated = isUnconscious \|\| statuses.any { it in {"Ошеломлён","Парализован","Оглушён","Сон","Заморожен","Недееспособен"} }</code> (<code>:492</code>) |
+| <code>canMove</code> | <code>!isIncapacitated &amp;&amp; statuses.none { it in NO_MOVE_STATUSES }</code> (<code>:511</code>) |
+| <code>canSpeak</code> | <code>!isIncapacitated &amp;&amp; statuses.none { it in NO_SPEAK_STATUSES }</code> (<code>:515</code>) |
+| <code>canAttack</code> | <code>canAct &amp;&amp; statuses.none { it in NO_ATTACK_STATUSES }</code> (<code>:519</code>) |
+| <code>canPerceive</code> | <code>!isIncapacitated &amp;&amp; statuses.none { it in NO_PERCEPTION_STATUSES }</code> (<code>:523</code>) |
+| <code>blockedCapabilityReason</code> | первая причина из <code>INCAPACITATING_STATUSES</code>/<code>NO_ATTACK</code>/<code>NO_MOVE</code> (<code>:530-540</code>) |</p>
+<p><strong>2.8.7.2. Геттеры <code>Enemy</code></strong> (<code>GameState.kt:666-672</code>): <code>isIncapacitated</code> (по
+<code>Enemy.INCAPACITATING_STATUSES</code>), <code>isProne</code>, <code>isRestrained</code>. Модели <code>canMove/canSpeak/canAttack/</code>
+<code>canPerceive</code> у врага нет — только <code>isIncapacitated</code>/<code>isProne</code>/<code>isRestrained</code>.</p>
+<p><strong>2.8.7.3. Единственная точка блокировки действия игрока</strong> — <code>TurnResolver.kt:184</code>:
+<code>if (!character.canAct || !character.canAttack) → no_roll с причиной</code>. Проверка <code>isUnconscious</code>
+идёт раньше (<code>:179</code>) и уводит в death save. <code>canMove/canSpeak/canPerceive</code> в диспетчеризации
+действий <strong>не используются</strong> (нет отдельного гейта на движение/речь/восприятие).</p>
+<p><strong>2.8.7.4. Наборы <code>CharacterState</code></strong> (<code>GameState.kt:605-620</code>):
+<code>INCAPACITATING_STATUSES</code>, <code>NO_MOVE_STATUSES</code>, <code>NO_SPEAK_STATUSES</code>, <code>NO_ATTACK_STATUSES</code>,
+<code>NO_PERCEPTION_STATUSES</code>, <code>SAVE_END_STATUSES</code> (см. 2.8.1.4).</p>
+<hr />
+<h2 id="288-srd-">2.8.8: SRD-СОСТОЯНИЯ: РЕЕСТР И СОПОСТАВЛЕНИЕ<a class="headerlink" href="#288-srd-" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.8.1.</strong> Канонические 15 состояний SRD 5e сопоставлены со строками кода — таблица в 2.8.1
+(«Соответствие 15 каноническим состояниям SRD 5e»).</p>
+<p><strong>2.8.8.2. Полностью отсутствуют в движке:</strong> <code>Invisible</code> (нет статуса/геттера; есть только
+заклинание «Невидимость»), <code>Petrified</code> (только <code>PETRIFIED</code>/<code>Окаменел</code> в справочном
+whitelist-словаре).</p>
+<p><strong>2.8.8.3. Частично реализованы:</strong>
+- <code>Charmed</code> — строки <code>Очарован</code>/<code>Зачарован</code>, только как дебафф заклинаний и <code>NO_SPEAK</code>;
+  отдельного геттера/логики нет.
+- <code>Grappled</code> — строки <code>Грапплинг</code>/<code>Захвачен</code>/<code>Удержан</code>, только <code>NO_MOVE</code> без геттера.
+- <code>Exhaustion</code> — отдельное поле <code>Int</code>, не элемент <code>statuses</code> (см. 2.8.9).
+- <code>Deafened</code> — <code>Оглушён</code>/<code>Глух</code>, но <code>Оглушён</code> дополнительно в <code>INCAPACITATING_STATUSES</code>/<code>SAVE_END</code>.</p>
+<p><strong>2.8.8.4. Маппинг English-код ↔ русская строка</strong> — отсутствует (см. 2.8.1.5).</p>
+<hr />
+<h2 id="289-exhaustion">2.8.9: ИСТОЩЕНИЕ (exhaustion)<a class="headerlink" href="#289-exhaustion" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.9.1.</strong> Поле <code>CharacterState.exhaustion: Int = 0</code> (<code>GameState.kt:363</code>) с инвариантом
+<code>require(exhaustion in 0..6)</code> (<code>:484</code>). Комментарий: «6 уровней = смерть» (<code>:361</code>).</p>
+<p><strong>2.8.9.2. Снятие:</strong> только long rest <code>exhaustionRemoved = minOf(1, exhaustion)</code> —
+<code>RestService.kt:90,97,107</code>.</p>
+<p><strong>2.8.9.3. Механические штрафы отсутствуют.</strong> Уровень истощения не влияет на броски, HP,
+скорость, преимущества/помехи — в <code>TurnResolver</code> нет чтений <code>character.exhaustion</code> (кроме
+long rest). Проверка смерти при <code>exhaustion == 6</code> <strong>не реализована</strong>.</p>
+<p><strong>2.8.9.4.</strong> Статус <code>Истощён</code> (русская строка) — отдельный флаг из <code>statusNameForFamily</code>
+(<code>TurnResolver.kt:1152-1153</code>, necrotic), не связан с полем <code>exhaustion</code>.</p>
+<hr />
+<h2 id="2810">2.8.10: НЕДЕЕСПОСОБНОСТЬ<a class="headerlink" href="#2810" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.10.1. <code>CharacterState.isIncapacitated</code></strong> (<code>GameState.kt:492</code>):
+<code>isUnconscious || statuses.any { it in setOf("Ошеломлён","Парализован","Оглушён","Сон","Заморожен","Недееспособен") }</code>.</p>
+<p><strong>2.8.10.2. <code>Enemy.isIncapacitated</code></strong> (<code>GameState.kt:666</code>) — по <code>Enemy.INCAPACITATING_STATUSES</code>
+(<code>:675</code>: <code>Заморожен, Ошеломлён, Парализован, Оглушён, Сон</code>; <strong>без</strong> <code>Недееспособен</code>).
+Наборы игрока и врага различаются.</p>
+<p><strong>2.8.10.3. Блокировка.</strong> Игрок: <code>TurnResolver.kt:184</code> (<code>!canAct || !canAttack</code> → no_roll).
+Враг: <code>TurnResolver.kt:2293</code> — при <code>enemy.isIncapacitated</code> враг не атакует, проходит спасбросок
+(2.8.5.2).</p>
+<p><strong>2.8.10.4. <code>Unconscious</code></strong> — <code>isUnconscious = hp == 0 &amp;&amp; !isDead &amp;&amp; deathSaveFail &lt; 3 &amp;&amp; "Стабилен" !in statuses</code>
+(<code>GameState.kt:489</code>). При <code>isUnconscious</code> доступен только death save (<code>TurnResolver.kt:179-180</code>).</p>
+<hr />
+<h2 id="2811">2.8.11: ОЧАРОВАНИЕ / ИСПУГ<a class="headerlink" href="#2811" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.11.1. Charmed.</strong> Строки <code>Очарован</code>/<code>Зачарован</code> приходят из <code>spells.json</code>
+(<code>Очарован</code> — 3 вхождения: <code>:917,2161,2793</code>) и участвуют только в <code>NO_SPEAK_STATUSES</code>
+(<code>GameState.kt:611</code>). Иммунитет к атаке от источника очарования, запрет атак по очарователю
+(SRD-механика Charmed), геттер/снятие по урону — отсутствуют.</p>
+<p><strong>2.8.11.2. Frightened.</strong> Строка <code>Испуган</code>:
+- помеха проверкам — <code>hasDisadvantageOnChecks</code> (<code>TurnResolver.kt:1979</code>);
+- помеха атакам — <code>hasDisadvantageOnAttacks</code> (<code>:1985</code>);
+- помеха атакам врага — <code>:2353</code>;
+- <code>SAVE_END</code> (<code>GameState.kt:620</code>).
+Запрет приближаться к источнику страха и disadvantage атак, пока источник в поле зрения,
+не реализованы.</p>
+<p><strong>2.8.11.3. Иммунитеты к очарованию/страху</strong> — только текстовые описания фич сабклассов
+(<code>subclasses.yml:132,175,225,299</code>, <code>classes.yml:878,890</code>), в коде не применяются.</p>
+<hr />
+<h2 id="2812">2.8.12: СМЕРТЬ, БЕЗ СОЗНАНИЯ И СТАБИЛИЗАЦИЯ<a class="headerlink" href="#2812" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.12.1. Death saves</strong> — <code>TurnResolver.resolveDeathSave</code> (<code>TurnResolver.kt:427-455</code>):
+- <code>d20 == 20</code> → <code>Heal(1)</code> + снятие <code>Без сознания</code>;
+- <code>d20 == 1</code> → два <code>DeathSaveFail</code>;
+- <code>&gt;= 10</code> → <code>DeathSaveSuccess</code>; иначе <code>DeathSaveFail</code>.
+Автовызов при <code>isUnconscious</code> (<code>:179-180</code>) и по <code>ActionType.DEATH_SAVE</code> (<code>:330</code>).</p>
+<p><strong>2.8.12.2. Обработка счётчиков</strong> — <code>SessionService.kt:1912-1928</code>:
+- 3 успеха → снять <code>Без сознания</code>, добавить <code>Стабилен</code>, <code>hp = 1</code>, сброс счётчиков (<code>:1912-1921</code>);
+- 3 провала → <code>isDead = true</code> (<code>:1922-1927</code>).</p>
+<p><strong>2.8.12.3. Урон по бессознательному</strong> (<code>SessionService.kt:1757-1775</code>):
+- урон доводит <code>hp</code> до 0, добавляется <code>Без сознания</code>;
+- <code>massiveDeath = change.amount &gt;= state.maxHp</code> → мгновенная смерть;
+- при повторном попадании по уже бессознательному — <code>deathFail += 2</code> (автокрит), <code>&gt;= 3</code> → смерть.
+- <code>profile.mechanics.permadeath</code> — флаг постоянной смерти.</p>
+<p><strong>2.8.12.4. Стабилизация</strong> — <code>StateChange.Stabilized</code> (<code>SessionService.kt:1930-1937</code>):
+снимает <code>Без сознания</code>, добавляет <code>Стабилен</code>, <code>hp = 1</code>, сбрасывает счётчики. Кто и когда
+эмитит <code>Stabilized</code> (кроме заклинаний/эндпоинта) — отдельной ветки в <code>TurnResolver</code> нет.
+При смерти <code>permadeath=false</code> восстановление идёт через checkpoint (<code>RestoreCheckpoint</code>, no-op в
+<code>applyStateChanges</code>).</p>
+<p><strong>2.8.12.5. Восстановление из бессознательного лекарством</strong> — <code>Heal</code> при <code>hp &gt; 0</code> снимает
+<code>Без сознания</code>/<code>Стабилен</code> (<code>SessionService.kt:1800-1805</code>).</p>
+<p><strong>2.8.12.6. Long rest</strong> — снятие <code>Стабилен</code>/<code>Без сознания</code> в <code>TurnResolver.kt:1794-1795</code>,
+восстановление HP через <code>RestService.applyLongRest</code>.</p>
+<hr />
+<h2 id="2813">2.8.13: ИММУНИТЕТЫ И КОНТРСПАСБРОСКИ<a class="headerlink" href="#2813" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.13.1. <code>Enemy.immunities: List&lt;String&gt;</code></strong> (<code>GameState.kt:654-655</code>) — иммунитеты <strong>только к
+типам урона</strong> (no damage): проверяются в <code>SpellService.resolveDamage</code>
+(<code>SpellService.kt:163-168</code>) и в уроне <code>TurnResolver</code>. Аналогично <code>resistances</code>.</p>
+<p><strong>2.8.13.2. <code>conditionImmunities</code> / иммунитеты к состояниям</strong> — <strong>отсутствуют</strong>. Аналог
+<code>statusSaveBonus</code> (бонус к спасброску против статуса, <code>TurnResolver.kt:1127</code>,
+<code>SavingThrowResolver.kt:68</code>) — не иммунитет.</p>
+<p><strong>2.8.13.3. Легендарные сопротивления</strong> — отсутствуют.</p>
+<p><strong>2.8.13.4. Creed/тип существа (<code>creatureType</code>)</strong> — отсутствует; из-за этого нет иммунитетов
+по типу (напр. undead vs charm).</p>
+<p><strong>2.8.13.5. Иммунитеты рас/классов</strong> — файлы рас отсутствуют; в YAML — только текст фич
+(см. 2.8.11.3).</p>
+<hr />
+<h2 id="2814-rest-api-dsl-whitelist">2.8.14: REST API / DSL / WHITELIST ПО СОСТОЯНИЯМ<a class="headerlink" href="#2814-rest-api-dsl-whitelist" title="Permanent link">&para;</a></h2>
+<p><strong>2.8.14.1. DSL-категория <code>CONDITION</code></strong> — <code>dsl-registry.yml:114-121</code>, 7 команд:
+<code>SAVE_DEATH</code>, <code>SAVE_POISON</code>, <code>SAVE_FIRE</code>, <code>SAVE_FEAR</code>, <code>SAVE_CHARM</code>, <code>REMOVE_CONDITION</code>,
+<code>APPLY_CONDITION</code>.</p>
+<p><strong>2.8.14.2. Разбор в <code>ActionParser</code></strong> (<code>ActionParser.kt:517</code>): пять <code>SAVE_*</code> маппятся в
+<code>ActionType.CHECK</code>. <code>REMOVE_CONDITION</code> и <code>APPLY_CONDITION</code> <strong>не разобраны</strong> — попадают в
+<code>else</code>-ветку (<code>ActionType.NO_ROLL</code>, <code>:523</code>). Отдельных обработчиков/<code>StateChange</code> под них нет.</p>
+<p><strong>2.8.14.3. Справочный словарь</strong> — <code>whitelist/action-whitelist-core.yaml:240-264</code>
+(24 English-кода состояний) не загружается (<code>ActionWhitelist</code> читает только
+<code>root["action_whitelist"]</code>, <code>ActionWhitelist.kt:22-81</code>). Проверок whitelist на конкретные
+состояния (кроме косвенных условий) нет.</p>
+<p><strong>2.8.14.4. Контекст whitelist-условий</strong> — <code>SessionService.kt:818-826</code>:
+<code>hasEnemy, enemy, hasSpellSlots, hasRangedWeapon, inCombat, hasSpell, isConcentrating, hasReaction</code>.
+Ключей под состояния (<code>isStunned</code>, <code>isProne</code>, <code>isGrappled</code>, <code>isRestrained</code>, <code>isBlinded</code>, <code>isCharmed</code>,
+<code>isFrightened</code>) в контексте <strong>нет</strong>, хотя <code>action-whitelist-core.yaml</code> ссылается на <code>isGrappled</code>,
+<code>isRestrained</code> (<code>:137</code>), <code>isRaging</code>, <code>hasCover</code>, <code>hasConcealment</code>, <code>hasAdvantage</code>. В eval-парсере
+(<code>ActionWhitelist.kt:263-328</code>) неизвестная переменная даёт <code>false</code>; <code>!var</code> при отсутствии ключа
+тоже <code>false</code> (<code>:282</code>) — то есть условия с несуществующими ключами не выполняются.</p>
+<p><strong>2.8.14.5. Капкан для <code>DEFEND_DODGE</code>/<code>HIDE</code> и т.п.</strong> Негативные условия
+(<code>DISARM</code>, <code>GRAPPLE</code>, <code>MOVE_*</code>) читают <code>enemy.size</code>, <code>player.size</code>, <code>hasClimbSpeed</code>, <code>strength</code> —
+часть из них в контексте отсутствует.</p>
+<p><strong>2.8.14.6. REST-эндпоинты.</strong> В <code>SessionController.kt</code> (мапинги <code>:21-192</code>) и
+<code>SpellController</code> нет эндпоинтов управления состояниями/длительностями. Наружу отдаётся
+<code>isConcentrating</code> (<code>SessionService.kt:817</code>); <code>statuses</code>/<code>statusDurations</code> видны через
+<code>characterState</code> в <code>TurnResponse</code>. Отдельного API «наложить/снять состояние» нет.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2083 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0020-race-registry/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0020: Реестр рас (RaceRegistry) — races.yml + RaceId/SubraceId + racial ASI/traits - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0020-raceregistry-racesyml-raceidsubraceid-racial-asitraits" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0020: Реестр рас (RaceRegistry) — races.yml + RaceId/SubraceId + racial ASI/traits
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Где сейчас «раса» (разведка)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проблема
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прецеденты реестров (база для A2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dd-5e-phb-2-races-p1742" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Канон D&amp;D 5e (PHB гл.2 «Races», p.17–42)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-a2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Место хранения реестра (A2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-racialtrait-b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Форма RacialTrait (B1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-racial-asi-c1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Racial ASI (C1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-d1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Подрасы (D1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-characterstate-e1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Интеграция с CharacterState (E1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-racial-asi-f1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Применение racial ASI (F1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-half-elf-half-orc-variant-human-g1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Half-Elf / Half-Orc / Variant Human (G1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-h1a-h1b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Активные трейты (H1a + H1b)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-i1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Размер/скорость (I1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-adr-0011-j1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Совместимость с ADR-0011 (J1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-k1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Объём цикла (K1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Чек-лист решений A–K
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0020-raceregistry-racesyml-raceidsubraceid-racial-asitraits">ADR-0020: Реестр рас (RaceRegistry) — races.yml + RaceId/SubraceId + racial ASI/traits<a class="headerlink" href="#adr-0020-raceregistry-racesyml-raceidsubraceid-racial-asitraits" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>Раса персонажа сейчас — нигде: ни поля в состоянии, ни реестра, ни механики.
+Собранные факты (файл:строка):</p>
+<h3 id="_1">Где сейчас «раса» (разведка)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Файл:строка</th>
+<th>Что найдено</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>rules/GameState.kt:340-507</code></td>
+<td><code>CharacterState</code>: полей <code>race</code>/<code>subrace</code> <strong>нет</strong>. Есть <code>backgroundId</code> (:446), <code>languages</code> (:450), <code>feats</code> (:452), <code>canonicalClassId</code> (:426), <code>subclassId</code> (:487, null-задел). Поля <code>speed</code> тоже <strong>нет</strong>.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>sessions/SessionDtos.kt:16-41</code></td>
+<td><code>CreateSessionRequest</code>: поля <code>raceId</code>/<code>subraceId</code> <strong>нет</strong>. Есть <code>backgroundId</code> (:34), <code>characterClass: String</code> (:24), <code>l1Choices</code> (:40).</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>sessions/SessionService.kt:490-501</code></td>
+<td>Конструирование <code>CharacterState</code> при создании сессии: раса не присваивается, racial ASI не применяется.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>rules/SavingThrowResolver.kt:25-26, :100-102</code></td>
+<td>Единственные семантические упоминания: «Источники save-adv (race features) появятся в ФАЗЕ 3». Реализации нет.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>scene/ScenePromptBuilder.kt:56</code></td>
+<td>«preserve exact race/species…» — только LLM-промпт визуальных якорей, не механика.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>resources/subclasses.yml:203</code></td>
+<td>«Darkvision» — только текст description ки-фичи монаха, не механика расы.</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>resources/db/changelog/changes/0004-characters.yaml:33-35</code></td>
+<td><code>characters.character_json</code> TEXT; колонки <code>race</code> <strong>нет</strong>; таблицы <code>races</code> <strong>нет</strong> (grep <code>race</code> по <code>resources/db</code> → 0 совпадений).</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>resources/backgrounds.yml</code> (92 строки)</td>
+<td>Файл существует, но <strong>загрузчика нет</strong>: grep <code>backgrounds.yml</code> по <code>*.kt</code> → 0. Мёртвые данные. Фон применяется хардкодом: <code>SessionService.kt:89</code> (<code>getBackgroundProficiencies</code>, <code>when</code>) и <code>:457-461</code> (языки, <code>when</code>). Предостережение для <code>races.yml</code>: файл без регистра = мёртвый файл.</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Остальные совпадения grep <code>race\|Race</code></td>
+<td>Ложные срабатывания: <code>IntentTrace*</code> (<code>trace</code>), <code>pass-without-trace</code> (заклинание), <code>closeBrace</code> (парсер). Не расы.</td>
+</tr>
+</tbody>
+</table>
+<p>Итого: <code>RaceRegistry</code> отсутствует, <code>races.yml</code>/<code>races.json</code> отсутствуют, racial ASI
+отсутствует, racial traits отсутствуют (Darkvision, Breath Weapon, Relentless Endurance —
+0 реализаций), подрас нет.</p>
+<h3 id="_2">Проблема<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Раса — отсутствует как сущность: racial traits не реализованы, racial ASI не применяется,
+подрас нет. Класс — просто ярлык (Rage, Sneak Attack не работают) — это контекст всей
+мини-ФАЗЫ 0, но ADR-0020 про расы, не про классы.</p>
+<h3 id="a2">Прецеденты реестров (база для A2)<a class="headerlink" href="#a2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Реестр</th>
+<th>YAML</th>
+<th>Загрузка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>classes/ClassRegistry.kt:11-47</code></td>
+<td><code>classes.yml</code> (1220 строк, корневой ключ <code>classes:</code>)</td>
+<td><code>@Component</code> + <code>ResourceLoader</code> + SnakeYAML + warn/fallback (12 классов, <code>:166-210</code>)</td>
+</tr>
+<tr>
+<td><code>skills/SkillRegistry.kt:37-61</code></td>
+<td><code>skills.yml</code> (263 строки, <code>skills:</code> + <code>id/ability/label/description</code>)</td>
+<td>тот же паттерн, warn при отсутствии</td>
+</tr>
+<tr>
+<td><code>classes/FeatRegistry.kt:27-48</code></td>
+<td><code>feats.yml</code></td>
+<td>тот же паттерн</td>
+</tr>
+<tr>
+<td><code>classes/SubclassRegistry.kt:27-58</code></td>
+<td><code>subclasses.yml</code></td>
+<td>тот же паттерн</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dd-5e-phb-2-races-p1742">Канон D&amp;D 5e (PHB гл.2 «Races», p.17–42)<a class="headerlink" href="#dd-5e-phb-2-races-p1742" title="Permanent link">&para;</a></h3>
+<p>9 рас × 9 подрас: Dwarf (Hill, Mountain), Elf (High, Wood, Drow),
+Halfling (Lightfoot, Stout), Human, Dragonborn, Gnome (Forest, Rock),
+Half-Elf, Half-Orc, Tiefling. Racial ASI — фиксированные (+2/+1) и на выбор
+(Half-Elf: +2 CHA + 2×+1 на выбор; Variant Human: 2×+1 на выбор + feat + skill).
+Racial traits — пассивные (Darkvision), активные (Breath Weapon: действие + DC),
+триггерные (Savage Attacks — на крит; Relentless Endurance — на падение до 0).
+Плюс size, speed (30, у Dwarf/Halfling/Gnome — 25), languages.</p>
+<p>ADR-0010 §5 (<code>0010-turn-and-round-model.md:84-85</code>) уже anticipates <code>races.yml</code>
+(«<code>SpeedResolver.baseSpeed</code> — временная SRD-таблица рас до <code>races.yml</code> Блока 2.3»),
+но <code>speed</code> в <code>CharacterState</code> отсутствует, <code>SpeedResolver</code> не существует —
+§5 ADR-0010 Proposed, не реализован.</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="1-a2">1. Место хранения реестра (A2)<a class="headerlink" href="#1-a2" title="Permanent link">&para;</a></h3>
+<p>YAML (<code>races.yml</code>) + Kotlin-обёртка (<code>RaceRegistry.kt</code>). Обоснование: прецедент
+<code>classes.yml</code>/<code>skills.yml</code> (см. Context); данные (9 рас, 9 подрас, 40+ черт) удобнее
+в YAML; поведение — в Kotlin. Урок <code>backgrounds.yml</code> (мёртвый файл без загрузчика,
+факт #8): YAML вводится только вместе с регистром.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">RaceRegistry</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">resourceLoader</span><span class="p">:</span><span class="w"> </span><span class="n">ResourceLoader</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getRace</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="n">RaceId</span><span class="p">):</span><span class="w"> </span><span class="n">Race?</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getAllRaces</span><span class="p">():</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Race</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="2-racialtrait-b1">2. Форма RacialTrait (B1)<a class="headerlink" href="#2-racialtrait-b1" title="Permanent link">&para;</a></h3>
+<p><code>sealed interface RacialTrait</code> + подтипы (<code>PassiveRacialTrait</code> / <code>ActiveRacialTrait</code> /
+<code>TriggeredRacialTrait</code>). Обоснование: разная природа — Darkvision (пассивная),
+Breath Weapon (активная), Savage Attacks (триггер на crit), Relentless Endurance
+(триггер на hp=0). Enum не справится.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nc">RacialTrait</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">}</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">PassiveRacialTrait</span><span class="p">(</span><span class="cm">/* … */</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RacialTrait</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ActiveRacialTrait</span><span class="p">(</span><span class="cm">/* … activatableId → ADR-0019 … */</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RacialTrait</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">TriggeredRacialTrait</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">trigger</span><span class="p">:</span><span class="w"> </span><span class="n">RacialTrigger</span><span class="w"> </span><span class="cm">/* CRIT, DROP_TO_ZERO … */</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">RacialTrait</span>
+</code></pre></div>
+<h3 id="3-racial-asi-c1">3. Racial ASI (C1)<a class="headerlink" href="#3-racial-asi-c1" title="Permanent link">&para;</a></h3>
+<p><code>sealed AbilityBonus</code> (<code>FixedAbilityBonus</code> / <code>ChoiceAbilityBonus</code>). Обоснование:
+Half-Elf (2×+1 на выбор) и Variant Human — принципиально другой тип, чем
+Dwarf (+2 CON, +1 WIS).</p>
+<div class="highlight"><pre><span></span><code><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="nc">AbilityBonus</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">FixedAbilityBonus</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">ability</span><span class="p">:</span><span class="w"> </span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AbilityBonus</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ChoiceAbilityBonus</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">count</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">amount</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">from</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Ability</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">())</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AbilityBonus</span>
+</code></pre></div>
+<p><code>Ability</code> — enum из ADR-0019 I1, консистентно с <code>AbilityResolver</code>/<code>AbilityParser</code>
+(типобезопасная способность, а не строка).</p>
+<h3 id="4-d1">4. Подрасы (D1)<a class="headerlink" href="#4-d1" title="Permanent link">&para;</a></h3>
+<p>Вложенно: <code>Race.subraces</code>. Обоснование: Dwarf Hill/Mountain, Elf High/Wood/Drow —
+«родительская раса + модификатор», не отдельные расы.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Race</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">RaceId</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">abilityBonuses</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">AbilityBonus</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">traits</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">RacialTrait</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">speed</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">size</span><span class="p">:</span><span class="w"> </span><span class="n">CreatureSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreatureSize</span><span class="p">.</span><span class="na">MEDIUM</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">languages</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">subraces</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Subrace</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="p">)</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Subrace</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="n">SubraceId</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">abilityBonuses</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">AbilityBonus</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">traits</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">RacialTrait</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="5-characterstate-e1">5. Интеграция с CharacterState (E1)<a class="headerlink" href="#5-characterstate-e1" title="Permanent link">&para;</a></h3>
+<p><code>race: RaceId?</code> (enum, nullable), <code>subrace: SubraceId?</code> (nullable). Nullable — потому что
+сессии без расы валидны (тестовые/legacy): API принимает строку (<code>raceId</code>/<code>subraceId</code>),
+резолвер валидирует её в enum или null; отсутствие расы не ломает создание персонажа.
+Breaking change (прецедент ADR-0013:
+<code>String</code> → <code>StatusId</code>), сессии тестовые — миграция не требуется. Уточнение разведки:
+поля сейчас нет вообще (факт #1), т.е. это добавление полей, а не замена типа —
+но контракт состояния/API меняется, правки в тестах/фронте потребуются (см. Минусы).
+E2 (слить расу и подрасу в один ID) отклонён — теряется <code>Race.subraces</code>.
+E3 (параллельное поле-строка) отклонён — два источника истины.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">RaceId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">DWARF</span><span class="p">,</span><span class="w"> </span><span class="n">ELF</span><span class="p">,</span><span class="w"> </span><span class="n">HALFLING</span><span class="p">,</span><span class="w"> </span><span class="n">HUMAN</span><span class="p">,</span><span class="w"> </span><span class="n">DRAGONBORN</span><span class="p">,</span><span class="w"> </span><span class="n">GNOME</span><span class="p">,</span><span class="w"> </span><span class="n">HALF_ELF</span><span class="p">,</span><span class="w"> </span><span class="n">HALF_ORC</span><span class="p">,</span><span class="w"> </span><span class="n">TIEFLING</span><span class="w"> </span><span class="p">}</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">SubraceId</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">HILL_DWARF</span><span class="p">,</span><span class="w"> </span><span class="n">MOUNTAIN_DWARF</span><span class="p">,</span><span class="w"> </span><span class="n">HIGH_ELF</span><span class="p">,</span><span class="w"> </span><span class="n">WOOD_ELF</span><span class="p">,</span><span class="w"> </span><span class="n">DROW</span><span class="p">,</span><span class="w"> </span><span class="n">LIGHTFOOT</span><span class="p">,</span><span class="w"> </span><span class="n">STOUT</span><span class="p">,</span><span class="w"> </span><span class="n">FOREST_GNOME</span><span class="p">,</span><span class="w"> </span><span class="n">ROCK_GNOME</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="6-racial-asi-f1">6. Применение racial ASI (F1)<a class="headerlink" href="#6-racial-asi-f1" title="Permanent link">&para;</a></h3>
+<p><code>RaceResolver.applyRacialBonuses(state)</code> — stateless object, симметрично
+<code>DamageResolver</code>/<code>ConditionResolver</code>. Вызывается при создании персонажа
+(<code>SessionService</code>, рядом с фактом #3). F3 (часть <code>AbilityResolver</code>) отклонён —
+<code>AbilityResolver</code> про активации, не про создание персонажа.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">RaceResolver</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">applyRacialBonuses</span><span class="p">(</span>
+<span class="w">        </span><span class="n">state</span><span class="p">:</span><span class="w"> </span><span class="n">CharacterState</span><span class="p">,</span>
+<span class="w">        </span><span class="n">race</span><span class="p">:</span><span class="w"> </span><span class="n">Race</span><span class="p">,</span>
+<span class="w">        </span><span class="n">subrace</span><span class="p">:</span><span class="w"> </span><span class="n">Subrace?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="n">choiceASI</span><span class="p">:</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyMap</span><span class="p">(),</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">CharacterState</span>
+
+<span class="w">    </span><span class="c1">// внутреннее ядро — применяет ASI к Attributes без CharacterState</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">applyToAttributes</span><span class="p">(</span>
+<span class="w">        </span><span class="n">attributes</span><span class="p">:</span><span class="w"> </span><span class="n">Attributes</span><span class="p">,</span>
+<span class="w">        </span><span class="n">race</span><span class="p">:</span><span class="w"> </span><span class="n">Race</span><span class="p">,</span>
+<span class="w">        </span><span class="n">subrace</span><span class="p">:</span><span class="w"> </span><span class="n">Subrace?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">        </span><span class="n">choiceASI</span><span class="p">:</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Ability</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyMap</span><span class="p">(),</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">Attributes</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Порядок применения: <code>applyRacialBonuses</code> вызывает <code>applyToAttributes(attrs, race,
+subrace, choiceASI)</code> ДО расчёта производных (HP/AC). Иначе Dwarf CON+2 не поднимает
+HP, Elf DEX+2 не поднимает AC. Публичное API — <code>applyRacialBonuses(state, race,
+subrace, choiceASI)</code>; внутреннее ядро — <code>applyToAttributes</code>.</p>
+<h3 id="7-half-elf-half-orc-variant-human-g1">7. Half-Elf / Half-Orc / Variant Human (G1)<a class="headerlink" href="#7-half-elf-half-orc-variant-human-g1" title="Permanent link">&para;</a></h3>
+<p>Все три в ADR-0020. Обоснование: Half-Elf (choice ASI) и Half-Orc
+(Relentless Endurance) уже ломают простую модель — решать сейчас.
+Variant Human — в ту же развилку (choice ASI + feat + skill).</p>
+<h3 id="8-h1a-h1b">8. Активные трейты (H1a + H1b)<a class="headerlink" href="#8-h1a-h1b" title="Permanent link">&para;</a></h3>
+<p>H разбит на два:
+- <strong>H1a (Activatable):</strong> Breath Weapon (действие + DC) → через ADR-0019 <code>Activatable</code>.
+  Dragonborn. Активный трейт регистрируется как <code>activatableId</code> (<code>CharacterState</code>
+  уже хранит только id, <code>GameState.kt:458</code>).
+- <strong>H1b (state-hook):</strong> Relentless Endurance (реакция на hp=0, не активируемая) →
+  hook в damage-resolution (<code>SessionService</code>/<code>TurnResolver</code>). Half-Orc.
+Обоснование: разная природа, разные механизмы.</p>
+<h3 id="9-i1">9. Размер/скорость (I1)<a class="headerlink" href="#9-i1" title="Permanent link">&para;</a></h3>
+<p>Включить в <code>Race</code> как статические поля (<code>speed = 30</code>, <code>size = MEDIUM</code>;
+у Dwarf/Halfling/Gnome speed = 25 по канону). Применение в движении —
+ФАЗА 5 (ADR-0010 §5). <code>CharacterState.speed</code> вводится в цикле 3.1 как хранимое
+поле (источник — <code>Race.speed</code>), логика движения — только ФАЗА 5.</p>
+<h3 id="10-adr-0011-j1">10. Совместимость с ADR-0011 (J1)<a class="headerlink" href="#10-adr-0011-j1" title="Permanent link">&para;</a></h3>
+<p><code>RaceRegistry</code> — новый живой реестр; зарегистрировать в ADR-0011 как
+потенциальный дубль (race в <code>CharacterState</code> vs race в реестре).
+Правило ADR-0011: «при появлении нового дубля — добавить с пометкой».
+Сама запись в ADR-0011 — отдельным циклом, когда ADR-0020 будет принят
+и реализован (не в этом ADR).</p>
+<h3 id="11-k1">11. Объём цикла (K1)<a class="headerlink" href="#11-k1" title="Permanent link">&para;</a></h3>
+<p>Только ADR (design, без кода). Реализация — отдельный цикл 3.1.</p>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<p>Развилки сформулированы, рекомендация архитектора помечена явно.</p>
+<p><strong>A. Место хранения реестра.</strong>
+- A1: только Kotlin (enum + data-объекты, без YAML) — проще, но 9 рас × 9 подрас × 40+ черт в коде; данные и поведение смешаны.
+- A2: <strong>YAML (<code>races.yml</code>) + Kotlin-обёртка (<code>RaceRegistry.kt</code>) — рекомендация архитектора.</strong> Прецедент <code>classes.yml</code>/<code>skills.yml</code>; данные в YAML, поведение в Kotlin. Обязательно вместе с регистром (урок <code>backgrounds.yml</code>).
+- A3: БД-таблица <code>races</code> + Liquibase (как каталоги лута/опасностей) — версионирование через миграции, но расы статичны (PHB), оверхед миграций не оправдан.</p>
+<p><strong>B. Форма RacialTrait.</strong>
+- B1: <strong><code>sealed interface RacialTrait</code> + подтипы (Passive/Active/Triggered) — рекомендация архитектора.</strong> Разная природа требует разных типов; enum не справится.
+- B2: единый <code>data class RacialTrait(kind: TraitKind, …)</code> — плоская модель, но kind-флаги расползаются по <code>when</code> в вызывающем коде.
+- B3: <code>enum RacialTraitId</code> + логика в резолверах — дублирование логики вне реестра, реестр превращается в справочник id.</p>
+<p><strong>C. Racial ASI.</strong>
+- C1: <strong><code>sealed AbilityBonus</code> (Fixed/Choice) — рекомендация архитектора.</strong> Half-Elf и Variant Human принципиально choice-тип.
+- C2: <code>Map&lt;String, Int&gt;</code> + отдельное <code>choiceASI</code>-поле — два параллельных механизма вместо одного типа.
+- C3: только fixed (Half-Elf/Variant обрезать до фиксированных) — неканонично, ломает PHB.</p>
+<p><strong>D. Подрасы.</strong>
+- D1: <strong>вложенно <code>Race.subraces</code> — рекомендация архитектора.</strong> «Родительская раса + модификатор».
+- D2: плоский список (подраса = отдельная раса) — дублирование общих черт родителя в каждой подрасе.
+- D3: отдельный реестр подрас со ссылкой <code>parentRaceId</code> — оправдано при общем пуле подрас, но пулы disjoint (Hill/Mountain только у Dwarf).</p>
+<p><strong>E. Интеграция с CharacterState.</strong>
+- E1: <strong><code>race: RaceId</code> (enum) + <code>subrace: SubraceId?</code> — рекомендация архитектора.</strong> Прецедент ADR-0013 (<code>String</code> → <code>StatusId</code>).
+- E2: один составной ID (раса+подраса слиты) — теряется <code>Race.subraces</code>, иерархия схлопывается.
+- E3: параллельное поле-строка рядом — два источника истины.</p>
+<p><strong>F. Применение racial ASI.</strong>
+- F1: <strong><code>RaceResolver.applyRacialBonuses(state)</code> (stateless object) — рекомендация архитектора.</strong> Симметрия <code>DamageResolver</code>/<code>ConditionResolver</code>; вызывается при создании.
+- F2: метод реестра (<code>RaceRegistry.applyTo</code>) — смешивает хранение данных и применение.
+- F3: часть <code>AbilityResolver</code> — отклонён: <code>AbilityResolver</code> про активации, не про создание персонажа.</p>
+<p><strong>G. Half-Elf / Half-Orc / Variant Human.</strong>
+- G1: <strong>все три в ADR-0020 — рекомендация архитектора.</strong> Half-Elf (choice ASI) и Half-Orc (Relentless Endurance) уже ломают простую модель — решать сейчас; Variant Human — та же развилка.
+- G2: только простые расы сейчас, сложные отложить — модель придётся ломать позже, двойная работа.
+- G3: Half-Elf/Half-Orc сейчас, Variant Human отложить (нужна feat-система) — но choice-ASI для Variant Human уже покрыт C1, откладывать нечего.</p>
+<p><strong>H. Активные трейты.</strong>
+- H1a: <strong>Breath Weapon → через ADR-0019 <code>Activatable</code> — рекомендация архитектора</strong> (действие + DC, Dragonborn).
+- H1b: <strong>Relentless Endurance → hook в damage-resolution — рекомендация архитектора</strong> (реакция на hp=0, не активируемая, Half-Orc).
+- H2: всё через <code>Activatable</code> (и Relentless тоже) — неверно по природе: Relentless не активируется игроком, срабатывает сам.
+- H3: всё хуками без <code>Activatable</code> — Breath Weapon теряет DC/uses-инфраструктуру ADR-0019.
+- H4: отложить активные трейты — Dragonborn/Half-Orc остаются ярлыками (контекст мини-ФАЗЫ 0 против).</p>
+<p><strong>I. Размер/скорость.</strong>
+- I1: <strong>статические поля <code>Race</code> (<code>speed</code>, <code>size</code>), применение в движении — ФАЗА 5 — рекомендация архитектора.</strong> ADR-0010 §5 уже ждёт <code>races.yml</code>.
+- I2: сразу с движением (тянуть ADR-0010 §5 целиком) — раздувает цикл 3.1.
+- I3: не хранить вообще — ADR-0010 §5 останется без источника данных.</p>
+<p><strong>J. Совместимость с ADR-0011.</strong>
+- J1: <strong>новый живой реестр + пометка потенциального дубля в ADR-0011 (отдельным циклом) — рекомендация архитектора.</strong> Правило ADR-0011: новый дубль — добавить с пометкой.
+- J2: не регистрировать — нарушение правила ADR-0011.
+- J3: заморозить как <code>character_json</code> — неверно: реестр живой, замораживать нечего.</p>
+<p><strong>K. Объём цикла.</strong>
+- K1: <strong>только ADR (design, без кода); реализация — цикл 3.1 — рекомендация архитектора.</strong>
+- K2: ADR + <code>races.yml</code> данные без кода — данные без регистра = второй <code>backgrounds.yml</code> (факт #8).
+- K3: полный цикл с реализацией — нарушает «один цикл = один фокусный шаг».</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_3">Плюсы<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Реестр рас — единый источник истины (данные в <code>races.yml</code>, поведение в Kotlin).</li>
+<li>Racial ASI, traits, подрасы — формализованы (sealed-типы покрывают и fixed, и choice).</li>
+<li>Half-Elf/Half-Orc/Variant Human — учтены сразу, модель не придётся ломать позже.</li>
+<li>Breaking change <code>CharacterState.race</code> — прецедент ADR-0013 (<code>String</code> → <code>StatusId</code>).</li>
+</ul>
+<h3 id="_4">Минусы<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Изменение контракта <code>CharacterState</code>/<code>CreateSessionRequest</code> — правки в тестах/фронте
+  (поле добавляется, факт #1–2: сейчас его нет вообще).</li>
+<li><code>races.yml</code> + <code>RaceRegistry</code> — новая инфраструктура (пятый регистр по паттерну <code>ClassRegistry</code>).</li>
+<li>Активные трейты (H1a) зависят от ADR-0019 <code>Activatable</code>.</li>
+</ul>
+<h3 id="_5">Риски<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Relentless Endurance (H1b) — hook в damage-resolution, может конфликтовать
+  с G-006 (stabilization).</strong> Митигация: канон 5e — Relentless Endurance срабатывает
+  В МОМЕНТ падения до 0, ДО death saves. Не путать со стабилизацией.</li>
+<li><strong><code>races.yml</code> schema drift</strong> при добавлении новых рас. Митигация: парсинг с
+  per-race try/catch и warn (паттерн <code>ClassRegistry.kt:34-40</code>), fallback при пустом
+  реестре (<code>:42, :166-210</code>).</li>
+<li><strong><code>backgrounds.yml</code>-синдром</strong> (факт #8): данные без загрузчика. Митигация: K1 —
+  файл и регистр вводятся только вместе, в цикле 3.1 (K2 отклонён именно поэтому).</li>
+</ul>
+<h3 id="_6">Отложено<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Реализация <code>RaceRegistry</code> — цикл 3.1.</li>
+<li>Speed/size в движении — ФАЗА 5 (ADR-0010 §5).</li>
+<li>Racial feats (если есть в PHB) — ФАЗА 3.5 (FeatEffect).</li>
+</ul>
+<h3 id="-ak">Чек-лист решений A–K<a class="headerlink" href="#-ak" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A = A2 — YAML (<code>races.yml</code>) + Kotlin-обёртка (<code>RaceRegistry.kt</code>).</li>
+<li>B = B1 — <code>sealed interface RacialTrait</code> (Passive/Active/Triggered).</li>
+<li>C = C1 — <code>sealed AbilityBonus</code> (Fixed/Choice).</li>
+<li>D = D1 — подрасы вложенно (<code>Race.subraces</code>).</li>
+<li>E = E1 — <code>race: RaceId</code> + <code>subrace: SubraceId?</code> (E2/E3 отклонены).</li>
+<li>F = F1 — <code>RaceResolver.applyRacialBonuses</code> (stateless object; F3 отклонён).</li>
+<li>G = G1 — Half-Elf/Half-Orc/Variant Human в ADR-0020.</li>
+<li>H = H1a + H1b — Breath Weapon через ADR-0019; Relentless Endurance hook в damage-resolution.</li>
+<li>I = I1 — <code>speed</code>/<code>size</code> статически, движение — ФАЗА 5.</li>
+<li>J = J1 — живой реестр + пометка дубля в ADR-0011 отдельным циклом.</li>
+<li>K = K1 — только ADR; реализация — цикл 3.1.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Код (<code>RaceRegistry.kt</code>, <code>races.yml</code>, <code>CharacterState</code>, <code>CreateSessionRequest</code>) — цикл 3.1.</li>
+<li><code>BackgroundRegistry</code>, <code>FeatEffect</code>, классовые фичи — отдельные ADR мини-ФАЗЫ 0
+  (ADR-0021, ADR-0022, ADR-0023). Мёртвый <code>backgrounds.yml</code> (факт #8) — не оживлять здесь.</li>
+<li>ADR-0011 — запись про J1 отдельным циклом, когда ADR-0020 будет принят и реализован.</li>
+<li>Frontend (wizard выбора расы) — ФАЗА 6.</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>PHB 5e: Chapter 2 (Races), p.17–42.
+  Ссылка: https://dungeonsanddragons.ru/bookfull/5ed/5e%20Players%20Handbook%20-%20Книга%20игрока%20RUS.pdf</li>
+<li>ADR-0011 (single source of truth — #6 <code>character_json</code> Frozen, потенциальный дубль race — J1).</li>
+<li>ADR-0013 (StatusId enum — прецедент <code>String</code> → enum для E1).</li>
+<li>ADR-0019 (Activatable — база для H1a Breath Weapon; <code>CharacterState.activatableIds</code>,
+  <code>GameState.kt:458</code>).</li>
+<li>ADR-0015 (Exhaustion — контекст для разграничения G-006 / Relentless Endurance).</li>
+<li>ADR-0010 §5 (движение; <code>0010-turn-and-round-model.md:84-85</code> — races.yml anticipated).</li>
+<li><code>classes.yml</code> / <code>skills.yml</code> + <code>ClassRegistry.kt</code> / <code>SkillRegistry.kt</code> — прецедент формата (A2).</li>
+<li><code>docs/phase-2-plan.md</code> — out of scope ФАЗЫ 2 (расы/фоны — ФАЗА 3).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

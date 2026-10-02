@@ -1,0 +1,2079 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0012-damage-type-and-resolver/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0012: Enum DamageType и резолвер сопротивлений/иммунитетов/уязвимостей (DamageResolver) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0012-enum-damagetype-damageresolver" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0012: Enum DamageType и резолвер сопротивлений/иммунитетов/уязвимостей (DamageResolver)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Модель урона
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-statechangedamage-main-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Эмиссия урона (14 точек StateChange.Damage в main-коде)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Источники типа урона в данных/БД
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resistanceimmunityvulnerability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Применение resistance/immunity/vulnerability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Модели
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dd-5e-phb-p196-197" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Канон D&amp;D 5e (PHB p.196-197)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-enum-damagetype-a1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Enum DamageType (A1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-damageresolver-b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. DamageResolver (B1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-damageable-c1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Интерфейс Damageable (C1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-d1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. «Сопротивление всему» (D1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-e1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Единая точка применения (E1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-vs-f2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. «Магическое vs немагическое» оружие (F2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-vulnerability-g1-g3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Vulnerability и типизация оружия (G1 + G3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-gap-weapon_traitsdamage_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Gap: weapon_traits.damage_type
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Чек-лист решений A–G
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0012-enum-damagetype-damageresolver">ADR-0012: Enum DamageType и резолвер сопротивлений/иммунитетов/уязвимостей (DamageResolver)<a class="headerlink" href="#adr-0012-enum-damagetype-damageresolver" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>Сейчас тип урона — это свободная строка, а логика «сопротивление/иммунитет/уязвимость»
+размазана по коду и неполна. Собранные факты (файл:строка):</p>
+<h3 id="_1">Модель урона<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>StateChange.Damage(amount, target, damageType: String? = null)</code> — тип урона nullable,
+  по умолчанию <code>null</code>, не enum (<code>GameState.kt:1157</code>).</li>
+<li>Тип урона заклинания — строка: <code>SpellEffect.Damage.damageType: String</code> (<code>spells/Spell.kt:72</code>).</li>
+<li>Тип урона hazard — строка из БД: <code>EnvironmentalHazardRow.damageType: String?</code>
+  (<code>catalog/CatalogService.kt:260</code>, колонка <code>environmental_hazards.damage_type</code>).</li>
+</ul>
+<h3 id="14-statechangedamage-main-">Эмиссия урона (14 точек <code>StateChange.Damage</code> в main-коде)<a class="headerlink" href="#14-statechangedamage-main-" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Файл:строка</th>
+<th>target</th>
+<th>damageType</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>TurnResolver.kt:856</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>TurnResolver.kt:959</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>TurnResolver.kt:1109</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>TurnResolver.kt:1288</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>TurnResolver.kt:1318</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>TurnResolver.kt:1461</code></td>
+<td>PLAYER</td>
+<td><code>hazard.damageType</code> (выражение)</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>TurnResolver.kt:1551</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>TurnResolver.kt:1638</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>TurnResolver.kt:1785</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>TurnResolver.kt:1910</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>TurnResolver.kt:2193</code></td>
+<td>ENEMY</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>TurnResolver.kt:2824</code></td>
+<td>PLAYER</td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>ReactionResolver.kt:84</code></td>
+<td>ENEMY</td>
+<td><code>damageType</code> (выражение)</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>SpellService.kt:175</code></td>
+<td>ENEMY</td>
+<td><code>effect.damageType</code> (выражение)</td>
+</tr>
+</tbody>
+</table>
+<p>Итого: 11 бестиповых (<code>null</code>) + 3 типизированных; 12 ENEMY + 2 PLAYER.
+(Ещё 3 использования <code>StateChange.Damage</code> — в тестах <code>SessionServiceDamageStabilizedTest.kt:54,67,78</code>, не в main-коде.)</p>
+<h3 id="_2">Источники типа урона в данных/БД<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Источник</th>
+<th>Поле</th>
+<th>Типизирован?</th>
+<th>Уникальные значения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>spells.json</code> → <code>SpellEffect.Damage</code></td>
+<td><code>damageType</code></td>
+<td>да</td>
+<td>acid, cold, fire, force, lightning, necrotic, piercing, poison, psychic, radiant, thunder (11)</td>
+</tr>
+<tr>
+<td><code>environmental_hazards</code> (0035)</td>
+<td><code>damage_type</code> VARCHAR(16)</td>
+<td>да</td>
+<td>fire, poison, piercing, acid, cold, bludgeoning (6 + NULL)</td>
+</tr>
+<tr>
+<td><code>weapon_traits</code> (0015)</td>
+<td><code>damage_type</code> VARCHAR(32)</td>
+<td>да (зачарования)</td>
+<td>fire, cold, poison, necrotic (4)</td>
+</tr>
+<tr>
+<td><code>weapons</code> / <code>weapon_categories</code> (0015)</td>
+<td>—</td>
+<td><strong>нет</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>item_archetypes</code> (0022)</td>
+<td>—</td>
+<td><strong>нет</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>InventoryItem</code> / <code>ItemBonuses</code> (<code>GameState.kt:200, 231</code>)</td>
+<td>—</td>
+<td><strong>нет</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="resistanceimmunityvulnerability">Применение resistance/immunity/vulnerability<a class="headerlink" href="#resistanceimmunityvulnerability" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Единственная точка учёта резистов/иммунитетов — <code>SpellService.kt:168-173</code>
+  (в <code>resolveDamage</code>), и только для <strong>Enemy</strong>:
+  <div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="na">damageType</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">target</span><span class="p">.</span><span class="na">resistances</span><span class="p">)</span><span class="w"> </span><span class="n">totalDamage</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="m">2</span><span class="w">   </span><span class="c1">// 168</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="na">damageType</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">target</span><span class="p">.</span><span class="na">immunities</span><span class="p">)</span><span class="w">  </span><span class="n">totalDamage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="w">    </span><span class="c1">// 171</span>
+</code></pre></div>
+  Урон уже уменьшен ДО эмиссии <code>StateChange.Damage</code> (<code>SpellService.kt:175</code>), т.е. резолвер
+  вызывается «в вызывающем коде», а не в единой точке применения.</li>
+<li><strong>Vulnerability нигде не обрабатывается.</strong></li>
+<li>Урон по PLAYER применяется в <code>SessionService.applyStateChanges</code> (<code>SessionService.kt:2385</code>)
+  <strong>без</strong> учёта resistance/immunity/vulnerability (только unconscious, death save, концентрация).</li>
+<li>Урон по ENEMY в <code>applyStateChanges</code> не снижает HP — он лишь суммируется для отображения
+  (<code>SessionService.kt:1683-1686</code>, <code>:1978-1983</code>); фактическое снижение HP врага вне этой точки.</li>
+</ul>
+<h3 id="_3">Модели<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>Enemy</code> (<code>GameState.kt:682</code>): <code>resistances: List&lt;String&gt;</code> (:701), <code>immunities: List&lt;String&gt;</code> (:703).
+  Поля <code>vulnerabilities</code> <strong>нет</strong>.</li>
+<li><code>CharacterState</code> (<code>GameState.kt:338+</code>): полей <code>resistances</code>/<code>immunities</code>/<code>vulnerabilities</code> <strong>нет</strong>.</li>
+</ul>
+<h3 id="dd-5e-phb-p196-197">Канон D&amp;D 5e (PHB p.196-197)<a class="headerlink" href="#dd-5e-phb-p196-197" title="Permanent link">&para;</a></h3>
+<p>13 типов урона: acid, bludgeoning, cold, fire, force, lightning, necrotic, piercing, poison,
+psychic, radiant, slashing, thunder. Resistance = ÷2 (округление вниз); immunity = 0;
+vulnerability = ×2; resistance + vulnerability = нормальный урон; immunity побеждает оба.
+В коде присутствуют 12 из 13 типов (нет <code>slashing</code>).</p>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="1-enum-damagetype-a1">1. Enum <code>DamageType</code> (A1)<a class="headerlink" href="#1-enum-damagetype-a1" title="Permanent link">&para;</a></h3>
+<p>Вводим enum в отдельном подпакете <code>com.yorva.rules.damage</code> (<code>rules/damage/DamageType.kt</code>).
+13 значений D&amp;D 5e (PHB p.196-197):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">DamageType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ACID</span><span class="p">,</span><span class="w"> </span><span class="n">BLUDGEONING</span><span class="p">,</span><span class="w"> </span><span class="n">COLD</span><span class="p">,</span><span class="w"> </span><span class="n">FIRE</span><span class="p">,</span><span class="w"> </span><span class="n">FORCE</span><span class="p">,</span><span class="w"> </span><span class="n">LIGHTNING</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NECROTIC</span><span class="p">,</span><span class="w"> </span><span class="n">PIERCING</span><span class="p">,</span><span class="w"> </span><span class="n">POISON</span><span class="p">,</span><span class="w"> </span><span class="n">PSYCHIC</span><span class="p">,</span><span class="w"> </span><span class="n">RADIANT</span><span class="p">,</span><span class="w"> </span><span class="n">SLASHING</span><span class="p">,</span><span class="w"> </span><span class="n">THUNDER</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Тип урона перестаёт быть строкой: <code>StateChange.Damage.damageType</code> меняется с <code>String?</code> на
+<code>DamageType?</code> (null по-прежнему означает «бестиповый», см. G3 и риски). <code>SpellEffect.Damage.damageType</code>
+(<code>spells/Spell.kt:72</code>) и <code>EnvironmentalHazardRow.damageType</code> (<code>catalog/CatalogService.kt:260</code>)
+тоже становятся <code>DamageType</code> — строки из JSON/БД парсятся в enum при загрузке.</p>
+<h3 id="2-damageresolver-b1">2. <code>DamageResolver</code> (B1)<a class="headerlink" href="#2-damageresolver-b1" title="Permanent link">&para;</a></h3>
+<p><code>object DamageResolver</code> — чистая функция, без Spring-бина и без состояния:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">object</span><span class="w"> </span><span class="nc">DamageResolver</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">rawDamage</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">DamageType?</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">:</span><span class="w"> </span><span class="n">Damageable</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Правила (PHB p.196-197):
+- <strong>immunity</strong> → 0 (побеждает всё);
+- <strong>resistance</strong> → <code>rawDamage / 2</code> (round down);
+- <strong>vulnerability</strong> → <code>rawDamage * 2</code>;
+- <strong>resistance + vulnerability</strong> → нормальный урон: сначала ÷2 (round down), затем ×2;
+- <strong><code>type == null</code></strong> (бестиповый урон) → без модификаций, возвращает <code>rawDamage</code>.</p>
+<h3 id="3-damageable-c1">3. Интерфейс <code>Damageable</code> (C1)<a class="headerlink" href="#3-damageable-c1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nc">Damageable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">resistances</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DamageType</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">immunities</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DamageType</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">vulnerabilities</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">DamageType</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Реализуют <code>CharacterState</code> и <code>Enemy</code>. У <code>Enemy</code> существующие <code>resistances</code>/<code>immunities</code>
+(<code>GameState.kt:701,703</code>) меняют тип <code>List&lt;String&gt;</code> → <code>List&lt;DamageType&gt;</code> и добавляется
+<code>vulnerabilities</code>. У <code>CharacterState</code> три поля добавляются (по умолчанию пустые списки).</p>
+<h3 id="4-d1">4. «Сопротивление всему» (D1)<a class="headerlink" href="#4-d1" title="Permanent link">&para;</a></h3>
+<p>Отдельное поле <code>resistanceToAll: Boolean = false</code> у <code>Damageable</code> — <strong>не</strong> значение
+<code>DamageType.ALL</code>. Обоснование: enum остаётся чистым (только 13 типов), а «сопротивление всему» —
+это модификатор состояния (Petrified из ADR-0013), а не тип урона.</p>
+<h3 id="5-e1">5. Единая точка применения (E1)<a class="headerlink" href="#5-e1" title="Permanent link">&para;</a></h3>
+<p>Резолвер применяется в единой точке — <code>SessionService.applyStateChanges</code>:
+- <code>StateChange.Damage</code> хранит <strong>сырой</strong> урон (<code>amount</code>) и тип; резолвер вызывается при применении.
+- <code>SpellService.kt:168-173</code> (учёт resist/immune) <strong>удаляется</strong> — вызовы перестают пред-обрабатывать урон.
+- E1 применяет <code>DamageResolver</code> в <code>applyStateChanges</code> к тем <code>StateChange.Damage</code>, которые уже
+  приходят туда (сейчас — PLAYER).
+- Консолидация снижения HP ENEMY из <code>TurnResolver.kt:1790</code> в <code>applyStateChanges</code> —
+  <strong>ОТДЕЛЬНОЕ решение (дубль #4 ADR-0011)</strong>. В ADR-0012 не входит.</p>
+<h3 id="6-vs-f2">6. «Магическое vs немагическое» оружие (F2)<a class="headerlink" href="#6-vs-f2" title="Permanent link">&para;</a></h3>
+<p><strong>ОТЛОЖЕНО</strong> до ФАЗЫ 2 (Monsters). В этой работе флаг <code>isMagical</code> не вводится.</p>
+<h3 id="7-vulnerability-g1-g3">7. Vulnerability и типизация оружия (G1 + G3)<a class="headerlink" href="#7-vulnerability-g1-g3" title="Permanent link">&para;</a></h3>
+<p><strong>Vulnerability (G1):</strong> <code>vulnerabilities: List&lt;DamageType&gt;</code> вводится сразу в <code>Damageable</code> и
+обрабатывается в <code>DamageResolver.apply</code> (×2).</p>
+<p><strong>Типизация оружия (G3):</strong> базовый урон оружия получает физический тип (slashing/bludgeoning/piercing).
+Минимальный путь:
+- <strong>Источник истины</strong> — колонка <code>damage_type</code> (nullable) в <code>item_archetypes</code> (0022).
+- <strong>Runtime</strong> — поле <code>damageType: DamageType? = null</code> у <code>InventoryItem</code> (<code>GameState.kt:231</code>),
+  заполняется из архетипа при создании предмета.
+- <strong>Эмиссия</strong> — <code>TurnResolver.kt:1785</code> передаёт <code>equippedItem?.damageType</code> (объект <code>equippedItem</code>
+  уже в области видимости, <code>TurnResolver.kt:1753</code>).</p>
+<p><code>ItemBonuses</code> не используем — это бонусы характеристик, а не тип урона.</p>
+<p>Лут-предметы остаются <code>untyped</code> (<code>InventoryItem.damageType = null</code>) до отдельной задачи
+«типизация лута» в ФАЗЕ 2 — см. <code>## Untouched in this ADR</code>.</p>
+<p><strong>Legacy fallback:</strong> старые сессии без <code>damageType</code> → «untyped» (без resistance/immunity).
+Канонический тип определяется оружием (longsword=slashing, mace=bludgeoning, rapier=piercing,
+shortbow=piercing, sling=bludgeoning), а не «melee/ranged». Заполнение <code>item_archetypes</code> (G3)
+закрывает legacy-проблему.</p>
+<h3 id="8-gap-weapon_traitsdamage_type">8. Gap: <code>weapon_traits.damage_type</code><a class="headerlink" href="#8-gap-weapon_traitsdamage_type" title="Permanent link">&para;</a></h3>
+<p><code>weapon_traits.damage_type</code> (0015) существует в БД, но <code>WeaponTraitRow</code> (<code>CatalogService.kt:225-248</code>)
+его не читает. Это <strong>отдельный gap вне рамок ADR-0012</strong>: он про элементальные зачарования
+(flaming/frost/poisoned/cursed) — дополнительный тип урона поверх базового, требующий логики
+применения traits (extra dice + статус), а не базового enum. Зафиксирован как открытый вопрос
+(отдельная работа).</p>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<p>Развилки сформулированы, выбор за архитектором.</p>
+<p><strong>A. Размещение enum <code>DamageType</code>.</strong> Пакет <code>rules</code> сейчас без подпакета <code>damage/</code>, но есть
+<code>economy/</code>, <code>intent/</code>, <code>semantic/</code>.
+- A1: <code>com.yorva.rules.damage.DamageType</code> — отдельный подпакет (изоляция домена урона).
+- A2: <code>com.yorva.rules.DamageType</code> — плоский пакет, рядом с <code>GameState</code>.</p>
+<p><strong>B. Форма <code>DamageResolver</code>.</strong>
+- B1: чистая функция/<code>object DamageResolver</code> (детерминированный rules-engine, без состояния).
+- B2: Spring-бин (<code>@Component</code>) с инъекцией — если понадобятся конфиг/переопределения.</p>
+<p><strong>C. Модель носителей resist/immune/vuln.</strong> Сейчас resist/immune есть только у <code>Enemy</code>
+(<code>List&lt;String&gt;</code>), у <code>CharacterState</code> их нет.
+- C1: общий интерфейс <code>Damageable { resistances; immunities; vulnerabilities }</code> — и Enemy, и
+  CharacterState его реализуют (симметрия, один резолвер).
+- C2: продублировать поля в <code>CharacterState</code> без интерфейса.
+- C3: оставить только у Enemy (урон по игроку пока не учитывает сопротивления).</p>
+<p><strong>D. «Сопротивление всему» (потребуется для Petrified из ADR-0013).</strong>
+- D1: отдельный флаг/статус «resistance to all».
+- D2: специальное значение <code>DamageType.ALL</code> в списке.
+- D3: не поддерживать в MVP.</p>
+<p><strong>E. Точка применения резолвера.</strong>
+- E1: единая точка в <code>SessionService.applyStateChanges</code> (и для Player, и для Enemy) — резолвер
+  применяется там, урон в <code>StateChange.Damage</code> хранится «сырым».
+- E2: оставить в вызывающем коде (как сейчас в <code>SpellService</code>) — риск дублирования.</p>
+<p><strong>F. «Магическое vs немагическое» оружие.</strong> Канон: сопротивление к bludgeoning/piercing/slashing
+не распространяется на магическое оружие.
+- F1: флаг <code>isMagical: Boolean</code> у источника урона.
+- F2: отложить (учесть только при вводе уязвимостей к физическому урону).</p>
+<p><strong>G. Vulnerability и типизация базового оружия.</strong>
+- G1: ввести <code>vulnerabilities</code> сразу (полный канон ÷2/×2/иммунитет).
+- G2: отложить vulnerability до отдельного шага.
+- G3: типизировать базовый урон оружия (slashing/bludgeoning/piercing) — сейчас он бестиповый.</p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Плюсы<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Симметрия Player/Enemy: оба реализуют <code>Damageable</code>, один резолвер на всех носителей урона.</li>
+<li>Единая точка применения (E1): логика resistance/immunity/vulnerability больше не размазана
+  по вызывающему коду.</li>
+<li>Vulnerability появляется впервые (полный канон ÷2/×2/иммунитет).</li>
+<li>Оружие типизировано → resistance к физическому урону (slashing/bludgeoning/piercing) заработает.</li>
+</ul>
+<h3 id="_5">Минусы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>SpellService.kt:168-173</code> теряет логику резистов/иммунитетов — переезд в <code>applyStateChanges</code>.</li>
+<li>Типизация оружия требует правок данных: колонка <code>damage_type</code> в <code>item_archetypes</code> (0022)
+  и поле <code>damageType</code> в <code>InventoryItem</code>.</li>
+</ul>
+<h3 id="_6">Риски<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Старые сессии без <code>damageType</code> на оружии</strong> — fallback <code>untyped</code> (без resistance/immunity).
+  Канонический тип определяется оружием (longsword=slashing, mace=bludgeoning, rapier=piercing,
+  shortbow=piercing, sling=bludgeoning), а не «melee/ranged». Заполнение <code>item_archetypes</code> (G3)
+  закрывает legacy-проблему.</li>
+<li><code>type == null</code> не проходит модификацию в резолвере (без resistance/vulnerability) —
+  поведение по умолчанию задокументировано.</li>
+<li>Консолидация снижения HP ENEMY (сейчас <code>TurnResolver.kt:1790</code>) в <code>applyStateChanges</code> —
+  <strong>дубль #4 ADR-0011</strong>, в ADR-0012 не входит (см. ADR-0011).</li>
+<li><strong>Изменение <code>InventoryItem</code> затрагивает лут-пайплайн.</strong> <code>LootShowcaseService.toInventoryItem</code>
+  (named-args, без <code>damageType</code>) продолжит работать через default <code>null</code>. Митигация: изменение
+  аддитивное — все существующие тесты лута (<code>LootShowcaseServiceTest</code>, <code>LootPowerTableTest</code>)
+  должны пройти без правок. Если хоть один падает — стоп и доклад архитектору.</li>
+</ul>
+<h3 id="_7">Отложено<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>F2: «магическое vs немагическое оружие» — <strong>отложено до ФАЗЫ 2 (Monsters)</strong>.</li>
+</ul>
+<h3 id="-ag">Чек-лист решений A–G<a class="headerlink" href="#-ag" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A = A1 — enum <code>com.yorva.rules.damage.DamageType</code> (отдельный подпакет).</li>
+<li>B = B1 — <code>object DamageResolver</code>, чистая функция, без Spring-бина.</li>
+<li>C = C1 — общий интерфейс <code>Damageable</code> у <code>CharacterState</code> и <code>Enemy</code>.</li>
+<li>D = D1 — <code>resistanceToAll: Boolean</code> (не <code>DamageType.ALL</code>).</li>
+<li>E = E1 — единая точка <code>applyStateChanges</code>; <code>SpellService.kt:168-173</code> удаляется.</li>
+<li>F = F2 — магическое оружие отложено до ФАЗЫ 2 (Monsters).</li>
+<li>G = G1 + G3 — vulnerability сразу; оружие типизируется сразу.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<p>Следующие файлы НЕ изменяются в рамках ADR-0012:
+- <code>loot/LootShowcaseService.kt</code> — только конструктор <code>InventoryItem</code> (поле <code>damageType</code>
+  добавляется с default <code>null</code>), логика <code>toInventoryItem</code> не меняется;
+- <code>loot/LootTable.kt</code>, <code>LootPowerTable.kt</code>, <code>LootRarityCurve.kt</code>;
+- <code>db/changelog/changes/0028-loot-catalog.yaml</code>, <code>0029-loot-items-*.yaml</code> (все 9 файлов),
+  <code>0030-loot-item-category.yaml</code>.</p>
+<p>Loot-предметы остаются untyped (<code>InventoryItem.damageType = null</code>) до отдельной задачи
+«типизация лута» в ФАЗЕ 2.</p>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>D&amp;D 5e PHB p.196-197 (Damage Resistance and Vulnerability).</li>
+<li><code>GameState.kt:1157</code> (<code>StateChange.Damage</code>), <code>:682</code> (<code>Enemy</code>), <code>:338</code> (<code>CharacterState</code>).</li>
+<li><code>spells/Spell.kt:72</code>, <code>spells/SpellService.kt:168-179</code>.</li>
+<li><code>catalog/CatalogService.kt:255-285</code> (<code>EnvironmentalHazardRow</code>).</li>
+<li>Liquibase <code>0015-action-catalog.yaml</code> (weapons/weapon_traits), <code>0022-item-archetypes.yaml</code>,
+  <code>0035-environmental-hazards.yaml</code>.</li>
+<li>ADR-0006 (action economy / class resources, стиль и пакетные договорённости).</li>
+<li>ADR-0010 (turn/round model).</li>
+<li>ADR-0013 (Conditions/Exhaustion/Petrified — будущее, «resistance to all»).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
