@@ -1,0 +1,2880 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/turn-pipeline-map/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Карта пайплайна обработки хода игрока - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Карта пайплайна обработки хода игрока
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Точка входа
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Послойный пайплайн
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Послойный пайплайн">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-sessionserviceprocessturn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 1: Оркестратор SessionService.processTurn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-turnresolverresolve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 2: TurnResolver.resolve — детерминированное разрешение механики
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-actionparserparse-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 3: ActionParser.parse — классификация намерения (30 гейтов, порядок = порядок победы)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-turnresolverdispatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 4: TurnResolver.dispatch — маршрутизация на резолверы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-statechange" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 5: Применение StateChange
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-llm-llm-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 6: LLM-нарратив (единственный синхронный LLM-вызов в основном пути после механики)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-async" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 7: Фоновая память (async, после ответа не блокирует)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-llm-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Слой 8: Классификаторы LLM внутри слоя 3 (для полноты — промпты и парсинг)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Модель состояния
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Модель состояния">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sessionentity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SessionEntity (персистентная строка сессии)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#turnentity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TurnEntity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#participant-participantsjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Participant (внутри participantsJson)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#characterstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CharacterState
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enemy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enemy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#combatstate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CombatState
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actioneconomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ActionEconomy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прочие контрактные типы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Инварианты / дублирование
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Контракты между слоями
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Внешние зависимости
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Внешние зависимости">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM-провайдеры
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classpath-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Каталоги (classpath resources)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-liquibase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        БД (PostgreSQL, Liquibase)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Кэш
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Известные проблемы (задокументированные в коде)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Чего нет в коде
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="_1">Карта пайплайна обработки хода игрока<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. Точка входа<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Endpoint:</strong> <code>POST /api/v1/sessions/{sessionId}/turns</code></li>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/sessions/SessionController.kt:117-134</code></li>
+<li><strong>Сигнатура:</strong> <code>fun turn(@PathVariable sessionId: SessionId, @Valid @RequestBody request: TurnRequest, httpRequest: HttpServletRequest): ResponseEntity&lt;*&gt;</code> (SessionController.kt:118-122)</li>
+<li><strong>Делегирование:</strong> <code>sessionService.processTurn(actorUserId, sessionId, request)</code> (SessionController.kt:125)</li>
+</ul>
+<p><strong>Request DTO — <code>TurnRequest</code></strong> (<code>SessionDtos.kt:49-54</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Тип</th>
+<th>Валидация</th>
+<th>Строка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>action</code></td>
+<td><code>String</code></td>
+<td><code>@field:NotBlank</code></td>
+<td>SessionDtos.kt:50-51</td>
+</tr>
+<tr>
+<td><code>reaction</code></td>
+<td><code>String?</code></td>
+<td>нет</td>
+<td>SessionDtos.kt:53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response DTO — <code>TurnResponse</code></strong> (<code>SessionDtos.kt:56-62</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Тип</th>
+<th>Строка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>narrative</code></td>
+<td><code>String</code></td>
+<td>SessionDtos.kt:57</td>
+</tr>
+<tr>
+<td><code>mechanics</code></td>
+<td><code>MechanicsBlock</code></td>
+<td>SessionDtos.kt:58</td>
+</tr>
+<tr>
+<td><code>characterState</code></td>
+<td><code>com.yorva.rules.CharacterState</code></td>
+<td>SessionDtos.kt:59</td>
+</tr>
+<tr>
+<td><code>sequenceNum</code></td>
+<td><code>Int</code></td>
+<td>SessionDtos.kt:60</td>
+</tr>
+<tr>
+<td><code>sceneImageUrl</code></td>
+<td><code>String?</code></td>
+<td>SessionDtos.kt:61</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Маппинг ошибок контроллера</strong> (SessionController.kt:126-133): <code>SessionAccessDeniedException</code> → 403; <code>NoSuchElementException</code> → 404; <code>IllegalStateException</code> (pessimistic lock) → 429.</p>
+<hr />
+<h2 id="2">2. Послойный пайплайн<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="1-sessionserviceprocessturn">Слой 1: Оркестратор <code>SessionService.processTurn</code><a class="headerlink" href="#1-sessionserviceprocessturn" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt:734-1441</code> (<code>@Transactional</code>, :733)</li>
+<li><strong>Вход:</strong> <code>(actorUserId: UserId, sessionId: SessionId, request: TurnRequest)</code></li>
+<li><strong>Выход:</strong> <code>TurnResponse</code></li>
+<li><strong>Что делает:</strong> загружает/блокирует сессию, определяет врага, вызывает TurnResolver, применяет StateChange, вызывает LLM-нарратив, парсит теги, персистит, запускает фоновые задачи.</li>
+<li><strong>Ветвление:</strong> если <code>request.reaction != null</code> (SessionService.kt:762) — уходит в отдельный конвейер <code>processReactionTurn</code> (SessionService.kt:1450-1530) и основной путь не выполняется.</li>
+</ul>
+<p>Подблоки в порядке выполнения (обычный ход, <code>reaction == null</code>):</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Строки</th>
+<th>Что делает</th>
+<th>LLM</th>
+<th>Ошибки/пропуск</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>739-758</td>
+<td><code>findByIdForUpdate</code> (PESSIMISTIC_WRITE, :741); десериализация <code>participantsJson</code> (:749); поиск участника (:750-751); backfill visualAnchor (:752 → 514-527); извлечение <code>participant.state</code> (:754-755); сброс <code>actionEconomy</code> (:758)</td>
+<td>нет</td>
+<td>lock → <code>IllegalStateException</code>→429; нет сессии → <code>NoSuchElementException</code>→404; не участник → <code>SessionAccessDeniedException</code>→403</td>
+</tr>
+<tr>
+<td>B</td>
+<td>760-771</td>
+<td>Ветка реакции (см. выше)</td>
+<td>нет</td>
+<td>пропуск при <code>reaction == null</code></td>
+</tr>
+<tr>
+<td>C</td>
+<td>773-793</td>
+<td>Профиль сложности (:773-775, <code>Difficulty.fromValue</code> + <code>balanceRegistry?.current?.apply</code>); враг — трёхуровневый фолбэк (:780-782): (1) <code>enemyJson</code>; (2) <code>restoreRegisteredEnemy</code> (2588-2606); (3) <strong>Q11.7</strong> <code>autoSpawnHostileFromNarrative</code> (2614-2628); <strong>Q1</strong> <code>detectNpcAttackTarget</code> (:785-786 → 2650-2656); загрузка <code>combatStateJson</code> + порядок инициативы (:789-793)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>D</td>
+<td>795-842</td>
+<td>Проверка <code>isDead</code> (:795-797 → <code>CharacterDeadException</code>); детект повтора ловушки (:800-801, подстроки «ловушк»/«капкан»); ранний выход с no_roll + LLM-нарратив (:802-842, вызов :828)</td>
+<td><strong>да</strong> (нарратив, :828)</td>
+<td>ранний return при совпадении действия</td>
+</tr>
+<tr>
+<td>E</td>
+<td>844-891</td>
+<td>sequence_num (:844); seed = <code>sessionId.hashCode() xor nextSequence</code> (:845); pre-strike врага <code>resolveEnemyTurn</code> (:847-849, TurnResolver.kt:347-360); <strong>основной вызов</strong> <code>turnResolver.resolve(...)</code> (:860); whitelist-пост-валидация <code>actionWhitelist.canExecuteWithMapping</code> (:876) → при отказе замена на no_roll (:880); слияние pre-strike с механикой (:884-891)</td>
+<td>нет (LLM внутри слоёв 3-4)</td>
+<td>при <code>playerSurprisedThisTurn</code> — no_roll вместо resolve (:851-858)</td>
+</tr>
+<tr>
+<td>F</td>
+<td>893-921</td>
+<td>Смена сцены <code>computeSceneTransition</code> (:893 → 1867-1876); <code>applyStateChanges</code> (:894-895 → 1878-2320); <code>tickDurations</code> (:899 → 2379-2404); save-end спасброски CON DC12 (:900-903, <code>resolveSaveEnds</code>, TurnResolver.kt:49); авто-спасбросок смерти <code>DeathRules.shouldAutoDeathSave</code> (:906-921, DeathRules.kt:12)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>G</td>
+<td>923-927</td>
+<td>Загрузка контекста памяти: <code>worldRepository</code> (:923), <code>summaryRepository</code> (:924), <code>factRepository</code> + <code>prioritizedFacts()</code> (TOP 20, :925-927)</td>
+<td>нет</td>
+<td>БД</td>
+</tr>
+<tr>
+<td>H</td>
+<td>1052-1059</td>
+<td>Витрина лута <code>generateLootShowcaseIfTriggered</code> (2437-2462; триггеры :2446-2453: квест/победа 40%/поиск 30%/<code>[REQUEST_LOOT]</code>)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>I</td>
+<td>1062-1075</td>
+<td><code>computeNarrativeBudget</code> (NarrativeBudget.kt:41) из исхода хода</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>J</td>
+<td>1077-1097</td>
+<td>Сборка <code>mechanicsText</code> (buildString, :954-1046) и <code>TurnContext</code> (:1078-1096); <strong>вызов нарратива</strong> <code>narrateWithValidation(context)</code> (:1097 → 309-337)</td>
+<td><strong>да</strong> (см. слой 6)</td>
+<td>retry + fallback (см. слой 6)</td>
+</tr>
+<tr>
+<td>K</td>
+<td>1099-1186</td>
+<td>Парсинг тегов нарратива: <code>[GRANT_ITEM]</code>/<code>[GRANT_UNIQUE]</code> (:1109-1117, гейт <code>lootGrantJustified</code> :2891); <code>[TAKE_LOOT:id]</code> (:1120-1130); фильтр дублей (:1133-1141); дар NPC без тега → <code>DroppedItem</code> (:1143-1159); <strong>Q11.7</strong> <code>[SPAWN_ENEMY:code\|Имя\|фичи]</code> → <code>instantiateArchetypeEnemy</code> (:1172) → <code>registerEnemy</code> (:1174); удаление тегов regex (:1182-1186)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>L</td>
+<td>1188-1222</td>
+<td>Инициатива (13.1/13.6): выбор nextEnemySnapshot (:1189-1195); сброс combatState (:1196-1198); <code>resolveInitiative</code> при новом бое (:1200); <code>insertIntoInitiative</code> (:1210); снятие surprised (:1220-1222)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>M</td>
+<td>1224-1235</td>
+<td>Маркер <code>[SCENE:label]</code> → <code>StateChange.SetScene</code> (:1225-1233); trim нарратива (:1235)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>N</td>
+<td>1237-1288</td>
+<td>Финализация: grantedItems в инвентарь (:1244-1246); giftDroppedItems (:1247-1249); takenLootItems + issuedLootItemIds + legendaryLootGranted (:1252-1260); подсчёт damageDealt/Taken/xpGained/characterDied (:1262-1271); checkpoint autosave для no_roll (:1274-1275); <code>DeathRules.resolveDeathRestore</code> (:1279-1288, DeathRules.kt:23)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>O</td>
+<td>1290-1297</td>
+<td>Доступные реакции: <code>availableReactions</code> (712-724) → <code>detectReactionTriggers</code> (672-686) → <code>reactionTriggerRegistry.proposals</code></td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>P</td>
+<td>1299-1338</td>
+<td>Сборка <code>MechanicsBlock</code> (все поля, включая фильтрацию <code>droppedItems</code> через <code>lootWhitelist.canDrop</code>)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Q</td>
+<td>1340-1369</td>
+<td>Персистентность: <code>TurnEntity</code> (:1340-1349) → <code>turnRepository.save</code> (:1350); сериализация <code>participantsJson</code> (:1358); обновление <code>enemyJson</code> (:1360-1366); <code>combatStateJson</code> (:1368); <code>sessionRepository.save</code> (:1369)</td>
+<td>нет</td>
+<td>БД</td>
+</tr>
+<tr>
+<td>R</td>
+<td>1371-1375</td>
+<td>Фоновая память: <code>memoryBackgroundService.afterTurn(sessionId, turn, ledgerJson)</code> (MemoryBackgroundService.kt:28-33) → архивариус каждый ход + суммаризатор каждый 10-й ход (async, см. слой 7)</td>
+<td><strong>да</strong> (async)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>S</td>
+<td>1377-1432</td>
+<td>События визуальных якорей/иллюстраций: sceneCharacterAnchor (:1377-1379 → 2692-2718); <code>EquipmentAnchorRequestedEvent</code> (:1382-1390); <code>NpcVisualAnchorRequestedEvent</code> (:1393-1405); <code>SceneImageRequestedEvent</code> (:1408-1420); <code>DeathImageRequestedEvent</code> (:1423-1429); <code>deathImageUrl</code> из <code>session.deathImageMediaId</code> (:1432)</td>
+<td>нет (async-обработчики отдельно)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>T</td>
+<td>1434-1440</td>
+<td>Сборка <code>TurnResponse</code> (<code>sceneImageUrl = null</code>)</td>
+<td>нет</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Мутации состояния (слой 1):</strong> <code>participant.state</code> (через <code>applyStateChanges</code>, :894-895/912), <code>session.participantsJson</code> (:1358), <code>session.enemyJson</code> (:1366), <code>session.combatStateJson</code> (:1368), <code>session.deathImageMediaId</code> (:1432), <code>participant.checkpointState</code> (:1274-1275), <code>playerState.actionEconomy</code> (:758), <code>playerState.inventory</code> (:1245, :1256), <code>playerState.droppedItems</code> (:1248), <code>playerState.issuedLootItemIds</code> (:1257), <code>playerState.legendaryLootGranted</code> (:1258).</li>
+<li><strong>Обработка ошибок:</strong> вся обёртка <code>@Transactional</code> (:733); lock/доступ — см. блок A.</li>
+</ul>
+<h3 id="2-turnresolverresolve">Слой 2: <code>TurnResolver.resolve</code> — детерминированное разрешение механики<a class="headerlink" href="#2-turnresolverresolve" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/rules/TurnResolver.kt:164-281</code></li>
+<li><strong>Вход:</strong> <code>(action: String, character: CharacterState, enemy: Enemy?, profile: DifficultyProfile, context: ActionContext = ActionContext.DEFAULT, seed: Int? = null, enemyTurnAllowed: Boolean = true)</code></li>
+<li><strong>Выход:</strong> <code>TurnMechanics</code> (TurnResolver.kt:99-116)</li>
+<li><strong>Факт из слоя 1:</strong> <code>SessionService</code> вызывает <code>resolve</code> <strong>без</strong> <code>context</code> (SessionService.kt:860) → всегда <code>ActionContext.DEFAULT</code> = <code>SceneType.EXPLORATION</code> (ActionContext.kt:31, :40; дефолт параметра — TurnResolver.kt:168).</li>
+</ul>
+<p>Подслои в порядке выполнения:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Строки</th>
+<th>Что делает</th>
+<th>Пропуск/ошибки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1</td>
+<td>174-179</td>
+<td>Seed-реплей: новый инстанс TurnResolver с <code>Dice(Random(seed))</code></td>
+<td>при <code>seed == null</code></td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>182-185</td>
+<td><code>CompositeActionSplitter.split(action)</code> (CompositeActionSplitter.kt:11); при &gt;1 сегменте → <code>resolveComposite</code> (288-324): последовательный resolve сегментов с симуляцией экономии (<code>simulateEconomy</code>, 327-341)</td>
+<td>при одном сегменте</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>187-189</td>
+<td><code>character.isUnconscious</code> → <code>resolveDeathSave</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>192-202</td>
+<td><code>!canAct \|\| !canAttack</code> → no_roll с <code>blockedCapabilityReason</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>204-212</td>
+<td>Префикс <code>cast &lt;spell_id&gt;</code> при известном spellId → <code>resolveCastSpell</code></td>
+<td>иначе общий парсер</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>213</td>
+<td><strong><code>parser.parse(...)</code></strong> → <code>ActionRequest</code> (см. слой 3)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.7</td>
+<td>216-226</td>
+<td><code>dslId == "DISMISS_SPELL"</code> → no_roll <code>dismiss_concentration</code> (consumesAction=false)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.8</td>
+<td>229-238</td>
+<td><code>checkActionEconomy</code> (362-406): слот из <code>action_economy.yml</code> через <code>ActionEconomyRegistry.slotFor</code> (362-365); при исчерпанном слоте → no_roll с текстом ошибки</td>
+<td>registry == null → встроенные правила</td>
+</tr>
+<tr>
+<td>2.9</td>
+<td>240-250</td>
+<td><code>ClassFeatureHelper.detectFeature</code> + <code>canAfford</code> — при нехватке ресурса → no_roll</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.10</td>
+<td>252-267</td>
+<td>Action Surge (<code>grantsExtraAction</code>) → механика <code>action_surge</code> с <code>GrantExtraAction</code> + <code>SpendClassResource</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.11</td>
+<td>269-270</td>
+<td><strong><code>dispatch(req, ...)</code></strong> (441-544+) → конкретный резолвер; копирование dslId/dslParam в результат</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.12</td>
+<td>272</td>
+<td><code>ambush_prep</code> → ранний return без контратаки врага</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.13</td>
+<td>275-278</td>
+<td><code>buildEconomyChanges</code> (408-435): <code>SpendAction</code>/<code>SpendBonusAction</code>/<code>SpendReaction</code>/<code>SpendFreeInteraction</code>/<code>SpendClassResource</code> добавляются в <code>stateChanges</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.14</td>
+<td>280</td>
+<td><code>applyEnemyTurn(mechanics, ...)</code> — контратака врага (B-04/B-05)</td>
+<td>при <code>enemyTurnAllowed = false</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Мутации состояния:</strong> нет (возвращает <code>TurnMechanics.stateChanges</code>; применение — в слое 1, блок F).</li>
+<li><strong>LLM:</strong> нет напрямую; LLM вызывается внутри слоя 3 (подслои 3.5, 3.13).</li>
+</ul>
+<h3 id="3-actionparserparse-30">Слой 3: <code>ActionParser.parse</code> — классификация намерения (30 гейтов, порядок = порядок победы)<a class="headerlink" href="#3-actionparserparse-30" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/rules/ActionParser.kt:35-289</code></li>
+<li><strong>Вход:</strong> <code>(action, character, enemy, profile, context)</code></li>
+<li><strong>Выход:</strong> <code>ActionRequest</code> (ActionType.kt:77-89; ни один гейт не возвращает null — последний гейт NO_ROLL)</li>
+<li><strong>Что делает:</strong> последовательно проверяет гейты; первый сработавший возвращает результат.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Строки</th>
+<th>Гейт</th>
+<th>Тип результата</th>
+<th>LLM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3.1</td>
+<td>45-47</td>
+<td><code>isUnconscious</code></td>
+<td>DEATH_SAVE</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.2</td>
+<td>50-52</td>
+<td><code>DISMISS_CONCENTRATION_PATTERN</code> (:623)</td>
+<td>NO_ROLL + dslId=DISMISS_SPELL</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.3</td>
+<td>54-56</td>
+<td>«в воздух/пустоту/никуда» + <code>ATTACK_PATTERN</code> (:601)</td>
+<td>NO_ROLL</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.4</td>
+<td>60-78</td>
+<td><code>tryHardOverride</code> (564-587): HIDE_BEHIND_ALLY→DODGE/DEFEND; EQUIP/UNEQUIP (без THEFT/OVERWRITE_OTHER)→EQUIP; DODGE→DODGE/DEFEND; SELF_HIDE→HIDE — затем whitelist <code>canExecuteWithMapping</code> (:72); при отказе whitelist — падение в слои ниже</td>
+<td>DODGE/EQUIP/HIDE</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.5</td>
+<td>81-125</td>
+<td><strong>DSL-путь:</strong> ранний отсев манёвров/лута (:83-85); <code>dslRegistry.pruneByState</code> (:89); <code>candidates</code> (:91 — ветка <code>else</code> мёртвая, см. §7); <code>dslTranslator.translate</code> (:93) — <strong>LLM GigaChat-3-Ultra</strong>; гвард CAST без магических ключевых слов (:96-111); <code>dslValidator.validate</code> (:102/:113); <code>mapDslToActionRequest</code> (:104/:115 → 481-558); при невалидном ATTACK*/CAST — NO_ROLL с dslId (:108/:118)</td>
+<td>зависит от dslId</td>
+<td><strong>да</strong></td>
+</tr>
+<tr>
+<td>3.6</td>
+<td>130-133</td>
+<td><strong>Семантический нормализатор</strong> <code>normalizer.normalize</code> (SemanticActionNormalizer.kt:21-31; дерево resolve :64-176) → <code>enrichNormalized</code> (402-454): ATTACK→ATTACK_CATALOG/SPECIAL_ATTACK/FINISHING_BLOW; SPELL→SPELL_CATALOG; HAZARD→templateCode; SOCIAL_CHECK→CHECK_CATALOG/socialCheckCode; CHECK→CHECK_CATALOG</td>
+<td>по типу</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.7</td>
+<td>138-153</td>
+<td>Манёвры regex: DODGE (:626) → DISENGAGE (:628) → DASH (:630) → HIDE_BEHIND_ALLY (:635) → HIDE (:633)</td>
+<td>соотв.</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.8</td>
+<td>156-158</td>
+<td><code>BONUS_ACTION_PATTERN</code> (:636)</td>
+<td>BONUS_ACTION</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.9</td>
+<td>160-162</td>
+<td><code>OPPORTUNITY_ATTACK_PATTERN</code> (:637)</td>
+<td>OPPORTUNITY_ATTACK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.10</td>
+<td>165-167</td>
+<td><code>catalog.isFinishingBlow</code> + враг ранен</td>
+<td>FINISHING_BLOW</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.11</td>
+<td>170-172</td>
+<td><code>catalog.findSpecialAttack</code></td>
+<td>SPECIAL_ATTACK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.12</td>
+<td>176-178</td>
+<td><code>THEFT_PATTERN</code> (:617)</td>
+<td>CHECK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.13</td>
+<td>181-183</td>
+<td><code>catalog.findSkillCheck</code></td>
+<td>CHECK_CATALOG</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.14</td>
+<td>188-192</td>
+<td><strong><code>classifier.classify(action, context)</code></strong> — LLM CatalogClassifier → <code>resolveIntent</code> (344-396): hazard→HAZARD(catalogCode); CONTAINER→OBJECT; templateCode→<code>resolveTemplate</code> (296-337); type→обогащение каталогами</td>
+<td>по intent</td>
+<td><strong>да</strong></td>
+</tr>
+<tr>
+<td>3.15</td>
+<td>196-201</td>
+<td><code>SOCIAL_CHECK_PATTERN</code> (:618) + <code>catalog.findSocialCheck</code></td>
+<td>SOCIAL_CHECK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.16</td>
+<td>206-208</td>
+<td><code>OBJECT_PATTERN</code> (:610)</td>
+<td>OBJECT</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.17</td>
+<td>211-213</td>
+<td><code>LOOT_PATTERN</code> (:619)</td>
+<td>LOOT</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.18</td>
+<td>217-219</td>
+<td><code>AMBUSH_PATTERN</code> (:621)</td>
+<td>AMBUSH_PREP</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.19</td>
+<td>223-225</td>
+<td><code>EQUIP_PATTERN</code> (:604)</td>
+<td>EQUIP</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.20</td>
+<td>228-230</td>
+<td><code>catalog.findWeapon</code></td>
+<td>ATTACK_CATALOG</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.21</td>
+<td>233-235</td>
+<td><code>isFinishingBlow</code> + враг с полным HP</td>
+<td>ATTACK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.22</td>
+<td>238-242</td>
+<td><code>catalog.findSpellFamily</code></td>
+<td>SPELL_CATALOG</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.23</td>
+<td>245-247</td>
+<td><code>SUMMON_PATTERN</code> (:599)</td>
+<td>SPELL (isSummon)</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.24</td>
+<td>250-252</td>
+<td><code>SPELL_PATTERN</code> (:600)</td>
+<td>SPELL</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.25</td>
+<td>255-257</td>
+<td><code>USE_ITEM_PATTERN</code> (:603)</td>
+<td>USE_ITEM</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.26</td>
+<td>260-262</td>
+<td><code>HEAL_PATTERN</code> (:602)</td>
+<td>HEAL</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.27</td>
+<td>267-270</td>
+<td><code>hazardCodeFor</code> (462-479): гейты <code>isCombatFire</code> (:594-595), <code>FIRE_TENDING_PATTERN</code> (SemanticActionNormalizer.kt:206-215), далее substring/regex по кодам</td>
+<td>HAZARD + templateCode</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.28</td>
+<td>273-275</td>
+<td><code>isCombatFire</code> + враг</td>
+<td>ATTACK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.29</td>
+<td>278-280</td>
+<td><code>CHECK_PATTERN</code> (:612-616)</td>
+<td>CHECK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>3.30</td>
+<td>283-285</td>
+<td><code>ATTACK_PATTERN</code> (:601)</td>
+<td>ATTACK</td>
+<td>нет</td>
+</tr>
+<tr>
+<td>—</td>
+<td>288</td>
+<td>финальный</td>
+<td>NO_ROLL</td>
+<td>нет</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-turnresolverdispatch">Слой 4: <code>TurnResolver.dispatch</code> — маршрутизация на резолверы<a class="headerlink" href="#4-turnresolverdispatch" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/rules/TurnResolver.kt:441-544+</code></li>
+<li><strong>Вход:</strong> <code>ActionRequest</code> + <code>(character, enemy, profile)</code></li>
+<li><strong>Выход:</strong> <code>TurnMechanics</code></li>
+<li><strong>Механика:</strong> <code>when (req.type)</code> — exhaustive по enum <code>ActionType</code> (compile-time). Маппинг:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>ActionType</th>
+<th>Резолвер</th>
+<th>Строки</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEATH_SAVE</td>
+<td><code>resolveDeathSave</code></td>
+<td>452</td>
+</tr>
+<tr>
+<td>FINISHING_BLOW</td>
+<td><code>resolveFinishingBlow</code> (enemy!!)</td>
+<td>454</td>
+</tr>
+<tr>
+<td>DODGE</td>
+<td><code>resolveDodge</code></td>
+<td>456</td>
+</tr>
+<tr>
+<td>DISENGAGE</td>
+<td><code>resolveDisengage</code></td>
+<td>458</td>
+</tr>
+<tr>
+<td>DASH</td>
+<td><code>resolveDash</code></td>
+<td>460</td>
+</tr>
+<tr>
+<td>HIDE</td>
+<td><code>resolveHide</code></td>
+<td>462</td>
+</tr>
+<tr>
+<td>BONUS_ACTION</td>
+<td><code>resolveBonusAction</code></td>
+<td>464</td>
+</tr>
+<tr>
+<td>OPPORTUNITY_ATTACK, REACTION</td>
+<td><code>resolveOpportunityAttack</code></td>
+<td>466-468</td>
+</tr>
+<tr>
+<td>SPECIAL_ATTACK</td>
+<td><code>catalog!!.findSpecialAttack(... )!!</code> → <code>resolveSpecialAttack</code></td>
+<td>470-473</td>
+</tr>
+<tr>
+<td>OBJECT</td>
+<td><code>resolveObject</code> (req.target)</td>
+<td>475</td>
+</tr>
+<tr>
+<td>LOOT</td>
+<td><code>resolveLoot</code></td>
+<td>477</td>
+</tr>
+<tr>
+<td>AMBUSH_PREP</td>
+<td><code>resolveAmbushPrep</code></td>
+<td>478</td>
+</tr>
+<tr>
+<td>ATTACK_CATALOG</td>
+<td><code>catalog!!.findWeapon(...)!!</code> → <code>resolveAttackCatalog</code></td>
+<td>480-483</td>
+</tr>
+<tr>
+<td>SPELL_CATALOG</td>
+<td><code>catalog!!.findSpellFamily(...)!!</code> → <code>resolveSpellCatalog</code></td>
+<td>485-488</td>
+</tr>
+<tr>
+<td>SPELL</td>
+<td><code>cast</code>→<code>resolveCastSpell</code>, иначе <code>resolveSpellOrSummon</code></td>
+<td>490-497</td>
+</tr>
+<tr>
+<td>USE_ITEM</td>
+<td><code>resolveUseItem</code></td>
+<td>499</td>
+</tr>
+<tr>
+<td>EQUIP</td>
+<td><code>resolveEquip</code></td>
+<td>501</td>
+</tr>
+<tr>
+<td>HEAL</td>
+<td><code>checkConsumedItemInInventory</code> ?: <code>resolveHeal</code></td>
+<td>503-507</td>
+</tr>
+<tr>
+<td>CHECK_CATALOG</td>
+<td><code>catalog!!.findSkillCheck(...)!!</code> → <code>resolveCheckCatalog</code></td>
+<td>509-512</td>
+</tr>
+<tr>
+<td>TEMPLATE</td>
+<td><code>resolveActionTemplate(req.templateCode)</code> или no_roll</td>
+<td>514-517</td>
+</tr>
+<tr>
+<td>SOCIAL_CHECK</td>
+<td><code>resolveSocialCheck(req.socialCheckCode)</code> или no_roll</td>
+<td>519-522</td>
+</tr>
+<tr>
+<td>HAZARD</td>
+<td><code>catalogService?.findEnvironmentalHazard(code)</code> → <code>resolveHazard</code> если <code>saveAttribute != null</code>, иначе no_roll</td>
+<td>524-532</td>
+</tr>
+<tr>
+<td>ATTACK</td>
+<td><code>resolveAttack</code></td>
+<td>534</td>
+</tr>
+<tr>
+<td>CHECK</td>
+<td><code>resolveCheck</code></td>
+<td>536</td>
+</tr>
+<tr>
+<td>NPC_INTERACTION, QUEST_PROGRESS, NO_ROLL</td>
+<td><code>checkConsumedItemInInventory</code> ?: <code>resolveNoRoll</code></td>
+<td>538-544</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Резолверы</strong> бросают кубики через <code>Dice</code> (d20/d20WithAdvantage/d20WithDisadvantage/roll — TurnResolver.kt:6-22) и возвращают <code>TurnMechanics</code> с <code>diceRolls</code> + <code>stateChanges</code>. Мутаций состояния нет — только описание изменений.</li>
+</ul>
+<h3 id="5-statechange">Слой 5: Применение StateChange<a class="headerlink" href="#5-statechange" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt:1878-2320</code> (<code>applyStateChanges</code>), вызов :894-895 и :912</li>
+<li><strong>Вход:</strong> <code>CharacterState</code> + <code>List&lt;StateChange&gt;</code></li>
+<li><strong>Выход:</strong> новый <code>CharacterState</code></li>
+<li><strong>Что делает:</strong> fold по 43 подтипам <code>StateChange</code> (GameState.kt:1114-1227): HP/статусы/инвентарь/квесты/XP/экономия/концентрация/репутация/класс-ресурсы. Drop концентрации при уроне/статусе (:1915-1919, :1946, :1973, :1991).</li>
+<li><strong>Мутации:</strong> возвращает новый immutable <code>CharacterState</code> (data class copy).</li>
+<li>Далее: <code>tickDurations</code> (2379-2404) — длительности статусов −1; save-end спасброски (SessionService.kt:900-903).</li>
+</ul>
+<h3 id="6-llm-llm-">Слой 6: LLM-нарратив (единственный синхронный LLM-вызов в основном пути после механики)<a class="headerlink" href="#6-llm-llm-" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt:309-337</code> (<code>narrateWithValidation</code>), вызов :1097 (и :828 для повтора ловушки)</li>
+<li><strong>Вход:</strong> <code>TurnContext</code> (Narrator.kt:17-49; поля: worldDescription, worldGenre, playerAction, characterName, characterDescription, mechanics, recentHistory, summary, facts, ledgerJson, difficulty, enemy, enemyDefeated, lootShowcase, availableArchetypes, narrativeBudget, expectedOutcome)</li>
+<li><strong>Выход:</strong> <code>String</code> (сырой нарратив; теги вырезаются позже, блок K)</li>
+<li><strong>Цепочка Narrator</strong> (<code>PrimaryNarrator.kt:22-34</code>, <code>@ConditionalOnProperty app.llm.fake=false</code> :14): GigaChatNarrator → NordRouterNarrator → StubNarrator.</li>
+</ul>
+<p><strong>6.1 GigaChatNarrator</strong> (<code>GigaChatNarrator.kt</code>):
+- Модели: <code>GigaChat-3-Ultra</code> → <code>GigaChat-Pro</code> (:36); failover на NordRouter (:57-86)
+- Промпты: <code>contextBuilder.systemPrompt/openingSystemPrompt(difficulty)</code> (:30) + <code>buildUserPrompt(context)</code> (:31)
+- temperature 0.7, maxTokens 512, timeout 15s (GigaChatClient.kt:89-90, :98)
+- JSON mode (<code>response_format=json_object</code>) при <code>expectedOutcome != null</code> (:32)
+- Парсинг: <code>resp.text?.trim()</code> (:43) — свободный текст или JSON-строка
+- Пропуск: <code>!gigaChatClient.hasAuth()</code> (:35, :53)
+- Ошибки: 2 попытки на модель, sleep 800ms (:38-51); при провале — failover (:57-86)</p>
+<p><strong>6.2 NordRouterNarrator</strong> (<code>NordRouterNarrator.kt:59-106</code>, <code>@ConditionalOnExpression app.llm.api-key != ''</code> :27):
+- HTTP: <code>POST /chat/completions</code> (:88-92)
+- Модель: <code>properties.model</code> (дефолт <code>google/gemini-3.7-flash</code>, LlmProperties.kt:12) + <code>failoverModels</code> (дефолт <code>openai/gpt-5.4-mini</code>, <code>minimax/minimax-m3</code>, LlmProperties.kt:13-16) (:79)
+- temperature <code>properties.temperature</code> (0.9) (:72), maxTokens 4000 (:73), timeout 30s (:39-40)
+- JSON mode при <code>expectedOutcome != null</code> (:74)
+- Парсинг: Jackson <code>ChatCompletionResponse</code> → <code>choices[0].message.content.trim()</code> (:92, :96)
+- Ошибки: maxAttemptsPerModel=2; backoff 1500/2000/3000ms (:103, :110, :115-119); при исчерпании — <code>RuntimeException</code> (:124) → перехватывается в PrimaryNarrator → StubNarrator</p>
+<p><strong>6.3 Промпты</strong> (<code>ContextBuilder.kt</code>):
+- Системный: <code>classpath:llm/gm-system-prompt.txt</code> (:22) + <code>llm/difficulty-{easy,normal,hardcore}.txt</code> (:27-29), сборка :65-68
+- Opening: <code>llm/gm-opening-prompt.txt</code> (:23), сборка :71-74
+- Тональность: <code>llm/setting-tones.yml</code> (:33, :41-46)
+- User-промпт: <code>buildUserPrompt</code> (:76-209) — блоки: сеттинг, тональность, персонаж, резюме, факты, ledgerJson (полная сериализация CharacterState, :115), сводка состояния (<code>buildStateSummary</code> :216-269), история, механика (mechanicsText, SessionService.kt:954-1046), бюджет нарратива, инструкция structured output, retry-коррекция, витрина лута, архетипы противников, действие игрока
+- Все ресурсы <code>by lazy</code> (:22-33)</p>
+<p><strong>6.4 Валидация ответа</strong> (SessionService.kt:313-336):
+- <code>NarrativeValidator.parse(firstRaw)</code> (:313; NarrativeValidator.kt:27)
+- При <code>expectedOutcome != null</code> — <code>NarrativeValidator.isConsistent(raw, expected)</code> (:317)
+- Несогласованность → retry с <code>retryCorrection</code> (:321-327)
+- Провал retry → <code>NarrativeFallback.templateFor(expected, enemy?.name)</code> (:336; шаблоны <code>llm/narrative-fallbacks.yml</code>, lazy, NarrativeFallback.kt:10-20)</p>
+<p><strong>6.5 StubNarrator</strong> (<code>StubNarrator.kt:16-31</code>): захардкоженные тексты; JSON <code>{"narrative","outcome"}</code> при expectedOutcome (:16-18). LLM нет.</p>
+<h3 id="7-async">Слой 7: Фоновая память (async, после ответа не блокирует)<a class="headerlink" href="#7-async" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Триггер:</strong> SessionService.kt:1371-1375 → <code>MemoryBackgroundService.afterTurn</code> (MemoryBackgroundService.kt:28-33) → <code>MemoryAsyncRunner</code> (@Async; флаг <code>app.memory.async-enabled</code>, application.yml:41)</li>
+<li><strong>7.1 Архивариус</strong> <code>NordRouterArchivist</code> (каждый ход; <code>@ConditionalOnExpression app.llm.api-key != ''</code> :35): модель <code>memory.failoverModels.first()</code> = <code>google/gemini-3.7-flash</code> (:49, LlmProperties.kt:33-35); SYSTEM_PROMPT :130-137; user <code>buildUserPrompt(turn, ledgerJson)</code> :112-127; temperature 0.2 (:54); maxTokens 1024 (:55); ответ JSON <code>{"facts":[{factKey,factValue}]}</code>; парсинг: снятие markdown-fence (:95-103) + Jackson <code>readValue</code> (:105); невалидный JSON → пустой список (:106-109); ошибки → warn + пропуск (:59-62); запись в <code>facts</code> (:72-79). Через <code>FailoverClient</code> (FailoverClient.kt:27-46).</li>
+<li><strong>7.2 Суммаризатор</strong> <code>NordRouterSummarizer</code> (каждый 10-й ход; conditional :31): модель та же (:44); SYSTEM_PROMPT :106-112; user <code>buildUserPrompt(turns, previous)</code> :86-103; temperature 0.3 (:49); maxTokens 2048 (:50); ответ — свободный текст, <code>content.trim()</code> (:53); ошибки → warn, резюме не обновляется (:54-57); запись в <code>summaries</code> (:61-70).</li>
+<li><strong>Stub-варианты:</strong> StubArchivist/StubSummarizer при пустом api-key (StubArchivist.kt:16-20, StubSummarizer.kt:16-20) — no-op.</li>
+</ul>
+<h3 id="8-llm-3">Слой 8: Классификаторы LLM внутри слоя 3 (для полноты — промпты и парсинг)<a class="headerlink" href="#8-llm-3" title="Permanent link">&para;</a></h3>
+<p><strong>8.1 LlmDslTranslator</strong> (подслой 3.5; <code>dsl/LlmDslTranslator.kt</code>):
+- Модель: <code>GigaChat-3-Ultra</code> (хардкод :38) через GigaChatClient (temp 0.7 / maxTokens 512 / timeout 15s — GigaChatClient.kt:89-90, :98)
+- Системный промпт (инлайн :37): «Ты — переводчик действий игрока в DSL. Отвечай ТОЛЬКО JSON. DSL — интерфейс между переводчиком и движком.»
+- User-промпт: <code>buildPrompt(userAction, candidates, hasEnemy, inCombat)</code> (:64-86) — действие + флаги + список ~20 шаблонов DslCommand с примерами
+- Ответ: JSON <code>{"dslId","targetType","confidence","skillOrType"}</code>
+- Парсинг: <code>extractJson</code> — substring от первой <code>{</code> до последней <code>}</code> (:88-93) → Jackson <code>readTree</code> (:42)
+- Валидация: <code>candidates.any { it.id == id }</code> (:44); <code>DslTargetType.valueOf</code> под runCatching (:45)
+- Ошибки/пропуск: <code>gigaChatClient == null</code> → keyword-fallback (:36); exception → warn + fallback <code>candidates.first().id</code> или <code>NO_ROLL</code> (:56-61)
+- Кэша нет
+- <strong>Поля CharacterState в промпте:</strong> отсутствуют (только <code>hasEnemy: Boolean</code>, <code>inCombat: Boolean</code>, строка действия)</p>
+<p><strong>8.2 CatalogClassifier</strong> (подслой 3.14; <code>rules/CatalogClassifier.kt</code>, <code>@ConditionalOnExpression app.llm.api-key != ''</code> :29):
+- Модель: <code>classifierModel.takeIf{isNotBlank} ?: model</code> (:57) → дефолт <code>google/gemini-3.7-flash</code>
+- HTTP: <code>POST /chat/completions</code> (:70-74); timeout connect 800ms / read 1500ms (:179-180); temperature 0.0 (:64); maxTokens 256 (:65); JSON mode НЕ включается
+- Системный промпт: константа SYSTEM_PROMPT (:197-217) — 8 правил, включая «определяй по СМЫСЛУ, а не по подстроке» (:206-208)
+- User-промпт: <code>buildUserPrompt</code> (:100-131) — sceneType + действие + списки TYPE_VALUES/HazardCode/ObjectCategory/шаблоны из <code>action_templates</code> + 6 примеров + схема JSON
+- Ответ: <code>{"type","hazard","objectCategory","templateCode","target"}</code>
+- Парсинг: снятие markdown-fence (:141-144) + regex-экстракция полей <code>Regex("\"$name\"\\s*:\\s*\"([^\"]*)\"")</code> (:147)
+- Валидация: <code>type</code> через whitelist TYPE_VALUES (:166-175); <code>hazard</code> через <code>HazardCode.fromCatalogCode</code> (:150); <code>objectCategory</code> через <code>ObjectCategory.parse</code> (:151); <code>templateCode</code> через <code>catalogService.findActionTemplateByCode</code> (:152); все поля null → return null (:85-90)
+- Кэш: <code>ConcurrentHashMap&lt;String, Optional&lt;ActionIntent&gt;&gt;</code>, ключ <code>"action|sceneType"</code> (:36, :48); инвалидации нет
+- Пропуск: <code>!classifierEnabled</code> (:40-43); пустой apiKey (:44-46); пустой каталог шаблонов (:52-55)
+- Ошибки: catch Throwable → warn + cache empty + null (:93-97) → далее regex-путь (подслои 3.15+)
+- <strong>Поля CharacterState в промпте:</strong> отсутствуют (только sceneType и строка действия)</p>
+<hr />
+<h2 id="3">3. Модель состояния<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="sessionentity">SessionEntity (персистентная строка сессии)<a class="headerlink" href="#sessionentity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>backend/app/src/main/kotlin/com/yorva/sessions/SessionEntities.kt:16-43</code></li>
+<li><strong>Поля:</strong> <code>id: UUID</code> (:18), <code>worldId: WorldId</code> (:19), <code>userId: UserId</code> (:20), <code>masterSource: MasterSource</code> (:21), <code>participantsJson: String</code> (:23), <code>portraitMediaId: UUID?</code> (:24), <code>deathImageMediaId: UUID?</code> (:25), <code>difficulty: String</code> (:27), <code>enemyJson: String?</code> (:29), <code>combatStateJson: String?</code> (:36), <code>lootGenre: String?</code> (:40), <code>createdAt: Instant</code> (:42)</li>
+<li><strong>Мутации:</strong> <code>participantsJson</code> — SessionService.kt:471, 522, 634, 1358, 1509, 1605, 1675, 1702, 1778; <code>enemyJson</code> — SessionService.kt:1366, 1510, 2547; <code>combatStateJson</code> — SessionService.kt:1368; <code>deathImageMediaId</code> — SessionService.kt:1432</li>
+</ul>
+<h3 id="turnentity">TurnEntity<a class="headerlink" href="#turnentity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>SessionEntities.kt:45-61</code></li>
+<li><strong>Поля:</strong> <code>id</code>, <code>sessionId</code>, <code>sequenceNum</code>, <code>actorUserId</code>, <code>playerAction</code>, <code>narrative</code>, <code>mechanicsJson</code>, <code>sceneImageMediaId</code>, <code>createdAt</code></li>
+<li><strong>Мутации:</strong> INSERT SessionService.kt:840, 1350</li>
+</ul>
+<h3 id="participant-participantsjson">Participant (внутри participantsJson)<a class="headerlink" href="#participant-participantsjson" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>GameState.kt:686</code></li>
+<li><strong>Поля:</strong> <code>userId</code>, <code>role</code>, <code>characterId?</code>, <code>characterName?</code>, <code>state: CharacterState?</code>, <code>checkpointState: CharacterState?</code>, <code>gender</code>, <code>origin?</code>, <code>characterClass?</code>, <code>canonicalClassId?</code>, <code>displayClassName?</code>, <code>faction?</code>, <code>backstory?</code>, <code>visualAnchor?</code>, <code>visualAnchorDescription?</code></li>
+<li><strong>Инициализация <code>state</code>:</strong> SessionService.create() — SessionService.kt:434-445</li>
+</ul>
+<h3 id="characterstate">CharacterState<a class="headerlink" href="#characterstate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>GameState.kt:327-470</code> (data class, 52 поля)</li>
+<li><strong>Поля:</strong> <code>hp</code> (:328), <code>maxHp</code> (:329), <code>attributes: Attributes</code> (:330), <code>level</code> (:331), <code>xp</code> (:332), <code>ac</code> (:333), <code>statuses</code> (:334), <code>inventory</code> (:335), <code>skills</code> (:336), <code>proficiencies</code> (:338), <code>quests</code> (:339), <code>mana</code> (:341), <code>maxMana</code> (:342), <code>isDead</code> (:343), <code>deathSaveSuccess</code> (:345), <code>deathSaveFail</code> (:346), <code>spellSlots</code> (:351), <code>maxSpellSlots</code> (:353), <code>hitDice</code> (:355), <code>maxHitDice</code> (:356), <code>shortRestsUsedToday</code> (:357), <code>longRestsUsedToday</code> (:358), <code>exhaustion</code> (:363), <code>lastLongRestAt</code> (:368), <code>restInterrupted</code> (:373), <code>reputations</code> (:378), <code>droppedItems</code> (:383), <code>issuedLootItemIds</code> (:388), <code>legendaryLootGranted</code> (:393), <code>concentrationSpell</code> (:398), <code>activeModifiers</code> (:403), <code>canonicalClassId</code> (:409), <code>displayClassName</code> (:410), <code>xpTriggers</code> (:413), <code>currentScene</code> (:419), <code>pendingASI</code> (:422), <code>backgroundId</code> (:425), <code>toolProficiencies</code> (:427), <code>languages</code> (:429), <code>feats</code> (:431), <code>spellsKnown</code> (:433), <code>spellbook</code> (:434), <code>preparedSpells</code> (:435), <code>statusDurations</code> (:441), <code>equipmentAnchors</code> (:447), <code>actionEconomy: ActionEconomy</code> (:452), <code>classResources</code> (:457), <code>subclassId</code> (:459), <code>classLevels</code> (:461), <code>l1Choices</code> (:466), <code>expertiseSkills</code> (:468), <code>fightingStyle</code> (:470)</li>
+<li><strong>Мутации:</strong> только через <code>copy</code> в <code>applyStateChanges</code> (SessionService.kt:1878-2320), <code>tickDurations</code> (:2379-2404), блоки N слоя 1; сериализация в <code>participantsJson</code> (SessionService.kt:1358 и др.)</li>
+</ul>
+<h3 id="enemy">Enemy<a class="headerlink" href="#enemy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>GameState.kt:641-662</code> (data class, 14 полей)</li>
+<li><strong>Поля:</strong> <code>name</code> (:642), <code>hp</code> (:643), <code>maxHp</code> (:644), <code>ac</code> (:645), <code>attackBonus</code> (:646), <code>damageDie</code> (:647), <code>damageBonus</code> (:648), <code>statuses</code> (:650), <code>archetypeCode</code> (:652), <code>xpReward</code> (:654), <code>features</code> (:656), <code>statusSaveBonus</code> (:658), <code>resistances</code> (:660), <code>immunities</code> (:662)</li>
+<li><strong>Хранение между ходами:</strong> <code>SessionEntity.enemyJson</code> (SessionEntities.kt:29); чтение SessionService.kt:780; запись :1366, :1510, :2547; дополнительно реестр <code>enemy_registry:&lt;name&gt;</code> в <code>facts</code> (SessionService.kt:2558-2582)</li>
+</ul>
+<h3 id="combatstate">CombatState<a class="headerlink" href="#combatstate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>GameState.kt:1402-1421</code> (10 полей): <code>initiativeOrder: List&lt;InitiativeEntry&gt;</code> (:1404), <code>round</code> (:1406), <code>currentTurnIndex</code> (:1408), <code>actionUsed</code> (:1410), <code>bonusActionUsed</code> (:1411), <code>reactionUsed</code> (:1412), <code>freeInteractionUsed</code> (:1413), <code>roundNumber</code> (:1415), <code>groupRoll</code> (:1417), <code>surprisedParticipants</code> (:1419), <code>combatEnded</code> (:1421)</li>
+<li><strong>Хранение:</strong> <code>SessionEntity.combatStateJson</code> (SessionEntities.kt:36)</li>
+</ul>
+<h3 id="actioneconomy">ActionEconomy<a class="headerlink" href="#actioneconomy" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Файл:</strong> <code>GameState.kt:1279-1285</code> (5 полей): <code>actionUsed</code> (:1280), <code>bonusActionUsed</code> (:1281), <code>reactionUsed</code> (:1282), <code>freeInteractionUsed</code> (:1283), <code>extraActionsAvailable</code> (:1285)</li>
+</ul>
+<h3 id="_2">Прочие контрактные типы<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>TurnMechanics</strong> (TurnResolver.kt:99-116, 12 полей): <code>action</code>, <code>diceRolls</code>, <code>description</code>, <code>stateChanges</code>, <code>enemy?</code>, <code>enemyDefeated</code>, <code>manaInsufficient</code>, <code>manaCost?</code>, <code>droppedItems</code>, <code>consumesAction</code>, <code>dslId?</code>, <code>dslParam?</code></li>
+<li><strong>ActionRequest</strong> (ActionType.kt:77-89, 10 полей): <code>type</code>, <code>raw</code>, <code>lower</code>, <code>isSummon</code>, <code>templateCode?</code>, <code>socialCheckCode?</code>, <code>dslId?</code>, <code>dslTarget?</code>, <code>dslParam?</code>, <code>target?</code></li>
+<li><strong>NormalizedAction</strong> (NormalizedAction.kt:11-13): <code>type: ActionType</code>, <code>hazardCode: String?</code></li>
+<li><strong>ActionIntent</strong> (ActionIntent.kt:55-60): <code>type: ActionType?</code>, <code>hazard: HazardCode?</code>, <code>objectCategory: ObjectCategory?</code>, <code>templateCode: String?</code>, <code>target: String?</code></li>
+<li><strong>DslTranslation</strong> (LlmDslTranslator.kt:10-17): <code>dslId</code>, <code>targetType?</code>, <code>confidence</code>, <code>rawWeapon?</code>, <code>rawSpell?</code>, <code>param?</code></li>
+<li><strong>MechanicsBlock</strong> (GameState.kt:1052-1096, 22 поля): <code>action</code>, <code>diceRolls</code>, <code>damage?</code>, <code>statusApplied?</code>, <code>statusRemoved?</code>, <code>skillUsed?</code>, <code>description</code>, <code>xpGained?</code>, <code>levelUp</code>, <code>itemGained?</code>, <code>itemConsumed?</code>, <code>questProgressed?</code>, <code>enemy?</code>, <code>enemyDefeated</code>, <code>manaInsufficient</code>, <code>manaCost?</code>, <code>characterHpBefore?</code>, <code>characterHpAfter?</code>, <code>damageTaken?</code>, <code>characterDied</code>, <code>restoredFromCheckpoint</code>, <code>deathImageUrl?</code>, <code>droppedItems</code>, <code>availableReactions</code></li>
+<li><strong>DiceRoll</strong> (GameState.kt:1098-1112): <code>die</code>, <code>result</code>, <code>reason</code>, <code>attribute?</code>, <code>modifier?</code>, <code>dc?</code>, <code>total?</code>, <code>success?</code></li>
+<li><strong>ActionContext</strong> (ActionContext.kt:30-33): <code>sceneType</code> (=EXPLORATION), <code>round</code> (=0), <code>playerFirst</code> (=true); константы :40-43</li>
+<li><strong>ReactionProposal</strong> (ReactionTriggerRegistry.kt:21), <strong>HistoryTurn</strong> (Narrator.kt:8)</li>
+</ul>
+<h3 id="_3">Инварианты / дублирование<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>actionUsed</code>/<code>bonusActionUsed</code>/<code>reactionUsed</code>/<code>freeInteractionUsed</code> живут в <strong>двух</strong> местах: <code>ActionEconomy</code> (GameState.kt:1280-1283, внутри CharacterState → participantsJson) и <code>CombatState</code> (GameState.kt:1410-1413, внутри combatStateJson). Сброс ActionEconomy — SessionService.kt:758; сброс CombatState — <code>nextTurn()</code>/<code>nextRound()</code> (GameState.kt:1459-1462). Чтение при проверке экономии — только из <code>character.actionEconomy</code> (TurnResolver.kt:367-402).</li>
+<li>Снимок врага существует в четырёх представлениях: <code>SessionEntity.enemyJson</code>, <code>TurnMechanics.enemy</code> (TurnResolver.kt:105), <code>MechanicsBlock.enemy</code> (GameState.kt:1067), <code>TurnContext.enemy</code> (Narrator.kt). Синхронизация — блок L слоя 1 (SessionService.kt:1189-1195).</li>
+<li><code>CharacterState.hp</code> — источник истины в participantsJson; <code>MechanicsBlock.characterHpBefore/After</code> (GameState.kt:1075-1077) — снимок для UI.</li>
+</ul>
+<hr />
+<h2 id="4">4. Контракты между слоями<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Откуда</th>
+<th>Куда</th>
+<th>Что передаётся</th>
+<th>Тип</th>
+<th>Валидация на приёмнике</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP</td>
+<td>SessionController</td>
+<td>JSON body</td>
+<td>TurnRequest</td>
+<td><code>@Valid</code> + <code>@field:NotBlank</code> (SessionDtos.kt:50-51)</td>
+</tr>
+<tr>
+<td>SessionController</td>
+<td>SessionService</td>
+<td>TurnRequest</td>
+<td>Kotlin-тип</td>
+<td>ничего</td>
+</tr>
+<tr>
+<td>SessionService</td>
+<td>TurnResolver.resolve</td>
+<td>action, CharacterState, Enemy?, DifficultyProfile, seed, enemyTurnAllowed (context НЕ передаётся — SessionService.kt:860)</td>
+<td>Kotlin-типы</td>
+<td>ничего</td>
+</tr>
+<tr>
+<td>TurnResolver</td>
+<td>ActionParser.parse</td>
+<td>action, character, enemy, profile, context</td>
+<td>Kotlin-типы</td>
+<td>ничего</td>
+</tr>
+<tr>
+<td>ActionParser</td>
+<td>LlmDslTranslator</td>
+<td>строка + List<DslCommand> + hasEnemy/inCombat</td>
+<td>текстовый промпт</td>
+<td>ответ: extractJson+Jackson; dslId ∈ candidates (LlmDslTranslator.kt:44)</td>
+</tr>
+<tr>
+<td>ActionParser</td>
+<td>CatalogClassifier</td>
+<td>строка + ActionContext</td>
+<td>текстовый промпт</td>
+<td>ответ: regex-поля; whitelist TYPE_VALUES (:166-175); enum HazardCode/ObjectCategory; templateCode через findActionTemplateByCode (:152)</td>
+</tr>
+<tr>
+<td>ActionParser</td>
+<td>ActionWhitelist</td>
+<td>dslId, dslParam, rawAction, Map-контекст (hasEnemy/hasSpellSlots/hasRangedWeapon/inCombat/hasReaction — ActionParser.kt:63-70)</td>
+<td>строки + Map</td>
+<td><code>canExecuteWithMapping</code> (ActionWhitelist.kt:172-179)</td>
+</tr>
+<tr>
+<td>ActionParser</td>
+<td>TurnResolver.dispatch</td>
+<td>ActionRequest</td>
+<td>Kotlin-тип</td>
+<td>exhaustive <code>when</code> по enum (компилятор)</td>
+</tr>
+<tr>
+<td>TurnResolver</td>
+<td>SessionService</td>
+<td>TurnMechanics</td>
+<td>Kotlin-тип</td>
+<td>whitelist-пост-валидация dslId (SessionService.kt:864-881) → замена на no_roll (:880)</td>
+</tr>
+<tr>
+<td>SessionService</td>
+<td>Narrator (LLM)</td>
+<td>TurnContext (mechanics = mechanicsText :954-1046, ledgerJson = полный CharacterState JSON)</td>
+<td>текстовый промпт</td>
+<td>ответ: NarrativeValidator.parse/isConsistent (SessionService.kt:313-317); retry (:321-327); fallback NarrativeFallback (:336)</td>
+</tr>
+<tr>
+<td>LLM-нарратив</td>
+<td>SessionService (блок K)</td>
+<td>строка с тегами</td>
+<td>свободный текст</td>
+<td>regex-теги <code>[SPAWN_ENEMY]</code> (:1167-1180), <code>[GRANT_ITEM]</code>/<code>[GRANT_UNIQUE]</code> (:1109-1117), <code>[TAKE_LOOT]</code> (:1120-1130), <code>[SCENE]</code> (:1225), <code>[REQUEST_LOOT]</code> (H-блок); гейт <code>lootGrantJustified</code> (:2891); коды архетипов через <code>instantiateArchetypeEnemy</code> (:1172)</td>
+</tr>
+<tr>
+<td>SessionService</td>
+<td>БД</td>
+<td>TurnEntity, SessionEntity</td>
+<td>JPA</td>
+<td>ничего</td>
+</tr>
+<tr>
+<td>SessionService</td>
+<td>MemoryBackgroundService</td>
+<td>TurnEntity + ledgerJson</td>
+<td>Kotlin-типы</td>
+<td>async; валидация JSON архивариуса (NordRouterArchivist.kt:105-109)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">5. Внешние зависимости<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="llm-">LLM-провайдеры<a class="headerlink" href="#llm-" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Провайдер</th>
+<th>Endpoint</th>
+<th>Где вызывается</th>
+<th>Модели</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NordRouter (OpenAI-совместимый)</td>
+<td><code>POST /chat/completions</code></td>
+<td>NordRouterNarrator.kt:88-92; CatalogClassifier.kt:70-74; AnchorLlmClient.kt:55-59; BackstoryService.kt:85-89; LlmRoleClient.kt:55-59; FailoverClient.kt:29-33 (Summarizer/Archivist)</td>
+<td><code>google/gemini-3.7-flash</code> (нарратив/классификатор/memory, LlmProperties.kt:12, :33-35); <code>openai/gpt-5.4-mini</code>, <code>minimax/minimax-m3</code> (failover, :13-16); <code>google/gemini-3.1-flash-lite</code> (anchors, :29)</td>
+</tr>
+<tr>
+<td>GigaChat (Сбер)</td>
+<td><code>POST https://gigachat.devices.sberbank.ru/api/v1/chat/completions</code></td>
+<td>GigaChatClient.kt:94-99 (нарратив, DSL-переводчик, backstory)</td>
+<td><code>GigaChat-3-Ultra</code>, <code>GigaChat-Pro</code> (GigaChatNarrator.kt:36; LlmDslTranslator.kt:38)</td>
+</tr>
+<tr>
+<td>NordRouter Images</td>
+<td><code>POST /images/generations</code></td>
+<td>NordRouterPortraitGenerator.kt:75-79; NordRouterSceneImageGenerator.kt:81-85</td>
+<td><code>image/z-image</code> → <code>google/gemini-3.1-flash-image-preview</code> (LlmProperties.kt:24-26)</td>
+</tr>
+<tr>
+<td>NordRouter Media (async)</td>
+<td><code>POST /media/generate</code> + polling <code>GET /media/job/:id</code></td>
+<td>NordRouterMediaImageClient.kt:59-63, :76-79</td>
+<td><code>image/z-image</code></td>
+</tr>
+<tr>
+<td>Self-learn аналитик</td>
+<td><code>POST /chat/completions</code></td>
+<td>LlmRoleClient.kt:55-59 (AnalystRole.kt:45)</td>
+<td><code>deepseek/deepseek-v4-pro</code> (AnalystRole.kt:62)</td>
+</tr>
+</tbody>
+</table>
+<p>Конфигурация: <code>application.yml:27-41</code> (app.llm.*, app.memory.async-enabled); <code>LlmProperties.kt:10-35</code>.</p>
+<h3 id="classpath-resources">Каталоги (classpath resources)<a class="headerlink" href="#classpath-resources" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Файл</th>
+<th>Загрузчик</th>
+<th>Момент</th>
+<th>Читатели</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>whitelist/action-whitelist-{core,exploration,magic,objects,skills}.yaml</code></td>
+<td>ActionWhitelist.kt:15-21</td>
+<td><code>init</code></td>
+<td>SessionService.kt:864-881; ReactionTriggerRegistry.kt:80-83</td>
+</tr>
+<tr>
+<td><code>semantic-dictionary.yml</code></td>
+<td>SemanticDictionary.kt:22-26 (<code>loadDefault</code>)</td>
+<td>при создании SemanticActionNormalizer (SemanticActionNormalizer.kt:18); новый ActionParser на каждый TurnResolver (TurnResolver.kt:155) — кэша нет</td>
+<td>SemanticActionNormalizer</td>
+</tr>
+<tr>
+<td><code>action_economy.yml</code></td>
+<td>ActionEconomyRegistry.kt:36-38</td>
+<td><code>init</code> (@Service)</td>
+<td>TurnResolver.kt:362-406, 408-435</td>
+</tr>
+<tr>
+<td><code>reaction_triggers.yml</code></td>
+<td>ReactionTriggerRegistry.kt:47-77</td>
+<td><code>@PostConstruct</code></td>
+<td>SessionService.kt:712-724</td>
+</tr>
+<tr>
+<td><code>dsl-templates.yml</code> (fallback <code>dsl-registry.yml</code>)</td>
+<td>DslRegistry.kt:9-32</td>
+<td>eagerly (@Service); 25 шаблонов</td>
+<td>TurnResolver.kt:147; ActionParser.kt:89-91</td>
+</tr>
+<tr>
+<td><code>loot-whitelist.yml</code></td>
+<td>LootWhitelist.kt:8-15</td>
+<td>eagerly</td>
+<td>SessionService.kt:1324-1333</td>
+</tr>
+<tr>
+<td><code>llm/narrative-fallbacks.yml</code></td>
+<td>NarrativeFallback.kt:10-20</td>
+<td><code>by lazy</code></td>
+<td>SessionService.kt:336</td>
+</tr>
+<tr>
+<td><code>llm/gm-system-prompt.txt</code>, <code>gm-opening-prompt.txt</code>, <code>difficulty-*.txt</code>, <code>setting-tones.yml</code></td>
+<td>ContextBuilder.kt:22-36</td>
+<td><code>by lazy</code></td>
+<td>оба нарратора</td>
+</tr>
+<tr>
+<td><code>spells.json</code></td>
+<td>SpellRegistry.kt:19</td>
+<td><code>@PostConstruct</code></td>
+<td>TurnResolver.kt:144-145; SessionService.kt:295</td>
+</tr>
+<tr>
+<td><code>classes.yml</code>, <code>subclasses.yml</code>, <code>feats.yml</code>, <code>level-table.yml</code>, <code>skills.yml</code>, <code>settingReskin.yml</code></td>
+<td>ClassRegistry.kt:19; SubclassRegistry.kt:27; FeatRegistry.kt:27; LevelTableRegistry.kt:25; SkillRegistry.kt:37; SettingReskinService.kt:38</td>
+<td><code>@PostConstruct</code></td>
+<td>TurnResolver/SessionService косвенно</td>
+</tr>
+</tbody>
+</table>
+<h3 id="postgresql-liquibase">БД (PostgreSQL, Liquibase)<a class="headerlink" href="#postgresql-liquibase" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Читаемые каталоги через CatalogService (JdbcTemplate, каждый вызов — SELECT по таблице):</strong> <code>weapons</code> (CatalogService.kt:22), <code>spell_families</code> (:30), <code>skill_checks</code> (:53), <code>action_templates</code> (:61, :78, :94-95), <code>object_templates</code> (:126-127, :148-149), <code>social_checks</code> (:183-184, :205-206), <code>weapon_traits</code> (:237-238), <code>environmental_hazards</code> (:269-270), <code>creatures</code> (:288, :361), <code>creature_archetypes</code> (:336-337, :345-347), <code>opening_hooks</code> (:386). ItemCatalogService: <code>item_archetypes</code> (ItemCatalogService.kt:49-50, :61-67, :83-91, :101).</li>
+<li><strong>Сессионные таблицы (JPA):</strong> <code>sessions</code>, <code>turns</code>, <code>summaries</code>, <code>facts</code>, <code>npc_visual_anchors</code>, <code>worlds</code> — операции перечислены в §2 (блоки A, G, Q, R).</li>
+<li><strong>Changelogs пайплайна:</strong> <code>db/changelog/changes/</code>: 0015-action-catalog, 0017-status-spell-families, 0018/0019-opening-hooks, 0022-item-archetypes, 0031-action-templates (127 шаблонов), 0032-object_templates, 0033-social_checks, 0034-weapon-traits, 0035-environmental-hazards, 0036-creature-archetypes, 0041-npc-visual-anchors, 0043-sessions-combat-state.</li>
+</ul>
+<h3 id="_4">Кэш<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>CatalogClassifier.cache</code> — ConcurrentHashMap, ключ <code>action|sceneType</code> (CatalogClassifier.kt:36, :48); TTL/инвалидации/лимита нет.</li>
+<li>ContextBuilder/NarrativeFallback — <code>by lazy</code> (ContextBuilder.kt:22-33; NarrativeFallback.kt:10).</li>
+<li>Комментарий CatalogService.kt:12 заявляет «кэш в памяти после загрузки»; реализации кэша в CatalogService нет — каждый вызов делает SELECT (CatalogService.kt:22, :30, :53, :61 и т.д.).</li>
+</ul>
+<hr />
+<h2 id="6">6. Известные проблемы (задокументированные в коде)<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>ActionParser.kt:456-461</code> — <code>hazardCodeFor</code> объявлен детерминированным fallback; первичный источник — LLM ActionIntent (ADR-0009).</li>
+<li><code>ActionParser.kt:641-643</code> — багфикс: «яма/колья/шипы» по границе слова против ложных срабатываний «гвоздями», «сколько», «шипеть».</li>
+<li><code>ActionParser.kt:473-474</code>, <code>646</code>, <code>648</code> — аналогичные багфикс-комментарии для darkness («в темноте» ≠ «тьма») и crushed_floor («использую» ≠ «пол»).</li>
+<li><code>SemanticActionNormalizer.kt:171-172</code> — правило 12 «Объект окружения» отсутствует: комментарий-заглушка, делегировано старому парсеру.</li>
+<li><code>SemanticActionNormalizer.kt:163-167</code>, <code>ActionParser.kt:464-465</code> — гейт FIRE_TENDING_PATTERN: «разведи костёр» не опасность (devlog 135).</li>
+<li><code>NordRouterMediaImageClient.kt:44-49</code> — workaround: транзиентные сбои провайдера, один повтор через 5с.</li>
+<li><code>SettingReskinService.kt:77, 110</code> — TODO: LLM-рескин не подключён (stub).</li>
+<li><code>SessionService.kt:828-842</code> — повтор ловушки обрабатывается ранним выходом с отдельным LLM-вызовом (дублирует основной нарративный путь).</li>
+</ul>
+<h2 id="7">7. Чего нет в коде<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p><strong>Мёртвые токены и секции словаря:</strong>
+- <code>SemanticToken.MOD_ACCURACY</code> (:38), <code>MOD_AGGRESSIVE</code> (:39), <code>MOD_SNEAK</code> (:40), <code>MOD_DEFENSIVE</code> (:41), <code>PREP_THROUGH</code> (:43), <code>PREP_TO</code> (:44), <code>PREP_FROM</code> (:45), <code>PREP_AT</code> (:46), <code>PREP_WITH</code> (:47), <code>PREP_AND</code> (:48) — упоминаются только в enum и маппинге SemanticDictionary.kt:104-117; не читаются в <code>resolve()</code> (SemanticActionNormalizer.kt:64-176) и нигде иначе.
+- Секции <code>modifiers:</code> (semantic-dictionary.yml:1051-1113) и <code>prepositions:</code> (:1114-1120) — грузятся, но не влияют на классификацию.</p>
+<p><strong>Мёртвые методы:</strong>
+- <code>SemanticDictionary.tokenForPhrase</code> (SemanticDictionary.kt:19) — вызовов нет.
+- <code>CatalogService.findActionTemplate</code> (CatalogService.kt:60) — вызовов нет.
+- <code>CatalogService.findObjectTemplateByCode</code> (CatalogService.kt:147) — в пайплайне хода вызовов нет (вне пайплайна — требует уточнения).
+- <code>CatalogService.classifyFallback</code> (CatalogService.kt:501) — вызовов нет.
+- <code>ActionWhitelist.conditionFor</code> (:85), <code>isAlways</code> (:83), <code>isNever</code> (:84) — внешних вызовов нет (используются только внутри <code>canExecute</code>).
+- <code>DslRegistry.listAll</code> (:39), <code>listTemplates</code> (:41) — вызовов нет.
+- <code>DslRegistry.topKByKeywordOverlap</code> (:65) — вызов только из мёртвой ветки (см. ниже).</p>
+<p><strong>Мёртвые ветки:</strong>
+- <code>ActionParser.kt:91</code> — <code>if (dslRegistry.templates.size &lt;= 30) pruned else topKByKeywordOverlap(...)</code>: фактический размер = 25 (dsl-templates.yml), условие всегда true, ветка <code>else</code> никогда не выполняется.
+- <code>SessionService.kt:934</code> — <code>if (false &amp;&amp; ...)</code>: ветка с <code>catalogService.findRandomCreature</code> отключена литералом <code>false</code>.
+- <code>SemanticActionNormalizer.kt:171-175</code> — правило 12 отсутствует, только <code>return null</code>.</p>
+<p><strong>Enum-значения без производителей:</strong>
+- <code>ActionType.NPC_INTERACTION</code> (ActionType.kt:48) и <code>ActionType.QUEST_PROGRESS</code> (:50) — не конструируются ни в ActionParser, ни в TurnResolver; обрабатываются в <code>checkActionEconomy</code> (TurnResolver.kt:398-399) и <code>dispatch</code> (:538-539).
+- Значение <code>REACTION</code> (ActionType.kt:62) — в dispatch маппится на <code>resolveOpportunityAttack</code> (TurnResolver.kt:468); конструирование — в конвейере реакций <code>processReactionTurn</code> (SessionService.kt:1450-1530), точная строка требует уточнения.</p>
+<p><strong>Прочее:</strong>
+- Шаблон <code>start_fire</code> (0031-action-templates.yaml:86) недостижим из regex/DSL-путей; достижим только через LLM-классификатор (templateCode, CatalogClassifier.kt:152).
+- <code>CatalogService.findActionTemplateByCode</code> имеет 3 вызова (CatalogClassifier.kt:152; ActionParser.kt:360; TurnResolver.kt:1030) — единственный keyword-вход (findActionTemplate) мёртв.
+- <code>"HACK"</code> в ActionParser.kt:534 — это литерал DSL-ID в маппинге OBJECT, не комментарий.
+- Классификатору LLM (CatalogClassifier) и DSL-переводчику (LlmDslTranslator) поля CharacterState не передаются — только строка действия, sceneType и флаги hasEnemy/inCombat; полный CharacterState виден только нарратору (ledgerJson, ContextBuilder.kt:115).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

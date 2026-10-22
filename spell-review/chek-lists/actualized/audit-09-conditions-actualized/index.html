@@ -1,0 +1,2088 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/chek-lists/actualized/audit-09-conditions-actualized/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Аудит: Состояния (conditions) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conditions" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Аудит: Состояния (conditions)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сводка
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Детали
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Детали">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#28a-applydebuffaddcondition-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.A ApplyDebuff/AddCondition target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28b-applyenemystatechanges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.B applyEnemyStateChanges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28c-28oo-enemyconmodsavebonusoverrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.C + 2.8.OO Enemy.conMod/saveBonusOverrides
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28d-28mm-enemystatusdurationstickenemydurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.D + 2.8.MM Enemy.statusDurations/tickEnemyDurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.CC Порядок пассов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28f-28bb-28qq-conditionidconditionregistryconditionresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.F + 2.8.BB + 2.8.QQ ConditionId/ConditionRegistry/ConditionResolver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28ss-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.SS Наборы помехи через registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28m-canmovecanspeakcanperceive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.M Гейт canMove/canSpeak/canPerceive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28n-remove_conditionapply_condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.N REMOVE_CONDITION/APPLY_CONDITION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28e-28jj-statusdurationsstatussources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.E + 2.8.JJ Чистка statusDurations/statusSources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28g-28ff-28tt-invisible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.G + 2.8.FF + 2.8.TT Invisible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28h-28dd-28rr-petrified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.H + 2.8.DD + 2.8.RR Petrified
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28i-28ee-28nn-28uu-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.I + 2.8.EE + 2.8.NN + 2.8.UU Exhaustion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28j-enemyconditionimmunities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.J Enemy.conditionImmunities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28k-28kk-creaturetypetargetcreaturetypes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.K + 2.8.KK creatureType/targetCreatureTypes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28l-enemylegendaryresistance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.L Enemy.legendaryResistance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28o-whitelist-condition-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.O Whitelist: condition-ключи
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28p-incapacitating_statuses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.P Единые INCAPACITATING_STATUSES
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.Q Единые наборы помехи атакам
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28r-28hh-charmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.R + 2.8.HH Charmed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28s-28gg-frightened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.S + 2.8.GG Frightened
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28t-deafenedstunned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.T Deafened/Stunned
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28u-save-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.U Save-модификаторы от состояний
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28v-applydebuff-durationrounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.V ApplyDebuff durationRounds
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28w-spellservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.W Двойное добавление из SpellService
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28x-applystatus-duration-target" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.X ApplyStatus гейт duration по target
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28y-28ll-statussourcesstatusspelllevels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.Y + 2.8.LL statusSources/statusSpellLevels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28z-rest-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.Z REST-эндпоинты состояний
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28aa-save-dc-per-condition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8.AA Save DC per condition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Новые находки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Устаревшие пункты (REMOVED)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regressed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Регрессии (REGRESSED)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="conditions">Аудит: Состояния (conditions)<a class="headerlink" href="#conditions" title="Permanent link">&para;</a></h1>
+<p>Актуализировано: 2026-09-22
+Источник: <code>docs/spell-review/chek-lists/audit/audit-09-conditions.md</code> (2026-09-15)
+Сущности: <code>CharacterState</code>, <code>Enemy</code>, <code>StateChange</code>, <code>StateTarget</code> (<code>rules/GameState.kt</code>),
+<code>SessionService.applyStateChanges/tickDurations</code>, <code>TurnResolver</code>, <code>SavingThrowResolver</code>, <code>ActionParser</code>.</p>
+<h2 id="_1">Сводка<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>✅ VALID: 12</li>
+<li>⚠️ CHANGED: 15</li>
+<li>❌ REMOVED: 0</li>
+<li>🔴 REGRESSED: 0</li>
+<li>➕ NEW_GAP: 3</li>
+</ul>
+<h2 id="_2">Детали<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="28a-applydebuffaddcondition-target">2.8.A <code>ApplyDebuff</code>/<code>AddCondition</code> target<a class="headerlink" href="#28a-applydebuffaddcondition-target" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: <code>target</code> у обоих отсутствует; сессия применяет их игроку.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>rules/GameState.kt</code> (<code>AddCondition(condition)</code>, <code>ApplyDebuff(condition, durationRounds)</code>); <code>sessions/SessionService.kt:2657-2661</code>, <code>:2686-2691</code> — применяются к игроку безусловно.</li>
+<li>Целевое поведение (5e): дебафф накладывается на указанную цель (в т.ч. врага).</li>
+<li>Расхождение: реализация отличается от 5e — <code>target</code> нет, дебафф всегда на игрока.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28b-applyenemystatechanges">2.8.B <code>applyEnemyStateChanges</code><a class="headerlink" href="#28b-applyenemystatechanges" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: функции нет; манёвры на врага не применяются.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep -rE "applyEnemyStateChanges"</code> — 0; <code>ApplyStatus(..., StateTarget.ENEMY)</code> (<code>rules/TurnResolver.kt:1168-1169</code>) не обрабатывается в <code>applyStateChanges</code>.</li>
+<li>Целевое поведение (5e): статус, наложенный на NPC, применяется к NPC.</li>
+<li>Расхождение: реализация отличается от 5e — статусы на врага теряются.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28c-28oo-enemyconmodsavebonusoverrides">2.8.C + 2.8.OO <code>Enemy.conMod</code>/<code>saveBonusOverrides</code><a class="headerlink" href="#28c-28oo-enemyconmodsavebonusoverrides" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: полей нет; спас врага считает CON игрока.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/TurnResolver.kt:2687</code> — <code>saveTotal = saveRoll + character.effectiveAttributes.conMod + enemy.statusSaveBonus</code>; <code>saveDc = 13 + dcOffset</code> <code>:2685</code>.</li>
+<li>Целевое поведение (5e): спасбросок NPC использует модификатор NPC.</li>
+<li>Расхождение: реализация отличается от 5e — спас врага зависит от CON игрока.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28d-28mm-enemystatusdurationstickenemydurations">2.8.D + 2.8.MM <code>Enemy.statusDurations</code>/<code>tickEnemyDurations</code><a class="headerlink" href="#28d-28mm-enemystatusdurationstickenemydurations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: поля и тика нет; статусы врага бессрочны.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep -rE "tickEnemyDurations|Enemy.statusDurations"</code> — 0; <code>rules/GameState.kt</code> (<code>Enemy</code>) без длительностей.</li>
+<li>Целевое поведение (5e): длительность состояний NPC тикает/истекает.</li>
+<li>Расхождение: реализация отличается от 5e — статусы врага не истекают.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28cc">2.8.CC Порядок пассов<a class="headerlink" href="#28cc" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: фактически <code>applyStateChanges → tickDurations → resolveSaveEnds</code>; вражеских пассов нет.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>sessions/SessionService.kt:982</code> (<code>applyStateChanges</code>), <code>:986</code> (<code>tickDurations</code>), <code>:987-990</code> (<code>resolveSaveEnds</code>).</li>
+<li>Целевое поведение (5e): конец хода — спасброски, затем тик длительностей.</li>
+<li>Расхождение: реализация отличается от 5e — длительности тикаются до спасброска; вражеских пассов нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28f-28bb-28qq-conditionidconditionregistryconditionresolver">2.8.F + 2.8.BB + 2.8.QQ <code>ConditionId</code>/<code>ConditionRegistry</code>/<code>ConditionResolver</code><a class="headerlink" href="#28f-28bb-28qq-conditionidconditionregistryconditionresolver" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: нет enum, реестра, алиасов, <code>conditions.yml</code>; словарь <code>conditions</code> не читается.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep -rE "ConditionId|ConditionRegistry|ConditionResolver"</code> — 0; <code>rules/ActionWhitelist.kt:27</code> читает только <code>action_whitelist</code>.</li>
+<li>Целевое поведение (5e): типизированный реестр состояний с маппингом EN↔RU.</li>
+<li>Расхождение: реализация отличается от 5e — состояния — свободные строки.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28ss-registry">2.8.SS Наборы помехи через registry<a class="headerlink" href="#28ss-registry" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: хардкод-наборы строк; <code>hasAdvantageOnAttacks</code> не существует.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/TurnResolver.kt:2312-2321</code> (<code>hasDisadvantageOnChecks</code>/<code>hasAdvantageOnSkill</code>/<code>hasDisadvantageOnAttacks</code>/<code>targetGrantsAdvantage</code>).</li>
+<li>Целевое поведение (5e): источники преимущества/помехи — из реестра состояний.</li>
+<li>Расхождение: реализация отличается от 5e — наборы захардкожены.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28m-canmovecanspeakcanperceive">2.8.M Гейт <code>canMove/canSpeak/canPerceive</code><a class="headerlink" href="#28m-canmovecanspeakcanperceive" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: геттеры есть, но <code>resolve</code> гейтит только <code>canAct</code>/<code>canAttack</code>.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/TurnResolver.kt:210-233</code> — <code>!canAct</code> (блок всего) и <code>!canAttack &amp;&amp; req.type in ATTACK_INTENTS</code>.</li>
+<li>Целевое поведение (5e): недееспособность блокирует действия; отдельные состояния — движение/речь/восприятие.</li>
+<li>Расхождение: реализация отличается от 5e — гейтов на движение/речь/восприятие нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28n-remove_conditionapply_condition">2.8.N <code>REMOVE_CONDITION</code>/<code>APPLY_CONDITION</code><a class="headerlink" href="#28n-remove_conditionapply_condition" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: падают в <code>else</code> → <code>NO_ROLL</code>; веток apply/remove в <code>TurnResolver</code> нет.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>resources/dsl-registry.yml:120-121</code> (команды есть); в <code>rules/ActionParser.kt</code> веток нет → <code>NO_ROLL</code>.</li>
+<li>Целевое поведение (5e): наложение/снятие состояния исполняется движком.</li>
+<li>Расхождение: реализация отличается от 5e — команды не обрабатываются.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28e-28jj-statusdurationsstatussources">2.8.E + 2.8.JJ Чистка <code>statusDurations</code>/<code>statusSources</code><a class="headerlink" href="#28e-28jj-statusdurationsstatussources" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: <code>RemoveStatus</code> чистит только <code>statuses</code>; <code>statusSources</code> нет.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>sessions/SessionService.kt:2447-2449</code> — <code>statuses.remove(change.status)</code>; <code>grep statusSources</code> — 0.</li>
+<li>Целевое поведение (5e): снятие состояния чистит связанные метаданные (длительность/источник).</li>
+<li>Расхождение: реализация отличается от 5e — <code>statusDurations</code> не чистится, источников нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28g-28ff-28tt-invisible">2.8.G + 2.8.FF + 2.8.TT Invisible<a class="headerlink" href="#28g-28ff-28tt-invisible" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: статуса нет; «Невидимость» только как заклинание; преимущества/укрытия для Скрытности нет.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep -rE "Невидим"</code> — статуса нет; <code>spells.json</code> содержит заклинание.</li>
+<li>Целевое поведение (5e): Invisible — нельзя выбрать целью, преимущество на атаки, помеха атакам по нему.</li>
+<li>Расхождение: реализация отличается от 5e — состояние не накладывается.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28h-28dd-28rr-petrified">2.8.H + 2.8.DD + 2.8.RR Petrified<a class="headerlink" href="#28h-28dd-28rr-petrified" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: <code>Окаменел</code> только в <code>CONCENTRATION_BREAK_STATUSES</code>; петрификация не даёт incapacitating/resist/immune к яду.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/GameState.kt:652-653</code> (<code>CONCENTRATION_BREAK_STATUSES</code>); <code>INCAPACITATING_STATUSES</code> (<code>:646</code>) <code>Окаменел</code> не содержит.</li>
+<li>Целевое поведение (5e): Petrified = incapacitated, resist всему урону, immune к яду, авто-провал STR/DEX.</li>
+<li>Расхождение: реализация отличается от 5e — механики петрификации нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28i-28ee-28nn-28uu-exhaustion">2.8.I + 2.8.EE + 2.8.NN + 2.8.UU Exhaustion<a class="headerlink" href="#28i-28ee-28nn-28uu-exhaustion" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: поле 0..6 и −1 за long rest есть; штрафов и смерти на 6 нет.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/GameState.kt:374</code> (<code>exhaustion</code>); <code>sessions/SessionService.kt:2579</code> (−1 за long rest); <code>grep applyExhaustion</code> — 0.</li>
+<li>Целевое поведение (5e): помеха проверкам (1), скорость ×0.5 (2), помеха атакам/спасброскам (3), maxHP ×0.5 (4), скорость 0 (5), смерть (6).</li>
+<li>Расхождение: реализация отличается от 5e — механических штрафов и смерти на 6 нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28j-enemyconditionimmunities">2.8.J <code>Enemy.conditionImmunities</code><a class="headerlink" href="#28j-enemyconditionimmunities" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: поля нет; <code>immunities</code> — только к урону.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>rules/GameState.kt:703</code> (<code>immunities</code> по урону); <code>grep conditionImmunities</code> — 0.</li>
+<li>Целевое поведение (5e): иммунитет к состояниям (напр. конструкт → poisoned).</li>
+<li>Расхождение: реализация отличается от 5e — иммунитета к состояниям нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28k-28kk-creaturetypetargetcreaturetypes">2.8.K + 2.8.KK <code>creatureType</code>/<code>targetCreatureTypes</code><a class="headerlink" href="#28k-28kk-creaturetypetargetcreaturetypes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: отсутствуют.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep -rE "creatureType|targetCreatureTypes"</code> — 0.</li>
+<li>Целевое поведение (5e): тип существа влияет на заклинания (напр. Charm Person — только гуманоиды).</li>
+<li>Расхождение: реализация отличается от 5e — тип существа не моделируется.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28l-enemylegendaryresistance">2.8.L <code>Enemy.legendaryResistance</code><a class="headerlink" href="#28l-enemylegendaryresistance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: поля и расхода LR нет.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep legendaryResistance</code> — 0; <code>applyEnemyTurn</code> LR не расходует.</li>
+<li>Целевое поведение (5e): легендарное сопротивление превращает провал спасброска в успех (N/день).</li>
+<li>Расхождение: реализация отличается от 5e — механики LR нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28o-whitelist-condition-">2.8.O Whitelist: condition-ключи<a class="headerlink" href="#28o-whitelist-condition-" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: <code>ctx</code> без статусных ключей; YAML ссылается на несуществующие переменные.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>sessions/SessionService.kt:929-939</code> — <code>ctx</code> содержит только <code>hasEnemy, enemy, hasSpellSlots, hasRangedWeapon, inCombat, hasSpell, isConcentrating, hasReaction</code>.</li>
+<li>Целевое поведение (5e): условия вайтлиста проверяют состояния (isGrappled/isRestrained и т.п.).</li>
+<li>Расхождение: реализация отличается от 5e — статусные ключи не передаются, условия не срабатывают.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28p-incapacitating_statuses">2.8.P Единые <code>INCAPACITATING_STATUSES</code><a class="headerlink" href="#28p-incapacitating_statuses" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: наборы игрока/врага различаются.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/GameState.kt:646</code> (игрок, включает <code>Недееспособен</code>) vs <code>:723</code> (<code>Enemy.INCAPACITATING_STATUSES</code>).</li>
+<li>Целевое поведение (5e): единый список недееспособности.</li>
+<li>Расхождение: реализация отличается от 5e — наборы расходятся.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28q">2.8.Q Единые наборы помехи атакам<a class="headerlink" href="#28q" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: набор врага уже, чем у игрока.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: игрок <code>rules/TurnResolver.kt:2312-2321</code>; враг <code>:2746</code> (<code>setOf("Отравлен","Ошеломлён","Испуган")</code>).</li>
+<li>Целевое поведение (5e): одинаковый набор источников помехи.</li>
+<li>Расхождение: реализация отличается от 5e — наборы не унифицированы.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28r-28hh-charmed">2.8.R + 2.8.HH Charmed<a class="headerlink" href="#28r-28hh-charmed" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: только <code>NO_SPEAK</code>; источника и запрета атаки нет.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/GameState.kt:659</code> (<code>NO_SPEAK_STATUSES</code>); запрета атаки по очарователю нет.</li>
+<li>Целевое поведение (5e): Charm — нельзя атаковать очарователя; преимущество на соц-проверки.</li>
+<li>Расхождение: реализация отличается от 5e — механики Charm нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28s-28gg-frightened">2.8.S + 2.8.GG Frightened<a class="headerlink" href="#28s-28gg-frightened" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: помехи/<code>SAVE_END</code> есть; source и запрет приближения отсутствуют.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: помехи <code>rules/TurnResolver.kt:2312</code>; <code>SAVE_END_STATUSES</code> <code>rules/GameState.kt:668</code>.</li>
+<li>Целевое поведение (5e): Frightened — помеха проверкам/атакам, пока источник в поле зрения, нельзя приближаться.</li>
+<li>Расхождение: реализация отличается от 5e — источник страха не отслеживается.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28t-deafenedstunned">2.8.T Deafened/Stunned<a class="headerlink" href="#28t-deafenedstunned" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: <code>Оглушён</code> в <code>INCAPACITATING</code>/<code>SAVE_END</code> наравне с <code>Ошеломлён</code>.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>INCAPACITATING_STATUSES</code> (<code>rules/GameState.kt:646</code>) содержит <code>Оглушён</code>; <code>SAVE_END_STATUSES</code> (<code>:668</code>) тоже.</li>
+<li>Целевое поведение (5e): Deafened — только помеха слуховым проверкам; Stunned — incapacitated.</li>
+<li>Расхождение: реализация отличается от 5e — <code>Оглушён</code> (Deafened) ошибочно недееспособен.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28u-save-">2.8.U Save-модификаторы от состояний<a class="headerlink" href="#28u-save-" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: не реализованы.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep</code> — модификаторов спасбросков от состояний нет; <code>resolvePlayerSave</code> (<code>rules/SavingThrowResolver.kt:22</code>) читает только способность+владение.</li>
+<li>Целевое поведение (5e): Restrained → помеха DEX-спасброскам; Petrified → авто-провал STR/DEX.</li>
+<li>Расхождение: реализация отличается от 5e — модификаторов нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28v-applydebuff-durationrounds">2.8.V <code>ApplyDebuff</code> durationRounds<a class="headerlink" href="#28v-applydebuff-durationrounds" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: длительность игнорируется.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>sessions/SessionService.kt:2686-2691</code> — <code>ApplyDebuff</code> добавляет только <code>condition</code>, <code>durationRounds</code> не пишется.</li>
+<li>Целевое поведение (5e): наложенный дебафф имеет длительность.</li>
+<li>Расхождение: реализация отличается от 5e — длительность дебаффа теряется.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28w-spellservice">2.8.W Двойное добавление из <code>SpellService</code><a class="headerlink" href="#28w-spellservice" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: <code>AddCondition</code> + <code>ApplyDebuff</code> вместе.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>spells/SpellService.kt:235-239</code> — при провале спасброска эмитятся оба состояния.</li>
+<li>Целевое поведение (5e): состояние накладывается один раз с длительностью.</li>
+<li>Расхождение: реализация отличается от 5e — двойное добавление + потеря длительности.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28x-applystatus-duration-target">2.8.X <code>ApplyStatus</code> гейт duration по target<a class="headerlink" href="#28x-applystatus-duration-target" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: <code>statusDurations</code> пишется без проверки target.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>sessions/SessionService.kt:2443-2445</code> — запись <code>statusDurations</code> вне гейта <code>target == PLAYER</code>.</li>
+<li>Целевое поведение (5e): длительность состояния принадлежит цели, на которую оно наложено.</li>
+<li>Расхождение: реализация отличается от 5e — длительность статуса врага пишется игроку.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28y-28ll-statussourcesstatusspelllevels">2.8.Y + 2.8.LL <code>statusSources</code>/<code>statusSpellLevels</code><a class="headerlink" href="#28y-28ll-statussourcesstatusspelllevels" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: полей нет; Dispel Magic не отбирает по источнику/уровню.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>grep -rE "statusSources|statusSpellLevels"</code> — 0.</li>
+<li>Целевое поведение (5e): состояние хранит источник и уровень заклинания для dispel.</li>
+<li>Расхождение: реализация отличается от 5e — источника/уровня нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28z-rest-">2.8.Z REST-эндпоинты состояний<a class="headerlink" href="#28z-rest-" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: в <code>SessionController</code> нет.</li>
+<li>Статус: ✅ VALID</li>
+<li>Текущая реализация: <code>sessions/SessionController.kt</code> — эндпоинтов <code>conditions/apply|remove</code> нет.</li>
+<li>Целевое поведение (5e): API для наложения/снятия состояний.</li>
+<li>Расхождение: реализация отличается от 5e — REST-контракта нет.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h3 id="28aa-save-dc-per-condition">2.8.AA Save DC per condition<a class="headerlink" href="#28aa-save-dc-per-condition" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Утверждение: хардкод <code>12</code> / <code>13 + dcOffset</code>.</li>
+<li>Статус: ⚠️ CHANGED (drift строк)</li>
+<li>Текущая реализация: <code>rules/TurnResolver.kt:50</code> (<code>resolveSaveEnds</code>, <code>dc: Int = 12</code>); <code>:2685</code> (<code>13 + profile.mechanics.dcOffset</code>).</li>
+<li>Целевое поведение (5e): DC спасброска зависит от источника состояния.</li>
+<li>Расхождение: реализация отличается от 5e — DC захардкожен.</li>
+<li>Что делать: отличие от 5e; требуется решение.</li>
+</ul>
+<h2 id="_3">Новые находки<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>➕ <code>resolveSaveEnds</code> (<code>rules/TurnResolver.kt:50</code>) применяет спасбросок только к статусам, присутствующим одновременно в <code>statuses</code>, <code>statusDurations</code> и <code>SAVE_END_STATUSES</code> — бессрочные статусы никогда не снимаются спасброском.</li>
+<li>➕ <code>ApplyStatus</code> пишет <code>statusDurations</code> даже когда статус наложен на врага (нет гейта <code>target</code>), т.е. длительность чужого состояния попадает в состояние игрока.</li>
+<li>➕ <code>resolveEnemyTurn</code> (<code>rules/TurnResolver.kt:378</code>) теперь обёртка над <code>applyEnemyTurn</code> (force=true); вражеский спасбросок против статуса выполняется в <code>applyEnemyTurn</code> (<code>:2680-2691</code>) и использует CON игрока.</li>
+</ul>
+<h2 id="removed">Устаревшие пункты (REMOVED)<a class="headerlink" href="#removed" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Нет.</li>
+</ul>
+<h2 id="regressed">Регрессии (REGRESSED)<a class="headerlink" href="#regressed" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Нет.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

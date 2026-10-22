@@ -1,0 +1,1803 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/chek-lists/audit/audit-11-rest/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Аудит: Отдых (RestService.applyShortRest/applyLongRest, Hit Dice, spell slots, class resources, Exhaustion, состояния) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#restserviceapplyshortrestapplylongrest-hit-dice-spell-slots-class-resources-exhaustion" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Аудит: Отдых (RestService.applyShortRest/applyLongRest, Hit Dice, spell slots, class resources, Exhaustion, состояния)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вердикт
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фактура из кода
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Фактура из кода">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Модель отдыха
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-short-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Доступность short rest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-short-rest-hit-dicehp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Short rest: Hit Dice/HP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-long-rest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Доступность long rest
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-long-rest-hp-hit-dice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 Long rest: HP + Hit Dice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-spell-slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6 Spell slots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-class-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.7 Class resources
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-exhaustion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.8 Exhaustion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.9 Снятие состояний
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1110" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.10 Ограничения/прерывание отдыха
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.11 Триггеры/вызывающие
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.12 Что НЕ восстанавливается / НЕ снимается
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Открытые вопросы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сводка
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="restserviceapplyshortrestapplylongrest-hit-dice-spell-slots-class-resources-exhaustion">Аудит: Отдых (RestService.applyShortRest/applyLongRest, Hit Dice, spell slots, class resources, Exhaustion, состояния)<a class="headerlink" href="#restserviceapplyshortrestapplylongrest-hit-dice-spell-slots-class-resources-exhaustion" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Дата: 2026-09-15
+База: нет (область без чек-листа)</p>
+</blockquote>
+<h2 id="_1">Вердикт<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Подблок</th>
+<th style="text-align: left;">Статус</th>
+<th style="text-align: left;">Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">11.1 Модель отдыха (RestType/RestConfig/RestResult)</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>enum RestType {SHORT, LONG}</code> (<code>GameState.kt:1024</code>), <code>RestConfig</code> (<code>:1026-1033</code>), <code>RestResult</code> (<code>:1035-1052</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.2 Доступность short rest</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>canShortRest</code> (<code>RestService.kt:23-27</code>): запрет при <code>hitDice &lt;= 0</code> и при полном HP+Hit Dice</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.3 Расчёт short rest (Hit Dice)</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;"><code>applyShortRest</code> (<code>RestService.kt:51-74</code>); 2 параллельные реализации (RestService + SessionService)</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.4 Доступность long rest (24ч/прерывание)</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;"><code>canLongRest</code> (<code>RestService.kt:33-37</code>); <code>onInterrupt</code> (<code>:43-48</code>) в production не вызывается</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.5 Long rest: HP + Hit Dice</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;"><code>applyLongRest</code> (<code>RestService.kt:80-111</code>); результат <code>Pair</code> отбрасывается вызывающими (<code>TurnResolver.kt:1965,2025</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.6 Long rest: spell slots</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>spellSlots = maxSpellSlots</code> (<code>SessionService.kt:2274</code>); pact slots — через класс-ресурсы (<code>:2282</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.7 Восстановление class resources</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>ClassResourceHelper.restore</code> (<code>ClassResourceHelper.kt:128-144</code>); short/long различаются</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.8 Exhaustion</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;">long rest −1 (<code>SessionService.kt:2277</code>, <code>RestService.kt:90,97</code>); поле нигде не инкрементируется</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.9 Снятие состояний</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;">long rest снимает только «Стабилен»/«Без сознания» (<code>TurnResolver.kt:1969-1970,2029-2030</code>); «Отравлен» не снимается</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.10 Ограничения/прерывание отдыха</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;">счётчики <code>shortRestsUsedToday</code>/<code>longRestsUsedToday</code> инкрементируются, но не лимитируют; <code>restInterrupted</code> не выставляется</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.11 Триггеры/вызывающие</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;">два пути: <code>ActionType.REST → resolveRest</code> (<code>TurnResolver.kt:548,1948</code>) и <code>resolveHeal</code> по ключевым словам (<code>:2017-2065</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">11.12 Что НЕ восстанавливается</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">обычные spell slots на short rest, Lay on Hands/Sorcery Points/Arcane Recovery на short rest, <code>restoredAbilities</code> не заполняется, Exhaustion не сбрасывается полностью</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">Фактура из кода<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="111">11.1 Модель отдыха<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/GameState.kt:1024-1052</code>.
+<strong>Что:</strong>
+<div class="highlight"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">RestType</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">SHORT</span><span class="p">,</span><span class="w"> </span><span class="n">LONG</span><span class="w"> </span><span class="p">}</span><span class="w">                         </span><span class="c1">// :1024</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">RestConfig</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">shortRestDuration</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">longRestDuration</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">480</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">longRestIntervalMinutes</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w">             </span><span class="c1">// :1030</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">interruptThresholdMinutes</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w">                </span><span class="c1">// :1032</span>
+<span class="p">)</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">RestResult</span><span class="p">(...,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">restoredAbilities</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span><span class="w"> </span><span class="p">...)</span>
+</code></pre></div>
+<code>RestResult.restoredAbilities</code> (<code>:1040</code>) в коде нигде не заполняется (результат grep пуст).</p>
+<h3 id="112-short-rest">11.2 Доступность short rest<a class="headerlink" href="#112-short-rest" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/RestService.kt:23-27</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">canShortRest</span><span class="p">(</span><span class="n">character</span><span class="p">:</span><span class="w"> </span><span class="n">CharacterState</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">hitDice</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">hp</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">maxHp</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">hitDice</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">maxHitDice</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</code></pre></div>
+Комментарий <code>:20</code> фиксирует: «короткий отдых не ограничен числом в день».</p>
+<h3 id="113-short-rest-hit-dicehp">11.3 Short rest: Hit Dice/HP<a class="headerlink" href="#113-short-rest-hit-dicehp" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/RestService.kt:16-17,51-74</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">hitDieFor</span><span class="p">(</span><span class="n">character</span><span class="p">:</span><span class="w"> </span><span class="n">CharacterState</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">character</span><span class="p">.</span><span class="na">canonicalClassId</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">classRegistry</span><span class="o">?.</span><span class="na">getClass</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="o">?.</span><span class="na">hitDie</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="m">8</span><span class="w">   </span><span class="c1">// :16-17</span>
+
+<span class="kd">val</span><span class="w"> </span><span class="nv">toSpend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hitDiceToSpend</span><span class="p">.</span><span class="na">coerceIn</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">hitDice</span><span class="p">)</span><span class="w">                        </span><span class="c1">// :53</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">rolls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="m">1.</span><span class="p">.</span><span class="na">toSpend</span><span class="p">).</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">dice</span><span class="p">.</span><span class="na">roll</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hitDie</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">                              </span><span class="c1">// :55</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">totalHeal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rolls</span><span class="p">.</span><span class="na">sumOf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">effectiveAttributes</span><span class="p">.</span><span class="na">conMod</span><span class="w"> </span><span class="p">}.</span><span class="na">coerceAtLeast</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// :56</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">newHp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">hp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">totalHeal</span><span class="p">).</span><span class="na">coerceAtMost</span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">maxHp</span><span class="p">)</span><span class="w">               </span><span class="c1">// :57</span>
+</code></pre></div>
+Число костей из текста: <code>parseHitDiceToSpend</code> (<code>TurnResolver.kt:2012-2015</code>) — первое <code>\d+</code>, дефолт 1, <code>coerceIn(1, hitDice)</code>.</p>
+<p><strong>Две реализации:</strong> <code>TurnResolver.resolveRest</code> (<code>:1986-2007</code>) и <code>TurnResolver.resolveHeal</code> (<code>:2045-2064</code>) вызывают <code>restService.applyShortRest</code>, но берут только <code>result</code> (<code>val (_, result)</code>), а изменение состояния пересчитывают заново через <code>StateChange.Heal</code> + <code>StateChange.ShortRest</code> (<code>:1997-1998, 2057-2058</code>). В <code>SessionService.applyStateChanges</code> <code>StateChange.ShortRest</code> (<code>SessionService.kt:2261-2268</code>) списывает <code>hitDice</code> и инкрементирует <code>shortRestsUsedToday</code>, но HP уже пришёл отдельным <code>Heal</code>.</p>
+<h3 id="114-long-rest">11.4 Доступность long rest<a class="headerlink" href="#114-long-rest" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/RestService.kt:33-37,43-48</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">canLongRest</span><span class="p">(</span><span class="n">character</span><span class="p">:</span><span class="w"> </span><span class="n">CharacterState</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">restInterrupted</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">last</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">lastLongRestAt</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Duration</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">last</span><span class="p">,</span><span class="w"> </span><span class="n">clock</span><span class="p">.</span><span class="na">instant</span><span class="p">()).</span><span class="na">toMinutes</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="na">longRestIntervalMinutes</span>
+<span class="p">}</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">onInterrupt</span><span class="p">(...)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">interruptMinutes</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="na">interruptThresholdMinutes</span><span class="p">)</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">restInterrupted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">character</span>
+</code></pre></div>
+<code>onInterrupt</code> вызывается только из теста <code>RestServiceTest.kt:85,95</code>; в production-коде вызовов нет.</p>
+<h3 id="115-long-rest-hp-hit-dice">11.5 Long rest: HP + Hit Dice<a class="headerlink" href="#115-long-rest-hp-hit-dice" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/RestService.kt:80-111</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">restoredHp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">maxHp</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">hp</span><span class="w">                          </span><span class="c1">// :83</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">hitDiceRestore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">maxHitDice</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">).</span><span class="na">coerceAtLeast</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">         </span><span class="c1">// :84</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">newHitDice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">hitDice</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">hitDiceRestore</span><span class="p">).</span><span class="na">coerceAtMost</span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">maxHitDice</span><span class="p">)</span><span class="w"> </span><span class="c1">// :85</span>
+<span class="n">hp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">maxHp</span><span class="p">,</span><span class="w"> </span><span class="n">hitDice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newHitDice</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w">                          </span><span class="c1">// :92-93</span>
+</code></pre></div>
+<code>TurnResolver</code> отбрасывает персонажа из <code>Pair</code> (<code>:1965,2025</code>) и эмитит <code>StateChange.Heal(restoredHitPoints)</code> + <code>StateChange.LongRest(occurredAt)</code> (<code>:1967-1968,2027-2028</code>). В <code>SessionService.applyStateChanges</code> long rest повторно восстанавливает Hit Dice (<code>:2272-2273</code>):
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">restore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">maxHitDice</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">).</span><span class="na">coerceAtLeast</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="n">hitDice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">hitDice</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">restore</span><span class="p">).</span><span class="na">coerceAtMost</span><span class="p">(</span><span class="n">state</span><span class="p">.</span><span class="na">maxHitDice</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="116-spell-slots">11.6 Spell slots<a class="headerlink" href="#116-spell-slots" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>sessions/SessionService.kt:2274</code>, <code>rules/RestService.kt:87-89,94</code>.
+- Long rest: <code>spellSlots = state.maxSpellSlots</code> (<code>SessionService.kt:2274</code>).
+- Короткий отдых: обычные <code>spellSlots</code> не восстанавливаются; восстанавливается только <code>pactSlots</code> через <code>ClassResourceHelper.restore(..., SHORT)</code> (<code>:2266</code>, <code>ClassResourceHelper.kt:141</code>).
+- <code>RestService.applyLongRest</code> вычисляет <code>restoredSlots</code> для отчёта (<code>:87-89</code>), но вызывающие его не используют.</p>
+<h3 id="117-class-resources">11.7 Class resources<a class="headerlink" href="#117-class-resources" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>classes/ClassResourceHelper.kt:128-144</code>.
+| Ресурс | SHORT | LONG |
+| :--- | :--- | :--- |
+| <code>rage</code> | не восстанавливается (<code>:132</code>) | <code>uses=0, active=false</code> (<code>:132</code>) |
+| <code>ki</code> | да (<code>:133</code>) | да (<code>:133</code>) |
+| <code>bardicInspiration</code> | да (<code>:134</code>) | да (<code>:134</code>) |
+| <code>channelDivinity</code> | да (<code>:135</code>) | да (<code>:135</code>) |
+| <code>wildShape</code> | да (<code>:136</code>) | да (<code>:136</code>) |
+| <code>actionSurge</code> | да (<code>:137</code>) | да (<code>:137</code>) |
+| <code>secondWindUsed</code> | <code>false</code> (<code>:138</code>) | <code>false</code> (<code>:138</code>) |
+| <code>layOnHands</code> | нет (<code>:139</code>) | <code>= maxLayOnHands</code> (<code>:139</code>) |
+| <code>sorceryPoints</code> | нет (<code>:140</code>) | <code>0</code> (<code>:140</code>) |
+| <code>pactSlots</code> | <code>restore()</code> (<code>:141</code>) | <code>restore()</code> (<code>:141</code>) |
+| <code>arcaneRecoveryUsed</code> | нет (<code>:142</code>) | <code>false</code> (<code>:142</code>) |</p>
+<p>Вызовы: <code>SessionService.kt:2266</code> (SHORT), <code>:2282</code> (LONG).</p>
+<h3 id="118-exhaustion">11.8 Exhaustion<a class="headerlink" href="#118-exhaustion" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/GameState.kt:359-363,484</code>; <code>sessions/SessionService.kt:2277</code>; <code>rules/RestService.kt:90,97</code>.
+- Хранится: <code>val exhaustion: Int = 0</code>, <code>require(exhaustion in 0..6)</code> (<code>GameState.kt:363,484</code>).
+- Long rest: <code>exhaustion = (exhaustion - 1).coerceAtLeast(0)</code> (<code>SessionService.kt:2277</code>); то же в <code>RestService.kt:90,97</code>.
+- Инкремент <code>exhaustion</code>: не найден (grep по <code>exhaustion =</code> даёт только декремент и присваивание в буферах).
+- Статус <code>"Истощён"</code> (<code>TurnResolver.kt:1333</code>, <code>statusNameForFamily</code>) отделён от счётчика <code>exhaustion</code> и его не меняет.</p>
+<h3 id="119">11.9 Снятие состояний<a class="headerlink" href="#119" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/TurnResolver.kt:1969-1970</code> и <code>:2029-2030</code>.
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">"Стабилен"</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">statuses</span><span class="p">)</span><span class="w"> </span><span class="n">stateChanges</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">RemoveStatus</span><span class="p">(</span><span class="s">"Стабилен"</span><span class="p">,</span><span class="w"> </span><span class="n">StateTarget</span><span class="p">.</span><span class="na">PLAYER</span><span class="p">)</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">"Без сознания"</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">statuses</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">character</span><span class="p">.</span><span class="na">hp</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="n">stateChanges</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">StateChange</span><span class="p">.</span><span class="na">RemoveStatus</span><span class="p">(</span><span class="s">"Без сознания"</span><span class="p">,</span><span class="w"> </span><span class="n">StateTarget</span><span class="p">.</span><span class="na">PLAYER</span><span class="p">)</span>
+</code></pre></div>
+Это единственные снятия статусов при long rest. Отравление не снимается (комментарий <code>SessionService.kt:2271</code>). <code>resolveSaveEnds</code> (<code>TurnResolver.kt:49-82</code>) снимает статусы из <code>SAVE_END_STATUSES</code> (<code>GameState.kt:629</code>) в конце хода по спасброску CON DC12 — независимо от отдыха.</p>
+<h3 id="1110">11.10 Ограничения/прерывание отдыха<a class="headerlink" href="#1110" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>sessions/SessionService.kt:2265,2276</code>; поля <code>GameState.kt:357-358</code>.
+- <code>shortRestsUsedToday++</code> (<code>:2265</code>) и <code>longRestsUsedToday++</code> (<code>:2276</code>) — счётчики, проверок на лимит нет (grep: чтение только в буферах).
+- <code>restInterrupted</code> выставляется только в <code>RestService.onInterrupt</code> (не вызывается) и сбрасывается в long rest (<code>SessionService.kt:2281</code>, <code>RestService.kt:99</code>).
+- 24-часовое окно: <code>lastLongRestAt</code> устанавливается из <code>StateChange.LongRest(occurredAt)</code> (<code>SessionService.kt:2279</code>).</p>
+<h3 id="1111">11.11 Триггеры/вызывающие<a class="headerlink" href="#1111" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ActionType.REST</code> (<code>ActionType.kt:71-72</code>), парсинг <code>ActionParser.kt:654,584</code>, классификатор <code>CatalogClassifier.kt:227</code>.</li>
+<li>Dispatch: <code>TurnResolver.kt:548 → resolveRest</code> (<code>:1948</code>).</li>
+<li>Дублирующий путь по ключевым словам в <code>resolveHeal</code> (<code>TurnResolver.kt:2020,2045</code>): <code>ночлег/лагерь/длинный отдых</code> и <code>короткий отдых/передышк/привал</code>.</li>
+<li>UI-кнопки: <code>UiCommandWhitelist.kt:12-13</code> («короткий отдых», «длинный отдых»).</li>
+<li>В бою отдых отклоняется: <code>if (enemy != null) → "Нельзя отдыхать в бою"</code> (<code>TurnResolver.kt:1949-1958</code>).</li>
+<li><code>ActionType.REST</code> не тратит действие/бонус/реакцию (<code>TurnResolver.kt:368,414,425</code>).</li>
+</ul>
+<h3 id="1112">11.12 Что НЕ восстанавливается / НЕ снимается<a class="headerlink" href="#1112" title="Permanent link">&para;</a></h3>
+<ul>
+<li>На short rest не восстанавливаются обычные <code>spellSlots</code>, <code>layOnHands</code>, <code>sorceryPoints</code>, <code>arcaneRecoveryUsed</code> (см. 11.7).</li>
+<li><code>RestResult.restoredAbilities</code> не заполняется (11.1).</li>
+<li>Exhaustion не сбрасывается полностью, только −1 (11.8).</li>
+<li>При long rest не снимаются прочие состояния/дебаффы, кроме «Стабилен»/«Без сознания» (11.9).</li>
+<li><code>clock</code>/<code>Duration</code> — только для long rest; <code>RestConfig</code> не переопределяется Spring-конфигом (используется дефолтный конструктор <code>RestService.kt:11</code>).</li>
+</ul>
+<h2 id="_3">Открытые вопросы<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li><code>exhaustion</code> 6 = смерть (<code>GameState.kt:361</code> комментарий) — реализация перехода в смерть при 6 не найдена; требует уточнения.</li>
+<li>Двойная реализация восстановления (RestService возвращает <code>Pair</code>, вызывающие его игнорируют) — какая считается источником истины, требует уточнения.</li>
+<li><code>onInterrupt</code> без вызывающих — прерывание отдыха фактически неактивно; требуется подтверждение, что это intended.</li>
+<li><code>shortRestsUsedToday</code>/<code>longRestsUsedToday</code> не читаются — требуется уточнить, нужны ли лимиты.</li>
+<li><code>lastLongRestAt</code> — сравнение по <code>clock</code>; при <code>occurredAt = null</code> (не должно случаться) окно не обновится, требует уточнения.</li>
+</ol>
+<h2 id="_4">Сводка<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Реализовано:</strong> RestType/RestConfig/RestResult; short rest через Hit Dice (+CON); long rest (HP до max, +половина max Hit Dice, spell slots до max); восстановление class resources по short/long; 24-часовое окно long rest; <code>canShortRest</code>/<code>canLongRest</code>; блок отдыха в бою; счётчики.</li>
+<li><strong>Частично:</strong> Exhaustion (−1 за long rest, поле не растёт); снятие состояний (только «Стабилен»/«Без сознания»); прерывание отдыха (метод есть, не вызывается); class resources (short не даёт layOnHands/sorceryPoints/arcaneRecovery); дублирование логики RestService ↔ SessionService.</li>
+<li><strong>Отсутствует:</strong> инкремент <code>exhaustion</code>; смерть от exhaustion 6; лимиты short/long rest по счётчикам; <code>RestResult.restoredAbilities</code>; восстановление обычных spell slots на short rest; снятие дебафф-статусов отдыхом.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

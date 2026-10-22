@@ -1,0 +1,2009 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/02-ability-sources/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Аудит умений/заклинаний — Блок 2: Источники умений - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Аудит умений/заклинаний — Блок 2: Источники умений
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Каталог классов
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1. Каталог классов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1. Где хранится каталог классов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212-characterclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2. Поля класса (CharacterClass)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3. Список реализованных классов (id)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#214-class-features-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.4. Как парсятся class features из YAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215-spellcastingability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.5. Поле spellcastingAbility
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#216-hitdie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.6. Поле hitDie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#217-field-saving-throw-proficiencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.7. Field saving-throw proficiencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#218-skillchoices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.8. Поле skillChoices (выбор навыков)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#219-startingequipment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.9. Поле startingEquipment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2110-field-multiclass-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.10. Field multiclass requirements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-subclasses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 (доп.) Поле subclasses
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сводка по Блоку 2.1
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2">Аудит умений/заклинаний — Блок 2: Источники умений<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Технический аудит кодовой базы. Только факты из кода. Пути и номера строк — по состоянию репозитория на момент аудита.
+Прогресс: <strong>2.1</strong> (остальные подблоки — ожидают подтверждения).</p>
+</blockquote>
+<hr />
+<h2 id="21">2.1. Каталог классов<a class="headerlink" href="#21" title="Permanent link">&para;</a></h2>
+<h3 id="211">2.1.1. Где хранится каталог классов<a class="headerlink" href="#211" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Файл: <code>backend/app/src/main/resources/classes.yml</code>.</li>
+<li>Загрузчик: <code>ClassRegistry</code> — <code>backend/app/src/main/kotlin/com/yorva/classes/ClassRegistry.kt:9-205</code>.</li>
+<li>Точка входа: <code>@PostConstruct fun loadClasses()</code> — <code>ClassRegistry.kt:16-46</code>.</li>
+<li>Ключ верхнего уровня: <code>classes</code> (<code>ClassRegistry.kt:28</code>).</li>
+<li>При отсутствии файла / ошибке парсинга / пустом результате — <code>loadFallback()</code> (<code>ClassRegistry.kt:160-204</code>), 12 хардкод-классов.</li>
+<li>Данные в памяти: <code>MutableMap&lt;String, CharacterClass&gt;</code> (<code>ClassRegistry.kt:14</code>), доступ через <code>getClass(id)</code> (<code>:48</code>) и <code>getAllClasses()</code> (<code>:49</code>).</li>
+</ul>
+<h3 id="212-characterclass">2.1.2. Поля класса (<code>CharacterClass</code>)<a class="headerlink" href="#212-characterclass" title="Permanent link">&para;</a></h3>
+<p><code>CharacterClass.kt:7-22</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">CharacterClass</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="c1">// warrior, wizard, rogue, cleric</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="c1">// "Воин"</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">hitDie</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="c1">// 6, 8, 10, 12</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">primaryAbility</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="c1">// STRENGTH, DEXTERITY...</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">spellcastingAbility</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span><span class="w"> </span><span class="c1">// INTELLIGENCE, WISDOM, CHARISMA или null</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">proficiencies</span><span class="p">:</span><span class="w"> </span><span class="n">Proficiencies</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">startingEquipment</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StartingItem</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">spellList</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">features</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ClassFeature</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">narrativeHint</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">asiLevels</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="m">19</span><span class="p">),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">casterType</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"NONE"</span><span class="p">,</span><span class="w"> </span><span class="c1">// FULL/HALF/PACT/NONE — для таблиц слотов</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">subclasses</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span><span class="w"> </span><span class="c1">// задел под подклассы (выбор на 3)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Смежные типы (<code>CharacterClass.kt:24-35</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Proficiencies</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">armor</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span><span class="w"> </span><span class="c1">// LIGHT, MEDIUM, HEAVY, SHIELD</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">weapons</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span><span class="w"> </span><span class="c1">// SIMPLE, MARTIAL</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">tools</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">savingThrows</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span><span class="w"> </span><span class="c1">// STRENGTH, CONSTITUTION...</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">skills</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span><span class="w"> </span><span class="c1">// athletics, stealth...</span>
+<span class="p">)</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">StartingItem</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">quantity</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="213-id">2.1.3. Список реализованных классов (id)<a class="headerlink" href="#213-id" title="Permanent link">&para;</a></h3>
+<p>Из <code>classes.yml</code> (ключи верхнего уровня под <code>classes:</code>): <code>warrior, wizard, rogue, cleric, barbarian, bard, druid, monk, paladin, ranger, sorcerer, warlock</code> — 12 классов.</p>
+<p>Строки ключей: <code>classes.yml:2, 120, 235, 362, 461, 543, 636, 722, 795, 901, 992, 1120</code>.</p>
+<h3 id="214-class-features-yaml">2.1.4. Как парсятся class features из YAML<a class="headerlink" href="#214-class-features-yaml" title="Permanent link">&para;</a></h3>
+<p>Парсер: <code>ClassRegistry.parseClass(...)</code> — <code>ClassRegistry.kt:54-130</code>; блок фич — <code>ClassRegistry.kt:70-102</code>.</p>
+<p>Заполняемые поля (<code>ClassRegistry.kt:71-101</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Поле <code>ClassFeature</code></th>
+<th>Источник в YAML</th>
+<th>Строка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>name</code> (обязательное, <code>as String</code>)</td>
+<td><code>:73</code></td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td><code>level</code> (по умолчанию 1)</td>
+<td><code>:74</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>description</code> (по умолчанию <code>""</code>)</td>
+<td><code>:75</code></td>
+</tr>
+<tr>
+<td><code>actionType</code></td>
+<td><code>actionType</code> → <code>FeatureActionType.valueOf(uppercase)</code>, иначе <code>null</code></td>
+<td><code>:76-82</code></td>
+</tr>
+<tr>
+<td><code>resourceId</code></td>
+<td><code>resourceId</code> → <code>uppercase</code></td>
+<td><code>:83</code></td>
+</tr>
+<tr>
+<td><code>usesPerLevel</code></td>
+<td><code>usesPerLevel</code> (ключ Int/String → Int, значение Int/String → Int)</td>
+<td><code>:84-92</code></td>
+</tr>
+<tr>
+<td><code>recharge</code></td>
+<td><code>recharge</code> → <code>RestType.valueOf(uppercase)</code>, иначе <code>null</code></td>
+<td><code>:93-99</code></td>
+</tr>
+<tr>
+<td><code>choice</code></td>
+<td><code>choice</code> → <code>parseFeatureChoice(...)</code> — <code>:132-158</code></td>
+<td><code>:100</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ключи, реально встречающиеся на уровне фичи в <code>classes.yml</code> (6 пробелов отступа): <code>actionType</code> (18), <code>choice</code> (7), <code>description</code> (120), <code>level</code> (120), <code>recharge</code> (11), <code>resourceId</code> (11), <code>usesPerLevel</code> (10). Других ключей на уровне фичи нет. Неизвестные ключи в парсере явно не обрабатываются (пропускаются без ошибки).</p>
+<p>Каталог фич: 120 записей (<code>grep -cE "^    - name:"</code>). Часть фич — заголовки-заделы («(задел)») — 31 вхождение, например: <code>Воинский архетип (задел)</code> (<code>classes.yml:75</code>), <code>Школа магии (задел)</code> (<code>:205</code>), <code>Метамагия (задел)</code> (<code>:1104</code>), <code>Мистические воззвания (задел)</code> (<code>:1196</code>).</p>
+<p>Пример фичи <code>warrior</code> (<code>classes.yml:34-57</code>) с <code>choice</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Боевой стиль</span>
+<span class="w">      </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Выберите</span><span class="nv"> </span><span class="s">1:</span><span class="nv"> </span><span class="s">Оборона/Дуэлянт/Двуручник/Защита/Стрельба/Сражение</span><span class="nv"> </span><span class="s">двумя</span><span class="nv"> </span><span class="s">оружиями'</span>
+<span class="w">      </span><span class="nt">choice</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">single</span>
+<span class="w">        </span><span class="nt">options</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defense</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Оборона</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">+1 AC в доспехах</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dueling</span>
+<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Дуэлянт</span>
+<span class="w">          </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">+2 к урону одноручным оружием</span>
+</code></pre></div>
+<p>Пример фичи с ресурсом (<code>classes.yml:58-65</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Второе дыхание</span>
+<span class="w">      </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Бонусным действием восстанавливаете 1d10 + уровень здоровья</span>
+<span class="w">      </span><span class="nt">actionType</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BONUS_ACTION</span>
+<span class="w">      </span><span class="nt">resourceId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SECOND_WIND</span>
+<span class="w">      </span><span class="nt">usesPerLevel</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">1</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">      </span><span class="nt">recharge</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SHORT_REST</span>
+</code></pre></div>
+<p><code>parseFeatureChoice</code> (<code>ClassRegistry.kt:132-158</code>): читает <code>type</code> (<code>SINGLE</code>/<code>MULTIPLE</code>, по умолчанию <code>SINGLE</code>), <code>options</code> (<code>id/name/description</code>, id в lowercase), <code>maxChoices</code> (Int/String, по умолчанию 1); при пустых options возвращает <code>null</code>.</p>
+<h3 id="215-spellcastingability">2.1.5. Поле <code>spellcastingAbility</code><a class="headerlink" href="#215-spellcastingability" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть: <code>CharacterClass.kt:13</code>; парсится <code>ClassRegistry.kt:120</code>, фолбэк-классы задают его вручную (<code>ClassRegistry.kt:176,189,195,...</code>).</li>
+<li>Экспонируется в API: <code>ClassController.kt:39,56,77</code>.</li>
+<li>Используется:</li>
+<li><code>SessionService.kt:89,95,114,367,374</code> — при создании персонажа (в т.ч. <code>resolveSpellSelection</code>, <code>spellSlots</code>, <code>spellMod</code>).</li>
+<li><code>SessionService.kt:1262</code> (<code>val castAbility = cls.spellcastingAbility</code>), <code>:1638</code>.</li>
+<li><code>LevelUpService</code> — через <code>casterType</code>/класс (см. 2.9).</li>
+</ul>
+<h3 id="216-hitdie">2.1.6. Поле <code>hitDie</code><a class="headerlink" href="#216-hitdie" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть: <code>CharacterClass.kt:11</code>; парсится <code>ClassRegistry.kt:118</code> (по умолчанию 8).</li>
+<li>Используется:</li>
+<li>Стартовое HP: <code>SessionService.kt:351-352</code> (<code>hitDie + CONmod</code>).</li>
+<li>Level-up HP: <code>LevelUpService.kt:175-178</code> (<code>avgHitDie(cls.hitDie)</code>), <code>:306</code>, <code>:362</code>.</li>
+<li>Повышение HP в бою/апе: <code>SessionService.kt:1626-1629</code> (<code>hitDie / 2 + 1 + conMod</code>).</li>
+<li>Короткий отдых: <code>TurnResolver.kt:1711-1720</code>, <code>RestService.kt:13-33</code>.</li>
+</ul>
+<h3 id="217-field-saving-throw-proficiencies">2.1.7. Field saving-throw proficiencies<a class="headerlink" href="#217-field-saving-throw-proficiencies" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Отдельного поля <code>savingThrowProficiencies</code> у <code>CharacterClass</code> нет. Есть <code>Proficiencies.savingThrows: List&lt;String&gt;</code> (<code>CharacterClass.kt:28</code>), парсится <code>ClassRegistry.kt:60</code> (uppercase).</li>
+<li>Использование: сливается с навыками при создании — <code>SessionService.kt:355</code> (<code>(it.proficiencies.skills + it.proficiencies.savingThrows).map { it.lowercase() }</code>).</li>
+<li>Спасброски: <code>SavingThrowResolver.kt:31</code> (<code>ability in character.proficiencies</code>).</li>
+</ul>
+<h3 id="218-skillchoices">2.1.8. Поле skillChoices (выбор навыков)<a class="headerlink" href="#218-skillchoices" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Поля <code>skillChoices</code> / числа выбираемых навыков у <code>CharacterClass</code> нет. Есть фиксированный список <code>Proficiencies.skills: List&lt;String&gt;</code> (<code>CharacterClass.kt:29</code>), парсится в lowercase (<code>ClassRegistry.kt:61</code>).</li>
+<li>Механизм выбора опций есть только у фич — <code>FeatureChoice</code>/<code>FeatureOption</code> (<code>CharacterClass.kt:37-49</code>), парсится <code>ClassRegistry.kt:132-158</code>.</li>
+<li>В <code>classes.yml</code> ключей <code>skillChoices</code>/<code>skillChoice</code> нет (grep — пусто).</li>
+</ul>
+<h3 id="219-startingequipment">2.1.9. Поле startingEquipment<a class="headerlink" href="#219-startingequipment" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Есть: <code>CharacterClass.kt:15</code> (<code>List&lt;StartingItem&gt;</code>), парсится <code>ClassRegistry.kt:63-69</code>.</li>
+<li>Пример (<code>classes.yml:25-31</code>):</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">startingEquipment</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">longsword</span>
+<span class="w">      </span><span class="nt">quantity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shield</span>
+<span class="w">      </span><span class="nt">quantity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">chainmail</span>
+<span class="w">      </span><span class="nt">quantity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<ul>
+<li>Использование в коде, кроме определения и парсинга: не найдено (grep <code>startingEquipment</code>/<code>StartingItem</code> — только <code>CharacterClass.kt:15,32</code> и <code>ClassRegistry.kt</code>). В сервисах создания/боя/inventory не применяется.</li>
+</ul>
+<h3 id="2110-field-multiclass-requirements">2.1.10. Field multiclass requirements<a class="headerlink" href="#2110-field-multiclass-requirements" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Отсутствует: поля в <code>CharacterClass</code> нет; ключа <code>multiclass</code>/<code>requirements</code> в <code>classes.yml</code> нет (grep — пусто).</li>
+<li>Единственное упоминание в коде: комментарий <code>// classLevels for multiclass задел</code> — <code>LevelUpService.kt:206</code>.</li>
+</ul>
+<h3 id="21-subclasses">2.1 (доп.) Поле <code>subclasses</code><a class="headerlink" href="#21-subclasses" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Поле есть: <code>CharacterClass.kt:21</code>, парсится <code>ClassRegistry.kt:128</code>.</li>
+<li>Во всех 12 классах <code>classes.yml</code> значение <code>subclasses: []</code> (строки <code>classes.yml:119, 234, 361, 460, 542, 635, 721, 794, 900, 991, 1119, 1220</code>).</li>
+<li>Использование поля в коде, кроме парсинга: не найдено (подклассы грузятся отдельно из <code>subclasses.yml</code>, см. 2.2).</li>
+</ul>
+<hr />
+<h2 id="21_1">Сводка по Блоку 2.1<a class="headerlink" href="#21_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Подблок</th>
+<th>Реализовано</th>
+<th>Частично</th>
+<th>Отсутствует</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.1.1 Каталог классов</td>
+<td><code>classes.yml</code> + <code>ClassRegistry</code> + fallback 12 классов</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.1.2 Модель <code>CharacterClass</code></td>
+<td><code>id/name/description/hitDie/primaryAbility/spellcastingAbility/proficiencies/startingEquipment/spellList/features/narrativeHint/asiLevels/casterType/subclasses</code></td>
+<td><code>subclasses</code> всегда пусто; <code>startingEquipment</code> не применяется</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.1.3 Список классов</td>
+<td>12 id</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.1.4 Парсинг фич</td>
+<td>name/level/description/actionType/resourceId/usesPerLevel/recharge/choice</td>
+<td>31 фича-заглушка «(задел)»</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.1.5 <code>spellcastingAbility</code></td>
+<td>есть, используется в создании/level-up</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.1.6 <code>hitDie</code></td>
+<td>есть, используется (HP, отдых)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.1.7 saving-throw proficiencies</td>
+<td><code>Proficiencies.savingThrows</code></td>
+<td>—</td>
+<td>отдельное поле <code>savingThrowProficiencies</code></td>
+</tr>
+<tr>
+<td>2.1.8 <code>skillChoices</code></td>
+<td>—</td>
+<td>фиксированный <code>Proficiencies.skills</code>; выбор — только через <code>FeatureChoice</code></td>
+<td>поле «выбрать N навыков»</td>
+</tr>
+<tr>
+<td>2.1.9 <code>startingEquipment</code></td>
+<td>парсится</td>
+<td>не применяется в сервисах</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.1.10 <code>multiclassRequirements</code></td>
+<td>—</td>
+<td>—</td>
+<td>отсутствует</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="22">2.2. Каталог подклассов<a class="headerlink" href="#22" title="Permanent link">&para;</a></h1>
+<h2 id="221">2.2.1. Где хранится каталог подклассов<a class="headerlink" href="#221" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Файл: <code>backend/app/src/main/resources/subclasses.yml</code> (318 строк, 31 подкласс).</li>
+<li>Загрузчик: <code>SubclassRegistry</code> — <code>backend/app/src/main/kotlin/com/yorva/classes/SubclassRegistry.kt:17-65</code>.</li>
+<li><code>@PostConstruct fun load()</code> — <code>SubclassRegistry.kt:24-60</code>.</li>
+<li>Ключ верхнего уровня: <code>subclasses</code> (список) — <code>SubclassRegistry.kt:35</code>.</li>
+<li><strong>Fallback отсутствует</strong>: при отсутствии/ошибке файл логируется и <code>return</code> (<code>:28-31,57-59</code>); список остаётся пустым.</li>
+<li>Модель: <code>data class Subclass(id, classId, name, description, features, ...)</code> — <code>SubclassRegistry.kt:9-15</code>.</li>
+<li>В памяти: <code>MutableMap&lt;String, Subclass&gt;</code> (<code>SubclassRegistry.kt:22</code>); доступ <code>get</code>/<code>getAll</code>/<code>getForClass</code> (<code>:62-64</code>).</li>
+</ul>
+<h2 id="222-id-classid">2.2.2. Список подклассов (id → classId)<a class="headerlink" href="#222-id-classid" title="Permanent link">&para;</a></h2>
+<p>31 подкласс по 12 классам (из <code>subclasses.yml</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Класс</th>
+<th>Подклассы (id)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>warrior (3)</td>
+<td>champion, battle_master, eldritch_knight</td>
+</tr>
+<tr>
+<td>wizard (3)</td>
+<td>evocation, abjuration, necromancy</td>
+</tr>
+<tr>
+<td>rogue (3)</td>
+<td>thief, assassin, arcane_trickster</td>
+</tr>
+<tr>
+<td>cleric (3)</td>
+<td>life, light, war</td>
+</tr>
+<tr>
+<td>barbarian (2)</td>
+<td>berserker, totem_warrior</td>
+</tr>
+<tr>
+<td>bard (2)</td>
+<td>lore, valor</td>
+</tr>
+<tr>
+<td>druid (2)</td>
+<td>land, moon</td>
+</tr>
+<tr>
+<td>monk (3)</td>
+<td>open_hand, shadow, four_elements</td>
+</tr>
+<tr>
+<td>paladin (3)</td>
+<td>devotion, ancients, vengeance</td>
+</tr>
+<tr>
+<td>ranger (2)</td>
+<td>hunter, beast_master</td>
+</tr>
+<tr>
+<td>sorcerer (2)</td>
+<td>draconic, wild_magic</td>
+</tr>
+<tr>
+<td>warlock (3)</td>
+<td>archfey, fiend, great_old_one</td>
+</tr>
+</tbody>
+</table>
+<h2 id="223">2.2.3. Как выбирается подкласс (уровень и валидация)<a class="headerlink" href="#223" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Уровень выбора захардкожен: <code>nextLevel == 3</code> — <code>LevelUpService.kt:63,126</code>. Поля <code>subclassLevel</code> нет (см. 2.1.8).</li>
+<li>Список опций при выборе: <code>subclassRegistry.getForClass(state.canonicalClassId!!)</code> — <code>LevelUpService.kt:64</code>.</li>
+<li>Обязательность: на 3 уровне <code>req.subclassId</code> обязателен, иначе исключение — <code>LevelUpService.kt:128</code>.</li>
+<li>Валидация принадлежности классу: <code>require(sub.classId == cls.id)</code> — <code>LevelUpService.kt:130</code>.</li>
+<li>Запрет смены после выбора: <code>LevelUpService.kt:132-134</code>.</li>
+<li>При создании персонажа <code>subclassId</code> не задаётся (<code>CharacterState.subclassId</code> по умолчанию <code>null</code>, <code>GameState.kt:443</code>).</li>
+<li>API-список подклассов: <code>LevelController.kt:26,36</code> (<code>GET</code> по <code>classId</code>).</li>
+<li><strong>Комментарий-пометка о каноне</strong>: <code>subclasses.yml:94</code> — «Жрец — домены (канонично на 1, у нас на 3 для униформы, пометка)».</li>
+</ul>
+<h2 id="224-subclass-features">2.2.4. Парсинг subclass features — усечение<a class="headerlink" href="#224-subclass-features" title="Permanent link">&para;</a></h2>
+<p><code>SubclassRegistry.kt:40-47</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">featsRaw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="o">[</span><span class="s">"features"</span><span class="o">]</span><span class="w"> </span><span class="k">as?</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Any</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">emptyList</span><span class="p">()</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">feats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">featsRaw</span><span class="p">.</span><span class="na">map</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ClassFeature</span><span class="p">(</span>
+<span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="o">[</span><span class="s">"name"</span><span class="o">]</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="o">[</span><span class="s">"level"</span><span class="o">]</span><span class="w"> </span><span class="k">as?</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">        </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">it</span><span class="o">[</span><span class="s">"description"</span><span class="o">]</span><span class="w"> </span><span class="k">as?</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="s">""</span><span class="p">,</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>Читаются только <code>name</code>, <code>level</code> (default 3), <code>description</code>.</li>
+<li><code>actionType</code>, <code>resourceId</code>, <code>usesPerLevel</code>, <code>recharge</code>, <code>choice</code> <strong>не парсятся</strong> — теряются, даже если появятся в YAML (переиспользуется <code>ClassFeature</code>, но поля не заполняются).</li>
+<li>Следствие для level-up: фильтр <code>it.choice != null</code> по подклассам (<code>LevelUpService.kt:143,147</code>) <strong>всегда пуст</strong> → выборы подклассов не срабатывают (совпадает с 1.4.1 Блока 1).</li>
+<li>Формат данных: фичи записаны inline-маппингом (139 записей вида <code>{ name, level, description }</code>) — напр. <code>subclasses.yml:8-12</code>. Других ключей в фичах нет (grep по <code>{...}</code> — только name/level/description).</li>
+</ul>
+<h2 id="225-subclass-resources-channel-divinity-superiority-dice-wild-shape">2.2.5. Subclass resources (Channel Divinity, Superiority Dice, Wild Shape)<a class="headerlink" href="#225-subclass-resources-channel-divinity-superiority-dice-wild-shape" title="Permanent link">&para;</a></h2>
+<ul>
+<li>В <code>subclasses.yml</code> полей ресурсов нет; «ресурсные» фичи — только текст: <code>Канал: Сохранение жизни</code> (<code>:101</code>), <code>Канал: Сияние рассвета</code> (<code>:111</code>), <code>Канал: Направленный удар</code> (<code>:120</code>), <code>Изгнание нечестивых</code> (<code>:224</code>), <code>Клятва вражды</code> (<code>:244</code>), <code>Боевое превосходство</code> («4 кости d8, 3 приёма») (<code>:18</code>), <code>Боевой дикий облик</code> (<code>:182</code>) и т.п.</li>
+<li><code>ClassResources</code> (<code>GameState.kt:1244</code>) и <code>ClassResourceHelper</code> знают только классовые ресурсы: <code>channelDivinity/maxChannelDivinity</code> (cleric — <code>ClassResourceHelper.kt:29-32</code>, paladin — <code>:46-51</code>), <code>wildShape/maxWildShape</code> (druid — <code>:33-36</code>). Инициализируются из <strong>классовых</strong> фич по имени (<code>usesFor</code>, <code>ClassResourceHelper.kt:146-150</code>), не из подклассов.</li>
+<li>Superiority Dice (battle_master) отдельной сущностью не моделируются — только текст фичи.</li>
+<li>Итог: подкласс не приносит собственных ресурсов; подклассовые «Канал/Кости/Облик» механически не подключены.</li>
+</ul>
+<h2 id="226-subclass-spell-lists-domain-circle-oath">2.2.6. Subclass spell lists (Domain, Circle, Oath)<a class="headerlink" href="#226-subclass-spell-lists-domain-circle-oath" title="Permanent link">&para;</a></h2>
+<ul>
+<li>В <code>subclasses.yml</code> списков заклинаний нет (grep <code>spell|домен|круг|клятва</code> — только описания фич, напр. <code>:94,97,169,220,240</code>).</li>
+<li>Доменные заклинания заданы <strong>в коде</strong>: <code>resolveL1Choices</code> → <code>Сессия</code> (<code>SessionService.kt:217-231</code>): <code>life</code> → <code>bless, cure-wounds</code>; <code>light</code> → <code>burning-hands, faerie-fire</code>; <code>war</code> → <code>divine-favor, shield-of-faith</code> (+ доп. броня/оружие).</li>
+<li>Покровитель (warlock) expanded spells — тоже в коде: <code>SessionService.kt:232-238</code> (<code>archfey/fiend/great_old_one</code>).</li>
+<li>Данные о доменах/кругах/клятвах как о заклинательных списках подкласса отсутствуют.</li>
+</ul>
+<h2 id="227-l1choices">2.2.7. Взаимодействие с <code>l1Choices</code><a class="headerlink" href="#227-l1choices" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Выбор архетипа на 1 уровне идёт <strong>не через подкласс</strong>, а через классовые фичи-выборы: <code>Домен</code> (<code>classes.yml:424</code>), <code>Происхождение чародея</code> (<code>:1066</code>), <code>Потусторонний покровитель</code> (<code>:1178</code>) → <code>resolveL1Choices</code> (<code>SessionService.kt:209-245</code>).</li>
+<li>Те же сущности существуют как подклассы: <code>life/light/war</code> (cleric), <code>draconic/wild_magic</code> (sorcerer), <code>archfey/fiend/great_old_one</code> (warlock) — <code>subclasses.yml</code>.</li>
+<li>Итог: для этих трёх классов выбор дублируется дважды — на L1 (<code>l1Choices</code>, даёт часть эффектов) и на L3 (<code>subclassId</code>, даёт текст фич). Связь между выборами отсутствует (<code>l1Choices</code> не влияет на <code>subclassId</code> и наоборот).</li>
+<li>У колдуна дополнительно дубль-заглушка <code>Потусторонний покровитель (задел)</code> (<code>classes.yml:1193</code>) рядом с живой фичой (<code>:1178</code>).</li>
+</ul>
+<hr />
+<h2 id="22_1">Сводка по Блоку 2.2<a class="headerlink" href="#22_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Подблок</th>
+<th>Реализовано</th>
+<th>Частично</th>
+<th>Отсутствует</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.2.1 Каталог подклассов</td>
+<td><code>subclasses.yml</code> + <code>SubclassRegistry</code></td>
+<td>нет fallback при ошибке загрузки</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.2.2 Список подклассов</td>
+<td>31 подкласс / 12 классов</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2.2.3 Выбор подкласса</td>
+<td>выбор на L3, валидация <code>classId</code>, запрет смены, API</td>
+<td>уровень захардкожен <code>== 3</code></td>
+<td>пер-классовый <code>subclassLevel</code></td>
+</tr>
+<tr>
+<td>2.2.4 Парсинг features</td>
+<td><code>name/level/description</code></td>
+<td><code>choice/resource</code> теряются</td>
+<td>механические поля подкласс-фич</td>
+</tr>
+<tr>
+<td>2.2.5 Subclass resources</td>
+<td>классовые ресурсы (Channel/Wild Shape)</td>
+<td>подклассовые «Кости/Каналы» — только текст</td>
+<td><code>Superiority Dice</code>, ресурсы подклассов</td>
+</tr>
+<tr>
+<td>2.2.6 Subclass spell lists</td>
+<td>домены/покровители в коде (<code>SessionService.kt:217-238</code>)</td>
+<td>—</td>
+<td>списки в данных; Circle/Oath списки отсутствуют</td>
+</tr>
+<tr>
+<td>2.2.7 <code>l1Choices</code> ↔ подкласс</td>
+<td>оба механизма работают</td>
+<td>дублирование выбора (cleric/sorcerer/warlock)</td>
+<td>связь <code>l1Choices</code> → <code>subclassId</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

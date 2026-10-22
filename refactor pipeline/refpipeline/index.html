@@ -1,0 +1,3596 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/refactor%20pipeline/refpipeline/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>План внедрения: LLM-safe intent architecture - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#llm-safe-intent-architecture" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              План внедрения: LLM-safe intent architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. Общие правила для агента
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0. Общие правила для агента">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-read-before-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1. Read before write
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2. Не додумывать
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3. Каждый этап — атомарный
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4. Что запрещено делать без явного указания
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5. Формат отчёта после каждого этапа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.6. Команды сборки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.7. Порядок этапов строгий
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ПРЕФЛАЙТ: инвентаризация (обязателен до этапа 1)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. ПРЕФЛАЙТ: инвентаризация (обязателен до этапа 1)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2. Что сделать
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4. Стоп-условие
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-1-llm-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ЭТАП 1: Наблюдаемость (логирование LLM-классификации) 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ЭТАП 1: Наблюдаемость (логирование LLM-классификации) 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Файлы создать
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4. Файлы изменить
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.7. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.8. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.9. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-2-narration-invalid-intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ЭТАП 2: NARRATION и INVALID как полноправные intent'ы 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. ЭТАП 2: NARRATION и INVALID как полноправные intent&#39;ы 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Файлы изменить
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#38-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.8. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-3-intent-dto-json-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ЭТАП 3: Intent DTO + строгий JSON-парсинг 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. ЭТАП 3: Intent DTO + строгий JSON-парсинг 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Файлы создать
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Файлы изменить
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.9. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-4-gamestate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ЭТАП 4: GameState в промпт классификатора 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. ЭТАП 4: GameState в промпт классификатора 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. Файлы создать
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. Файлы изменить
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#57-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.7. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#58" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.8. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#59-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.9. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-5a-intentclassifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. ЭТАП 5a: Создание IntentClassifier 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. ЭТАП 5a: Создание IntentClassifier 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. Файлы создать
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-5b-actionparser-intentclassifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. ЭТАП 5b: Переключение ActionParser на IntentClassifier 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. ЭТАП 5b: Переключение ActionParser на IntentClassifier 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. Файлы изменить
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#77" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#78-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.8. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-6-structured-output-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ЭТАП 6: Structured output нарратора (effects вместо тегов) 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. ЭТАП 6: Structured output нарратора (effects вместо тегов) 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. Файлы создать
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4. Файлы изменить
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#89-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-7-autospawnhostilefromnarrative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. ЭТАП 7: Удаление autoSpawnHostileFromNarrative 🔴
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. ЭТАП 7: Удаление autoSpawnHostileFromNarrative 🔴">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Цель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3. Файлы изменить
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5. Тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#97" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7. Запреты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#98-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.8. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. ЭТАП 8: Финальные правки (низкий риск) 🟡
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. ЭТАП 8: Финальные правки (низкий риск) 🟡">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1. Зависимости
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2. Шаги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3. Acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4. Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. ФИНАЛЬНАЯ ПРИЁМКА (для ручной проверки пользователем)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. ФИНАЛЬНАЯ ПРИЁМКА (для ручной проверки пользователем)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1. Сборка и тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2. Логи
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3. Функциональные сценарии
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4. Отсутствие мёртвого кода
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5. Отчёт агента
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Чего в этом плане СОЗНАТЕЛЬНО нет
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="llm-safe-intent-architecture">План внедрения: LLM-safe intent architecture<a class="headerlink" href="#llm-safe-intent-architecture" title="Permanent link">&para;</a></h1>
+<p>Документ предназначен для передачи ИИ-агенту-разработчику. Все решения зафиксированы. Агент не вносит изменений по своему усмотрению. При любом расхождении с фактами — стоп и отчёт.</p>
+<hr />
+<h2 id="0">0. Общие правила для агента<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<h3 id="01-read-before-write">0.1. Read before write<a class="headerlink" href="#01-read-before-write" title="Permanent link">&para;</a></h3>
+<p>Перед изменением любого файла — прочитать его целиком. Не полагаться на номера строк из этого документа как на абсолютные: они ориентировочные. Использовать их как подсказку, но находить фактическое место по имени класса/метода/поля.</p>
+<h3 id="02">0.2. Не додумывать<a class="headerlink" href="#02" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Если файл, класс, метод или поле, упомянутые в плане, не найдены — <strong>остановиться</strong>, вывести отчёт, не продолжать.</li>
+<li>Если сигнатура метода не совпадает с ожидаемой — <strong>остановиться</strong>, вывести отчёт.</li>
+<li>Если тест падает и его причина не описана в плане — <strong>остановиться</strong>, вывести отчёт.</li>
+</ul>
+<h3 id="03">0.3. Каждый этап — атомарный<a class="headerlink" href="#03" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Один этап = один коммит (если используется git).</li>
+<li>После каждого этапа: <code>build</code> и <code>test</code> зелёные.</li>
+<li>После каждого этапа — отчёт по форме из §0.5.</li>
+<li>Не переходить к следующему этапу, пока текущий не принят.</li>
+</ul>
+<h3 id="04">0.4. Что запрещено делать без явного указания<a class="headerlink" href="#04" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не удалять <code>SemanticActionNormalizer</code>, <code>SemanticDictionary</code>, <code>ActionWhitelist</code>, <code>dsl-templates.yml</code>, <code>semantic-dictionary.yml</code>.</li>
+<li>Не менять <code>TurnResolver.dispatch</code> (кроме добавления новых <code>when</code>-веток, если требуется компилятором).</li>
+<li>Не менять <code>applyStateChanges</code>.</li>
+<li>Не менять порядок гейтов в <code>ActionParser</code> до этапа 5.</li>
+<li>Не рефакторить код «заодно».</li>
+<li>Не менять формат <code>TurnResponse</code>, <code>MechanicsBlock</code>, <code>CharacterState</code>, <code>Enemy</code>, <code>CombatState</code>.</li>
+<li>Не менять публичные сигнатуры существующих методов, кроме случаев, явно описанных в этапе.</li>
+<li>Не удалять существующие тесты. Только добавлять.</li>
+</ul>
+<h3 id="05">0.5. Формат отчёта после каждого этапа<a class="headerlink" href="#05" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ЭТАП: &lt;номер и название&gt;
+СТАТУС: ЗАВЕРШЁН | СТОП
+ФАЙЛЫ ИЗМЕНЕНЫ: &lt;полные пути, по одному на строку&gt;
+ФАЙЛЫ СОЗДАНЫ: &lt;полные пути&gt;
+ТЕСТЫ ДОБАВЛЕНЫ: &lt;полные пути&gt;
+КОМАНДЫ ПРОВЕРКИ:
+  - &lt;команда 1&gt; → результат
+  - &lt;команда 2&gt; → результат
+ОТКЛОНЕНИЯ ОТ ПЛАНА: &lt;нет | список с обоснованием&gt;
+СТОП-ПРИЧИНА (если СТОП): &lt;что не совпало&gt;
+</code></pre></div>
+<h3 id="06">0.6. Команды сборки<a class="headerlink" href="#06" title="Permanent link">&para;</a></h3>
+<p>Определить точное имя gradle-модуля командой:
+<div class="highlight"><pre><span></span><code>grep -r "include" backend/settings.gradle.kts
+</code></pre></div>
+Ожидаемо: <code>:app</code>. Далее использовать:
+<div class="highlight"><pre><span></span><code>./gradlew :app:build
+./gradlew :app:test
+./gradlew :app:test --tests "*&lt;Class&gt;*"
+</code></pre></div></p>
+<p>Если имя модуля отличается — использовать фактическое.</p>
+<h3 id="07">0.7. Порядок этапов строгий<a class="headerlink" href="#07" title="Permanent link">&para;</a></h3>
+<p>Этапы 1 → 2 → 3 → 4 → 5a → 5b → 6 → 7 → 8. Пропуск запрещён. Возврат к предыдущему этапу — только через откат коммита.</p>
+<hr />
+<h2 id="1-1">1. ПРЕФЛАЙТ: инвентаризация (обязателен до этапа 1)<a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1. Цель<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>Убедиться, что факты в этом документе совпадают с кодом. Это защита от галлюцинаций.</p>
+<h3 id="12">1.2. Что сделать<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>Прочитать (не менять) следующие файлы и выписать в отчёт их ключевые сигнатуры:</p>
+<table>
+<thead>
+<tr>
+<th>Файл</th>
+<th>Что выписать</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/rules/ActionType.kt</code></td>
+<td>содержимое <code>enum class ActionType</code> (все значения), содержимое <code>data class ActionRequest</code></td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/rules/ActionParser.kt</code></td>
+<td>сигнатура <code>parse(...)</code>, список вызовов <code>dslTranslator.translate</code>, <code>classifier.classify</code></td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/rules/CatalogClassifier.kt</code></td>
+<td>сигнатура <code>classify(...)</code>, метод парсинга ответа, поля <code>cache</code></td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/dsl/LlmDslTranslator.kt</code></td>
+<td>сигнатура <code>translate(...)</code>, метод <code>extractJson</code></td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/rules/TurnResolver.kt</code></td>
+<td>содержимое <code>when (req.type)</code> в <code>dispatch</code></td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/rules/GameState.kt</code></td>
+<td>поля <code>CharacterState</code>, <code>Enemy</code>, <code>ActionEconomy</code>, <code>CombatState</code> (только имена и типы)</td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/llm/LlmProperties.kt</code></td>
+<td>все поля и дефолты</td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt</code></td>
+<td>сигнатура <code>processTurn</code>, метод <code>narrateWithValidation</code>, блок обработки тегов (найти по <code>[SPAWN_ENEMY]</code>), метод <code>autoSpawnHostileFromNarrative</code></td>
+</tr>
+<tr>
+<td><code>backend/app/src/main/resources/application.yml</code></td>
+<td>блок <code>app.llm.*</code></td>
+</tr>
+<tr>
+<td>Найти: где лежат <code>ContextBuilder.kt</code>, <code>Narrator.kt</code>, <code>PrimaryNarrator.kt</code>, <code>NarrativeValidator.kt</code>, <code>NarrativeFallback.kt</code></td>
+<td>полные пути</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-acceptance">1.3. Acceptance<a class="headerlink" href="#13-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Все файлы найдены.</li>
+<li><code>ActionType</code> содержит значения, перечисленные в карте.</li>
+<li><code>LlmProperties</code> содержит поля <code>model</code>, <code>classifierModel</code>, <code>temperature</code>, <code>failoverModels</code>, <code>apiKey</code>, <code>baseUrl</code>.</li>
+<li>В <code>application.yml</code> есть ключ <code>app.llm.api-key</code>.</li>
+</ul>
+<h3 id="14-">1.4. Стоп-условие<a class="headerlink" href="#14-" title="Permanent link">&para;</a></h3>
+<p>Если хотя бы один файл не найден, или enum <code>ActionType</code> не содержит ожидаемых значений, или структуры полей не совпадают с картой — <strong>СТОП</strong>. Вывести, что именно не совпало.</p>
+<hr />
+<h2 id="2-1-llm-">2. ЭТАП 1: Наблюдаемость (логирование LLM-классификации) 🔴<a class="headerlink" href="#2-1-llm-" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1. Зависимости<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>Префлайт завершён.</p>
+<h3 id="22">2.2. Цель<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>Сделать видимым, что LLM возвращает и как это парсится. Без изменения поведения.</p>
+<h3 id="23">2.3. Файлы создать<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/intent/IntentTrace.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/IntentTraceLogger.kt
+</code></pre></div>
+<h3 id="24">2.4. Файлы изменить<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/CatalogClassifier.kt
+backend/app/src/main/kotlin/com/yorva/dsl/LlmDslTranslator.kt
+</code></pre></div>
+<h3 id="25">2.5. Шаги<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
+<p><strong>2.5.1.</strong> Создать <code>IntentTrace.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">IntentTrace</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">stage</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">              </span><span class="c1">// "dsl_translator" | "catalog_classifier"</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">input</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">              </span><span class="c1">// action</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">prompt</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">             </span><span class="c1">// полный user prompt</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">rawResponse</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span><span class="w">       </span><span class="c1">// что вернул LLM (или null при исключении)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">parsedFields</span><span class="p">:</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">String?</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="c1">// распарсенные поля</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">validationResult</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">   </span><span class="c1">// "ok" | "rejected:&lt;reason&gt;" | "exception:&lt;msg&gt;"</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">durationMs</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p><strong>2.5.2.</strong> Создать <code>IntentTraceLogger.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">org.slf4j.LoggerFactory</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Component</span>
+
+<span class="nd">@Component</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">IntentTraceLogger</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LoggerFactory</span><span class="p">.</span><span class="na">getLogger</span><span class="p">(</span><span class="s">"INTENT_TRACE"</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">trace</span><span class="p">:</span><span class="w"> </span><span class="n">IntentTrace</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span>
+<span class="w">            </span><span class="s">"[INTENT_TRACE] stage={} input=\"{}\" raw=\"{}\" parsed={} validation={} durationMs={}"</span><span class="p">,</span>
+<span class="w">            </span><span class="n">trace</span><span class="p">.</span><span class="na">stage</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="p">.</span><span class="na">input</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="p">.</span><span class="na">rawResponse</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="p">.</span><span class="na">parsedFields</span><span class="p">,</span>
+<span class="w">            </span><span class="n">trace</span><span class="p">.</span><span class="na">validationResult</span><span class="p">,</span><span class="w"> </span><span class="n">trace</span><span class="p">.</span><span class="na">durationMs</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>2.5.3.</strong> В <code>CatalogClassifier.kt</code>:
+- Добавить <code>private val traceLogger: IntentTraceLogger</code> через конструктор.
+- В метод <code>classify(...)</code>: обернуть тело в замер времени. По завершении (в т.ч. при исключении, при кэш-хите, при пропуске) — вызвать <code>traceLogger.log(...)</code>.
+- Все существующие <code>return null</code> и <code>return intent</code> сохранить как есть. Логирование не меняет поведение.
+- При кэш-хите — тоже логировать (<code>stage = "catalog_classifier_cache"</code>).
+- При исключении — логировать в <code>catch (e: Throwable)</code> (<code>stage = "catalog_classifier"</code>, <code>validationResult = "exception:${e.message}"</code>).</p>
+<p><strong>2.5.4.</strong> В <code>LlmDslTranslator.kt</code>: аналогично.
+- <code>stage = "dsl_translator"</code>.
+- При keyword-fallback (если <code>gigaChatClient == null</code>) — логировать <code>stage = "dsl_translator_fallback"</code>.</p>
+<p><strong>2.5.5.</strong> Не менять сигнатуры публичных методов. Не менять логику парсинга. Не менять промпты.</p>
+<h3 id="26">2.6. Тесты<a class="headerlink" href="#26" title="Permanent link">&para;</a></h3>
+<p>Создать <code>backend/app/src/test/kotlin/com/yorva/rules/intent/IntentTraceLoggerTest.kt</code>:
+- Тест 1: <code>IntentTraceLogger.log(trace)</code> не бросает исключений на полных данных.
+- Тест 2: <code>IntentTraceLogger.log(trace)</code> не бросает исключений при <code>rawResponse = null</code>.</p>
+<p>Создать тест на <code>CatalogClassifier</code> (integration, с мок-LLM):
+- Проверяет, что при вызове <code>classify(...)</code> в лог пишется одна запись со <code>stage = "catalog_classifier"</code>.</p>
+<p>Если тестовой инфраструктуры для мок-LLM нет — допускается unit-тест, который проверяет <code>IntentTraceLogger</code> напрямую и <code>IntentTrace</code>-data class. Тест на интеграцию с <code>CatalogClassifier</code> — отложить до этапа 5.</p>
+<h3 id="27-acceptance">2.7. Acceptance<a class="headerlink" href="#27-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>При запуске приложения и вызове классификации в логах появляется строка с префиксом <code>[INTENT_TRACE]</code>.</li>
+<li>Поведение <code>CatalogClassifier</code> и <code>LlmDslTranslator</code> не изменилось (тесты для них, если есть, зелёные).</li>
+</ul>
+<h3 id="28">2.8. Запреты<a class="headerlink" href="#28" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не менять логику парсинга.</li>
+<li>Не менять промпты.</li>
+<li>Не менять возвращаемые значения.</li>
+<li>Не удалять кэш.</li>
+</ul>
+<h3 id="29-rollback">2.9. Rollback<a class="headerlink" href="#29-rollback" title="Permanent link">&para;</a></h3>
+<p>Удалить два новых файла, откатить изменения в <code>CatalogClassifier</code> и <code>LlmDslTranslator</code>.</p>
+<hr />
+<h2 id="3-2-narration-invalid-intent">3. ЭТАП 2: <code>NARRATION</code> и <code>INVALID</code> как полноправные intent'ы 🔴<a class="headerlink" href="#3-2-narration-invalid-intent" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1. Зависимости<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>Этап 1 завершён.</p>
+<h3 id="32">3.2. Цель<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>Добавить в <code>ActionType</code> два новых значения, чтобы LLM мог возвращать «игрок ничего механического не делает» как валидный исход.</p>
+<h3 id="33">3.3. Файлы изменить<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/ActionType.kt
+backend/app/src/main/kotlin/com/yorva/rules/TurnResolver.kt
+</code></pre></div>
+<h3 id="34">3.4. Шаги<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<p><strong>3.4.1.</strong> В <code>ActionType.kt</code>:
+- Открыть <code>enum class ActionType</code>.
+- Добавить два значения: <code>NARRATION</code>, <code>INVALID</code>.
+- Расположить их после <code>NO_ROLL</code> (или в конце enum).
+- Не менять порядок существующих значений (могут быть ordinal-зависимости).</p>
+<p><strong>3.4.2.</strong> В <code>TurnResolver.kt</code>:
+- Найти <code>when (req.type)</code> в <code>dispatch</code>.
+- Если компилятор ругается на неисчерпывающий <code>when</code> — добавить ветки:
+  <div class="highlight"><pre><span></span><code><span class="n">ActionType</span><span class="p">.</span><span class="na">NARRATION</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">resolveNoRoll</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">character</span><span class="p">,</span><span class="w"> </span><span class="n">enemy</span><span class="p">,</span><span class="w"> </span><span class="n">profile</span><span class="p">)</span>
+<span class="n">ActionType</span><span class="p">.</span><span class="na">INVALID</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">resolveNoRoll</span><span class="p">(</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">character</span><span class="p">,</span><span class="w"> </span><span class="n">enemy</span><span class="p">,</span><span class="w"> </span><span class="n">profile</span><span class="p">)</span>
+</code></pre></div>
+- Если <code>when</code> уже имеет <code>else</code> — добавить эти ветки явно перед <code>else</code>, чтобы поведение было осознанным.
+- Не менять <code>resolveNoRoll</code>.</p>
+<p><strong>3.4.3.</strong> Grep по всему проекту:
+<div class="highlight"><pre><span></span><code>grep -rn "when.*ActionType\|when.*req.type\|when.*actionType" backend/app/src/main/kotlin
+</code></pre></div>
+Для каждого найденного <code>when</code> — если он не exhaustive и не имеет <code>else</code>, добавить обработку <code>NARRATION</code> и <code>INVALID</code> (обычно — тот же путь, что <code>NO_ROLL</code>).</p>
+<p><strong>3.4.4.</strong> Не менять <code>ActionParser</code> (эти типы пока никто не создаёт).</p>
+<h3 id="35">3.5. Тесты<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
+<p>Создать <code>backend/app/src/test/kotlin/com/yorva/rules/NarrationInvalidActionTypeTest.kt</code>:
+- Тест 1: <code>ActionType.NARRATION</code> существует.
+- Тест 2: <code>ActionType.INVALID</code> существует.
+- Тест 3: <code>TurnResolver.dispatch</code> с <code>ActionRequest(type = NARRATION, ...)</code> возвращает <code>TurnMechanics</code> без исключений.
+- Тест 4: то же для <code>INVALID</code>.
+- Тест 5: <code>TurnMechanics.stateChanges</code> для обоих случаев пуст.</p>
+<h3 id="36-acceptance">3.6. Acceptance<a class="headerlink" href="#36-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>Grep по <code>ActionType.NARRATION</code> и <code>ActionType.INVALID</code> показывает только определение и новые ветки в <code>dispatch</code> (+ тесты). Больше нигде они не создаются.</li>
+</ul>
+<h3 id="37">3.7. Запреты<a class="headerlink" href="#37" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не добавлять конструирование <code>NARRATION</code>/<code>INVALID</code> в <code>ActionParser</code>.</li>
+<li>Не менять <code>resolveNoRoll</code>.</li>
+<li>Не переупорядочивать существующие значения <code>ActionType</code>.</li>
+</ul>
+<h3 id="38-rollback">3.8. Rollback<a class="headerlink" href="#38-rollback" title="Permanent link">&para;</a></h3>
+<p>Откатить изменения в <code>ActionType.kt</code> и <code>TurnResolver.kt</code>.</p>
+<hr />
+<h2 id="4-3-intent-dto-json-">4. ЭТАП 3: Intent DTO + строгий JSON-парсинг 🔴<a class="headerlink" href="#4-3-intent-dto-json-" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1. Зависимости<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>Этап 2 завершён.</p>
+<h3 id="42">4.2. Цель<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>Ввести единый DTO для LLM-ответа и заменить regex-парсинг на Jackson.</p>
+<h3 id="43">4.3. Файлы создать<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/intent/IntentType.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/IntentRef.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/IntentMod.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/Intent.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/IntentParser.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/IntentValidator.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/IntentValidationResult.kt
+</code></pre></div>
+<h3 id="44">4.4. Файлы изменить<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/CatalogClassifier.kt
+backend/app/src/main/kotlin/com/yorva/dsl/LlmDslTranslator.kt
+</code></pre></div>
+(Добавить новый путь парсинга, не удаляя старый. Старый остаётся как fallback.)</p>
+<h3 id="45">4.5. Шаги<a class="headerlink" href="#45" title="Permanent link">&para;</a></h3>
+<p><strong>4.5.1.</strong> <code>IntentType.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">IntentType</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ATTACK</span><span class="p">,</span><span class="w"> </span><span class="n">MOVE</span><span class="p">,</span><span class="w"> </span><span class="n">CAST</span><span class="p">,</span><span class="w"> </span><span class="n">CHECK</span><span class="p">,</span><span class="w"> </span><span class="n">SOCIAL</span><span class="p">,</span><span class="w"> </span><span class="n">USE_ITEM</span><span class="p">,</span><span class="w"> </span><span class="n">REST</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DISMISS_SPELL</span><span class="p">,</span><span class="w"> </span><span class="n">DEATH_SAVE</span><span class="p">,</span><span class="w"> </span><span class="n">AMBUSH_PREP</span><span class="p">,</span><span class="w"> </span><span class="n">LOOT</span><span class="p">,</span><span class="w"> </span><span class="n">EQUIP</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NARRATION</span><span class="p">,</span><span class="w"> </span><span class="n">INVALID</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>4.5.2.</strong> <code>IntentRef.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">IntentRef</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">kind</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">     </span><span class="c1">// "enemy" | "object" | "item" | "location" | "self" | "none"</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span><span class="w">      </span><span class="c1">// ссылка на сущность GameState или каталога; может быть null</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">raw</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w">      </span><span class="c1">// как игрок назвал; только для лога</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p><strong>4.5.3.</strong> <code>IntentMod.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">IntentMod</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">BONUS_ACTION</span><span class="p">,</span><span class="w"> </span><span class="n">REACTION</span><span class="p">,</span><span class="w"> </span><span class="n">STEALTH</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>4.5.4.</strong> <code>Intent.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Intent</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">intent</span><span class="p">:</span><span class="w"> </span><span class="n">IntentType</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">target</span><span class="p">:</span><span class="w"> </span><span class="n">IntentRef?</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">method</span><span class="p">:</span><span class="w"> </span><span class="n">IntentRef?</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">slot</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="p">,</span><span class="w">          </span><span class="c1">// для CAST: уровень слота</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">modifiers</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">IntentMod</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">confidence</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">reasoning</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p><strong>4.5.5.</strong> <code>IntentParser.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.databind.DeserializationFeature</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.module.kotlin.registerKotlinModule</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Component</span>
+
+<span class="nd">@Component</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">IntentParser</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ObjectMapper</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">registerKotlinModule</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">DeserializationFeature</span><span class="p">.</span><span class="na">FAIL_ON_UNKNOWN_PROPERTIES</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">Intent?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extractJsonObject</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">mapper</span><span class="p">.</span><span class="na">readValue</span><span class="p">(</span><span class="n">json</span><span class="p">,</span><span class="w"> </span><span class="n">Intent</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">_</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">extractJsonObject</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raw</span><span class="p">.</span><span class="na">indexOf</span><span class="p">(</span><span class="sc">'{'</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raw</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="sc">'}'</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">raw</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Примечание: <code>FAIL_ON_UNKNOWN_PROPERTIES = false</code> — чтобы не падать на лишних полях от LLM. Но валидация ниже отсекает смысловой мусор.</p>
+<p><strong>4.5.6.</strong> <code>IntentValidationResult.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="kd">sealed</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">IntentValidationResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Valid</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">intent</span><span class="p">:</span><span class="w"> </span><span class="n">Intent</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">IntentValidationResult</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Rejected</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">reason</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">IntentValidationResult</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>4.5.7.</strong> <code>IntentValidator.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">com.yorva.rules.GameState</span><span class="w">  </span><span class="c1">// подставить фактический пакет</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Component</span>
+
+<span class="nd">@Component</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">IntentValidator</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="n">intent</span><span class="p">:</span><span class="w"> </span><span class="n">Intent</span><span class="p">,</span><span class="w"> </span><span class="n">character</span><span class="p">:</span><span class="w"> </span><span class="kt">Any?</span><span class="p">,</span><span class="w"> </span><span class="n">enemy</span><span class="p">:</span><span class="w"> </span><span class="kt">Any?</span><span class="p">):</span><span class="w"> </span><span class="n">IntentValidationResult</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intent</span><span class="p">.</span><span class="na">confidence</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">intent</span><span class="p">.</span><span class="na">confidence</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1.0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">IntentValidationResult</span><span class="p">.</span><span class="na">Rejected</span><span class="p">(</span><span class="s">"confidence out of range"</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intent</span><span class="p">.</span><span class="na">intent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">IntentType</span><span class="p">.</span><span class="na">INVALID</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">IntentValidationResult</span><span class="p">.</span><span class="na">Valid</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intent</span><span class="p">.</span><span class="na">intent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">IntentType</span><span class="p">.</span><span class="na">NARRATION</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">IntentValidationResult</span><span class="p">.</span><span class="na">Valid</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// Для остальных: target.id и method.id проверяются на этапе 4 (после GameState в промпте).</span>
+<span class="w">        </span><span class="c1">// Здесь — только базовая проверка структуры.</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">IntentValidationResult</span><span class="p">.</span><span class="na">Valid</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Примечание: <code>character</code> и <code>enemy</code> переданы как <code>Any?</code> на этом этапе, потому что полноценная валидация появится на этапе 4. Это осознанное решение.</p>
+<p><strong>4.5.8.</strong> В <code>CatalogClassifier.kt</code>:
+- Добавить <code>private val intentParser: IntentParser</code> и <code>private val intentValidator: IntentValidator</code> через конструктор.
+- В методе <code>classify(...)</code>, <strong>после</strong> получения <code>rawResponse</code> и <strong>до</strong> regex-парсинга:
+    - Попробовать <code>intentParser.parse(rawResponse)</code>.
+    - Если вернулся <code>Intent</code> — вызвать <code>intentValidator.validate(intent, null, null)</code>.
+    - Если <code>Valid</code> — сохранить <code>Intent</code> во временное поле и использовать его для маппинга в <code>ActionIntent</code> (создать метод <code>intentToActionIntent(intent): ActionIntent</code>).
+    - Если <code>Rejected</code> или <code>parse</code> вернул <code>null</code> — <strong>не падать</strong>, а упасть в существующий regex-путь.
+- Старый regex-путь <strong>сохранить без изменений</strong>.
+- Логировать через <code>IntentTraceLogger</code> (этап 1): <code>validationResult = "ok_new_path"</code> или <code>"fallback_regex"</code>.</p>
+<p><strong>4.5.9.</strong> В <code>LlmDslTranslator.kt</code>:
+- Аналогично: сначала пробовать <code>IntentParser.parse</code> + <code>IntentValidator.validate</code>.
+- Если успех — маппинг <code>Intent</code> → <code>DslTranslation</code>.
+- Если неудача — старый путь через <code>extractJson</code> + Jackson <code>readTree</code>.
+- Логировать выбор пути.</p>
+<p><strong>4.5.10.</strong> Не менять сигнатуры <code>classify(...)</code> и <code>translate(...)</code>.</p>
+<h3 id="46">4.6. Тесты<a class="headerlink" href="#46" title="Permanent link">&para;</a></h3>
+<p>Создать:
+<div class="highlight"><pre><span></span><code>backend/app/src/test/kotlin/com/yorva/rules/intent/IntentParserTest.kt
+backend/app/src/test/kotlin/com/yorva/rules/intent/IntentValidatorTest.kt
+</code></pre></div></p>
+<p><code>IntentParserTest</code>:
+- Тест 1: валидный JSON → <code>Intent</code> с полями.
+- Тест 2: JSON с лишними полями → <code>Intent</code> без исключения.
+- Тест 3: JSON внутри markdown-fence → <code>Intent</code>.
+- Тест 4: пустая строка → <code>null</code>.
+- Тест 5: невалидный JSON → <code>null</code>.
+- Тест 6: JSON без закрывающей скобки → <code>null</code>.</p>
+<p><code>IntentValidatorTest</code>:
+- Тест 1: <code>confidence = 0.5</code> → <code>Valid</code>.
+- Тест 2: <code>confidence = -0.1</code> → <code>Rejected</code>.
+- Тест 3: <code>confidence = 1.5</code> → <code>Rejected</code>.
+- Тест 4: <code>intent = INVALID</code> → <code>Valid</code>.
+- Тест 5: <code>intent = NARRATION</code> → <code>Valid</code>.</p>
+<h3 id="47-acceptance">4.7. Acceptance<a class="headerlink" href="#47-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>Существующие тесты <code>CatalogClassifier</code> и <code>LlmDslTranslator</code> (если есть) — SUCCESS.</li>
+<li>При вызове классификатора в логах видно <code>validationResult = "ok_new_path"</code> при валидном JSON.</li>
+</ul>
+<h3 id="48">4.8. Запреты<a class="headerlink" href="#48" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не удалять regex-парсинг.</li>
+<li>Не менять промпты.</li>
+<li>Не менять сигнатуры публичных методов.</li>
+</ul>
+<h3 id="49-rollback">4.9. Rollback<a class="headerlink" href="#49-rollback" title="Permanent link">&para;</a></h3>
+<p>Удалить 7 новых файлов. Откатить изменения в <code>CatalogClassifier</code> и <code>LlmDslTranslator</code>.</p>
+<hr />
+<h2 id="5-4-gamestate">5. ЭТАП 4: GameState в промпт классификатора 🔴<a class="headerlink" href="#5-4-gamestate" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1. Зависимости<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p>Этап 3 завершён.</p>
+<h3 id="52">5.2. Цель<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<p>Дать классификатору контекст состояния, чтобы он не предлагал недоступные действия.</p>
+<h3 id="53">5.3. Файлы создать<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/intent/StateContextBuilder.kt
+</code></pre></div>
+<h3 id="54">5.4. Файлы изменить<a class="headerlink" href="#54" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/CatalogClassifier.kt
+backend/app/src/main/kotlin/com/yorva/dsl/LlmDslTranslator.kt
+backend/app/src/main/kotlin/com/yorva/rules/ActionParser.kt
+backend/app/src/main/kotlin/com/yorva/rules/intent/IntentValidator.kt
+</code></pre></div>
+<h3 id="55">5.5. Шаги<a class="headerlink" href="#55" title="Permanent link">&para;</a></h3>
+<p><strong>5.5.1.</strong> <code>StateContextBuilder.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Component</span>
+
+<span class="nd">@Component</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">StateContextBuilder</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span>
+<span class="w">        </span><span class="n">character</span><span class="p">:</span><span class="w"> </span><span class="n">CharacterContext?</span><span class="p">,</span>
+<span class="w">        </span><span class="n">enemy</span><span class="p">:</span><span class="w"> </span><span class="n">EnemyContext?</span><span class="p">,</span>
+<span class="w">        </span><span class="n">sceneType</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">recentActions</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">()</span>
+<span class="w">        </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"SCENE: </span><span class="si">$</span><span class="n">sceneType</span><span class="s">"</span><span class="p">)</span>
+<span class="w">        </span><span class="n">character</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"PLAYER: hp=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">hp</span><span class="si">}</span><span class="s">/</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">maxHp</span><span class="si">}</span><span class="s">, ac=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">ac</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"ECONOMY: action=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">actionUsed</span><span class="si">}</span><span class="s">, bonus=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">bonusActionUsed</span><span class="si">}</span><span class="s">, reaction=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">reactionUsed</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">spellSlots</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"SPELL_SLOTS: </span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">spellSlots</span><span class="p">.</span><span class="na">entries</span><span class="p">.</span><span class="na">joinToString</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">"</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">key</span><span class="si">}</span><span class="s">:</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">value</span><span class="si">}</span><span class="s">"</span><span class="w"> </span><span class="p">}</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">weapons</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"WEAPONS: </span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">weapons</span><span class="p">.</span><span class="na">joinToString</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">consumables</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"CONSUMABLES: </span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">consumables</span><span class="p">.</span><span class="na">joinToString</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">spellsKnown</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"SPELLS_KNOWN: </span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">spellsKnown</span><span class="p">.</span><span class="na">joinToString</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">enemy</span><span class="o">?.</span><span class="na">let</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"ENEMIES: id=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">id</span><span class="si">}</span><span class="s">, name=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">name</span><span class="si">}</span><span class="s">, hp=</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">hp</span><span class="si">}</span><span class="s">/</span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">maxHp</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">it</span><span class="p">.</span><span class="na">statuses</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"  statuses: </span><span class="si">${</span><span class="nb">it</span><span class="p">.</span><span class="na">statuses</span><span class="p">.</span><span class="na">joinToString</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">recentActions</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sb</span><span class="p">.</span><span class="na">appendLine</span><span class="p">(</span><span class="s">"RECENT: </span><span class="si">${</span><span class="n">recentActions</span><span class="p">.</span><span class="na">joinToString</span><span class="p">(</span><span class="s">"</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s">"</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">CharacterContext</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">hp</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">maxHp</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">ac</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">actionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">bonusActionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">reactionUsed</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">spellSlots</span><span class="p">:</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">weapons</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">consumables</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">spellsKnown</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span>
+<span class="p">)</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">EnemyContext</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">hp</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">maxHp</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">statuses</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p>Примечание: <code>CharacterContext</code> и <code>EnemyContext</code> — новые data class'ы, специально маленькие, чтобы не тащить весь <code>CharacterState</code> в промпт. Маппинг из <code>CharacterState</code>/<code>Enemy</code> в эти классы — тоже часть этапа.</p>
+<p><strong>5.5.2.</strong> В <code>StateContextBuilder</code> добавить методы маппинга:
+<div class="highlight"><pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">fromCharacter</span><span class="p">(</span><span class="n">state</span><span class="p">:</span><span class="w"> </span><span class="n">CharacterState</span><span class="p">,</span><span class="w"> </span><span class="n">weaponIds</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">consumableIds</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">):</span><span class="w"> </span><span class="n">CharacterContext</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">fromEnemy</span><span class="p">(</span><span class="n">enemy</span><span class="p">:</span><span class="w"> </span><span class="n">Enemy</span><span class="p">):</span><span class="w"> </span><span class="n">EnemyContext</span>
+</code></pre></div>
+Точные поля маппинга — по фактической структуре <code>CharacterState</code>/<code>Enemy</code> (см. префлайт §1.2).</p>
+<p><strong>5.5.3.</strong> В <code>CatalogClassifier.kt</code>:
+- Добавить <code>private val stateContextBuilder: StateContextBuilder</code> через конструктор.
+- В <code>classify(...)</code>: сигнатуру расширить параметрами <code>characterContext: CharacterContext?</code>, <code>enemyContext: EnemyContext?</code>, <code>recentActions: List&lt;String&gt;</code>.
+- В <code>buildUserPrompt(...)</code> добавить <code>stateContextBuilder.build(characterContext, enemyContext, sceneType.name, recentActions)</code> в начало промпта.</p>
+<p><strong>5.5.4.</strong> В <code>LlmDslTranslator.kt</code>: аналогично.</p>
+<p><strong>5.5.5.</strong> В <code>ActionParser.kt</code>:
+- Найти вызовы <code>classifier.classify(...)</code> и <code>dslTranslator.translate(...)</code>.
+- Передать в них <code>CharacterContext</code>/<code>EnemyContext</code>/<code>recentActions</code>.
+- <code>recentActions</code> — извлечь из доступных в <code>ActionParser</code> источников. Если недоступно — передать <code>emptyList()</code>. Это осознанное упрощение.
+- Для маппинга <code>CharacterState</code> → <code>CharacterContext</code>: использовать <code>stateContextBuilder.fromCharacter(state, weaponIds, consumableIds)</code>. Списки <code>weaponIds</code>/<code>consumableIds</code> извлечь из <code>state.inventory</code> (фактическая структура — по префлайту).</p>
+<p><strong>5.5.6.</strong> В <code>IntentValidator.kt</code>:
+- Расширить сигнатуру <code>validate(intent, characterContext, enemyContext)</code>.
+- Добавить проверки:
+    - Если <code>intent.intent == ATTACK</code> и <code>intent.method?.id</code> ссылается на оружие — проверить, что оружие есть в <code>characterContext.weapons</code>.
+    - Если <code>intent.intent == CAST</code> и <code>slot != null</code> — проверить, что <code>characterContext.spellSlots[slot] &gt; 0</code>.
+    - Если <code>intent.intent == CAST</code> и <code>intent.method?.id != null</code> — проверить, что заклинание есть в <code>characterContext.spellsKnown</code>.
+    - Если <code>intent.target?.kind == "enemy"</code> — проверить, что <code>enemyContext != null</code>.
+- При провале — <code>Rejected("...")</code>.</p>
+<h3 id="56">5.6. Тесты<a class="headerlink" href="#56" title="Permanent link">&para;</a></h3>
+<p>Создать:
+<div class="highlight"><pre><span></span><code>backend/app/src/test/kotlin/com/yorva/rules/intent/StateContextBuilderTest.kt
+</code></pre></div></p>
+<ul>
+<li>Тест 1: <code>build</code> с полными данными содержит все секции.</li>
+<li>Тест 2: <code>build</code> с <code>character = null</code> не бросает исключений.</li>
+<li>Тест 3: <code>build</code> с <code>enemy = null</code> не бросает исключений.</li>
+<li>Тест 4: <code>build</code> с пустым <code>recentActions</code> не выводит секцию RECENT.</li>
+</ul>
+<p>Расширить <code>IntentValidatorTest</code>:
+- Тест 6: <code>CAST</code> без слота в <code>spellSlots</code> → <code>Rejected</code>.
+- Тест 7: <code>ATTACK</code> с оружием, которого нет в <code>weapons</code> → <code>Rejected</code>.
+- Тест 8: <code>target.kind = "enemy"</code> при <code>enemyContext = null</code> → <code>Rejected</code>.</p>
+<h3 id="57-acceptance">5.7. Acceptance<a class="headerlink" href="#57-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>При вызове классификатора в промпт попадает блок <code>SCENE: ... PLAYER: ... ENEMIES: ...</code>.</li>
+<li>Существующие тесты <code>ActionParser</code> (30 гейтов) — SUCCESS.</li>
+</ul>
+<h3 id="58">5.8. Запреты<a class="headerlink" href="#58" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не тащить весь <code>CharacterState</code> в промпт. Только поля из <code>CharacterContext</code>/<code>EnemyContext</code>.</li>
+<li>Не удалять старые аргументы <code>hasEnemy</code>/<code>inCombat</code> из промптов (они могут использоваться в тексте промпта).</li>
+</ul>
+<h3 id="59-rollback">5.9. Rollback<a class="headerlink" href="#59-rollback" title="Permanent link">&para;</a></h3>
+<p>Удалить <code>StateContextBuilder.kt</code>. Откатить изменения в 4 файлах.</p>
+<hr />
+<h2 id="6-5a-intentclassifier">6. ЭТАП 5a: Создание <code>IntentClassifier</code> 🔴<a class="headerlink" href="#6-5a-intentclassifier" title="Permanent link">&para;</a></h2>
+<h3 id="61">6.1. Зависимости<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<p>Этап 4 завершён.</p>
+<h3 id="62">6.2. Цель<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<p>Создать единый классификатор, объединяющий <code>LlmDslTranslator</code> и <code>CatalogClassifier</code>. <strong>Не использовать его пока.</strong></p>
+<h3 id="63">6.3. Файлы создать<a class="headerlink" href="#63" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/intent/IntentClassifier.kt
+</code></pre></div>
+<h3 id="64">6.4. Шаги<a class="headerlink" href="#64" title="Permanent link">&para;</a></h3>
+<p><strong>6.4.1.</strong> <code>IntentClassifier.kt</code> — структура:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.rules.intent</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Component</span>
+
+<span class="nd">@Component</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">IntentClassifier</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">client</span><span class="p">:</span><span class="w"> </span><span class="n">NordRouterChatClient</span><span class="p">,</span><span class="w">   </span><span class="c1">// подставить фактический класс HTTP-клиента</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">intentParser</span><span class="p">:</span><span class="w"> </span><span class="n">IntentParser</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">intentValidator</span><span class="p">:</span><span class="w"> </span><span class="n">IntentValidator</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">stateContextBuilder</span><span class="p">:</span><span class="w"> </span><span class="n">StateContextBuilder</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">traceLogger</span><span class="p">:</span><span class="w"> </span><span class="n">IntentTraceLogger</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">properties</span><span class="p">:</span><span class="w"> </span><span class="n">LlmProperties</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">classify</span><span class="p">(</span>
+<span class="w">        </span><span class="n">action</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">characterContext</span><span class="p">:</span><span class="w"> </span><span class="n">CharacterContext?</span><span class="p">,</span>
+<span class="w">        </span><span class="n">enemyContext</span><span class="p">:</span><span class="w"> </span><span class="n">EnemyContext?</span><span class="p">,</span>
+<span class="w">        </span><span class="n">sceneType</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">        </span><span class="n">recentActions</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">dslTemplates</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w">  </span><span class="c1">// список ID шаблонов, как подсказка</span>
+<span class="w">    </span><span class="p">):</span><span class="w"> </span><span class="n">Intent?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. Построить промпт:</span>
+<span class="w">        </span><span class="c1">//    - system: константа SYSTEM_PROMPT (см. 6.4.2)</span>
+<span class="w">        </span><span class="c1">//    - user: stateContextBuilder.build(...) + список dslTemplates + action</span>
+<span class="w">        </span><span class="c1">// 2. Вызвать client с temperature = 0.0, JSON mode = true, maxTokens = 512</span>
+<span class="w">        </span><span class="c1">// 3. Распарсить через intentParser.parse</span>
+<span class="w">        </span><span class="c1">// 4. Валидировать через intentValidator.validate</span>
+<span class="w">        </span><span class="c1">// 5. Логировать через traceLogger</span>
+<span class="w">        </span><span class="c1">// 6. Вернуть Intent? (null при любой ошибке)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">SYSTEM_PROMPT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"""</span>
+<span class="s">Ты — классификатор намерений игрока в RPG-движке по правилам D&amp;D 5e.</span>
+<span class="s">Твоя задача — преобразовать текст игрока в строгий JSON по схеме ниже.</span>
+<span class="s">Отвечай ТОЛЬКО JSON. Никаких пояснений, markdown, комментариев.</span>
+
+<span class="s">Схема:</span>
+<span class="s">{</span>
+<span class="s">  "intent": "ATTACK | MOVE | CAST | CHECK | SOCIAL | USE_ITEM | REST | DISMISS_SPELL | DEATH_SAVE | AMBUSH_PREP | LOOT | EQUIP | NARRATION | INVALID",</span>
+<span class="s">  "target": { "kind": "enemy|object|item|location|self|none", "id": "...", "raw": "..." },</span>
+<span class="s">  "method": { "kind": "weapon|spell|skill|item|none", "id": "...", "raw": "..." },</span>
+<span class="s">  "slot": "1|2|3|...|null",</span>
+<span class="s">  "modifiers": ["BONUS_ACTION", "REACTION", "STEALTH"],</span>
+<span class="s">  "confidence": 0.0,</span>
+<span class="s">  "reasoning": "краткое обоснование"</span>
+<span class="s">}</span>
+
+<span class="s">Правила:</span>
+<span class="s">- Используй ТОЛЬКО сущности из блока GAME STATE. Не выдумывай id.</span>
+<span class="s">- Если игрок описывает действие, не ведущее к механике (размышление, реплика в пустоту) — intent = NARRATION.</span>
+<span class="s">- Если текст непонятен — intent = INVALID.</span>
+<span class="s">- id цели и метода должны быть из GAME STATE.</span>
+<span class="s">- confidence: 0.0–1.0.</span>
+<span class="s">"""</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>Точное имя класса HTTP-клиента определить в префлайте по <code>CatalogClassifier.kt</code> (там есть <code>POST /chat/completions</code>). Использовать тот же клиент или тот же паттерн.</p>
+<p><strong>6.4.2.</strong> Промпт — это <strong>критическая часть</strong>. Использовать текст из 6.4.1. Не переписывать своими словами.</p>
+<p><strong>6.4.3.</strong> Не вызывать <code>IntentClassifier</code> из <code>ActionParser</code>. Только создать класс и тесты.</p>
+<h3 id="65">6.5. Тесты<a class="headerlink" href="#65" title="Permanent link">&para;</a></h3>
+<p>Создать <code>backend/app/src/test/kotlin/com/yorva/rules/intent/IntentClassifierTest.kt</code>:
+- Тест 1: при <code>client</code>, возвращающем валидный JSON, <code>classify(...)</code> возвращает <code>Intent</code> с ожидаемыми полями.
+- Тест 2: при <code>client</code>, возвращающем невалидный JSON, <code>classify(...)</code> возвращает <code>null</code>.
+- Тест 3: при <code>client</code>, бросающем исключение, <code>classify(...)</code> возвращает <code>null</code>.
+- Тест 4: при <code>client</code>, возвращающем <code>INVALID</code>, <code>classify(...)</code> возвращает <code>Intent(intent = INVALID, ...)</code>.</p>
+<p>Для тестов — замокать <code>client</code>. Если в проекте нет mock-фреймворка — использовать ручные stub-реализации через интерфейс.</p>
+<h3 id="66-acceptance">6.6. Acceptance<a class="headerlink" href="#66-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li><code>IntentClassifier</code> не вызывается из продакшн-кода (grep по имени класса в <code>src/main</code> показывает только его определение и конструктор).</li>
+</ul>
+<h3 id="67">6.7. Запреты<a class="headerlink" href="#67" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не подключать <code>IntentClassifier</code> в <code>ActionParser</code>.</li>
+<li>Не удалять <code>LlmDslTranslator</code> и <code>CatalogClassifier</code>.</li>
+</ul>
+<h3 id="68-rollback">6.8. Rollback<a class="headerlink" href="#68-rollback" title="Permanent link">&para;</a></h3>
+<p>Удалить <code>IntentClassifier.kt</code> и тест.</p>
+<hr />
+<h2 id="7-5b-actionparser-intentclassifier">7. ЭТАП 5b: Переключение <code>ActionParser</code> на <code>IntentClassifier</code> 🔴<a class="headerlink" href="#7-5b-actionparser-intentclassifier" title="Permanent link">&para;</a></h2>
+<h3 id="71">7.1. Зависимости<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
+<p>Этап 5a завершён.</p>
+<h3 id="72">7.2. Цель<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
+<p>Заменить два LLM-вызова (<code>LlmDslTranslator</code> + <code>CatalogClassifier</code>) одним (<code>IntentClassifier</code>).</p>
+<h3 id="73">7.3. Файлы изменить<a class="headerlink" href="#73" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/rules/ActionParser.kt
+</code></pre></div>
+<h3 id="74">7.4. Шаги<a class="headerlink" href="#74" title="Permanent link">&para;</a></h3>
+<p><strong>7.4.1.</strong> В <code>ActionParser.kt</code> добавить в конструктор <code>private val intentClassifier: IntentClassifier</code>.</p>
+<p><strong>7.4.2.</strong> В методе <code>parse(...)</code>:
+- Найти гейт 3.5 (DSL-путь). Заменить вызов <code>dslTranslator.translate(...)</code> на:
+  <div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">intent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intentClassifier</span><span class="p">.</span><span class="na">classify</span><span class="p">(</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">characterContext</span><span class="p">,</span><span class="w"> </span><span class="n">enemyContext</span><span class="p">,</span><span class="w"> </span><span class="n">sceneType</span><span class="p">,</span><span class="w"> </span><span class="n">recentActions</span><span class="p">,</span><span class="w"> </span><span class="n">dslTemplates</span><span class="p">)</span>
+</code></pre></div>
+- Если <code>intent != null</code> — использовать его для маппинга в <code>ActionRequest</code> (создать метод <code>intentToActionRequest(intent): ActionRequest?</code>).
+- Если <code>intent == null</code> или маппинг не удался — <strong>не падать в <code>dslTranslator</code></strong>, а переходить к следующему гейту (<code>SemanticActionNormalizer</code>).
+- Найти гейт 3.14 (<code>CatalogClassifier</code>). <strong>Пропустить его</strong>, если выше <code>IntentClassifier</code> уже вернул не-null. Если выше вернул null — оставить гейт 3.14 как fallback на этом этапе.</p>
+<p><strong>7.4.3.</strong> Маппинг <code>Intent</code> → <code>ActionRequest</code>:
+- Создать приватный метод <code>private fun intentToActionRequest(intent: Intent): ActionRequest?</code>.
+- Реализовать по таблице:</p>
+<table>
+<thead>
+<tr>
+<th><code>Intent.intent</code></th>
+<th><code>ActionRequest.type</code></th>
+<th>Доп. поля</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ATTACK</code></td>
+<td><code>ATTACK</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>MOVE</code></td>
+<td>(не существует в ActionType) → <code>NO_ROLL</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>CAST</code></td>
+<td><code>SPELL</code></td>
+<td><code>isSummon</code> = false</td>
+</tr>
+<tr>
+<td><code>CHECK</code></td>
+<td><code>CHECK</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>SOCIAL</code></td>
+<td><code>SOCIAL_CHECK</code></td>
+<td><code>socialCheckCode</code> = <code>intent.method?.id</code></td>
+</tr>
+<tr>
+<td><code>USE_ITEM</code></td>
+<td><code>USE_ITEM</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>REST</code></td>
+<td><code>NO_ROLL</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>DISMISS_SPELL</code></td>
+<td><code>NO_ROLL</code></td>
+<td><code>dslId = "DISMISS_SPELL"</code></td>
+</tr>
+<tr>
+<td><code>DEATH_SAVE</code></td>
+<td><code>DEATH_SAVE</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>AMBUSH_PREP</code></td>
+<td><code>AMBUSH_PREP</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>LOOT</code></td>
+<td><code>LOOT</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>EQUIP</code></td>
+<td><code>EQUIP</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>NARRATION</code></td>
+<td><code>NARRATION</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>INVALID</code></td>
+<td><code>INVALID</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Примечание: <code>MOVE</code> и <code>REST</code> в текущем <code>ActionType</code> отсутствуют. Маппинг в <code>NO_ROLL</code> — временное решение. Если это нежелательно — на этом этапе пропустить маппинг и вернуть <code>null</code>, чтобы <code>ActionParser</code> ушёл в следующий гейт.</p>
+<p><strong>7.4.4.</strong> Убедиться, что <code>recentActions</code> доступно в <code>ActionParser.parse(...)</code>. Если нет — передать <code>emptyList()</code>.</p>
+<p><strong>7.4.5.</strong> Не удалять <code>LlmDslTranslator</code> и <code>CatalogClassifier</code>. Пометить оба класса <code>@Deprecated("Заменено IntentClassifier, этап 5b")</code>.</p>
+<p><strong>7.4.6.</strong> Прогнать все существующие тесты <code>ActionParser</code> — должны быть зелёные. Если падают — проанализировать, какой intent теперь маппится иначе. Если расхождение обосновано — обновить ожидание теста, добавив комментарий с обоснованием. Если расхождение не обосновано — <strong>СТОП</strong>.</p>
+<h3 id="75">7.5. Тесты<a class="headerlink" href="#75" title="Permanent link">&para;</a></h3>
+<p>Расширить <code>ActionParserTest</code> (если есть) или создать новый:
+- Тест 1: <code>parse("атакую врага", character, enemy, ...)</code> при <code>intentClassifier</code>, возвращающем <code>ATTACK</code> с <code>target.id = enemy.id</code>, → <code>ActionRequest(type = ATTACK, ...)</code>.
+- Тест 2: <code>parse("я открываю для себя много новых идей", ...)</code> при <code>intentClassifier</code>, возвращающем <code>NARRATION</code>, → <code>ActionRequest(type = NARRATION, ...)</code>.
+- Тест 3: <code>parse("абракадабра", ...)</code> при <code>intentClassifier</code>, возвращающем <code>INVALID</code>, → <code>ActionRequest(type = INVALID, ...)</code>.
+- Тест 4: <code>parse("атакую", ...)</code> при <code>intentClassifier == null</code>, → fallback на <code>SemanticActionNormalizer</code> (проверить, что <code>type != null</code>).</p>
+<h3 id="76-acceptance">7.6. Acceptance<a class="headerlink" href="#76-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>Существующие integration-тесты <code>processTurn</code> проходят.</li>
+<li>В логах <code>[INTENT_TRACE]</code> появляются записи <code>stage = "intent_classifier"</code>.</li>
+</ul>
+<h3 id="77">7.7. Запреты<a class="headerlink" href="#77" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не удалять <code>LlmDslTranslator</code> и <code>CatalogClassifier</code> (только <code>@Deprecated</code>).</li>
+<li>Не удалять гейты 3.6–3.30 (<code>SemanticActionNormalizer</code> и regex-fallback) — они остаются как второй уровень.</li>
+<li>Не менять <code>TurnResolver</code>.</li>
+</ul>
+<h3 id="78-rollback">7.8. Rollback<a class="headerlink" href="#78-rollback" title="Permanent link">&para;</a></h3>
+<p>Откатить <code>ActionParser.kt</code> до состояния этапа 5a. <code>IntentClassifier</code> оставить (не используется).</p>
+<hr />
+<h2 id="8-6-structured-output-effects">8. ЭТАП 6: Structured output нарратора (effects вместо тегов) 🔴<a class="headerlink" href="#8-6-structured-output-effects" title="Permanent link">&para;</a></h2>
+<h3 id="81">8.1. Зависимости<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
+<p>Этап 5b завершён.</p>
+<h3 id="82">8.2. Цель<a class="headerlink" href="#82" title="Permanent link">&para;</a></h3>
+<p>Заменить regex-парсинг <code>[SPAWN_ENEMY]</code>/<code>[GRANT_ITEM]</code>/<code>[TAKE_LOOT]</code>/<code>[SCENE]</code> из текста нарратива на структурированное поле <code>effects</code> в JSON-ответе нарратора.</p>
+<h3 id="83">8.3. Файлы создать<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/sessions/narrative/NarratorOutput.kt
+backend/app/src/main/kotlin/com/yorva/sessions/narrative/NarratorEffect.kt
+backend/app/src/main/kotlin/com/yorva/sessions/narrative/NarratorOutputParser.kt
+</code></pre></div>
+<h3 id="84">8.4. Файлы изменить<a class="headerlink" href="#84" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt
+backend/app/src/main/kotlin/com/yorva/sessions/narrative/ContextBuilder.kt   // фактический путь по префлайту
+</code></pre></div>
+<h3 id="85">8.5. Шаги<a class="headerlink" href="#85" title="Permanent link">&para;</a></h3>
+<p><strong>8.5.1.</strong> <code>NarratorEffect.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.sessions.narrative</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">NarratorEffect</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">type</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w">          </span><span class="c1">// "SPAWN_ENEMY" | "GRANT_ITEM" | "TAKE_LOOT" | "SCENE"</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">archetype</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">   </span><span class="c1">// для SPAWN_ENEMY</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">        </span><span class="c1">// для SPAWN_ENEMY</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">itemId</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">      </span><span class="c1">// для GRANT_ITEM / TAKE_LOOT</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">label</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="w">        </span><span class="c1">// для SCENE</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p><strong>8.5.2.</strong> <code>NarratorOutput.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.sessions.narrative</span>
+
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">NarratorOutput</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">narrative</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">effects</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">NarratorEffect</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">outcome</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span>
+<span class="p">)</span>
+</code></pre></div></p>
+<p><strong>8.5.3.</strong> <code>NarratorOutputParser.kt</code>:
+<div class="highlight"><pre><span></span><code><span class="k">package</span><span class="w"> </span><span class="nn">com.yorva.sessions.narrative</span>
+
+<span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.databind.DeserializationFeature</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.databind.ObjectMapper</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.module.kotlin.registerKotlinModule</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">org.springframework.stereotype.Component</span>
+
+<span class="nd">@Component</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">NarratorOutputParser</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ObjectMapper</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">registerKotlinModule</span><span class="p">()</span>
+<span class="w">        </span><span class="p">.</span><span class="na">configure</span><span class="p">(</span><span class="n">DeserializationFeature</span><span class="p">.</span><span class="na">FAIL_ON_UNKNOWN_PROPERTIES</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="n">raw</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">):</span><span class="w"> </span><span class="n">NarratorOutput?</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raw</span><span class="p">.</span><span class="na">indexOf</span><span class="p">(</span><span class="sc">'{'</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">raw</span><span class="p">.</span><span class="na">lastIndexOf</span><span class="p">(</span><span class="sc">'}'</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">mapper</span><span class="p">.</span><span class="na">readValue</span><span class="p">(</span><span class="n">raw</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">NarratorOutput</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">_</span><span class="p">:</span><span class="w"> </span><span class="n">Exception</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kc">null</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>8.5.4.</strong> В <code>ContextBuilder.kt</code> (фактический путь — по префлайту):
+- Найти <code>buildUserPrompt(...)</code>.
+- В блок «инструкция structured output» добавить требование возвращать JSON:
+  <div class="highlight"><pre><span></span><code>Формат ответа (строго JSON, без markdown):
+{
+  "narrative": "текст нарратива",
+  "effects": [
+    {"type": "SPAWN_ENEMY", "archetype": "...", "name": "..."},
+    {"type": "GRANT_ITEM", "itemId": "..."},
+    {"type": "TAKE_LOOT", "itemId": "..."},
+    {"type": "SCENE", "label": "..."}
+  ],
+  "outcome": "success|failure|partial"
+}
+Если эффектов нет — "effects": [].
+</code></pre></div></p>
+<p><strong>8.5.5.</strong> В <code>SessionService.kt</code>:
+- Добавить <code>private val narratorOutputParser: NarratorOutputParser</code> через конструктор.
+- В методе <code>narrateWithValidation(...)</code>: после получения <code>raw</code> — попробовать <code>narratorOutputParser.parse(raw)</code>.
+- Если <code>parse</code> вернул <code>NarratorOutput</code> — сохранить его (вернуть из метода или во временное поле).
+- Если <code>parse</code> вернул <code>null</code> — <strong>сохранить старое поведение</strong>: вернуть <code>raw</code> как есть, парсинг тегов произойдёт ниже.
+- В блоке K (обработка тегов, §2 карты, строки 1099–1186):
+    - Если есть <code>NarratorOutput</code> — использовать <code>output.effects</code> вместо regex-тегов.
+    - Если <code>NarratorOutput == null</code> — оставить regex-путь как fallback.
+- Маппинг <code>NarratorEffect</code> → существующие операции (сохранить всю логику валидации из блока K):
+    - <code>SPAWN_ENEMY</code> → <code>instantiateArchetypeEnemy</code> (как сейчас).
+    - <code>GRANT_ITEM</code> → добавление в <code>grantedItems</code> (с проверкой <code>lootGrantJustified</code>).
+    - <code>TAKE_LOOT</code> → добавление в <code>takenLootItems</code>.
+    - <code>SCENE</code> → <code>StateChange.SetScene</code>.</p>
+<p><strong>8.5.6.</strong> Не менять поведение при <code>effects = []</code> — нарратив как есть.</p>
+<h3 id="86">8.6. Тесты<a class="headerlink" href="#86" title="Permanent link">&para;</a></h3>
+<p>Создать <code>backend/app/src/test/kotlin/com/yorva/sessions/narrative/NarratorOutputParserTest.kt</code>:
+- Тест 1: валидный JSON с одним effect → <code>NarratorOutput</code> с полями.
+- Тест 2: валидный JSON с <code>effects = []</code> → пустой список.
+- Тест 3: JSON внутри markdown-fence → парсится.
+- Тест 4: невалидный JSON → <code>null</code>.</p>
+<p>Расширить тесты <code>SessionService</code> (если есть integration):
+- Тест 5: нарратив возвращает JSON с <code>SPAWN_ENEMY</code> → враг появляется.
+- Тест 6: нарратив возвращает старый текстовый формат с <code>[SPAWN_ENEMY:goblin]</code> → fallback работает.</p>
+<h3 id="87-acceptance">8.7. Acceptance<a class="headerlink" href="#87-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>Существующие тесты на обработку тегов — SUCCESS (fallback).</li>
+<li>Новые тесты на JSON-путь — SUCCESS.</li>
+</ul>
+<h3 id="88">8.8. Запреты<a class="headerlink" href="#88" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не удалять regex-fallback для тегов.</li>
+<li>Не менять формат <code>TurnResponse</code>.</li>
+<li>Не удалять <code>lootGrantJustified</code>.</li>
+</ul>
+<h3 id="89-rollback">8.9. Rollback<a class="headerlink" href="#89-rollback" title="Permanent link">&para;</a></h3>
+<p>Удалить 3 новых файла. Откатить изменения в <code>SessionService.kt</code> и <code>ContextBuilder.kt</code>.</p>
+<hr />
+<h2 id="9-7-autospawnhostilefromnarrative">9. ЭТАП 7: Удаление <code>autoSpawnHostileFromNarrative</code> 🔴<a class="headerlink" href="#9-7-autospawnhostilefromnarrative" title="Permanent link">&para;</a></h2>
+<h3 id="91">9.1. Зависимости<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
+<p>Этап 6 завершён.</p>
+<h3 id="92">9.2. Цель<a class="headerlink" href="#92" title="Permanent link">&para;</a></h3>
+<p>Убрать спавн врага из текста нарратива. Только через <code>NarratorEffect(type = "SPAWN_ENEMY")</code>.</p>
+<h3 id="93">9.3. Файлы изменить<a class="headerlink" href="#93" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt
+</code></pre></div>
+<h3 id="94">9.4. Шаги<a class="headerlink" href="#94" title="Permanent link">&para;</a></h3>
+<p><strong>9.4.1.</strong> Grep по <code>autoSpawnHostileFromNarrative</code>:
+<div class="highlight"><pre><span></span><code>grep -rn "autoSpawnHostileFromNarrative" backend/app/src/main/kotlin
+</code></pre></div></p>
+<p><strong>9.4.2.</strong> Найти все вызовы. Ожидаемо: один вызов в <code>SessionService.kt</code> в блоке C (трёхуровневый фолбэк врага, §2 карты).</p>
+<p><strong>9.4.3.</strong> Заменить логику:
+- Удалить уровень 3 (autoSpawn). Оставить уровень 1 (<code>enemyJson</code>) и уровень 2 (<code>restoreRegisteredEnemy</code>).
+- Если после уровней 1–2 враг не найден — <code>enemy = null</code>. Это валидное состояние (нет боя).</p>
+<p><strong>9.4.4.</strong> Удалить метод <code>autoSpawnHostileFromNarrative</code> (если он есть) или его содержимое (оставить <code>return null</code>).</p>
+<p><strong>9.4.5.</strong> Не трогать <code>detectNpcAttackTarget</code> (Q1) — это отдельная механика.</p>
+<h3 id="95">9.5. Тесты<a class="headerlink" href="#95" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Расширить тесты <code>SessionService</code>:<ul>
+<li>Тест 1: сессия без <code>enemyJson</code> и без <code>[SPAWN_ENEMY]</code> в нарративе → <code>enemy = null</code>.</li>
+<li>Тест 2: сессия без <code>enemyJson</code>, нарратив возвращает <code>NarratorEffect(SPAWN_ENEMY, archetype="goblin")</code> → враг появляется.</li>
+<li>Тест 3: сессия без <code>enemyJson</code>, нарратив не возвращает <code>NarratorEffect</code> → враг не появляется (регрессия от старого поведения).</li>
+</ul>
+</li>
+</ul>
+<h3 id="96-acceptance">9.6. Acceptance<a class="headerlink" href="#96-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>Grep по <code>autoSpawnHostileFromNarrative</code> в <code>src/main</code> не находит совпадений.</li>
+<li>Старые тесты, которые полагались на autoSpawn, обновлены или удалены с обоснованием.</li>
+</ul>
+<h3 id="97">9.7. Запреты<a class="headerlink" href="#97" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Не трогать <code>detectNpcAttackTarget</code>.</li>
+<li>Не менять <code>restoreRegisteredEnemy</code>.</li>
+</ul>
+<h3 id="98-rollback">9.8. Rollback<a class="headerlink" href="#98-rollback" title="Permanent link">&para;</a></h3>
+<p>Откатить <code>SessionService.kt</code>.</p>
+<hr />
+<h2 id="10-8">10. ЭТАП 8: Финальные правки (низкий риск) 🟡<a class="headerlink" href="#10-8" title="Permanent link">&para;</a></h2>
+<h3 id="101">10.1. Зависимости<a class="headerlink" href="#101" title="Permanent link">&para;</a></h3>
+<p>Этап 7 завершён.</p>
+<h3 id="102">10.2. Шаги<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
+<p><strong>10.2.1. Temperature классификаторов → 0.0.</strong>
+- В <code>LlmDslTranslator.kt</code> (если не <code>@Deprecated</code> и не вызывается — пропустить) — не трогать.
+- В <code>CatalogClassifier.kt</code> — уже 0.0, проверить, не менять.
+- В <code>IntentClassifier.kt</code> — 0.0 (заложено в этапе 5a).
+- В <code>GigaChatClient.kt</code> — параметр <code>temperature</code> менять <strong>только</strong> если он используется классификатором. Нарратив использует 0.7. Если один и тот же клиент используется и там и там — вынести <code>temperature</code> в параметр метода. Если это требует изменения сигнатур — <strong>пропустить этот шаг</strong> и оставить как есть.</p>
+<p><strong>10.2.2. Удаление кэша <code>CatalogClassifier</code>.</strong>
+- В <code>CatalogClassifier.kt</code> найти <code>private val cache</code>.
+- Удалить поле и все обращения к нему.
+- <strong>Только если</strong> <code>CatalogClassifier</code> не вызывается в проде (после этапа 5b он <code>@Deprecated</code>). Если всё ещё вызывается как fallback — <strong>пропустить</strong>.</p>
+<p><strong>10.2.3. <code>actionEconomy</code> — единый источник.</strong>
+- Найти все чтения <code>combatState.actionUsed</code>, <code>combatState.bonusActionUsed</code>, <code>combatState.reactionUsed</code>, <code>combatState.freeInteractionUsed</code> в <code>src/main</code>.
+- Если они есть — заменить на чтения из <code>character.actionEconomy</code>.
+- Поля в <code>CombatState</code> оставить (не удалять), но не читать. Пометить <code>@Deprecated</code> в Kotlin.
+- <strong>Только если</strong> это не ломает существующие тесты. Если ломает — <strong>пропустить</strong> и записать в отчёт.</p>
+<p><strong>10.2.4. Мёртвые <code>NPC_INTERACTION</code>, <code>QUEST_PROGRESS</code>.</strong>
+- Grep по <code>ActionType.NPC_INTERACTION</code>, <code>ActionType.QUEST_PROGRESS</code> в <code>src/main</code>.
+- Если единственные вхождения — в <code>ActionType.kt</code> и <code>TurnResolver.dispatch</code> (<code>when</code>-ветки) — <strong>оставить</strong> (используются в <code>dispatch</code>, удаление сломает <code>when</code>).
+- Если где-то ещё конструируются — <strong>пропустить</strong> этот шаг.</p>
+<h3 id="103-acceptance">10.3. Acceptance<a class="headerlink" href="#103-acceptance" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>./gradlew :app:build</code> — SUCCESS.</li>
+<li><code>./gradlew :app:test</code> — SUCCESS.</li>
+<li>Отчёт содержит список пропущенных шагов с обоснованием.</li>
+</ul>
+<h3 id="104-rollback">10.4. Rollback<a class="headerlink" href="#104-rollback" title="Permanent link">&para;</a></h3>
+<p>По каждому подшагу отдельно.</p>
+<hr />
+<h2 id="11_1">11. ФИНАЛЬНАЯ ПРИЁМКА (для ручной проверки пользователем)<a class="headerlink" href="#11_1" title="Permanent link">&para;</a></h2>
+<p>После завершения всех этапов пользователь проверяет:</p>
+<h3 id="111">11.1. Сборка и тесты<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>./gradlew :app:build
+./gradlew :app:test
+</code></pre></div>
+Оба — SUCCESS.</p>
+<h3 id="112">11.2. Логи<a class="headerlink" href="#112" title="Permanent link">&para;</a></h3>
+<p>Запустить приложение. Сделать ход. Проверить, что в логах есть:
+- <code>[INTENT_TRACE]</code> с <code>stage = "intent_classifier"</code> (или <code>catalog_classifier</code>, если <code>IntentClassifier</code> ещё не задействован в конкретном гейте).
+- Запись содержит <code>input</code>, <code>raw</code>, <code>validation</code>.</p>
+<h3 id="113">11.3. Функциональные сценарии<a class="headerlink" href="#113" title="Permanent link">&para;</a></h3>
+<p>Прогнать вручную:
+1. «атакую врага» → <code>ATTACK</code>, урон нанесён.
+2. «я открываю для себя много новых идей» → <code>NARRATION</code>, механика не выполнена, нарратив осмысленный.
+3. «абракадабра какджасд» → <code>INVALID</code> или <code>NO_ROLL</code>, нет падения.
+4. «бонусным действием second wind» → <code>BONUS_ACTION</code>, ресурс списан.
+5. «кастую fireball» без слота → отказ на уровне валидатора, <code>NO_ROLL</code>, нет падения.
+6. «открываю огонь по упырю» в бою → <code>ATTACK</code> по <code>enemy.id</code>, не <code>HAZARD</code>.</p>
+<h3 id="114">11.4. Отсутствие мёртвого кода<a class="headerlink" href="#114" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>grep -rn "autoSpawnHostileFromNarrative" backend/app/src/main/kotlin
+grep -rn "MOD_ACCURACY\|MOD_AGGRESSIVE" backend/app/src/main/kotlin
+</code></pre></div>
+Ожидаемо: только <code>SemanticToken</code> и <code>SemanticDictionary</code> (последние два — намеренно оставлены как мёртвые, если не удалены на этапе 8).</p>
+<h3 id="115">11.5. Отчёт агента<a class="headerlink" href="#115" title="Permanent link">&para;</a></h3>
+<p>Агент возвращает сводный отчёт по всем этапам в формате §0.5.</p>
+<hr />
+<h2 id="12_1">12. Чего в этом плане СОЗНАТЕЛЬНО нет<a class="headerlink" href="#12_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Удаление <code>SemanticActionNormalizer</code> и whitelist.</strong> Они остаются как fast-path.</li>
+<li><strong>Удаление <code>modifiers</code>/<code>prepositions</code> из YAML.</strong> Оставить, это отдельное решение.</li>
+<li><strong>Стеммер.</strong> Требует отдельного плана.</li>
+<li><strong>Удаление <code>LlmDslTranslator</code> и <code>CatalogClassifier</code>.</strong> Только <code>@Deprecated</code> на этапе 5b. Удаление — отдельный этап после стабилизации.</li>
+<li><strong>Реализация <code>MOVE</code>/<code>REST</code> как <code>ActionType</code>.</strong> Маппинг в <code>NO_ROLL</code> — временное решение, отдельный этап.</li>
+<li><strong>Изменение формата <code>TurnResponse</code>.</strong> Не трогать.</li>
+</ul>
+<hr />
+<p>Конец документа</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

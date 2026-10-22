@@ -1,0 +1,2289 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0019-activatable-ability-resolver/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0019: Activatable / AbilityResolver — единый контракт активации способностей - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0019-activatable-abilityresolver" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0019: Activatable / AbilityResolver — единый контракт активации способностей
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Суть проблемы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5e-phb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Канон 5e (PHB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Факты (файл:строка)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Факты (файл:строка)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-activatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Модели-кандидаты на Activatable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сайты активации и стоимость
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Хранение способностей у персонажа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statechangeactivatefeature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StateChange.ActivateFeature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-abilityattribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Дубль #5 — резолверы «строка → ability/attribute»
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Соседние решения (не переизобретать)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обязательные уточнения
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-activatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Форма Activatable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-abilityresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Форма AbilityResolver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-abilityresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Роль AbilityResolver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Миграция существующих моделей
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Хранение активаций у персонажа
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. Ресурсы/стоимость
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Экономия действий
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-conditiondamageresolver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Связь с Condition/DamageResolver (эффект)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-abilityresolver-vs-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. AbilityResolver vs дубль #5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-racial-traits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        J. Расовые черты (racial traits)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-item-abilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K. Item abilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#l-enemy-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L. Enemy actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#m-classfeaturehelperfeatureregistry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        M. Миграция ClassFeatureHelper/FeatureRegistry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#n-scope-adr-0019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        N. Scope ADR-0019
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#o-spend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O. Дубль маппинга «слот → Spend*»
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-statechangeactivatefeature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P. StateChange.ActivateFeature (мёртвый)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Плюсы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Минусы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски и митигация
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0019-activatable-abilityresolver">ADR-0019: Activatable / AbilityResolver — единый контракт активации способностей<a class="headerlink" href="#adr-0019-activatable-abilityresolver" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<h3 id="_1">Суть проблемы<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>В движке способности разных источников резолвятся <strong>разрозненно и без общего контракта</strong>:</p>
+<ul>
+<li><strong>Классовые фичи</strong> активируются через <code>ClassFeatureHelper.detectFeature</code> — поиск фичи по ключевому
+  слову в тексте действия (<code>classes/ClassFeatureHelper.kt:22-37</code>), проверка стоимости
+  (<code>canAfford</code>, <code>:42-50</code>) и трата (<code>spendCost</code>, <code>:75-85</code>). Эффект фичи в контракте <strong>не декларирован</strong> —
+  только стоимость (действие + классовый ресурс); эффект отдаётся нарративно (LLM).</li>
+<li><strong>Заклинания</strong> резолвятся <strong>двумя путями</strong>: legacy <code>resolveSpellOrSummon</code>
+  (<code>rules/TurnResolver.kt:1872-1946</code>, мана) и <code>resolveCastSpell</code> (<code>:1954-2008</code>, через
+  <code>SpellService.canCast/castSpell</code> + слоты).</li>
+<li><strong>Предметы</strong> — <code>resolveUseItem</code> (<code>TurnResolver.kt:2144-2209</code>) с захардкоженной логикой
+  зелье/свиток (<code>ItemBonuses.hpBonus</code>/<code>damageBonus</code>).</li>
+<li><strong>Враги</strong> — <code>Enemy.features: List&lt;String&gt;</code> (<code>rules/GameState.kt:697</code>) — строковые коды архетипа,
+  резолвятся ad-hoc в <code>applyEnemyTurn</code>.</li>
+</ul>
+<p>Интерфейса <code>Activatable</code> и резолвера <code>AbilityResolver</code> в коде <strong>нет</strong> (grep = 0). Единственная модель,
+несущая поля контракта активации, — <code>ClassFeature</code> (<code>classes/CharacterClass.kt:51-65</code>:
+<code>actionType</code>, <code>resourceId</code>, <code>choice</code>/<code>options</code>). <code>Spell</code>, <code>Feat</code>, <code>SkillDef</code> — параллельные модели без
+общего контракта.</p>
+<h3 id="5e-phb">Канон 5e (PHB)<a class="headerlink" href="#5e-phb" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Способности бывают: <strong>spells</strong> (заклинания), <strong>class features</strong> (классовые умения), <strong>feats</strong> (черты),
+  <strong>racial traits</strong> (расовые черты), <strong>item abilities</strong> (свойства предметов), <strong>monster actions</strong> (действия монстров).</li>
+<li>У каждой: <strong>действие</strong> (action / bonus action / reaction / free), <strong>ресурс</strong> (слот заклинания / классовый
+  ресурс / заряды / без лимита), <strong>эффект</strong> (урон / состояние / лечение / бафф / утилита).</li>
+<li>«Activatable» — доменный концепт объединения этих категорий, не термин 5e.</li>
+</ul>
+<h3 id="_2">Факты (файл:строка)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="-activatable">Модели-кандидаты на Activatable<a class="headerlink" href="#-activatable" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Источник</th>
+<th>Модель</th>
+<th>Поля активации</th>
+<th>Сайт активации</th>
+<th>Стоимость/ресурс</th>
+<th>Эффект</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Заклинание</td>
+<td><code>spells/Spell.kt:9-23</code></td>
+<td><code>castingTime</code> (enum <code>CastingTime</code>), <code>level</code>, <code>savingThrow</code>, sealed <code>SpellEffect</code></td>
+<td><code>TurnResolver.kt:1872</code> (legacy) + <code>:1954</code> (SpellService)</td>
+<td>слот/пакт-слот/мана</td>
+<td><code>SpellEffect</code> (урон/состояние/лечение)</td>
+</tr>
+<tr>
+<td>Классовая фича</td>
+<td><code>classes/CharacterClass.kt:51-65</code></td>
+<td><code>actionType: FeatureActionType</code> (<code>:56</code>), <code>resourceId</code>, <code>choice</code>/<code>options</code></td>
+<td><code>ClassFeatureHelper.detectFeature</code> (<code>:22-37</code>)</td>
+<td>действие + классовый ресурс</td>
+<td>НЕ декларирован (нарратив LLM)</td>
+</tr>
+<tr>
+<td>Черта</td>
+<td><code>classes/FeatRegistry.kt:9-15</code></td>
+<td>— (<code>id/name/description/prerequisite/repeatable</code>)</td>
+<td>НЕТ runtime-активации</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Расовая черта</td>
+<td>НЕ СУЩЕСТВУЕТ (ФАЗА 3)</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Свойство предмета</td>
+<td><code>InventoryItem.useAction: UseAction</code> (<code>GameState.kt:246</code>)</td>
+<td><code>UseAction</code> enum (<code>:218-224</code>), <code>ItemBonuses</code></td>
+<td><code>resolveUseItem</code> (<code>:2144-2209</code>)</td>
+<td><code>ConsumeItem</code></td>
+<td><code>Heal</code>(hpBonus)/<code>Damage</code>(damageBonus)</td>
+</tr>
+<tr>
+<td>Действие врага</td>
+<td><code>Enemy.features: List&lt;String&gt;</code> (<code>GameState.kt:697</code>)</td>
+<td>строковые коды</td>
+<td><code>applyEnemyTurn</code> (ad-hoc)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h4 id="_3">Сайты активации и стоимость<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Фичи</strong>: <code>ClassFeatureHelper.detectFeature</code> фильтрует <code>cls.features</code> по
+  <code>actionType != null &amp;&amp; != PASSIVE</code> и матчит <code>actionLower.contains(feature.name.lowercase())</code>
+  (<code>ClassFeatureHelper.kt:24-36</code>). <code>canAfford</code> проверяет слот действия (<code>:44-48</code>) и классовый ресурс
+  (<code>hasResource</code>, <code>:52-70</code>). <code>spendCost</code> эмитит <code>SpendAction</code>/<code>SpendBonusAction</code>/<code>SpendReaction</code> +
+  <code>SpendClassResource</code> (<code>:75-85</code>). Вызовы — <code>TurnResolver.kt:271-272</code> (детект + <code>canAfford</code>) и <code>:474</code>
+  (<code>buildEconomyChanges</code> → <code>spendCost</code>).</li>
+<li><strong>Ресурсы</strong>: <code>ClassResources</code> (<code>GameState.kt:1409-1437</code>) — rage/ki/bardicInspiration/channelDivinity/
+  wildShape/actionSurge/secondWind/layOnHands/sorceryPoints/pactSlots/arcaneRecovery/naturalRecovery.
+  <code>StateChange.SpendClassResource</code> (<code>:1258</code>), <code>SpendSpellSlot</code> (<code>:1199</code>), <code>SpendMana</code> (<code>:1197</code>).</li>
+<li><strong>Экономия действий — два механизма</strong>: (а) <code>ActionEconomyRegistry</code>
+  (<code>rules/economy/ActionEconomyRegistry.kt</code>, <code>action_economy.yml</code> → <code>EconomySlot</code> по
+  ActionType/dsl/классу); (б) <code>ClassFeatureHelper</code> (маппинг <code>FeatureActionType</code> → слот). Дубль маппинга
+  «слот → <code>Spend*</code>» есть и в <code>buildEconomyChanges</code> (<code>TurnResolver.kt:456-472</code>), и в
+  <code>ClassFeatureHelper.spendCost</code> (<code>:76-84</code>).</li>
+<li><code>FeatureRegistry</code> <strong>не существует</strong>; фичи парсятся в <code>ClassRegistry.kt:78</code>
+  (<code>FeatureActionType.valueOf(at.uppercase())</code>).</li>
+</ul>
+<h4 id="_4">Хранение способностей у персонажа<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p><code>CharacterState</code> <strong>не имеет поля <code>features</code></strong> — классовые фичи выводятся из <code>canonicalClassId</code> →
+<code>ClassRegistry</code> → <code>CharacterClass.features</code>. Есть: <code>feats</code> (<code>:453</code>), <code>spellsKnown</code> (<code>:455</code>),
+<code>spellbook</code> (<code>:456</code>), <code>preparedSpells</code> (<code>:457</code>), <code>l1Choices</code> (<code>:488</code>), <code>classResources</code> (<code>:479</code>),
+<code>actionEconomy</code> (<code>:474</code>).</p>
+<h4 id="statechangeactivatefeature"><code>StateChange.ActivateFeature</code><a class="headerlink" href="#statechangeactivatefeature" title="Permanent link">&para;</a></h4>
+<p>Определён (<code>GameState.kt:1269</code> — <code>data class ActivateFeature(val featureName: String)</code>), но <strong>никто его
+не эмитит</strong> — только применяется в <code>SessionService.kt:2716</code>. По сути «мёртвый» вариант StateChange.</p>
+<h4 id="5-abilityattribute">Дубль #5 — резолверы «строка → ability/attribute»<a class="headerlink" href="#5-abilityattribute" title="Permanent link">&para;</a></h4>
+<p>Один и тот же маппинг имени характеристики/навыка повторён в 6+ местах:</p>
+<table>
+<thead>
+<tr>
+<th>Резолвер</th>
+<th>Место</th>
+<th>Что делает</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributeForSkill(skill)</code></td>
+<td><code>TurnResolver.kt:1263-1270</code></td>
+<td>код навыка → str/dex/int/wis/cha</td>
+</tr>
+<tr>
+<td><code>detectAttribute(action, character)</code></td>
+<td><code>TurnResolver.kt:3089-3100</code></td>
+<td>regex → имя + mod (default Dex)</td>
+</tr>
+<tr>
+<td><code>detectCastingAttribute(action, character)</code></td>
+<td><code>TurnResolver.kt:3103-3110</code></td>
+<td>regex → ментальная (default Int)</td>
+</tr>
+<tr>
+<td><code>spellMod = when(spellcastingAbility.uppercase())</code></td>
+<td><code>SessionService.kt:122</code></td>
+<td>строка → модификатор</td>
+</tr>
+<tr>
+<td><code>SkillDef.ability</code></td>
+<td><code>skills/SkillRegistry.kt:9-16</code></td>
+<td>поле способности навыка</td>
+</tr>
+<tr>
+<td><code>CharacterClass.primaryAbility</code>/<code>spellcastingAbility</code></td>
+<td><code>classes/CharacterClass.kt:13</code></td>
+<td>строковые поля класса</td>
+</tr>
+<tr>
+<td><code>getAbilityScore(attributes, ability)</code></td>
+<td><code>rules/SavingThrowResolver.kt:91</code></td>
+<td>имя → значение</td>
+</tr>
+</tbody>
+</table>
+<p>Это тот самый дубль #5 из ADR-0011 (Draft, развилка K enum <code>Ability</code>, L alias-резолвер). ADR-0017
+(<code>SpellcastingStats.of</code> + <code>SpellcastingAbility</code>) принят, но в коде пока <strong>не реализован</strong> — заклинательная
+способность остаётся сырой строкой <code>CharacterClass.spellcastingAbility</code> + <code>when(...)</code> в <code>SessionService</code>.</p>
+<h3 id="_5">Соседние решения (не переизобретать)<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ADR-0010 §9</strong> — модель хода/раунда, экономия действий, <code>castingTime</code> → трата слота.</li>
+<li><strong>ADR-0012</strong> — enum <code>DamageType</code> + <code>DamageResolver.apply(raw, type, target)</code>.</li>
+<li><strong>ADR-0013</strong> — enum <code>StatusId</code> + <code>ConditionResolver</code> + <code>StatusContext</code>.</li>
+<li><strong>ADR-0014</strong> — <code>StatusInstance</code> + <code>ConditionLifecycle.removeAll</code>.</li>
+<li><strong>ADR-0015</strong> — <code>ExhaustionResolver.effectsFor</code>.</li>
+<li><strong>ADR-0016</strong> — слоты заклинаний как единственный ресурс.</li>
+<li><strong>ADR-0017</strong> — <code>SpellcastingStats.of</code> + enum <code>SpellcastingAbility</code> (связан с дублем #5).</li>
+<li><strong>ADR-0018</strong> — <code>LevelUpApplier</code> (применение фич при level-up; авто применяет только пассивные).</li>
+<li><strong>ADR-0011 Draft</strong> — enum <code>Ability{STR,DEX,CON,INT,WIS,CHA}</code> + alias-резолвер (= дубль #5). Настоящий
+  ADR может закрыть дубль #5 через <code>AbilityResolver.resolveAbility</code>.</li>
+</ul>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Приняты следующие решения (A–P):</p>
+<ul>
+<li><strong>A = A3</strong> — интерфейс <code>Activatable</code> как <strong>чистые данные</strong> (без поведения) + внешний <code>AbilityResolver</code>.
+  Консистентно с <code>DamageResolver</code>/<code>ConditionResolver</code> (ADR-0012/0013).</li>
+<li><strong>B = B1</strong> — <code>object AbilityResolver</code> (stateless), по образцу <code>DamageResolver</code>/<code>ConditionResolver</code>.</li>
+<li><strong>C = C3</strong> — гибрид: <code>AbilityResolver</code> — фасад (валидация стоимости + экономия действий), делегирует
+  эффект по <code>kind</code>.</li>
+<li><strong>D = D1</strong> — <strong>обернуть</strong> существующие модели адаптером (<code>Activatable</code> как view над
+  <code>Spell</code>/<code>ClassFeature</code>/<code>Feat</code>). Модели <strong>не переписывать</strong>.</li>
+<li><strong>E = E2</strong> — <code>CharacterState.activatableIds: List&lt;ActivatableId&gt;</code>. Реестр — источник правды.</li>
+<li><strong>F = F1</strong> — sealed <code>AbilityCost</code>: <code>SpellSlot(level) | ClassResource(id, amount) | Charges(n) | Free</code>.</li>
+<li><strong>G = G3</strong> — <code>castingTime</code> для заклинаний + <code>actionType</code> для остальных. Унификация единого <code>actionType</code>
+  (G2) — ФАЗА 3.</li>
+<li><strong>H = H1</strong> — активация возвращает <code>List&lt;StateChange&gt;</code>.</li>
+<li><strong>I = I1</strong> — <code>AbilityResolver.resolveAbility</code> + enum <code>Ability { STR, DEX, CON, INT, WIS, CHA }</code>.
+  <strong>Перенос из ADR-0011 (развилка K)</strong>. Закрывает дубль #5 (7 резолверов «строка → ability»).</li>
+<li><strong>J = J2</strong> — расовые черты (racial traits) — ФАЗА 3. Контракт <code>Activatable</code> проектируется расширяемым.</li>
+<li><strong>K = K2</strong> — <code>ItemAbility</code> — отдельная подсистема. Общий <code>AbilityCost</code>/<code>AbilityEffect</code> — да,
+  resolver — нет.</li>
+<li><strong>L = L2</strong> — <code>Enemy.features</code> остаётся ad-hoc. Унификация под <code>Activatable</code> — ФАЗА 2+.</li>
+<li><strong>M = M3</strong> — <code>ClassFeatureHelper</code> переводится постепенно. Фасад сейчас, переходы сайтов — ФАЗА 2.</li>
+<li><strong>N = N1</strong> — только контракт + скилет resolver, <strong>без реализации эффектов</strong>. Реализация — ФАЗА 2.</li>
+<li><strong>O = O3</strong> — маппинг «слот → <code>Spend*</code>» выносится в <code>ActionEconomyRegistry</code>.
+  <code>TurnResolver.buildEconomyChanges</code> + <code>ClassFeatureHelper.spendCost</code> консолидируются.</li>
+<li><strong>P = P2</strong> — <code>StateChange.ActivateFeature</code> включается в контракт <code>Activatable</code> (эмитится
+  <code>AbilityResolver</code> при активации способности с <code>kind = FEATURE</code>).</li>
+</ul>
+<h3 id="_6">Обязательные уточнения<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>ADR-0019 закрывает дубль #5 из ADR-0011</strong> (7 резолверов «строка → ability»). Enum <code>Ability</code>
+  определён <strong>здесь</strong> (перенос из ADR-0011, развилка K).</li>
+<li><strong>ADR-0019 закрывает НОВЫЙ дубль O</strong> — маппинг «слот → <code>Spend*</code>»:
+  <code>TurnResolver.kt:456-472</code> + <code>ClassFeatureHelper.kt:76-84</code> → <code>ActionEconomyRegistry</code>.</li>
+<li><strong>ADR-0011 пересматривается</strong>: дубль #5 закрыт здесь; в ADR-0011 остаётся <strong>5 дублей</strong>.
+  Финализация ADR-0011 — <strong>после 0019</strong>.</li>
+<li><strong>N1</strong> — контракт + скилет resolver, <strong>без реализации</strong>. Реализация адаптеров
+  Spell/ClassFeature — ФАЗА 2.</li>
+<li><strong>P2</strong> — <code>StateChange.ActivateFeature</code> эмитится <code>AbilityResolver</code>.</li>
+<li><strong>D1</strong> — обернуть модели, <strong>не переписывать</strong>.</li>
+<li><strong>J2</strong> — racial traits откладываются, контракт расширяемый.</li>
+</ul>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<h3 id="a-activatable">A. Форма Activatable<a class="headerlink" href="#a-activatable" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A1 — интерфейс</strong>: <code>interface Activatable { id; name; actionType; cost: AbilityCost?; resolve(...) → List&lt;StateChange&gt; }</code>.</li>
+<li>Минимальный контракт, реализуют существующие модели (Spell/ClassFeature/…). — Логику эффекта
+  приходится тащить в каждую модель или во внешний резолвер; данные (описания) и поведение смешиваются.</li>
+<li><strong>A2 — sealed class / data class с дискриминатором</strong>: единый тип с полем <code>kind</code> (SPELL/FEATURE/ITEM/…)</li>
+<li>общие поля + специфичные. + Один тип для хранения <code>List&lt;Activatable&gt;</code>; простая (де)сериализация.
+  — Нужна миграция существующих моделей (D2/D3); риск раздутого типа.</li>
+<li><strong>A3 — интерфейс-«описание» + внешний резолвер</strong>: <code>Activatable</code> остаётся чистыми данными (без поведения),
+  <code>AbilityResolver</code> применяет по <code>kind</code>. + Чистое разделение данных/поведения; консистентно с ADR-0012/0013
+  (Resolver-паттерн). — Два новых типа вместо одного.</li>
+</ul>
+<h3 id="b-abilityresolver">B. Форма AbilityResolver<a class="headerlink" href="#b-abilityresolver" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>B1 — <code>object AbilityResolver</code></strong>: как <code>DamageResolver</code>/<code>ConditionResolver</code>. + Консистентно с соседними
+  резолверами; нет DI. — Трудно мокать/параметризовать.</li>
+<li><strong>B2 — Spring-бин <code>@Service</code></strong>: как <code>SpellService</code>/<code>ActionEconomyRegistry</code>. + DI, тестируемость,
+  инжекция реестров. — Тянет зависимость на Spring в домен.</li>
+<li><strong>B3 — распределённые резолверы по типу</strong> (<code>SpellActivator</code>, <code>FeatureActivator</code>, …). + Каждый тип изолирован.
+  — Дублирование общей рамки (cost/action economy), расползание контракта.</li>
+</ul>
+<h3 id="c-abilityresolver">C. Роль AbilityResolver<a class="headerlink" href="#c-abilityresolver" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>C1 — единая точка</strong>: <code>активировать(activatable, target, state) → List&lt;StateChange&gt;</code>; внутри — cost +
+  economy + эффект. + Один вход для всех способностей; проще валидировать. — Сложный внутренний switch;
+  надо тянуть все под-резолверы.</li>
+<li><strong>C2 — только контракт</strong>: резолвер задаёт сигнатуру/типы, активация по <code>kind</code> в <code>TurnResolver</code>.</li>
+<li>Минимальный scope (N1). — Не закрывает дубль экономии/эффектов, остаётся ad-hoc.</li>
+<li><strong>C3 — гибрид</strong>: <code>AbilityResolver</code> — фасад (общая рамка: валидация cost + economy), делегирует эффект
+  по <code>kind</code>. + Баланс единообразия и изоляции. — Сложнее C1/C2.</li>
+</ul>
+<h3 id="d">D. Миграция существующих моделей<a class="headerlink" href="#d" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>D1 — обернуть</strong>: <code>Activatable</code> как обёртка/адаптер над существующими <code>Spell</code>/<code>ClassFeature</code>. + Не трогает
+  публичные модели. — Двойная модель данных, синхронизация.</li>
+<li><strong>D2 — переписать</strong>: заменить модели на <code>Activatable</code>-подтипы. + Чисто, одна модель. — Крупный breaking change,
+  затрагивает ClassRegistry/SpellService/сериализацию.</li>
+<li><strong>D3 — параллельно</strong>: старые модели остаются, новый контракт добавляется рядом и постепенно переводит сайты
+  активации. + Инкрементально, безопасно. — Временная избыточность, два пути заклинаний и так уже есть.</li>
+</ul>
+<h3 id="e">E. Хранение активаций у персонажа<a class="headerlink" href="#e" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>E1 — <code>CharacterState.features: List&lt;Activatable&gt;</code></strong>: материализовать способности в состоянии. + Быстрый
+  доступ, не надо ходить в реестр. — Дублирование данных реестра; рассинхрон при level-up.</li>
+<li><strong>E2 — <code>activatableIds: List&lt;ActivatableId&gt;</code></strong>: ссылки на реестр, состояние хранит только id. + Один источник
+  правды (реестр), маленькое состояние. — Каждый резолв требует lookup по реестру.</li>
+<li><strong>E3 — без хранения (derived)</strong>: как сейчас — выводить из <code>canonicalClassId</code>/<code>spellsKnown</code>/инвентаря.</li>
+<li>Ноль миграции. — Разные источники остаются разрозненными (главная боль, которую ADR хочет снять).</li>
+</ul>
+<h3 id="f">F. Ресурсы/стоимость<a class="headerlink" href="#f" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>F1 — sealed <code>AbilityCost</code></strong>: <code>SpellSlot(level) | ClassResource(id, amount) | Charges(n) | Free</code>.</li>
+<li>Единый тип стоимости, покрывает все категории. — Новый тип, миграция <code>ClassFeature.resourceId</code>.</li>
+<li><strong>F2 — поля на Activatable</strong> (<code>resourceId</code>, <code>amount</code>, <code>usesSpellSlot</code>). + Проще, нет sealed-иерархии.
+  — Нестрогая типизация, комбинации «resourceId + slot» не выразимы.</li>
+<li><strong>F3 — cost как часть ActionEconomy</strong>: стоимость = слот действия + опциональный ресурс. + Меньше новых типов.
+  — Смешивает «чем платить» (ресурс) и «что тратим» (действие).</li>
+</ul>
+<h3 id="g">G. Экономия действий<a class="headerlink" href="#g" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>G1 — через <code>ActionEconomyRegistry</code></strong>: как сейчас (ActionType/dsl → <code>EconomySlot</code>). + Уже работает для
+  глобальной экономии. — Не связано с <code>FeatureActionType</code> фич; два маппинга остаются.</li>
+<li><strong>G2 — поле <code>actionType</code> на Activatable</strong>: единое поле (<code>ACTION/BONUS_ACTION/REACTION/FREE/PASSIVE</code>).</li>
+<li>Одна точка правды для способности. — Дублирует <code>FeatureActionType</code> и <code>CastingTime</code>/<code>UseAction</code>.</li>
+<li><strong>G3 — <code>castingTime</code> для заклинаний + поле для фич</strong>: заклинания — <code>CastingTime</code> enum, фичи/предметы —
+  <code>actionType</code>. + Минимальная миграция. — Разные поля для разных категорий.</li>
+</ul>
+<h3 id="h-conditiondamageresolver">H. Связь с Condition/DamageResolver (эффект)<a class="headerlink" href="#h-conditiondamageresolver" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>H1 — активация возвращает <code>List&lt;StateChange&gt;</code></strong>: (<code>Damage</code>/<code>ApplyStatus</code>/<code>Heal</code>/…). + Консистентно с тем,
+  как TurnResolver уже работает; Damage/Condition резолверы остаются как есть. — Эффект не типизирован на
+  уровне контракта.</li>
+<li><strong>H2 — Activatable сам применяет эффекты (mutating)</strong>: способность мутирует <code>CharacterState</code>/<code>Enemy</code>.</li>
+<li>Компактно. — Ломает иммутабельность, трудно тестировать.</li>
+<li><strong>H3 — типизированный <code>AbilityEffect</code> (sealed)</strong>: активация возвращает <code>AbilityEffect</code>, который транслируется
+  в StateChange. + Строгий контракт эффекта. — Дополнительный слой между активацией и StateChange.</li>
+</ul>
+<h3 id="i-abilityresolver-vs-5">I. AbilityResolver vs дубль #5<a class="headerlink" href="#i-abilityresolver-vs-5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>I1 — объединить в <code>AbilityResolver.resolveAbility</code></strong>: единый <code>enum Ability</code> (ADR-0011 K) + резолв
+  строки/навыка/класса/заклинателя. + Закрывает дубль #5 раз и навсегда. — Большой scope, тянет ADR-0011/0017.</li>
+<li><strong>I2 — enum <code>Ability</code> + <code>Enum.valueOf</code></strong>: только тип-безопасность, без общего резолвера. + Дёшево.
+  — Дубль «строка→mod» остаётся в SessionService/TurnResolver.</li>
+<li><strong>I3 — оставить как есть</strong>: ADR-0019 не трогает дубль #5. + Меньше scope. — Дубль сохраняется (противоречит
+  цели консолидации).</li>
+</ul>
+<h3 id="j-racial-traits">J. Расовые черты (racial traits)<a class="headerlink" href="#j-racial-traits" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>J1 — вводить <code>RacialTrait</code> как Activatable сейчас</strong>. + Полный охват канона. — Расы ещё не реализованы
+  (ФАЗА 3), преждевременно.</li>
+<li><strong>J2 — отложить в ФАЗУ 3</strong>: контракт <code>Activatable</code> проектируется так, чтобы racial traits легли позже.</li>
+<li>Без преждевременной работы. — Нужно гарантировать расширяемость контракта сейчас.</li>
+</ul>
+<h3 id="k-item-abilities">K. Item abilities<a class="headerlink" href="#k-item-abilities" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>K1 — <code>ItemAbility</code> как Activatable</strong>: <code>useAction</code>/<code>bonuses</code> → <code>AbilityCost</code> + <code>AbilityEffect</code>.</li>
+<li>Единый контракт. — Предметы — не «способности персонажа»; особая механика потребления.</li>
+<li><strong>K2 — отдельная подсистема предметов</strong>: <code>resolveUseItem</code> остаётся, контракт только для spell/feature.</li>
+<li>Не тянет предметы в способности. — Дубль активации остаётся.</li>
+</ul>
+<h3 id="l-enemy-actions">L. Enemy actions<a class="headerlink" href="#l-enemy-actions" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>L1 — унифицировать под Activatable</strong>: <code>Enemy.features</code> → <code>List&lt;Activatable&gt;</code>. + Один резолвер для игрока
+  и врага. — Враг — не <code>CharacterState</code>; другой lifecycle/ресурсы.</li>
+<li><strong>L2 — оставить отдельно</strong>: враг резолвится ad-hoc. + Меньше scope. — Контракт покрывает не весь канон.</li>
+</ul>
+<h3 id="m-classfeaturehelperfeatureregistry">M. Миграция ClassFeatureHelper/FeatureRegistry<a class="headerlink" href="#m-classfeaturehelperfeatureregistry" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>M1 — удалить → AbilityResolver</strong>: <code>detectFeature</code>/<code>canAfford</code>/<code>spendCost</code> заменяются резолвером.</li>
+<li>Убирает ad-hoc дубль. — Полная переписка сайтов активации фич.</li>
+<li><strong>M2 — оставить фасадом</strong>: <code>ClassFeatureHelper</code> делегирует в AbilityResolver. + Совместимость.
+  — Временный слой.</li>
+<li><strong>M3 — постепенно</strong>: переводить сайты по одному. + Инкрементально. — Длительный переходный период.</li>
+</ul>
+<h3 id="n-scope-adr-0019">N. Scope ADR-0019<a class="headerlink" href="#n-scope-adr-0019" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>N1 — только контракт + AbilityResolver</strong> (интерфейс/типы, без реализации эффектов). + Минимальный,
+  быстрый. — Не даёт выгоды сразу (сайты остаются ad-hoc).</li>
+<li><strong>N2 — контракт + реализация для Spell/ClassFeature</strong>. + Снимает главный дубль. — Средний scope.</li>
+<li><strong>N3 — всё сразу</strong> (spell/feature/feat/item/enemy). + Полный охват. — Большой, рискованный, тянет ФАЗУ 3.</li>
+</ul>
+<h3 id="o-spend">O. Дубль маппинга «слот → Spend*»<a class="headerlink" href="#o-spend" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>O1 — консолидировать в AbilityResolver</strong> (часть C3): фасад сам эмитит <code>Spend*</code> по слоту. + Одна точка
+  «стоимость → StateChange». — Смешивает экономию действий с контрактом способностей.</li>
+<li><strong>O2 — оставить как есть</strong>: <code>TurnResolver.buildEconomyChanges</code> + <code>ClassFeatureHelper.spendCost</code> остаются.</li>
+<li>Ноль изменений. — Дубль сохраняется (две копии одного маппинга).</li>
+<li><strong>O3 — вынести в <code>ActionEconomyRegistry</code></strong>: registry — единственный владелец маппинга «слот → <code>Spend*</code>».</li>
+<li>Владелец слотов отвечает за их трату; консистентно с ADR-0010 §9. — Правки в двух call-sites.</li>
+</ul>
+<h3 id="p-statechangeactivatefeature">P. StateChange.ActivateFeature (мёртвый)<a class="headerlink" href="#p-statechangeactivatefeature" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>P1 — удалить как мёртвый</strong>: <code>StateChange.ActivateFeature</code> (<code>GameState.kt:1269</code>) никто не эмитит.</li>
+<li>Чисто, убирает dead code. — Ломает совместимость, если он используется где-то вне TurnResolver.</li>
+<li><strong>P2 — включить в контракт Activatable</strong>: <code>AbilityResolver</code> эмитит <code>ActivateFeature(featureName)</code> при
+  активации способности с <code>kind = FEATURE</code>. + Оживляет существующий StateChange, даёт трейс активации.
+  — Нужно согласовать семантику (когда/что эмитится).</li>
+<li><strong>P3 — оставить как есть</strong>: не трогать. + Ноль изменений. — Dead code остаётся, контракт неполон.</li>
+</ul>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_7">Плюсы<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Единый контракт <code>Activatable</code> для всех способностей (spell/feature/feat + расширяемый под racial trait).</li>
+<li><code>AbilityResolver</code> — единый фасад активации (стоимость + экономия действий + делегирование эффекта).</li>
+<li>Дубль #5 закрыт: 7 резолверов «строка → ability» → 1 (<code>resolveAbility</code> + enum <code>Ability</code>).</li>
+<li>Дубль O закрыт: маппинг «слот → <code>Spend*</code>» — единая точка в <code>ActionEconomyRegistry</code>.</li>
+<li>Dead code <code>StateChange.ActivateFeature</code> оживлён (P2) — трейс активации фич.</li>
+<li>Enum <code>Ability</code> — типобезопасность вместо строковых маппингов.</li>
+<li>sealed <code>AbilityCost</code> — единая строго типизированная стоимость (слот/ресурс/заряды/free).</li>
+</ul>
+<h3 id="_8">Минусы<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>AbilityResolver</code> — новый компонент, требует тестов и инжекции в <code>TurnResolver</code>.</li>
+<li><code>Activatable</code> как обёртка (D1) — временная двойная модель данных до полной миграции.</li>
+<li>Enum <code>Ability</code> — перенос из ADR-0011 (уменьшает scope ADR-0011).</li>
+<li>N1 — реализация отложена в ФАЗУ 2; выгода от контракта не сразу материализуется.</li>
+</ul>
+<h3 id="_9">Риски и митигация<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>D1 обёртка может рассинхронизироваться с базовой моделью</strong> → unit-тесты на каждой обёртке
+  (<code>Spell→Activatable</code>, <code>ClassFeature→Activatable</code>, <code>Feat→Activatable</code>).</li>
+<li><strong>I1 резолвер становится широким</strong> (ability + abilityMod + …) → разделение на
+  <code>resolveAbility</code> + <code>resolveAbilityMod</code> (+ отдельные приватные маппинги).</li>
+<li><strong>O3 правки в двух call-sites</strong> (<code>buildEconomyChanges</code> + <code>spendCost</code>) → один общий тест на оба.</li>
+</ul>
+<h3 id="_10">Отложено<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Реализация адаптеров Spell/ClassFeature — ФАЗА 2.</li>
+<li>RacialTrait — ФАЗА 3.</li>
+<li>ItemAbility resolver — ФАЗА 2+ (общие AbilityCost/AbilityEffect — сейчас).</li>
+<li>Унификация Enemy под Activatable — ФАЗА 2+.</li>
+<li>G2 (единый <code>actionType</code> для всех категорий) — ФАЗА 3.</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Расы / фоны / скиллы</strong> — ФАЗА 3 (см. развилку J2).</li>
+<li><strong>Сейв-DC / мана / XP</strong> — закрыты соседними ADR (0016/0017/0018).</li>
+<li><strong>ADR-0011</strong> — не финализируется здесь; ADR-0019 закрывает дубль #5 (7 резолверов), финализация
+  ADR-0011 — <strong>после 0019</strong> (в нём остаётся 5 дублей).</li>
+<li><strong>Реализация AbilityResolver в коде</strong> — ФАЗА 2 (N1 — только контракт + скилет).</li>
+<li><strong>RacialTrait</strong> — ФАЗА 3.</li>
+<li><strong>ItemAbility resolver</strong> — ФАЗА 2+ (общие AbilityCost/AbilityEffect — в контракте сейчас).</li>
+<li><strong>Enemy.features</strong> — ad-hoc сейчас (L2), унификация — ФАЗА 2+.</li>
+<li><strong>G2 (единый <code>actionType</code>)</strong> — ФАЗА 3 (G3 — castingTime + actionType сейчас).</li>
+<li><strong>Переписывание моделей <code>Spell</code>/<code>ClassFeature</code>/<code>Feat</code></strong> — не входит (D1 — обёртка, не переписывание).</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ADR-0010 §9 — модель хода/раунда, экономия действий.</li>
+<li>ADR-0012 — <code>DamageType</code> + <code>DamageResolver</code>.</li>
+<li>ADR-0013 — <code>StatusId</code> + <code>ConditionResolver</code>.</li>
+<li>ADR-0014 — <code>StatusInstance</code> + <code>ConditionLifecycle</code>.</li>
+<li>ADR-0015 — <code>ExhaustionResolver</code>.</li>
+<li>ADR-0016 — слоты заклинаний.</li>
+<li>ADR-0017 — <code>SpellcastingStats</code> + <code>SpellcastingAbility</code>.</li>
+<li>ADR-0018 — <code>LevelUpApplier</code> (применение фич при level-up).</li>
+<li>ADR-0011 Draft — enum <code>Ability</code> (дубль #5) — закрыт здесь (развилка I1, перенос из 0011 K).</li>
+<li>PHB p.201 (spellcasting), классовые/расовые описания.</li>
+<li>Файлы: <code>rules/GameState.kt</code> (StateChange :1156-1270, CharacterState :338, Enemy :682, ClassResources :1409),
+  <code>rules/TurnResolver.kt</code> (:271-272, :474, :1263, :1872, :1954, :2144, :3089, :3103),
+  <code>classes/ClassFeatureHelper.kt</code>, <code>classes/CharacterClass.kt</code>, <code>classes/ClassRegistry.kt</code>,
+  <code>classes/FeatRegistry.kt</code>, <code>spells/Spell.kt</code>, <code>spells/SpellService.kt</code>, <code>skills/SkillRegistry.kt</code>,
+  <code>rules/SavingThrowResolver.kt</code>, <code>rules/economy/ActionEconomyRegistry.kt</code>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

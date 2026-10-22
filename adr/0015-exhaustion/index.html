@@ -1,0 +1,2032 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/adr/0015-exhaustion/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ADR-0015: Истощение (Exhaustion) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#adr-0015-exhaustion" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ADR-0015: Истощение (Exhaustion)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Факты (файл:строка)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ключевые ограничения для вариантов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Решения (A–K)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обязательные уточнения
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proposed Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Форма хранения уровня истощения
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Архитектура применения штрафов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Где применяется каждый уровень (точки встраивания)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Источник роста истощения
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        E. Смерть на 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        F. Восстановление длительным отдыхом
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#g-undeadconstruct" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        G. Иммунитет к истощению (undead/construct)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h-whitelist-ctx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H. Экспозиция в whitelist ctx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-l5-speed-0-l6-death" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        I. Гейты L5 (speed 0) и L6 (death)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j-0014-c3-pass-apply-resolvesaveends-tick" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        J. Совместимость с 0014 C3 (три pass: apply → resolveSaveEnds → tick)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k-exhaustionresolver-advdisadvantageresolver-0013-f1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K. Связь ExhaustionResolver с AdvDisadvantageResolver (0013 F1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consequences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Consequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Положительные
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отрицательные
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Риски
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отложено
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#untouched-in-this-adr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Untouched in this ADR
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="adr-0015-exhaustion">ADR-0015: Истощение (Exhaustion)<a class="headerlink" href="#adr-0015-exhaustion" title="Permanent link">&para;</a></h1>
+<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
+<p>Accepted</p>
+<h2 id="context">Context<a class="headerlink" href="#context" title="Permanent link">&para;</a></h2>
+<p>ADR-0013 (Accepted) ввёл ядро состояний и <strong>сознательно исключил Истощение из <code>StatusId</code></strong>:
+это не состояние из реестра, а отдельная числовая шкала на <code>CharacterState</code>. ADR-0014
+(Accepted) закрыла duration/lifecycle состояний. Данная ADR закрывает <strong>третью и последнюю</strong>
+тему состояний — шкалу истощения 0..6: хранение, штрафы по уровням, источник роста,
+восстановление и смерть на 6.</p>
+<p>Канон 5e (PHB p.291) — уровни каскадные (каждый включает предыдущие):</p>
+<table>
+<thead>
+<tr>
+<th>Уровень</th>
+<th>Эффект</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Помеха (disadvantage) на проверки характеристик</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Скорость уменьшена вдвое</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Помеха на броски атаки и спасброски</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Максимум хитов уменьшен вдвое</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Скорость равна 0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Смерть</td>
+</tr>
+</tbody>
+</table>
+<p>Восстановление: 1 уровень за длительный отдых (при условии еды/питья). Рост: голод, жажда,
+жара/холод, форсированный марш, некоторые заклинания/эффекты, некоторые монстры.</p>
+<h3 id="_1">Факты (файл:строка)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><strong>Хранение:</strong>
+- <code>CharacterState.exhaustion: Int = 0</code> (<code>GameState.kt:374</code>); doc-комментарий <code>:371-373</code>
+  обещает «6 уровней = смерть», но <strong>ни одна строка кода смерть на 6 не реализует</strong>.
+- <code>require(exhaustion in 0..6)</code> (<code>GameState.kt:523</code>) — валидация границ есть.
+- <code>RestResult.exhaustionRemoved: Int = 0</code> (<code>GameState.kt:1087-1088</code>).</p>
+<p><strong>Восстановление (длительный отдых):</strong>
+- <code>RestService.applyLongRest</code> (<code>RestService.kt:80-111</code>): <code>exhaustionRemoved = minOf(1, exhaustion)</code>
+  (<code>:90</code>), <code>exhaustion = exhaustion - exhaustionRemoved</code> (<code>:97</code>). Каноничный REST-путь.
+- <code>SessionService.applyStateChanges</code> → ветка <code>StateChange.LongRest</code> (<code>SessionService.kt:2571-2587</code>):
+  <code>exhaustion = (exhaustion - 1).coerceAtLeast(0)</code> (<code>:2579</code>). Инлайн-путь в <code>processTurn</code>.
+- <code>TurnResolver</code> нарратив «Истощение −1.» (<code>TurnResolver.kt:2035</code>, <code>:2095</code>) — только текст.
+- Тест <code>RestServiceTest.kt:60-67</code> «14.3 long rest removes exhaustion not poison» (2 → 1).
+- <strong>Два места</strong> декремента (−1) — потенциальный рассинхрон (RestService vs SessionService).</p>
+<p><strong>Штрафы/смерть/рост — отсутствуют:</strong>
+- grep <code>exhaustion</code> по всему <code>backend/app/src</code>: <strong>нет ни одного применения штрафа</strong> (ни помехи
+  на checks/attacks/saves, ни скорости, ни maxHp, ни смерти). Поле только читается при отдыхе.
+- Нет <code>StateChange.GainExhaustion</code> — поле <strong>никогда не инкрементируется</strong> в коде. Только
+  описательные упоминания в данных:
+  - <code>subclasses.yml:131</code> — Варвар «Бешенство» (ярость) lvl 3, в описании «истощение» — без механики.
+  - <code>0031-action-templates.yaml:59</code> — шаблон «Длительный бег» (movement, CON save DC 12), в
+    описании «без отдыха копится истощение» — <strong>механика не подключена</strong> (только проверка).
+  - В <code>spells.json</code> заклинаний с истощением <strong>нет</strong> (grep = 0).
+  - В данных монстров (creature_archetypes) источников истощения <strong>не найдено</strong>.</p>
+<p><strong>Скорость (для уровней 2 и 5):</strong>
+- ADR-0010 §5 (Status: <strong>Proposed</strong>, не Accepted) описывает <code>CharacterState.speed: Int</code> (дефолт 30),
+  <code>SpeedResolver.baseSpeed</code>, <code>ActionEconomy.movementUsed: Int</code>, <code>effectiveSpeed = speed + (if dash) speed</code>.
+- <strong>Ни одно из этих полей в коде не существует</strong> (grep <code>speed|Speed|movementUsed|effectiveSpeed</code>
+  в <code>main/kotlin</code> = 0; лишь комментарий «для скорости» в <code>SimulationRunner.kt:44</code>).
+- → Уровни 2 и 5 истощения <strong>не имеют поля, к которому можно прицепиться</strong>, пока не реализована
+  Ф2 из ADR-0010.</p>
+<p><strong>Точки встраивания штрафов:</strong>
+- <code>resolveCheck</code> (<code>TurnResolver.kt:2326</code>): помеха через <code>hasDisadvantageOnChecks(character)</code> (<code>:2335</code>)
+  → <code>d20WithDisadvantage()</code>. <code>hasDisadvantageOnChecks</code> (<code>:2312-2313</code>) — <strong>хардкод-сет</strong> статусов
+  (Отравлен, Ошеломлён, Испуган, Связан, Опутанный, Оглушён, Ослеплён). Истощения в сете нет.
+- <code>resolveAttack</code> (<code>TurnResolver.kt:1656</code>): <code>attackerDisadv = hasDisadvantageOnAttacks(character)</code>
+  (<code>:1703</code>). <code>hasDisadvantageOnAttacks</code> (<code>:2318-2319</code>) — хардкод-сет + <code>isProne</code>. Истощения нет.
+- <code>resolveSavingThrow</code> (<code>TurnResolver.kt:2407</code>) и <code>SavingThrowResolver.resolvePlayerSave</code>
+  (<code>SavingThrowResolver.kt:22-53</code>) — <strong>не консультируются с истощением</strong> (помеха на спасброски
+  отсутствует).
+- <code>resolveInitiative</code> (<code>TurnResolver.kt:2840</code>, <code>:2854</code>) — проверка ЛОВкости; помеха только при
+  <code>playerSurprised</code> (<code>:2861</code>). Инициатива в 5e — проверка характеристики, поэтому уровень 1
+  <strong>должен</strong> давать помеху и сюда (сейчас не даёт).
+- <code>maxHp</code> — плоское поле (<code>CharacterState</code>), не производная величина; уровня 4 (макс. HP вдвое)
+  не существует.</p>
+<p><strong>Несоответствие словаря состояний:</strong>
+- <code>action-whitelist-core.yaml:255</code> перечисляет <code>EXHAUSTION</code> в «СЛОВАРЬ СОСТОЯНИЙ (CONDITIONS
+  ENUM)<code>(</code>:240-264<code>)». Но в коде</code>StatusId` (0013) истощения <strong>нет</strong> — словарь whitelist
+  опережает/расходится с enum и не имеет резолвинг-логики.</p>
+<h3 id="_2">Ключевые ограничения для вариантов<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Истощение — <strong>не <code>StatusId</code></strong> (по 0013 Untouched). Любое решение, добавляющее истощение в
+   <code>ConditionRegistry</code>/<code>StatusInstance</code>, противоречит 0013.</li>
+<li>Скорости в коде <strong>нет</strong> — уровни 2/5 либо откладываются до Ф2 ADR-0010, либо требуют
+   предварительного появления <code>speed</code>/<code>effectiveSpeed</code>.</li>
+<li>Adv/disadv сейчас — <strong>хардкод-сеты статусов</strong>, ещё не мигрированы на <code>StatusId</code>/<code>kind</code>.
+   Помеха от истощения — это <strong>новый отдельный хук</strong>, а не расширение сета.</li>
+<li>Два места декремента отдыха (RestService vs SessionService) — 0014 (M1/alias) к этому
+   отношения не имеет; это отдельный вопрос унификации.</li>
+</ol>
+<h2 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h3 id="ak">Решения (A–K)<a class="headerlink" href="#ak" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>A = A1</strong> — хранить <code>Int</code> 0..6 (<code>GameState.kt:374</code>), без изменений. <code>require(0..6)</code> остаётся.</li>
+<li><strong>B = B1</strong> — <code>ExhaustionResolver.effectsFor(level): ExhaustionEffects</code> — data class с
+  boolean-полями <code>disadvantageChecks</code> / <code>disadvantageAttacks</code> / <code>disadvantageSaves</code> /
+  <code>speedHalved</code> / <code>speedZero</code> / <code>maxHpHalved</code> / <code>death</code>. Каскадность кодируется в <code>effectsFor</code>
+  (уровень N включает все эффекты 1..N).</li>
+<li><strong>C = C3</strong> — L1/L3/L4 реализуются сейчас; L2/L5 — после ADR-0010 §5 (speed). Точки:
+  <code>resolveCheck</code> + <code>resolveInitiative</code> (L1); <code>resolveAttack</code> + <code>resolveSavingThrow</code> +
+  <code>resolvePlayerSave</code> (L3); расчёт maxHp (L4).</li>
+<li><strong>D = D1</strong> — <code>StateChange.GainExhaustion(amount, target)</code> — интерфейс. Продюсеры
+  (spells/monsters/hard-rest) — ФАЗА 2/3.</li>
+<li><strong>E = E1</strong> — мгновенная смерть через <code>CharacterDeadException</code> (audit-12 death rules).
+  Не death saves.</li>
+<li><strong>F = F1</strong> — −1 безусловно на long rest. <strong>Обязательное требование: унифицировать два
+  места декремента (<code>RestService.kt:90,97</code> vs <code>SessionService.kt:2579</code>). Единый источник —
+  <code>RestService.applyLongRest</code>; <code>SessionService.applyStateChanges</code> делегирует в <code>RestService</code>.</strong></li>
+<li><strong>G = G1</strong> — иммунитет не моделировать сейчас. G2 — когда появится продюсер истощения
+  для врагов.</li>
+<li><strong>H = H1</strong> — <code>exhaustionLevel</code> в <code>StatusContext</code> (0013 I2).</li>
+<li><strong>I = I1</strong> — L5 через speed (отложено до 0010 §5); L6 через <code>CharacterDeadException</code>.
+  НЕ через <code>blocksMove</code>.</li>
+<li><strong>J = J2</strong> — смерть немедленно после <code>apply StateChange</code>, но внутри того же <code>processTurn</code>
+  (до <code>tick</code>). Совместимо с 0014 C3.</li>
+<li><strong>K = K1</strong> — composition в точке вызова. <code>AdvDisadvantageResolver</code> не расширяем.</li>
+</ul>
+<h3 id="_3">Обязательные уточнения<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Унификация декремента long rest — часть ADR-0015</strong> (фикс дубля RestService vs SessionService).</li>
+<li><strong>ADR-0015 требует extension-point в <code>AdvDisadvantageResolver</code></strong> (если его нет) — метод
+  <code>of(character)</code> для K1.</li>
+<li><strong>Уровни 2 и 5 (speed) — мёртвые до реализации 0010 §5.</strong> Зафиксировать как зависимость,
+  не как gap.</li>
+<li><strong>whitelist <code>EXHAUSTION</code> (<code>action-whitelist-core.yaml:255</code>) — LLM-контекст, не <code>StatusId</code>.
+  Оставить как есть.</strong></li>
+<li><strong>Смерть на 6 — не death saves.</strong> Использует <code>CharacterDeadException</code> из audit-12 death rules.</li>
+</ul>
+<h2 id="proposed-options">Proposed Options<a class="headerlink" href="#proposed-options" title="Permanent link">&para;</a></h2>
+<h3 id="a">A. Форма хранения уровня истощения<a class="headerlink" href="#a" title="Permanent link">&para;</a></h3>
+<p><strong>A1 — оставить <code>Int</code> (0..6)</strong> (<code>GameState.kt:374</code>).
+- <code>+</code> Ноль миграций; <code>require(0..6)</code> уже есть.
+- <code>−</code> Магические числа 1..6 в логике штрафов; нет самодокументации каскадности.</p>
+<p><strong>A2 — <code>enum class ExhaustionLevel(0..6)</code> с флагами каскадности.</strong>
+- <code>+</code> Каждый уровень несёт свои эффекты декларативно; исчерпывающий <code>when</code>.
+- <code>−</code> Миграция сериализации (<code>ledgerJson</code>), тесты; риск рассинхрона с <code>require</code>.</p>
+<p><strong>A3 — sealed-класс/значение-объект (value class) <code>Exhaustion(level: Int)</code>.</strong>
+- <code>+</code> Типобезопасность + компактная сериализация как число.
+- <code>−</code> Избыточно для шкалы 0..6; косметически.</p>
+<h3 id="b">B. Архитектура применения штрафов<a class="headerlink" href="#b" title="Permanent link">&para;</a></h3>
+<p><strong>B1 — единый <code>ExhaustionResolver.apply(state): CharacterState</code> (или <code>effectsFor(level)</code>).</strong>
+- <code>+</code> Один источник истины штрафов; легко тестировать; симметрично <code>AdvDisadvantageResolver</code>.
+- <code>−</code> Не покрывает эффекты, живущие в разных слоях (check/attack/save/maxHp/speed) — нужен API
+  «запросить эффект по уровню», а не «применить всё сразу».</p>
+<p><strong>B2 — флаги/свойства на enum-уровне (см. A2) + точечные гейты.</strong>
+- <code>+</code> Каждый гейт читает только нужный флаг (<code>disadvantageChecks</code>, <code>speedHalved</code>, …).
+- <code>−</code> Размазывает логику по нескольким резолверам; риск забыть гейт.</p>
+<p><strong>B3 — инлайн-условия в каждом резолвере.</strong>
+- <code>+</code> Минимум новых сущностей.
+- <code>−</code> Дублирование <code>when(level)</code> в 4+ местах; худшая тестируемость. (Не рекомендуется.)</p>
+<h3 id="c">C. Где применяется каждый уровень (точки встраивания)<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<p><strong>C1 — точечно в существующих гейтах:</strong> L1 → <code>resolveCheck</code>+<code>resolveInitiative</code>, L3 →
+<code>resolveAttack</code>+<code>resolveSavingThrow</code>+<code>resolvePlayerSave</code>, L4 → maxHp, L2/L5 → speed.
+- <code>+</code> Минимальный объём изменений; чёткая привязка файл:строка.
+- <code>−</code> L2/L5 блокируются отсутствием <code>speed</code> (Ф2 0010); L4 требует пересчёта maxHp.</p>
+<p><strong>C2 — централизованный pre-roll хук</strong> (перед каждым броском d20 движок спрашивает «есть ли
+истощение → помеха/скорость»).
+- <code>+</code> Единая точка; в будущем легко добавить новые источники помехи.
+- <code>−</code> Крупный рефакторинг резолверов; риск сломать существующие adv/disadv.</p>
+<p><strong>C3 — гибрид:</strong> помехи (L1/L3) — единый <code>ExhaustionResolver</code> (B1); L2/L4/L5 — точечно по мере
+появления соответствующих моделей (speed из 0010, производный maxHp).
+- <code>+</code> Реализуемое уже сейчас ядро + отложенное на данные модели.
+- <code>−</code> Частичная поставка; уровни 2/4/5 временно «мёртвые».</p>
+<h3 id="d">D. Источник роста истощения<a class="headerlink" href="#d" title="Permanent link">&para;</a></h3>
+<p><strong>D1 — <code>StateChange.GainExhaustion(amount: Int)</code></strong> (симметрично <code>StateChange.Damage/Heal</code>).
+- <code>+</code> Идиоматично; подключается к <code>applyStateChanges</code>; источники (заклинания/монстры) смогут
+  прокидывать через <code>stateChanges</code>.
+- <code>−</code> Нужен + новая ветка в <code>applyStateChanges</code>; пока нет ни одного продуцирующего источника.</p>
+<p><strong>D2 — hard-rest механика</strong> (голод/жажда/форс-марш как отдельный движок отдыха).
+- <code>+</code> Закрывает каноничный источник (марш-бросок из <code>0031-action-templates.yaml:59</code>).
+- <code>−</code> Крупная отдельная фича (RestEngine), вне объёма состояний; преждевременно.</p>
+<p><strong>D3 — отложить до ФАЗЫ 2/3</strong> (поле есть, рост — позже).
+- <code>+</code> Не строим преждевременно (AGENTS: не строить до retention).
+- <code>−</code> Шкала остаётся «только на убывание» (отдых), штрафы не на чем продемонстрировать.</p>
+<h3 id="e-6">E. Смерть на 6<a class="headerlink" href="#e-6" title="Permanent link">&para;</a></h3>
+<p><strong>E1 — мгновенная смерть (канон).</strong>
+- <code>+</code> Соответствует PHB p.291; простая реализация (флаг/исключение).
+- <code>−</code> Жёстко для MVP; требуется интеграция со смертью из 0012.</p>
+<p><strong>E2 — CON save DC X против смерти (homebrew-смягчение).</strong>
+- <code>+</code> Мягче; больше «драматических спасбросков».
+- <code>−</code> Отход от канона; нужен отдельный DC/дизайн.</p>
+<p><strong>E3 — не смерть, а «недееспособен до отдыха» (мягкий вариант).</strong>
+- <code>+</code> Минимальный риск; без интеграции со смертью.
+- <code>−</code> Неканонично; пользователи SRD-ожидают смерть на 6.</p>
+<h3 id="f">F. Восстановление длительным отдыхом<a class="headerlink" href="#f" title="Permanent link">&para;</a></h3>
+<p><strong>F1 — текущее: −1 безусловно</strong> (<code>RestService.kt:90/97</code>, <code>SessionService.kt:2579</code>).
+- <code>+</code> Уже реализовано; просто.
+- <code>−</code> Не учитывает еду/питьё (канон требует); два места декремента.</p>
+<p><strong>F2 — −1 только при еде/питье (канон).</strong>
+- <code>+</code> Канонично; даёт смысл провизии.
+- <code>−</code> Требует модель провизии (нет в коде) — преждевременно.</p>
+<p><strong>F3 — полное обнуление на long rest.</strong>
+- <code>+</code> Простейшее для игрока; нет накопления.
+- <code>−</code> Обесценивает шкалу; неканонично.</p>
+<h3 id="g-undeadconstruct">G. Иммунитет к истощению (undead/construct)<a class="headerlink" href="#g-undeadconstruct" title="Permanent link">&para;</a></h3>
+<p><strong>G1 — не моделировать</strong> (все получают истощение).
+- <code>+</code> Проще; соло-игрок против истощения без типов монстров.
+- <code>−</code> Неканонично (undead/construct иммунны).</p>
+<p><strong>G2 — флаг иммунитета на <code>Enemy</code></strong> (симметрично <code>conditionImmunities</code> из 0013 G2).
+- <code>+</code> Канонично; переиспользует паттерн 0013.
+- <code>−</code> Нужен источник роста для врагов (а его нет — см. D).</p>
+<h3 id="h-whitelist-ctx">H. Экспозиция в whitelist ctx<a class="headerlink" href="#h-whitelist-ctx" title="Permanent link">&para;</a></h3>
+<p><strong>H1 — <code>exhaustionLevel</code> в <code>StatusContext</code> (0013 I2 <code>toWhitelistCtx()</code>).</strong>
+- <code>+</code> Единый контекст; LLM видит уровень истощения.
+- <code>−</code> Расширяет контекст из 0013; надо синхронизировать с <code>SessionService.kt:952-962</code>.</p>
+<p><strong>H2 — отдельный ключ ctx вне <code>StatusContext</code>.</strong>
+- <code>+</code> Не трогает 0013.
+- <code>−</code> Второй механизм экспозиции состояния.</p>
+<h3 id="i-l5-speed-0-l6-death">I. Гейты L5 (speed 0) и L6 (death)<a class="headerlink" href="#i-l5-speed-0-l6-death" title="Permanent link">&para;</a></h3>
+<p><strong>I1 — L5 через поле speed (0010 Ф2); L6 через <code>StateChange</code>/исключение 0012.</strong>
+- <code>+</code> Переиспользует смежные ADR; L5 реализуемо только после speed.
+- <code>−</code> L5 зависит от нереализованного 0010.</p>
+<p><strong>I2 — L5 как флаг <code>blocksMove</code></strong> (уже есть в 0013 E1) вместо speed.
+- <code>+</code> Реализуемо сейчас без speed-модели.
+- <code>−</code> Дуализм «speed 0» vs «флаг»; рассинхрон с 0010 в будущем.</p>
+<p><strong>I3 — L6 через <code>CharacterDeadException</code> (0012) немедленно vs в конце хода (совместимость с 0014 C3).</strong>
+- <code>+</code> Определённый порядок относительно трёх pass 0014.
+- <code>−</code> Надо выбрать момент (см. J).</p>
+<h3 id="j-0014-c3-pass-apply-resolvesaveends-tick">J. Совместимость с 0014 C3 (три pass: apply → resolveSaveEnds → tick)<a class="headerlink" href="#j-0014-c3-pass-apply-resolvesaveends-tick" title="Permanent link">&para;</a></h3>
+<p><strong>J1 — смерть на 6 в конце хода</strong> (после tick, как результат накопления).
+- <code>+</code> Консистентно с 0014 порядком; смерть не обрывает ход на полпути.
+- <code>−</code> Отложенный эффект может показаться «несработавшим».</p>
+<p><strong>J2 — смерть немедленно при достижении 6.</strong>
+- <code>+</code> Ощутимо сразу; канон (мгновенная смерть).
+- <code>−</code> Требует обрыва цепочки <code>StateChange</code> внутри хода.</p>
+<h3 id="k-exhaustionresolver-advdisadvantageresolver-0013-f1">K. Связь ExhaustionResolver с AdvDisadvantageResolver (0013 F1)<a class="headerlink" href="#k-exhaustionresolver-advdisadvantageresolver-0013-f1" title="Permanent link">&para;</a></h3>
+<p><strong>K1 — composition в точке вызова</strong> — в <code>resolveCheck</code>/<code>resolveAttack</code>/<code>resolvePlayerSave</code>:
+<code>hasAdv = AdvDisadvantageResolver.of(c) || ExhaustionResolver.effectsFor(c.exhaustion).disadvantageChecks</code>.
+<code>AdvDisadvantageResolver</code> не расширяем.
+- <code>+</code> Независимые источники, тестируемо, не ломает 0013.
+- <code>−</code> 3–4 точки вызова должны явно композировать.</p>
+<p><strong>K2 — <code>ExhaustionEffects</code> передаётся внутрь <code>AdvDisadvantageResolver</code></strong> как дополнительный вход.
+- <code>+</code> Единая точка помехи.
+- <code>−</code> <code>AdvDisadvantageResolver</code> начинает знать про exhaustion, семантически смешивает источники.</p>
+<p><strong>K3 — exhaustion конвертируется в virtual <code>StatusId</code></strong> (напр. <code>VIRTUAL_EXHAUSTED_L1</code>).
+- <code>−</code> Противоречит Untouched 0013 (exhaustion не <code>StatusId</code>). <strong>НЕ РЕКОМЕНДУЕТСЯ.</strong></p>
+<h2 id="consequences">Consequences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Положительные<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Шкала начинает работать: L1 (checks), L3 (attacks+saves), L4 (maxHp) — реализуемы сейчас.</li>
+<li>Интерфейс роста задан: <code>StateChange.GainExhaustion</code> (D1) — источники подключатся позже
+  без переделки контракта.</li>
+<li>Унификация long rest (F1) устраняет дубль декремента (RestService vs SessionService).</li>
+<li>Декларативные эффекты через <code>ExhaustionResolver.effectsFor(level)</code> (B1) — один источник истины.</li>
+<li>Composition с <code>AdvDisadvantageResolver</code> (K1) — независимые источники помехи, тестируемо.</li>
+</ul>
+<h3 id="_5">Отрицательные<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>L2/L5 (speed) мёртвые до реализации 0010 §5.</li>
+<li>Источники роста (spells/monsters/hard-rest) — ФАЗА 2/3; до этого шкала «только на убывание».</li>
+<li>L4 (maxHp halved) требует расчёта производного maxHp — в TurnResolver или SessionService
+  (уточнить при реализации).</li>
+</ul>
+<h3 id="_6">Риски<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>K1 — легко забыть composition в одном из 4 мест. Митигация: unit-тест «exhaustion=3 даёт
+  disadvantage на attack и save».</li>
+<li>Унификация long rest — риск сломать существующий путь. Митигация: <code>RestServiceTest</code> уже покрывает.</li>
+</ul>
+<h3 id="_7">Отложено<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>F2 (еда/питьё), G2 (иммунитеты), L2/L5 (speed), D-продюсеры (spells/monsters),
+  D2 (RestEngine голода/жажды).</li>
+</ul>
+<h2 id="untouched-in-this-adr">Untouched in this ADR<a class="headerlink" href="#untouched-in-this-adr" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>StatusId</code>/<code>ConditionRegistry</code>/<code>StatusInstance</code> (0013, 0014) — истощение туда <strong>не</strong> добавляется.</li>
+<li>Speed-модель (0010 §5) — уровни 2/5 зависят от неё, но сама она вне объёма этой ADR.</li>
+<li>Источники роста (spells, monsters, hard-rest) — ФАЗА 2/3.</li>
+<li>Mana и другие ресурсы классов (следующая ADR-0016).</li>
+<li>Dispel Magic (отложено в 0014 F3).</li>
+<li>Голод/жажда/климат как самостоятельный RestEngine (см. D2 — вне объёма).</li>
+<li>Модель провизии (для F2) — вне объёма.</li>
+</ul>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ADR-0010 §5 (движение, <code>speed</code>, <code>SpeedResolver</code>) — Proposed.</li>
+<li>ADR-0013 (ядро состояний, <code>StatusId</code>/<code>kind</code>, Untouched-исключение истощения).</li>
+<li>ADR-0014 (duration/lifecycle, три pass C3).</li>
+<li>ADR-0012 (урон/смерть, <code>CharacterDeadException</code>).</li>
+<li>PHB p.291 (Exhaustion, SRD).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/GameState.kt</code> (<code>exhaustion:374</code>, <code>require:523</code>).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/RestService.kt</code> (<code>applyLongRest:80-111</code>).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt</code> (<code>StateChange.LongRest:2571-2587</code>).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/TurnResolver.kt</code> (<code>hasDisadvantageOnChecks:2312</code>, <code>hasDisadvantageOnAttacks:2318</code>).</li>
+<li><code>backend/app/src/main/kotlin/com/yorva/rules/SavingThrowResolver.kt</code> (<code>resolvePlayerSave:22</code>).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

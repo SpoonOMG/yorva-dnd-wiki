@@ -1,0 +1,2120 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/design/character-creation-ux/">
+      
+      
+        <link rel="prev" href="../visual-concept/">
+      
+      
+        <link rel="next" href="../chat-ux-deep-dive/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Создание персонажа - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docsdesigncharacter-creation-uxmd-ux-mvp" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Создание персонажа
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Продуктовое решение (зафиксировано, не пересматривать без запроса)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Текущий пробел, который экран должен закрыть
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Состав экрана
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Состав экрана">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Нарративный блок
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-point-buy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Механический блок — point-buy атрибутов (обновлено)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Итоговая проверка перед стартом
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-bg3-style-mvp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Портретная рамка (BG3-style), MVP-версия
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ux-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. UX-флоу
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Состояния и границы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-llm-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Влияние на нарратив (интеграция с LLM-контекстом)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Контракт API (что меняется)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Открытые вопросы (не решаю в одиночку)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Что осознанно не делаем в MVP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Критерий готовности
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Продуктовое решение (зафиксировано, не пересматривать без запроса)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Текущий пробел, который экран должен закрыть
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Состав экрана
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Состав экрана">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Нарративный блок
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-point-buy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Механический блок — point-buy атрибутов (обновлено)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Итоговая проверка перед стартом
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-bg3-style-mvp-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Портретная рамка (BG3-style), MVP-версия
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ux-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. UX-флоу
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Состояния и границы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-llm-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Влияние на нарратив (интеграция с LLM-контекстом)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Контракт API (что меняется)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Открытые вопросы (не решаю в одиночку)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Что осознанно не делаем в MVP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Критерий готовности
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="docsdesigncharacter-creation-uxmd-ux-mvp">docs/design/character-creation-ux.md — UX экрана создания персонажа (MVP)<a class="headerlink" href="#docsdesigncharacter-creation-uxmd-ux-mvp" title="Permanent link">&para;</a></h1>
+<p>Автор: Visual/UX Designer. Реализация — Frontend + Backend Engineer.
+Продуктовое решение (нарратив vs механика) подтверждено пользователем по
+согласованию со стратегией (<code>strategy-docs/product-strategy.md</code> §4, §7) —
+см. раздел 1.</p>
+<h2 id="1">1. Продуктовое решение (зафиксировано, не пересматривать без запроса)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>Вопрос был: полноценная D&amp;D-система классов/рас с механическими способностями,
+или нарративная идентичность персонажа? Ответ вывели из стратегии, не гадали:</p>
+<ul>
+<li>Персона A («геймер из BG3», основной сегмент) ждёт <strong>нарративной глубины</strong>
+  (последствия выбора, память мира), не механической (<code>product-strategy.md</code>
+  §4: <em>«глубина = нарративная, не механическая»</em>).</li>
+<li>Rules-engine существует для <strong>честности последствий</strong> (бросок решает исход
+  по-настоящему), не для конструирования билда персонажа — полная система
+  классов/рас с способностями по уровням прямо отнесена к «не входит в MVP»
+  (<code>docs/game-design/rules.md</code>).</li>
+<li>Раса/класс/фракция должны работать в <strong>любом жанре мира</strong> (сайфай, хоррор),
+  что исключает фиксированный D&amp;D-список рас (эльф/дворф) — противоречит
+  жанро-реактивности (<code>docs/design/visual-concept.md</code> §4).</li>
+</ul>
+<p><strong>Итог:</strong> раса/класс/фракция/история — свободный текст, интерпретируется LLM
+как контекст персонажа, не создаёт новых механических правил. Единственная
+механическая часть экрана — распределение атрибутов (см. §3), потому что от
+них зависят реальные броски (<code>docs/game-design/rules.md</code> — «Проверка
+характеристики: d20 + модификатор против DC»).</p>
+<h2 id="2">2. Текущий пробел, который экран должен закрыть<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p><code>SessionService.create</code> (backend) сейчас создаёт персонажа жёстко:
+<code>CharacterState(hp = 20, maxHp = 20)</code> — все атрибуты дефолтные (10, модификатор
+0), HP не связан с CON. <code>CreateSessionRequest</code> принимает только <code>worldId</code> +
+<code>characterName</code>. Экран создания персонажа — то, что должно передавать реальные
+данные вместо хардкода.</p>
+<h2 id="3">3. Состав экрана<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 Нарративный блок<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Обязательно</th>
+<th>Placeholder-подсказка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Имя</td>
+<td>да</td>
+<td>«Как зовут твоего героя?»</td>
+</tr>
+<tr>
+<td>Пол</td>
+<td>да</td>
+<td>Мужской / Женский / Не указывать — влияет на выбор силуэта портрета (§3.4), не на механику</td>
+</tr>
+<tr>
+<td>Происхождение/раса</td>
+<td>нет</td>
+<td>«Кто он? Человек, изгнанный дух, потомок древнего рода — опиши как хочешь»</td>
+</tr>
+<tr>
+<td>Класс/архетип</td>
+<td>нет</td>
+<td>«Чем он владеет? Воин, тень-клинок, механик-изобретатель — не ограничивай себя»</td>
+</tr>
+<tr>
+<td>Фракция/принадлежность</td>
+<td>нет</td>
+<td>«Кому он служит или против кого идёт? (необязательно)»</td>
+</tr>
+<tr>
+<td>История (backstory)</td>
+<td>нет</td>
+<td>«Пара предложений о его прошлом — мастер будет помнить это»</td>
+</tr>
+</tbody>
+</table>
+<p>Свободные поля не валидируются по содержанию (это не форма с проверкой
+«существует ли такая раса») — единственная валидация: непустое имя, разумный
+лимит длины (совпадает с общим подходом к другим текстовым полям в продукте,
+см. <code>CreateWorldRequest.description</code>). Пол — закрытый выбор (не текст), так
+как влияет на визуальный выбор силуэта, а не является предметом свободного
+творчества как раса/класс.</p>
+<h3 id="32-point-buy">3.2 Механический блок — point-buy атрибутов (обновлено)<a class="headerlink" href="#32-point-buy" title="Permanent link">&para;</a></h3>
+<p><strong>Изменение от первой версии брифа:</strong> вместо фиксированного standard array
+(15/14/13/12/10/8, один шаблон распределения) — <strong>point-buy по правилам D&amp;D
+5e SRD</strong> (<code>docs/game-design/rules.md</code>, обновлено). Игрок распоряжается
+бюджетом 27 очков свободно, а не просто раскладывает готовый набор чисел —
+это даёт реальную свободу билда (например, «маг» — высокий Интеллект и низкая
+Сила, «воин» — наоборот), чего standard array не позволял (набор чисел был
+фиксирован, менялось только их расположение).</p>
+<p>Таблица стоимости (нелинейная, официальный SRD):</p>
+<table>
+<thead>
+<tr>
+<th>Значение атрибута</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+<th>12</th>
+<th>13</th>
+<th>14</th>
+<th>15</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Стоимость (очки)</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>7</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Взаимодействие:</strong> каждый из 6 атрибутов — блок с текущим значением (старт
+8) и кнопками <code>−</code>/<code>+</code>. <code>+</code> увеличивает значение на 1, если это не превышает
+15 и в бюджете хватает очков (проверяется по нелинейной стоимости следующего
+шага, не текущего). <code>−</code> уменьшает, возвращая потраченные очки. Наверху —
+счётчик «Осталось очков: N из 27», обновляется живо.</p>
+<p>Под каждым атрибутом — живой модификатор (<code>(value-10)/2</code>, округление вниз) —
+как и раньше, для прозрачности эффекта.</p>
+<p><strong>HP предпросмотр:</strong> та же логика — «Здоровье: 10 + модификатор Телосложения
+= N», обновляется по мере изменения Телосложения.</p>
+<p>Кнопка «Начать игру» активна не при полном распределении бюджета (в отличие
+от standard array, где распределялись все 6 чисел обязательно) — игрок может
+не тратить весь бюджет, если не хочет (менее оптимальный, но не запрещённый
+билд). Валидируется только: каждое значение в [8, 15], суммарная стоимость
+≤ 27.</p>
+<h3 id="33">3.3 Итоговая проверка перед стартом<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>Компактная сводка (карточка-резюме) перед кнопкой «Начать игру»: имя, один
+заполненный нарративный тег (класс или раса, что заполнено), 6 атрибутов с
+модификаторами, HP. Это последний шанс поправить перед тем, как персонаж
+уйдёт в бой — соответствует принципу «не отправлять непроверяемое сразу».</p>
+<h3 id="34-bg3-style-mvp-">3.4 Портретная рамка (BG3-style), MVP-версия<a class="headerlink" href="#34-bg3-style-mvp-" title="Permanent link">&para;</a></h3>
+<p>Справа от полей формы (десктоп) — фиксированная рамка портрета персонажа, как
+в character creation экранах BG3/D&amp;D Beyond. <strong>В этом MVP — не генерация, а
+силуэт-плейсхолдер</strong>, зависящий от выбранного пола (§3.1): нейтральный силуэт
+человека, отличающийся для мужского/женского/«не указывать» (третий вариант —
+андрогинный/абстрактный силуэт, не про пропуск отображения). Рамка стоит на
+месте всё время создания персонажа (оба шага), не только на шаге атрибутов —
+это тот самый визуальный якорь «вот мой герой», который должен присутствовать
+с первого поля (имени), а не появляться только в конце.</p>
+<p>Технически — статичный SVG/иллюстрация-заглушка (3 варианта по полу), без
+сетевого запроса. Никакой связи с будущим image-gen пайплайном
+(<code>docs/game-design/illustrations.md</code>) в этом шаге не создаётся — только
+визуальное место, куда позже подставится сгенерированный портрет. Формат
+промпта для генерации (что именно уйдёт в image-модель на основе пола +
+нарративных полей) — отдельная задача, не в этом MVP (см. §8).</p>
+<h2 id="4-ux-">4. UX-флоу<a class="headerlink" href="#4-ux-" title="Permanent link">&para;</a></h2>
+<ol>
+<li>На <code>/worlds</code> клик «Играть» на карточке мира (текущая точка входа) открывает
+   не форму «введи имя» (как сейчас), а полноценный экран/шаг создания
+   персонажа — замена текущего компактного модального окна.</li>
+<li>Экран организован как <strong>мастер из 2 шагов</strong> внутри одного модалього
+   контейнера (не отдельная страница — сохраняем текущий паттерн <code>Modal</code>, но
+   расширяем контент):</li>
+<li>Шаг 1 — нарративная идентичность (§3.1).</li>
+<li>Шаг 2 — распределение атрибутов (§3.2) + сводка (§3.3).
+   Переключение — кнопки «Далее»/«Назад», без потери введённых данных при
+   возврате.</li>
+<li>Отправка → <code>POST /api/v1/sessions</code> с полным пейлоадом → редирект в чат
+   (как сейчас).</li>
+</ol>
+<p>Почему 2 шага, а не всё на одном экране: нарративные поля (много текстовых
+инпутов) и распределение атрибутов (интерактивный виджет) визуально и
+когнитивно разные задачи — смешивание на одном экране увеличивает нагрузку
+именно в точке первого касания игры (риск отказа до первого хода, что прямо
+противоречит north-star «% дошедших до 10-го хода» — если человек не пройдёт
+даже создание персонажа, до 10-го хода он не дойдёт вовсе).</p>
+<h2 id="5">5. Состояния и границы<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Состояние</th>
+<th>Поведение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Бюджет point-buy превышен (игрок жмёт <code>+</code> при 0 очков)</td>
+<td>Кнопка <code>+</code> неактивна/не даёт превысить 27; счётчик «Осталось: N из 27» краснеет при 0</td>
+</tr>
+<tr>
+<td>Атрибут на 15 (верхняя граница)</td>
+<td>Кнопка <code>+</code> неактивна для этого атрибута</td>
+</tr>
+<tr>
+<td>Атрибут на 8 (нижняя граница)</td>
+<td>Кнопка <code>−</code> неактивна для этого атрибута</td>
+</tr>
+<tr>
+<td>Имя не заполнено / пол не выбран (шаг 1)</td>
+<td>«Далее» неактивна</td>
+</tr>
+<tr>
+<td>Возврат с шага 2 на шаг 1</td>
+<td>Введённые нарративные поля и пол сохраняются</td>
+</tr>
+<tr>
+<td>Ошибка сети при отправке</td>
+<td>Тот же паттерн, что в чате (<code>docs/design/chat-ux-deep-dive.md</code> §5.2) — не терять заполненные данные, дать повторить</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-llm-">6. Влияние на нарратив (интеграция с LLM-контекстом)<a class="headerlink" href="#6-llm-" title="Permanent link">&para;</a></h2>
+<p><code>ContextBuilder.buildUserPrompt</code> уже собирает блоки детерминированно (сеттинг →
+резюме → факты → ledger → история → действие). Новый блок «Описание
+персонажа» добавляется сразу после сеттинга мира — то есть до истории ходов,
+как статичный контекст личности, на которую опирается каждый последующий ход,
+не только первый. Формат — простой текст (не JSON), состоящий из
+непустых полей: имя, происхождение, класс, фракция, история. Это не создаёт
+новых механических правил — LLM использует это так же, как сеттинг мира,
+для тона и деталей нарратива.</p>
+<p>Это меняет <code>TurnContext</code> (добавить <code>characterDescription: String?</code>) — вопрос
+к LLM Engineer только по формулировке/месту в промпте, не по решению «делать
+или нет» (решение уже принято здесь).</p>
+<h2 id="7-api">7. Контракт API (что меняется)<a class="headerlink" href="#7-api" title="Permanent link">&para;</a></h2>
+<p><code>CreateSessionRequest</code> в <code>api-specification/openapi.yaml</code> — добавить
+опциональные нарративные поля, обязательные пол и распределение атрибутов:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">CreateSessionRequest</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">worldId</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">characterName</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">gender</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">attributes</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">properties</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">worldId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">characterName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
+<span class="w">    </span><span class="nt">gender</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">string</span><span class="p p-Indicator">,</span><span class="nt"> enum</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">male</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">female</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">unspecified</span><span class="p p-Indicator">]}</span>
+<span class="w">    </span><span class="nt">origin</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">string</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">'null'</span><span class="p p-Indicator">]}</span><span class="w">       </span><span class="c1"># раса/происхождение</span>
+<span class="w">    </span><span class="nt">characterClass</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">string</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">'null'</span><span class="p p-Indicator">]}</span><span class="w"> </span><span class="c1"># класс/архетип</span>
+<span class="w">    </span><span class="nt">faction</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">string</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">'null'</span><span class="p p-Indicator">]}</span>
+<span class="w">    </span><span class="nt">backstory</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">string</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">'null'</span><span class="p p-Indicator">]}</span>
+<span class="w">    </span><span class="nt">attributes</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">$ref</span><span class="p">:</span><span class="w"> </span><span class="s">'#/components/schemas/Attributes'</span><span class="w">  </span><span class="c1"># уже существует в схеме</span>
+</code></pre></div>
+<p><code>Attributes</code> уже есть в спеке (используется в <code>CharacterState</code>) — переиспользуем,
+не создаём новую схему. Backend валидирует point-buy, а не фиксированный
+набор: каждое значение в [8, 15], суммарная стоимость по SRD-таблице ≤ 27 —
+если игрок прислал что-то другое (обман через прямой вызов API) — <code>400</code>.</p>
+<p><code>SessionService.create</code> — вместо хардкода <code>CharacterState(hp=20, maxHp=20)</code>
+строит атрибуты из запроса, HP считает по формуле <code>10 + conMod</code>, сохраняет
+нарративные поля персонажа и пол.</p>
+<h2 id="8">8. Открытые вопросы (не решаю в одиночку)<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Вопрос</th>
+<th>Кому</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Точный лимит длины backstory (токенный бюджет контекста ограничен, <code>context-assembly.md</code> — «Сеттинг + резюме»: 300–500 токенов, backstory туда же попадёт)</td>
+<td>LLM Engineer</td>
+</tr>
+<tr>
+<td>Как пол попадает в будущий промпт генерации портрета (какой конкретно текст/image-модель) — отдельная задача image-gen пайплайна, не этого MVP</td>
+<td>LLM Engineer / Game Design</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-mvp">9. Что осознанно не делаем в MVP<a class="headerlink" href="#9-mvp" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Реальная генерация портрета</strong> (image-gen по промпту) — только силуэт-
+  плейсхолдер в рамке (§3.4). Сам image-gen пайплайн
+  (<code>docs/game-design/illustrations.md</code>) — отдельная фича.</li>
+<li>Проверка «существует ли такая раса в этом мире» (семантическая валидация
+  текста через LLM на этапе создания) — избыточно для MVP, обычная свобода
+  текста без проверки.</li>
+<li>Механические бонусы класса/расы к атрибутам (например, +2 Сила у «воина») —
+  осознанно нет: это уже механическое углубление, которое стратегия для MVP
+  не обещает (см. §1).</li>
+<li>Настраиваемое ограничение «остались неиспользованные очки» (мягкое
+  предупреждение, что билд не оптимален) — не блокирует отправку.</li>
+</ul>
+<h2 id="10">10. Критерий готовности<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Клик «Играть» открывает 2-шаговый экран вместо текущего простого поля «имя».</li>
+<li>Справа в обоих шагах — портретная рамка с силуэтом, меняющимся по полу.</li>
+<li>Пол выбирается на шаге 1 (обязательно, 3 варианта).</li>
+<li>Атрибуты распределяются point-buy: бюджет 27, нелинейные цены SRD, значения
+  8–15, счётчик остатка очков живёт и блокирует невалидные действия.</li>
+<li>HP при старте сессии реально вычисляется из CON, а не хардкод 20.</li>
+<li>Нарративные поля и пол видны в промпте LLM (можно проверить
+  логированием/stub-ответом).</li>
+<li><code>npm run build</code> и <code>./gradlew :app:test</code> проходят.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="../visual-concept/" class="md-footer__link md-footer__link--prev" aria-label="Назад: Визуальная концепция">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Визуальная концепция
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chat-ux-deep-dive/" class="md-footer__link md-footer__link--next" aria-label="Вперед: Чат">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Чат
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

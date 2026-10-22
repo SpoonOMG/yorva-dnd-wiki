@@ -1,0 +1,1838 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/spell-review/chek-lists/audit/audit-15-inventory/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Аудит: Инвентарь (Inventory, equip/unequip, ItemProperty, weapon/armor type, начальное снаряжение) - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#inventory-equipunequip-itemproperty-weaponarmor-type" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Аудит: Инвентарь (Inventory, equip/unequip, ItemProperty, weapon/armor type, начальное снаряжение)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Вердикт
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фактура из кода
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Фактура из кода">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#151-inventoryitem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.1 Модель InventoryItem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#152" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.2 Перечни
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#153-equip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.3 Классификация и парсинг EQUIP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#154-equipunequip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.4 Резолв equip/unequip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#155-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.5 Слот-эксклюзивность
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#156-two_handed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.6 Двуручное оружие (TWO_HANDED)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#157" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.7 Выдача предметов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#158" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.8 Категоризация выдаваемых предметов
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#159" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.9 Начальное снаряжение
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1510" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.10 Якоря экипировки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1511" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.11 Расчётные бонусы от экипировки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1512-action-economy-equip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.12 Action economy для EQUIP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1513-ui-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15.13 UI-взаимодействие
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Открытые вопросы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сводка
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="inventory-equipunequip-itemproperty-weaponarmor-type">Аудит: Инвентарь (Inventory, equip/unequip, ItemProperty, weapon/armor type, начальное снаряжение)<a class="headerlink" href="#inventory-equipunequip-itemproperty-weaponarmor-type" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Дата: 2026-09-15
+База: нет (область без чек-листа)
+Роль: технический аудитор. Канон: D&amp;D 5e SRD. Режим: только фактура, без оценок.</p>
+</blockquote>
+<h2 id="_1">Вердикт<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Подблок</th>
+<th style="text-align: left;">Статус</th>
+<th style="text-align: left;">Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">15.1 Модель <code>InventoryItem</code></td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;">13 полей (<code>GameState.kt:231-267</code>); <code>properties</code> и <code>useAction</code> в проде не заполняются</td>
+</tr>
+<tr>
+<td style="text-align: left;">15.2 Перечни <code>ItemCategory</code>/<code>EquipSlot</code>/<code>ItemProperty</code>/<code>ItemBonuses</code>/<code>ItemRarity</code></td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;"><code>EquipSlot.OFF_HAND</code> есть, но ни одна <code>ItemCategory</code> в него не маппится (<code>GameState.kt:169-194</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">15.3 Классификация и парсинг EQUIP</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>ActionParser.kt:618-622,673-674</code>, <code>CatalogClassifier.kt:217</code>, диспетчер <code>TurnResolver.kt:515</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">15.4 Резолв equip/unequip</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>resolveEquip</code>/<code>buildEquipMechanics</code> <code>TurnResolver.kt:2147-2201</code>; поиск <code>ItemSearch.kt:13-27</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">15.5 Слот-эксклюзивность</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;">один слот — один предмет <code>SessionService.kt:3154-3161</code>; unit-тест <code>ApplyEquipToInventoryTest.kt:38-44</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">15.6 Двуручное оружие (<code>TWO_HANDED</code>)</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;">ветка <code>SessionService.kt:3162-3172</code> есть, но <code>properties</code> всегда пуст → недостижима</td>
+</tr>
+<tr>
+<td style="text-align: left;">15.7 Выдача предметов (<code>GRANT_ITEM</code>/<code>GRANT_UNIQUE</code>/<code>TAKE_LOOT</code>/<code>PickUpItem</code>)</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>SessionService.kt:1203-1284</code>, <code>GameState.kt:1139-1156</code>, лут <code>TurnResolver.kt:1314-1317</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">15.8 Категоризация выдаваемых предметов</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;">эвристика по имени <code>ItemCategoryInference.kt:10</code>, иначе <code>MISC</code> (<code>SessionService.kt:2664</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">15.9 Начальное снаряжение</td>
+<td style="text-align: left;">❌</td>
+<td style="text-align: left;"><code>classes.yml:startingEquipment</code> и <code>ItemCatalogService.startingInventory</code> без потребителя; <code>grantStarterEquipment</code> хардкодит меч+броню (<code>SessionService.kt:1911-1921</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">15.10 Якоря экипировки</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>EquipmentAnchorService.kt:70-81</code>, <code>equipmentAnchorItemNames</code> <code>SessionService.kt:3131-3141</code>, эмиссия <code>:1529-1537</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">15.11 Расчётные бонусы от экипировки</td>
+<td style="text-align: left;">⚠️</td>
+<td style="text-align: left;"><code>effectiveAc</code>/<code>effectiveAttributes</code> учитывают только предметы со слотом (<code>GameState.kt:559-603</code>); MISC ничего не даёт</td>
+</tr>
+<tr>
+<td style="text-align: left;">15.12 Action economy для EQUIP</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>TurnResolver.kt:395</code> (ACTION) + <code>action_economy.yml</code> (<code>:370-381</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;">15.13 UI-взаимодействие</td>
+<td style="text-align: left;">✅</td>
+<td style="text-align: left;"><code>CharacterPanel.tsx:34-67,469-531</code>, <code>FunctionalPanel.tsx:28-35,118-141</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">Фактура из кода<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="151-inventoryitem">15.1 Модель <code>InventoryItem</code><a class="headerlink" href="#151-inventoryitem" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>backend/app/src/main/kotlin/com/yorva/rules/GameState.kt:231-267</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">InventoryItem</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">quantity</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UUID</span><span class="p">.</span><span class="na">randomUUID</span><span class="p">().</span><span class="na">toString</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">category</span><span class="p">:</span><span class="w"> </span><span class="n">ItemCategory?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">          </span><span class="c1">// null = legacy без категории</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">rarity</span><span class="p">:</span><span class="w"> </span><span class="n">ItemRarity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ItemRarity</span><span class="p">.</span><span class="na">COMMON</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">iconKey</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">weight</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">value</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">useAction</span><span class="p">:</span><span class="w"> </span><span class="n">UseAction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UseAction</span><span class="p">.</span><span class="na">ACTION</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">properties</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ItemProperty</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emptyList</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">bonuses</span><span class="p">:</span><span class="w"> </span><span class="n">ItemBonuses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ItemBonuses</span><span class="p">(),</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">equipped</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">description</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">""</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">damageDice</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+- <code>effectiveDamageDice</code> (<code>:259-266</code>): <code>damageDice</code> (regex <code>\d+d\d+</code>) → RANGED <code>1d8</code> → MELEE <code>1d6</code> → MISC с <code>weight&gt;=1.0 || damageBonus&gt;0</code> → <code>1d4</code> → иначе <code>1d4</code>.
+- <code>defaultDamageDiceFor(category)</code> (<code>:270-275</code>): RANGED <code>1d8</code>, MELEE <code>1d6</code>, MISC/прочее <code>1d4</code>.
+- <code>isWeapon()</code> (<code>:278-282</code>): MELEE/RANGED → true; MISC → <code>weight&gt;=1.0 || damageBonus&gt;0 || properties.isNotEmpty()</code>.
+- <code>useAction</code> — тип объявлен (<code>UseAction</code>, <code>:218-224</code>), но в backend-коде <strong>не читается</strong> (grep <code>useAction</code> вне <code>GameState.kt</code> — нет совпадений); во фронте только тип <code>frontend/lib/api.ts:185</code>.
+- <code>properties</code> — заполняется только в тестах (<code>ApplyEquipToInventoryTest.kt:26</code>); в prod-коде нигде не присваивается (grep <code>.properties</code> — только чтение: <code>TurnResolver.kt:1657,1667</code>, <code>SessionService.kt:768,3162</code>).</p>
+<h3 id="152">15.2 Перечни<a class="headerlink" href="#152" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/GameState.kt:158-229</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ItemRarity</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">label</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">visualWeight</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">bonusMultiplier</span><span class="p">:</span><span class="w"> </span><span class="kt">Double</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">COMMON</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"> </span><span class="n">UNCOMMON</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span><span class="n">RARE</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">2.0</span><span class="p">),</span><span class="w"> </span><span class="n">EPIC</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">3.0</span><span class="p">),</span><span class="w"> </span><span class="n">LEGENDARY</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5.0</span><span class="p">),</span>
+<span class="p">}</span><span class="w">                                                                    </span><span class="c1">// :158-164</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ItemCategory</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">label</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">slot</span><span class="p">:</span><span class="w"> </span><span class="n">EquipSlot?</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="c1">// :169-181</span>
+<span class="w">    </span><span class="n">MELEE_WEAPON</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">MAIN_HAND</span><span class="p">;</span><span class="w"> </span><span class="n">RANGED_WEAPON</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">MAIN_HAND</span><span class="p">;</span>
+<span class="w">    </span><span class="n">HELMET</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">HEAD</span><span class="p">;</span><span class="w"> </span><span class="n">BODY_ARMOR</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">CHEST</span><span class="p">;</span><span class="w"> </span><span class="n">BOOTS</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">FEET</span><span class="p">;</span>
+<span class="w">    </span><span class="n">RING</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">RING</span><span class="p">;</span><span class="w"> </span><span class="n">AMULET</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="n">NECK</span><span class="p">;</span>
+<span class="w">    </span><span class="n">POTION</span><span class="p">,</span><span class="w"> </span><span class="n">SCROLL</span><span class="p">,</span><span class="w"> </span><span class="n">EXPLOSIVE</span><span class="p">,</span><span class="w"> </span><span class="n">MISC</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="kc">null</span>
+<span class="p">}</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">EquipSlot</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">HEAD</span><span class="p">,</span><span class="w"> </span><span class="n">CHEST</span><span class="p">,</span><span class="w"> </span><span class="n">FEET</span><span class="p">,</span><span class="w"> </span><span class="n">MAIN_HAND</span><span class="p">,</span><span class="w"> </span><span class="n">OFF_HAND</span><span class="p">,</span><span class="w"> </span><span class="n">RING</span><span class="p">,</span><span class="w"> </span><span class="n">NECK</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// :186-194</span>
+<span class="kd">enum</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ItemProperty</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">LIGHT</span><span class="p">,</span><span class="w"> </span><span class="n">HEAVY</span><span class="p">,</span><span class="w"> </span><span class="n">FINESSE</span><span class="p">,</span><span class="w"> </span><span class="n">REACH</span><span class="p">,</span><span class="w"> </span><span class="n">TWO_HANDED</span><span class="p">,</span><span class="w"> </span><span class="n">VERSATILE</span><span class="p">,</span><span class="w"> </span><span class="n">THROWN</span><span class="p">,</span><span class="w"> </span><span class="n">AMMUNITION</span><span class="p">,</span><span class="w"> </span><span class="n">LOADING</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// :227-229</span>
+<span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ItemBonuses</span><span class="p">(</span>
+<span class="w">    </span><span class="n">damageBonus</span><span class="p">,</span><span class="w"> </span><span class="n">acBonus</span><span class="p">,</span><span class="w"> </span><span class="n">attackBonus</span><span class="p">,</span><span class="w"> </span><span class="n">strBonus</span><span class="p">,</span><span class="w"> </span><span class="n">dexBonus</span><span class="p">,</span><span class="w"> </span><span class="n">conBonus</span><span class="p">,</span><span class="w"> </span><span class="n">intBonus</span><span class="p">,</span><span class="w"> </span><span class="n">wisBonus</span><span class="p">,</span><span class="w"> </span><span class="n">chaBonus</span><span class="p">,</span><span class="w"> </span><span class="n">hpBonus</span><span class="p">,</span><span class="w"> </span><span class="n">manaBonus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">isEmpty</span><span class="w"> </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ItemBonuses</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w">                       </span><span class="c1">// :200-215</span>
+</code></pre></div>
+- <code>EquipSlot.OFF_HAND</code> не используется ни одной <code>ItemCategory</code> (щит отдельной категорией отсутствует).
+- <code>ItemBonuses.hpBonus</code>/<code>manaBonus</code> не участвуют в <code>effectiveAc</code>/<code>effectiveAttributes</code> (последние суммируют только <code>acBonus</code> и шесть статов).</p>
+<h3 id="153-equip">15.3 Классификация и парсинг EQUIP<a class="headerlink" href="#153-equip" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/ActionParser.kt</code>, <code>rules/CatalogClassifier.kt</code>, <code>rules/TurnResolver.kt</code>.
+- <code>ActionParser.tryHardOverride</code> → <code>EQUIP</code> (<code>ActionParser.kt:618-622</code>, legacy <code>:269-270</code>); <code>EQUIP_PATTERN</code> (<code>:673</code>), <code>UNEQUIP_PATTERN</code> (<code>:674</code>; также <code>TurnResolver.kt:3069</code>).
+- Маппинг интента классификатора: <code>CatalogClassifier.kt:217</code>, DSL-теги <code>ActionParser.kt:546-547,578-579</code>, путь классификатора <code>:647</code>.
+- Диспетчер: <code>TurnResolver.kt:515</code> → <code>resolveEquip(action, actionLower, character, target)</code>.
+- <code>IntentValidator</code> (<code>intent/IntentValidator.kt:120-131</code>): <code>target.id</code> сверяется с каноничными именами инвентаря (exact, ignoreCase); <code>method.id</code> — с <code>inventoryCategories</code> (этап 27.2).</p>
+<h3 id="154-equipunequip">15.4 Резолв equip/unequip<a class="headerlink" href="#154-equipunequip" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/TurnResolver.kt:2147-2201</code>; <code>rules/ItemSearch.kt:13-27</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">resolveEquip</span><span class="p">(</span><span class="n">action</span><span class="p">,</span><span class="w"> </span><span class="n">actionLower</span><span class="p">,</span><span class="w"> </span><span class="n">character</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">):</span><span class="w"> </span><span class="n">TurnMechanics</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">isUnequip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UNEQUIP_PATTERN</span><span class="p">.</span><span class="na">containsMatchIn</span><span class="p">(</span><span class="n">actionLower</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findEquipTarget</span><span class="p">(</span><span class="n">character</span><span class="p">.</span><span class="na">inventory</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">actionLower</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">TurnMechanics</span><span class="p">(</span><span class="s">"equip"</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Предмет не найден в инвентаре"</span><span class="p">,</span><span class="w"> </span><span class="n">consumesAction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">buildEquipMechanics</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="w"> </span><span class="n">isUnequip</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<code>buildEquipMechanics</code> (<code>:2166-2201</code>): идемпотентность вместо toggle — снятие ненадетого → <code>"«X» не надета"</code>, <code>consumesAction=false</code>; надевание надетого → no-op, <code>consumesAction=false</code>; иначе <code>StateChange.EquipItem</code>/<code>UnequipItem</code> с <code>consumesAction=true</code>.
+<code>findEquipTarget</code>: точное совпадение <code>target</code> (ignoreCase) → вхождение полного имени в текст → совпадение слова имени длиной &gt;3 символов; частичного совпадения по <code>target</code> нет (комментарий <code>ItemSearch.kt:6-11</code>).</p>
+<h3 id="155-">15.5 Слот-эксклюзивность<a class="headerlink" href="#155-" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>sessions/SessionService.kt:3149-3175</code> (чистая функция), вызов <code>:2322</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">slot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toEquip</span><span class="p">.</span><span class="na">category</span><span class="o">?.</span><span class="na">slot</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">result</span><span class="p">.</span><span class="na">indices</span><span class="p">.</span><span class="na">forEach</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">category</span><span class="o">?.</span><span class="na">slot</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">slot</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">equipped</span><span class="p">)</span>
+<span class="w">            </span><span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">equipped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w">         </span><span class="c1">// :3154-3161</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+Предмет без слота (<code>POTION</code>/<code>SCROLL</code>/<code>EXPLOSIVE</code>/<code>MISC</code>) экипируется, никого не снимая (unit-тест <code>ApplyEquipToInventoryTest.kt:47-53</code>); неизвестное имя возвращает список без изменений (<code>:56-59</code>). <code>applyStateChanges</code> параллельно снимает якорь у разэкипированных и ставит <code>"_pending_&lt;name&gt;"</code> в слот нового (<code>SessionService.kt:2323-2332</code>); <code>slotName</code> (<code>:2505-2514</code>) маппит <code>EquipSlot</code> → <code>main_hand</code>/<code>off_hand</code>/… , <code>null</code> → <code>null</code>.</p>
+<h3 id="156-two_handed">15.6 Двуручное оружие (<code>TWO_HANDED</code>)<a class="headerlink" href="#156-two_handed" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>SessionService.kt:3162-3172</code>.
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">toEquip</span><span class="p">.</span><span class="na">properties</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">ItemProperty</span><span class="p">.</span><span class="na">TWO_HANDED</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">    </span><span class="p">(</span><span class="n">toEquip</span><span class="p">.</span><span class="na">category</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ItemCategory</span><span class="p">.</span><span class="na">MELEE_WEAPON</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">toEquip</span><span class="p">.</span><span class="na">category</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ItemCategory</span><span class="p">.</span><span class="na">RANGED_WEAPON</span><span class="p">)</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* снять всё остальное оружие из рук */</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<code>properties</code> нигде в проде не присваивается (см. 15.1), в БД <code>loot_items.properties</code> — «резерв, фаза противников» с <code>defaultValue: ""</code> (<code>0028-loot-catalog.yaml:22-26</code>), <code>LootShowcaseService.toInventoryItem</code> (<code>:199-212</code>) его не копирует. Ветка достижима только из unit-теста. Прочие свойства (<code>LIGHT</code>/<code>HEAVY</code>/<code>FINESSE</code>/<code>REACH</code>/<code>VERSATILE</code>/<code>THROWN</code>/<code>AMMUNITION</code>/<code>LOADING</code>) в логике экипировки не используются; <code>FINESSE</code> читается в расчёте атаки (<code>TurnResolver.kt:1657</code>, <code>SessionService.kt:768</code>), <code>TWO_HANDED</code> — в уроне (<code>TurnResolver.kt:1667</code>).</p>
+<h3 id="157">15.7 Выдача предметов<a class="headerlink" href="#157" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>sessions/SessionService.kt:1203-1284</code> (structured-ветка) и <code>:1250-1324</code> (legacy-теги); <code>rules/GameState.kt:1139-1156</code>.
+- <code>StateChange</code>: <code>GainItem</code> (<code>:1139</code>), <code>ConsumeItem</code> (<code>:1140</code>), <code>ItemDropped</code> (<code>:1142</code>), <code>PickUpItem</code> (<code>:1144</code>), <code>EquipItem</code> (<code>:1149</code>), <code>UnequipItem</code> (<code>:1151</code>), <code>UseInventoryItem</code> (<code>:1156</code>).
+- Structured: <code>narratorOutput.effects</code> фильтруются по <code>GRANT_ITEM</code>/<code>GRANT_UNIQUE</code> (<code>:1204</code>), резолв <code>resolveStructuredGrantItem</code> (<code>:2616-2625</code>) → гейт <code>lootGrantJustified</code> (<code>:1207</code>) → дедуп по имени (<code>:1224-1229</code>). <code>TAKE_LOOT</code> → <code>LootShowcaseService.toInventoryItem</code> (<code>:1214-1221</code>).
+- Legacy: <code>grantItemRegex</code> (<code>:2933</code>) / <code>grantUniqueRegex</code> (<code>:2936</code>) → <code>buildNarrativeItem</code> (<code>:2631</code>).
+- Фолбэк «дар NPC без тега» → <code>DroppedItem</code>, требующий «беру/подбираю» (<code>:1232-1242</code>), с ограничением по не-объектным действиям (<code>:1230</code>).
+- <code>PickUpItem</code> (<code>SessionService.kt:2310-2315</code>, <code>TurnResolver.kt:2490</code>): merge по совпадению имени или добавление.</p>
+<h3 id="158">15.8 Категоризация выдаваемых предметов<a class="headerlink" href="#158" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>sessions/ItemCategoryInference.kt:10</code>; вызов <code>SessionService.kt:2664</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">finalCat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inferCategoryFromName</span><span class="p">(</span><span class="n">itemName</span><span class="p">)</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">category</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="n">ItemCategory</span><span class="p">.</span><span class="na">MISC</span><span class="w">   </span><span class="c1">// :2664</span>
+</code></pre></div>
+Эвристика по имени (<code>ItemCategoryInference.kt:10</code>) — единственный источник категории при нарративной выдаче. От неё зависит <code>isWeapon()</code> и, соответственно, доступность атаки/бонусов. <code>buildNarrativeItem</code> (<code>:2631-2667</code>) также применяет таблицу силы по редкости.</p>
+<h3 id="159">15.9 Начальное снаряжение<a class="headerlink" href="#159" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>classes/CharacterClass.kt:15</code>, <code>classes/ClassRegistry.kt:63-69,122,172-201</code>, <code>resources/classes.yml</code>.
+- Модель <code>CharacterClass.startingEquipment: List&lt;StartingItem&gt;</code> (<code>CharacterClass.kt:15</code>); парсинг <code>ClassRegistry.kt:63-69</code> + fallback-списки (<code>:172-201</code>); <code>classes.yml</code> содержит <code>startingEquipment</code> для 12 классов (<code>:25,138,258,383,483,565,658,741,818,924,1010,1139</code>).
+- <code>ItemCatalogService.startingInventory(characterClass, setting)</code> (<code>catalog/ItemCatalogService.kt:226-241</code>) — «оружие COMMON + броня COMMON + 2 зелья».
+- <code>grantStarterEquipment</code> (<code>SessionService.kt:1903-1928</code>) вызывается только из <code>SelfLearnRunner.kt:85</code> (флаг <code>withEquipment</code>), хардкодит «Стальной меч» (+2 урон) и «Кожаная броня» (+2 AC), сразу <code>equipped=true</code>; идемпотентность — <code>if (state.inventory.any { it.equipped }) return</code> (<code>:1910</code>).
+- Потребителей у <code>CharacterClass.startingEquipment</code> и <code>ItemCatalogService.startingInventory</code> в main-коде нет (grep: только объявления/парсинг). Классы <code>classes.yml</code> (<code>longsword</code>, <code>shield</code>, <code>staff</code>, <code>greataxe</code>…) игнорируются при создании персонажа.</p>
+<h3 id="1510">15.10 Якоря экипировки<a class="headerlink" href="#1510" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>anchors/EquipmentAnchorService.kt</code>, <code>sessions/SessionService.kt</code>.
+- <code>EquipmentAnchorService.slotFor</code> (<code>:70-81</code>) возвращает <code>null</code> для предметов без слота; <code>generateAndStore</code> пропускает <code>null</code> (<code>:47-50</code>; коммит <code>6b30313</code>).
+- <code>equipmentAnchorItemNames(inventory, changes)</code> (<code>SessionService.kt:3131-3141</code>) отсекает <code>category?.slot == null</code> (коммит <code>372f2ce</code>).
+- Эмиссия <code>EquipmentAnchorRequestedEvent</code> — <code>SessionService.kt:1529-1537</code>; асинхронный раннер <code>EquipmentAnchorAsyncRunner.kt:18</code>.
+- Следствие: MISC/зелья/свитки могут иметь <code>equipped=true</code> (см. 15.5), но не получают визуального якоря и не дают бонусов (15.11).</p>
+<h3 id="1511">15.11 Расчётные бонусы от экипировки<a class="headerlink" href="#1511" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/GameState.kt:544-603</code>.
+<div class="highlight"><pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">equippedItems</span><span class="w"> </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inventory</span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">equipped</span><span class="w"> </span><span class="p">}</span><span class="w">                 </span><span class="c1">// :546</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">equippedWeapon</span><span class="w"> </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">equippedItems</span><span class="p">.</span><span class="na">firstOrNull</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">MELEE</span><span class="o">/</span><span class="n">RANGED</span><span class="w"> </span><span class="p">}</span><span class="w">      </span><span class="c1">// :550-552</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">effectiveAc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ac</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">equippedItems</span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">category</span><span class="o">?.</span><span class="na">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}.</span><span class="na">sumOf</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">bonuses</span><span class="p">.</span><span class="na">acBonus</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dexDelta</span><span class="w">  </span><span class="c1">// :560-563</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">weaponAttackBonus</span><span class="w"> </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">equippedWeapon</span><span class="o">?.</span><span class="na">bonuses</span><span class="o">?.</span><span class="na">attackBonus</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="m">0</span><span class="w">    </span><span class="c1">// :569</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">weaponDamageBonus</span><span class="w"> </span><span class="k">get</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">equippedWeapon</span><span class="o">?.</span><span class="na">bonuses</span><span class="o">?.</span><span class="na">damageBonus</span><span class="w"> </span><span class="o">?:</span><span class="w"> </span><span class="m">0</span><span class="w">    </span><span class="c1">// :576</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">effectiveAttributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">equippedItems</span><span class="p">.</span><span class="na">filter</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="p">.</span><span class="na">category</span><span class="o">?.</span><span class="na">slot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="c1">// :584-603</span>
+</code></pre></div>
+- AC и атрибуты учитывают только предметы со слотом; <code>MISC</code> и предметы без категории не дают бонусов (комментарий «Этап 27.5»).
+- Бонусы оружия берутся от <code>equippedWeapon</code> — первого надетого MELEE/RANGED (<code>GameState.kt:550-552</code>), без учёта порядка слотов.
+- <code>hpBonus</code>/<code>manaBonus</code> в расчётах не участвуют.</p>
+<h3 id="1512-action-economy-equip">15.12 Action economy для EQUIP<a class="headerlink" href="#1512-action-economy-equip" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>rules/TurnResolver.kt:366-415</code>.
+- При наличии <code>actionEconomyRegistry</code> слот берётся из <code>action_economy.yml</code> (<code>:370-381</code>), иначе fallback-список: <code>EQUIP</code> входит в ACTION-группу (<code>:395</code>).
+- <code>buildEconomyChanges</code> (<code>:418-434</code>): трата действия только при <code>mechanics.consumesAction</code>; снятие ненадетого/надевание надетого/ненайденный предмет → без траты (<code>consumesAction=false</code>).
+- <code>IntentValidator</code> для EQUIP: <code>if (character?.actionUsed == true) return Impossible("действие уже использовано")</code> (<code>intent/IntentValidator.kt:121</code>).</p>
+<h3 id="1513-ui-">15.13 UI-взаимодействие<a class="headerlink" href="#1513-ui-" title="Permanent link">&para;</a></h3>
+<p><strong>Где:</strong> <code>frontend/components/game/CharacterPanel.tsx</code>, <code>frontend/components/game/FunctionalPanel.tsx</code>.
+- <code>CharacterPanel.tsx</code>: <code>EQUIPPABLE_CATEGORIES = [MELEE_WEAPON, RANGED_WEAPON, HELMET, BODY_ARMOR, BOOTS, RING, AMULET]</code> (<code>:34-36</code>), <code>USABLE_CATEGORIES = [POTION, SCROLL, EXPLOSIVE]</code> (<code>:37</code>), <code>itemAction</code> (<code>:61-67</code>), отправка «надеваю/снимаю/использую <name>» (<code>:477-480</code>), кнопка «Надеть/Снять/Применить» (<code>:503</code>), бейдж <code>✓</code> (<code>:490</code>), отображение бонусов — AC/атрибуты/HP/MP (<code>:483,497-527</code>).
+- <code>FunctionalPanel.tsx</code>: вкладка «Инвентарь» (<code>:118-141</code>), <code>itemAction</code> (<code>:28-35</code>), inline <code>ItemDetails</code> с бонусами (<code>:44-74</code>), кнопка действия (<code>:131</code>), «Подробнее» → <code>onInventoryOpen</code> (<code>:139</code>).
+- Итоговые бонусы персонажа на панели: <code>acBonus</code>/<code>totalBonuses</code>/<code>melee|rangedAttackBonus</code>/<code>melee|rangedDamageBonus</code> (<code>CharacterPanel.tsx:168-197</code>) — считаются на клиенте по всем <code>equipped</code> (без фильтра «только со слотом», в отличие от бэкенда <code>effectiveAc</code>).
+- <code>MISC</code> не входит в <code>EQUIPPABLE_CATEGORIES</code> ни в одном из компонентов, т.е. из UI предмет без слота надеть нельзя, хотя бэкенд это допускает (15.5).</p>
+<h2 id="_3">Открытые вопросы<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ol>
+<li><code>InventoryItem.properties</code> нигде не заполняется, и <code>loot_items.properties</code> пуст по умолчанию — <code>TWO_HANDED</code>/<code>FINESSE</code> в проде не работают; нужен источник заполнения (каталог/миграция/LootShowcase)?</li>
+<li><code>classes.yml:startingEquipment</code> и <code>ItemCatalogService.startingInventory</code> без потребителя: стартовый комплект должен выдаваться по классу, а не хардкод «меч + кожаная броня» (<code>SessionService.kt:1911-1921</code>)?</li>
+<li><code>EquipSlot.OFF_HAND</code> не маппится ни одной <code>ItemCategory</code>; щит (<code>classes.yml:28</code>) не имеет категории — вводить <code>SHIELD</code>/OFF_HAND?</li>
+<li><code>UseAction</code> (тип действия предмета) объявлен, но не используется ни в движке, ни в UI — использовать или удалить?</li>
+<li>Бэкенд разрешает экипировку <code>MISC</code> (без слота, без бонусов, без якоря), а UI не даёт кнопки — какое поведение канонично?</li>
+<li>Фронт (<code>CharacterPanel.tsx:168-197</code>) суммирует бонусы всех <code>equipped</code>, бэкенд — только со слотом (<code>GameState.kt:560-603</code>): расхождение отображения и механики для MISC.</li>
+<li><code>hpBonus</code>/<code>manaBonus</code> в <code>ItemBonuses</code> не применяются в <code>effectiveAc</code>/<code>effectiveAttributes</code> — где они должны учитываться?</li>
+<li>Бонусы оружия берутся от первого надетого MELEE/RANGED (<code>GameState.kt:550-552</code>); при двух оружиях (main/off hand) правила не определены.</li>
+</ol>
+<h2 id="_4">Сводка<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Реализовано:</strong> полная модель <code>InventoryItem</code> (категория, редкость, бонусы, equipped, damageDice, эффективный кубик); перечни категорий/слотов/свойств/бонусов; классификация и парсинг EQUIP (<code>ActionParser</code>/<code>CatalogClassifier</code>/<code>IntentValidator</code>); резолв и идемпотентный equip/unequip (<code>ItemSearch</code>/<code>buildEquipMechanics</code>); слот-эксклюзивность; выдача через <code>GRANT_ITEM</code>/<code>GRANT_UNIQUE</code>/<code>TAKE_LOOT</code>/<code>PickUpItem</code> с гейтами и дедупом; визуальные якоря экипировки (с отсечением безслотовых); action economy для EQUIP; UI инвентаря в двух панелях с кнопками «Надеть/Снять/Применить» и отображением бонусов; unit-тесты <code>ApplyEquipToInventoryTest</code>.</li>
+<li><strong>Частично:</strong> категоризация нарративных предметов — эвристика по имени с фолбэком в <code>MISC</code>; бонусы от экипировки учитывают только предметы со слотом, <code>hpBonus</code>/<code>manaBonus</code> не применяются; фронт и бэкенд по-разному суммируют бонусы <code>equipped</code>; <code>ItemCategory</code> не покрывает <code>OFF_HAND</code> (щиты).</li>
+<li><strong>Отсутствует:</strong> заполнение <code>properties</code> (<code>TWO_HANDED</code>/<code>FINESSE</code> недостижимы в проде); потребитель <code>CharacterClass.startingEquipment</code> и <code>ItemCatalogService.startingInventory</code> (классное стартовое снаряжение не выдаётся); использование <code>UseAction</code>; правила для двух оружий (main/off hand); категория щита.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

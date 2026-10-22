@@ -1,0 +1,1057 @@
+# Глобальный каталог шаблонов действий игрока (черновик)
+# Целевой потребитель: детерминированный rules-engine (Yorva AI TTRPG).
+# Поля: code (snake_case, уникальный), category, name_ru, attribute, skill,
+# dc_medium (типичная средняя сложность: 10/12/15/18/20 или null),
+# description (одно предложение), keywords (русские основы с \w* для regex-fallback).
+#
+# Допущения:
+# - Шаблоны атаки (melee_attack, ranged_attack, spell_attack и т.п.) НЕ содержат
+#   attribute/skill/dc: попадание и урон движок считает по каталогу оружия
+#   (weapon_categories/weapons) и заклинаний (spell_families) — см. ability-checks-brief.md.
+# - Состязательные действия (grapple, shove, feint, hide...) имеют dc_medium=null,
+#   т.к. разрешаются состязанием/пассивной защитой цели, а не фиксированным DC.
+# - Чисто механические действия без броска (открыть дверь, поднять рычаг, отдых)
+#   и narrative-действия имеют null во всех механических полях.
+# - skill/attribute используют канонические пары D&D 5e (athletics=STR и т.д.).
+# - Множественные появления действия в разных списках (dash, craft_item, pick_pocket...)
+#   сведены к ОДНОЙ записи в наиболее репрезентативной категории (code уникален).
+
+version: 0.1-draft
+catalog: action-templates
+action_templates:
+
+  # ---------------------------- combat ----------------------------
+  - code: melee_attack
+    category: combat
+    name_ru: Атака оружием ближнего боя
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Удар оружием ближнего боя — попадание и урон считает движок по каталогу оружия (бонус атаки против КД цели).
+    keywords: атак\w*, удар\w*, меч\w*, оружи\w*, клин\w*, бой\w*, рукопаш\w*, сеч\w*
+  - code: ranged_attack
+    category: combat
+    name_ru: Атака оружием дальнего боя
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Выстрел из лука, арбалета или метание — бросок атаки с учётом дальности и укрытия; параметры из каталога оружия.
+    keywords: стрел\w*, выстрел\w*, лук\w*, арбалет\w*, метательн\w*, дистанц\w*, прицел\w*
+  - code: unarmed_attack
+    category: combat
+    name_ru: Атака без оружия
+    attribute: str
+    skill: null
+    dc_medium: null
+    description: Удар кулаком, пинок, коготь — урон 1 + модификатор Силы (или по правилам расы/класса), попадание против КД.
+    keywords: кулак\w*, без оружи\w*, пинок\w*, рукопаш\w*, удар\w*, головой\w*
+  - code: grapple
+    category: combat
+    name_ru: Захват
+    attribute: null
+    skill: athletics
+    dc_medium: null
+    description: Захват противника — Атлетика против Атлетики или Акробатики цели; при успехе цель скована захватом.
+    keywords: захват\w*, схватк\w*, обхват\w*, удержан\w*, схватить\w*, тиски\w*
+  - code: shove
+    category: combat
+    name_ru: Толчок
+    attribute: null
+    skill: athletics
+    dc_medium: null
+    description: Толчок — сбить цель с ног или отодвинуть на 5 футов; Атлетика против Атлетики/Акробатики цели.
+    keywords: толчок\w*, сбить с ног\w*, опрокин\w*, повал\w*, отталкиван\w*, спихнуть\w*
+  - code: disarm
+    category: combat
+    name_ru: Обезоружить
+    attribute: str
+    skill: athletics
+    dc_medium: null
+    description: Попытка выбить оружие из рук противника — состязание Атлетики; при успехе оружие падает на землю.
+    keywords: обезоруж\w*, выбить оружи\w*, выронить\w*, вырвать\w*
+  - code: trip
+    category: combat
+    name_ru: Подсечка
+    attribute: null
+    skill: athletics
+    dc_medium: null
+    description: Подсечка или опрокидывание — Атлетика против защиты цели; цель падает ничком и теряет часть движения.
+    keywords: подсечк\w*, споткнуть\w*, опрокин\w*, ничком\w*, сбить с ног\w*, повалить\w*
+  - code: sunder
+    category: combat
+    name_ru: Сокрушить снаряжение
+    attribute: str
+    skill: null
+    dc_medium: 18
+    description: Разрушающий удар по оружию, щиту или доспеху врага; прочность цели зависит от материала и КД предмета.
+    keywords: сломат\w*, разруш\w*, расщепить\w*, повредить\w*, крошить\w*, доспех\w*, щит\w*
+  - code: feint
+    category: combat
+    name_ru: Финт
+    attribute: null
+    skill: deception
+    dc_medium: null
+    description: Обманный манёвр — Обман против Проницательности цели; при успехе следующая атака по ней с преимуществом.
+    keywords: финт\w*, обманн\w*, уловк\w*, ложн\w*, отвлеч\w*, хитрост\w*
+  - code: dodge
+    category: combat
+    name_ru: Уклонение
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Полная оборона — до вашего следующего хода атаки по вам с помехой, а спасброски Ловкости с преимуществом.
+    keywords: уклон\w*, защит\w*, оборона\w*, уворо\w*, отбить\w*, парир\w*
+  - code: disengage
+    category: combat
+    name_ru: Осторожный отход
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Аккуратный выход из зоны досягаемости врага без провоцирования атаки по возможности.
+    keywords: отход\w*, разрыв\w*, отступить\w*, дезенгаж\w*, выйти из боя\w*, отскок\w*
+  - code: hide_in_combat
+    category: combat
+    name_ru: Скрыться в бою
+    attribute: dex
+    skill: stealth
+    dc_medium: null
+    description: Затаиться посреди боя — Скрытность против пассивной Внимательности врагов; нужно укрытие, дым или темнота.
+    keywords: скрыт\w*, затаит\w*, спрятат\w*, незамет\w*, бой\w*, укрыти\w*
+  - code: help
+    category: combat
+    name_ru: Помощь союзнику
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Помощь напарнику — преимущество на его следующую проверку или атаку (или против цели в пределах 5 футов).
+    keywords: помочь\w*, помощь\w*, поддержк\w*, ассист\w*, подстраховк\w*, помогаю\w*
+  - code: ready_action
+    category: combat
+    name_ru: Подготовленное действие
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Задать условие-триггер и реакцию, которые сработают до вашего следующего хода, когда условие выполнится.
+    keywords: подготов\w*, триггер\w*, реакци\w*, услови\w*, ждать\w*, когда\w*
+  - code: opportunity_attack
+    category: combat
+    name_ru: Атака по возможности
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Реакция на выход врага из зоны досягаемости без Осторожного отхода; попадание по каталогу оружия.
+    keywords: провоцир\w*, атака по возможност\w*, реакци\w*, вдогонк\w*, уходящему\w*
+  - code: finisher
+    category: combat
+    name_ru: Финальный удар
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Добивающий удар по раненой цели ниже порога здоровья — при успехе бонусный урон или особый эффект.
+    keywords: добить\w*, финальн\w*, прикончить\w*, контрольн\w*, последн\w*, добиваю\w*
+  - code: multiattack
+    category: combat
+    name_ru: Серия атак
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Выполнить набор атак или действий по шаблону способности существа (multiattack) за один ход.
+    keywords: мультиатак\w*, серия атак\w*, несколько атак\w*, размах\w*, комбо\w*
+  - code: spell_attack
+    category: combat
+    name_ru: Атакующее заклинание
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Боевое заклинание с бронброском атаки против КД (или спасброском цели); параметры из каталога заклинаний.
+    keywords: заклинани\w*, магическ\w*, чары\w*, каст\w*, заклинаю\w*, огненный шар\w*, молни\w*
+  - code: summon
+    category: combat
+    name_ru: Призыв существа
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Призыв союзного существа или слуги, действующего по вашим командам; данные существа из каталога существ.
+    keywords: призыв\w*, вызов\w*, призвать\w*, фамильяр\w*, слуг\w*, призываю\w*
+  - code: cantrip
+    category: combat
+    name_ru: Малый заговор
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Заговор без траты ресурсов — эффект, спасбросок или бросок атаки берутся из каталога заклинаний.
+    keywords: заговор\w*, кантрип\w*, бесплатн\w*, искр\w*, стру\w*, малая маги\w*
+  - code: use_consumable_in_combat
+    category: combat
+    name_ru: Применить расходник в бою
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Использовать зелье, свиток, бомбу или иной расходный предмет в бою — тратит действие или бонусное действие.
+    keywords: зель\w*, свиток\w*, расходник\w*, применить\w*, бомб\w*, гранат\w*, выпить\w*
+  - code: throw_weapon
+    category: combat
+    name_ru: Метание оружия
+    attribute: dex
+    skill: null
+    dc_medium: null
+    description: Бросок метательного оружия (нож, топор, копьё) — атака дальнего боя по КД; свойства из каталога оружия.
+    keywords: метнут\w*, бросок\w*, нож\w*, топор\w*, копь\w*, дротик\w*, швырнуть\w*
+  - code: charge
+    category: combat
+    name_ru: Рывок с атакой
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Разбежаться по прямой и атаковать в конце движения; местность и препятствия могут помешать.
+    keywords: рывок\w*, натиск\w*, разбег\w*, таран\w*, атаковать с ходу\w*, ускор\w*
+  - code: overrun
+    category: combat
+    name_ru: Протаранить строй
+    attribute: null
+    skill: athletics
+    dc_medium: null
+    description: Прорваться сквозь клетку врага — Атлетика против Атлетики/Акробатики; при перевесе враг сбивается с ног.
+    keywords: протаран\w*, прорыв\w*, сквозь\w*, смять\w*, пробиться\w*, проломить\w*
+  - code: tumble
+    category: combat
+    name_ru: Кувырок
+    attribute: dex
+    skill: acrobatics
+    dc_medium: null
+    description: Кувырок сквозь вражескую клетку — Акробатика против защиты; провал провоцирует атаку по возможности.
+    keywords: кувырок\w*, кульбит\w*, акробат\w*, проскольз\w*, перекат\w*, юркнуть\w*
+  - code: shield_bash
+    category: combat
+    name_ru: Удар щитом
+    attribute: str
+    skill: null
+    dc_medium: null
+    description: Атака щитом; при успехе можно сбить с ног или оттолкнуть цель (сопротивление Силе или Акробатике).
+    keywords: щит\w*, удар щит\w*, баш\w*, стукнуть\w*, боднуть\w*, таран щит\w*
+  - code: called_shot
+    category: combat
+    name_ru: Прицельный удар
+    attribute: dex
+    skill: null
+    dc_medium: 18
+    description: Прицельная атака по уязвимой зоне — глаз, сухожилие, держащая рука — ради особого эффекта ценой сложности.
+    keywords: прицельн\w*, точечн\w*, уязвим\w*, выстрел в голов\w*, орга\w*, слабое место\w*
+  - code: parry
+    category: combat
+    name_ru: Парирование
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Реакцией отразить одну атаку ближнего боя, повысив КД; нужно оружие или щит в руках.
+    keywords: парир\w*, отраж\w*, блок\w*, защит\w*, отбить\w*, встречн\w*
+  - code: dirty_trick
+    category: combat
+    name_ru: Нечестный приём
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: null
+    description: Песок в глаза, пинок по голени — Ловкость рук против Внимательности цели, чтобы наложить помеху.
+    keywords: приём\w*, песок\w*, подло\w*, нечестн\w*, грязн\w*, уловка\w*, подножк\w*
+
+  # ---------------------------- movement ----------------------------
+  - code: dash
+    category: movement
+    name_ru: Рывок
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: До конца хода скорость удваивается; вне боя — быстрый бег по открытой местности.
+    keywords: рывок\w*, бег\w*, бежать\w*, спринт\w*, ускор\w*, мчаться\w*, побежать\w*
+  - code: jump_across
+    category: movement
+    name_ru: Прыжок через пропасть
+    attribute: str
+    skill: athletics
+    dc_medium: 15
+    description: Прыжок через пропасть, ров или трещину — длина зависит от Силы и разбега; неудача грозит падением.
+    keywords: прыжок\w*, перепрыгнуть\w*, пропасть\w*, разлом\w*, ров\w*, разбег\w*
+  - code: climb_wall
+    category: movement
+    name_ru: Лазание по стене
+    attribute: str
+    skill: athletics
+    dc_medium: 15
+    description: Карабкаться по отвесной стене или скале; без верёвки и опоры падение опасно.
+    keywords: лазан\w*, карабкат\w*, стена\w*, скал\w*, отвес\w*, вскарабкат\w*, забраться\w*
+  - code: swim_current
+    category: movement
+    name_ru: Плавание против течения
+    attribute: str
+    skill: athletics
+    dc_medium: 15
+    description: Переплыть бурную реку или держаться на плаву в шторм; провал — снос течением и риск утонуть.
+    keywords: плыть\w*, течени\w*, пловец\w*, переплыть\w*, тонуть\w*, бурн\w*, поток\w*
+  - code: crawl
+    category: movement
+    name_ru: Ползком
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Передвижение ползком под низким препятствием — медленно и с помехой дальнобойным атакам по вам.
+    keywords: ползк\w*, ползти\w*, на четверень\w*, под низк\w*, проползти\w*, лёжа\w*
+  - code: squeeze_through
+    category: movement
+    name_ru: Протиснуться в щель
+    attribute: dex
+    skill: acrobatics
+    dc_medium: 15
+    description: Пролезть сквозь узкий проход или щель — скорость 5 футов; крупным существам сложнее или невозможно.
+    keywords: протиснут\w*, щел\w*, узк\w*, лаз\w*, пролезть\w*, проход\w*, тесн\w*
+  - code: balance
+    category: movement
+    name_ru: Балансировка
+    attribute: dex
+    skill: acrobatics
+    dc_medium: 10
+    description: Пройти по бревну, балке, карнизу или обледенелой тропе; чем уже опора, тем выше сложность.
+    keywords: баланс\w*, бревно\w*, балка\w*, карниз\w*, равновеси\w*, удержать\w*, шатк\w*
+  - code: run
+    category: movement
+    name_ru: Длительный бег
+    attribute: con
+    skill: null
+    dc_medium: 12
+    description: Затяжной бег или марш-бросок — спасбросок Телосложения против усталости; без отдыха копится истощение.
+    keywords: бег\w*, марафон\w*, марш\w*, выносливост\w*, усталост\w*, бежать долго\w*, спринт\w*
+  - code: swing
+    category: movement
+    name_ru: Раскачаться на верёвке
+    attribute: dex
+    skill: acrobatics
+    dc_medium: 12
+    description: Разогнаться на верёвке, лиане или канате и перелететь препятствие, ров или пропасть.
+    keywords: раскачат\w*, верёвка\w*, лиан\w*, перелететь\w*, тарзанк\w*, канат\w*, маятник\w*
+  - code: drop_prone
+    category: movement
+    name_ru: Лечь
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Упасть или лечь ничком — укрытие от дальнего боя ценой уязвимости в ближнем бою.
+    keywords: лечь\w*, ничком\w*, залечь\w*, упасть\w*, плашмя\w*, пригнут\w*, спрятаться за\w*
+
+  # ---------------------------- exploration ----------------------------
+  - code: climb
+    category: exploration
+    name_ru: Лазание
+    attribute: str
+    skill: athletics
+    dc_medium: 10
+    description: Лазание по простому рельефу — деревья, валуны, склоны; при надёжной опоре проверка не требуется.
+    keywords: лазан\w*, дерев\w*, валун\w*, склон\w*, вскарабкат\w*, забраться\w*, обезьян\w*
+  - code: jump
+    category: exploration
+    name_ru: Прыжок
+    attribute: str
+    skill: athletics
+    dc_medium: null
+    description: Прыжок в длину или высоту — дистанция по Силе с разбегом; бросок лишь при сложном приземлении.
+    keywords: прыжок\w*, спрыгнуть\w*, перепрыг\w*, приземлен\w*, подпрыгн\w*, сигануть\w*
+  - code: swim
+    category: exploration
+    name_ru: Плавание
+    attribute: str
+    skill: athletics
+    dc_medium: 10
+    description: Плавание по спокойной воде — половина скорости; проверка при усталости, грузе или холодной воде.
+    keywords: плыть\w*, переплыть\w*, озеро\w*, река\w*, заплыв\w*, вода\w*, поплыть\w*
+  - code: force_open
+    category: exploration
+    name_ru: Выбить дверь
+    attribute: str
+    skill: athletics
+    dc_medium: 15
+    description: Силой открыть запертую, заваленную или заклинившую дверь, ворота или люк.
+    keywords: выбить\w*, взломат\w*, двер\w*, ворота\w*, запор\w*, сломат\w*, выломать\w*, пнуть\w*
+  - code: pick_lock
+    category: exploration
+    name_ru: Взлом замка
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 15
+    description: Открыть замок отмычками или инструментами вора; провал может заклинить механизм и сломать инструмент.
+    keywords: замок\w*, отмычк\w*, вскрыть\w*, замочн\w*, инструмент\w*, взлом\w*, воровск\w*
+  - code: disarm_trap
+    category: exploration
+    name_ru: Обезвредить ловушку
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 15
+    description: Обезвредить ловушку инструментами вора; провал — ловушка срабатывает. Сначала её нужно заметить.
+    keywords: ловушк\w*, обезвред\w*, капкан\w*, растяжк\w*, мину\w*, снять ловушк\w*, обезвреж\w*
+  - code: track
+    category: exploration
+    name_ru: Выследить
+    attribute: wis
+    skill: survival
+    dc_medium: 15
+    description: Проследить путь существа по следам; сложность зависит от давности, погоды и стараний скрыть следы.
+    keywords: след\w*, выследить\w*, троп\w*, преследоват\w*, отпечат\w*, следопыт\w*, погоня\w*
+  - code: forage
+    category: exploration
+    name_ru: Добыть пропитание
+    attribute: wis
+    skill: survival
+    dc_medium: 12
+    description: Собрать еду, воду и полезные растения в дикой местности; результат зависит от щедрости природы.
+    keywords: пропитани\w*, еда\w*, добыть\w*, сбор\w*, дик\w*, трав\w*, ягод\w*, охота\w*
+  - code: inspect_object
+    category: exploration
+    name_ru: Осмотреть предмет
+    attribute: wis
+    skill: perception
+    dc_medium: 10
+    description: Внимательно осмотреть предмет или место — найти надписи, трещины, скрытые кнопки и следы вмешательства.
+    keywords: осмотр\w*, детал\w*, статуя\w*, предмет\w*, механизм\w*, тайник\w*, изучать\w*
+  - code: investigate_clue
+    category: exploration
+    name_ru: Изучить улики
+    attribute: int
+    skill: investigation
+    dc_medium: 12
+    description: Проанализировать улики на месте события и понять, что здесь произошло и кто оставил следы.
+    keywords: улик\w*, расследовани\w*, осмотр\w*, анализ\w*, место преступлен\w*, детектив\w*
+  - code: perceive_surroundings
+    category: exploration
+    name_ru: Осмотреться
+    attribute: wis
+    skill: perception
+    dc_medium: 10
+    description: Оглядеться и заметить скрытых существ, опасности, засады и необычные детали окружения.
+    keywords: осмотр\w*, заметить\w*, опасност\w*, засад\w*, окружа\w*, взгляд\w*, оглядеться\w*
+  - code: listen
+    category: exploration
+    name_ru: Прислушаться
+    attribute: wis
+    skill: perception
+    dc_medium: 12
+    description: Навострить уши — уловить шаги, голоса, шорохи за дверью, стеной или во тьме.
+    keywords: слух\w*, прислушат\w*, шорох\w*, шаг\w*, звук\w*, голос\w*, уши\w*, тишин\w*
+  - code: search_area
+    category: exploration
+    name_ru: Обыскать место
+    attribute: int
+    skill: investigation
+    dc_medium: 12
+    description: Тщательный обыск помещения или участка — найти тайники, спрятанные предметы и потайные двери.
+    keywords: обыск\w*, тайник\w*, потайн\w*, искать\w*, спрятан\w*, заначк\w*, шмон\w*
+  - code: decipher_text
+    category: exploration
+    name_ru: Расшифровать текст
+    attribute: int
+    skill: null
+    dc_medium: 15
+    description: Прочесть древний, чужой или зашифрованный текст; требует знания языка и письменности.
+    keywords: шифр\w*, расшифров\w*, древн\w*, письмо\w*, язык\w*, манускрипт\w*, крипт\w*, надпись\w*
+  - code: map_area
+    category: exploration
+    name_ru: Составить карту
+    attribute: int
+    skill: investigation
+    dc_medium: 12
+    description: Зарисовать план местности или подземелья, фиксируя ходы, залы и ориентиры, чтобы не заблудиться.
+    keywords: карт\w*, чертеж\w*, план\w*, нанести\w*, ориентир\w*, схема\w*, топограф\w*
+  - code: identify_plant
+    category: exploration
+    name_ru: Опознать растение
+    attribute: wis
+    skill: nature
+    dc_medium: 10
+    description: Определить растение — съедобное, ядовитое или лекарственное; пригодится травникам и выживальщикам.
+    keywords: растени\w*, трав\w*, гриб\w*, ядовит\w*, съедобн\w*, опознат\w*, флор\w*, цветок\w*
+  - code: identify_creature
+    category: exploration
+    name_ru: Опознать существо
+    attribute: int
+    skill: nature
+    dc_medium: 12
+    description: Определить существо — вид, поведение, опасность и слабые места по внешности и следам.
+    keywords: существо\w*, зверь\w*, монстр\w*, опознат\w*, вид\w*, повадк\w*, тварь\w*, фаун\w*
+  - code: navigate
+    category: exploration
+    name_ru: Сориентироваться
+    attribute: wis
+    skill: survival
+    dc_medium: 15
+    description: Не сбиться с пути в незнакомой или бездорожной местности; погода и отсутствие ориентиров повышают сложность.
+    keywords: ориентир\w*, путь\w*, дорога\w*, навигаци\w*, заблудит\w*, компас\w*, направлени\w*
+  - code: light_torch
+    category: exploration
+    name_ru: Зажечь факел
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Зажечь факел, лампу или свечу — мгновенно при сухом материале; в сырости и ветре нужна проверка Ловкости.
+    keywords: факел\w*, зажечь\w*, огон\w*, свет\w*, лампад\w*, искр\w*, зажигалк\w*, подсветить\w*
+  - code: tie_rope
+    category: exploration
+    name_ru: Завязать верёвку
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 10
+    description: Связать узел или закрепить верёвку; надёжность страховки критична при спуске и подъёме грузов.
+    keywords: верёвк\w*, узел\w*, канат\w*, привяз\w*, страховк\w*, завяз\w*, морск\w*
+  - code: use_tool
+    category: exploration
+    name_ru: Работа с инструментом
+    attribute: null
+    skill: null
+    dc_medium: 10
+    description: Применить инструмент по назначению — лом, молоток, кирка, комплект; владение инструментом даёт бонус.
+    keywords: инструмент\w*, лом\w*, молоток\w*, кирк\w*, работать\w*, прибор\w*, набор\w*
+  - code: operate_mechanism
+    category: exploration
+    name_ru: Запустить механизм
+    attribute: int
+    skill: investigation
+    dc_medium: 12
+    description: Разобраться и привести в действие механизм — лифт, подъёмный мост, рычажный привод; ошибка опасна.
+    keywords: механизм\w*, рычаг\w*, привод\w*, шестерн\w*, запустить\w*, блок\w*, лебедк\w*
+  - code: sabotage
+    category: exploration
+    name_ru: Саботаж
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 12
+    description: Незаметно вывести из строя механизм, снаряжение или оружие; чем заметнее след, тем выше сложность.
+    keywords: саботаж\w*, испортить\w*, вывести из стро\w*, повредить\w*, подпорт\w*, заклинить\w*
+  - code: find_water
+    category: exploration
+    name_ru: Найти воду
+    attribute: wis
+    skill: survival
+    dc_medium: 12
+    description: Отыскать источник воды — родник, колодец, влажный грунт; критично при жажде в дикой местности.
+    keywords: вода\w*, родник\w*, источник\w*, колодец\w*, жажд\w*, влаг\w*, ручей\w*
+  - code: start_fire
+    category: exploration
+    name_ru: Разжечь костёр
+    attribute: wis
+    skill: survival
+    dc_medium: 10
+    description: Развести огонь — сухое топливо и трут облегчают задачу; в сырую погоду сложность растёт.
+    keywords: костер\w*, огон\w*, разжечь\w*, дров\w*, растопк\w*, трут\w*, пламя\w*, розжиг\w*
+
+  # ---------------------------- social ----------------------------
+  - code: persuade
+    category: social
+    name_ru: Убедить
+    attribute: cha
+    skill: persuasion
+    dc_medium: 15
+    description: Убедить собеседника доводами и доброжелательностью сделать одолжение, согласиться или уступить.
+    keywords: убед\w*, уговор\w*, дипломат\w*, просьб\w*, договор\w*, красноречи\w*, вразумить\w*
+  - code: deceive
+    category: social
+    name_ru: Обмануть
+    attribute: cha
+    skill: deception
+    dc_medium: 12
+    description: Солгать, соврать или выдать правдоподобную историю; сложность зависит от доверчивости цели.
+    keywords: ложь\w*, обман\w*, врать\w*, надуть\w*, хитрост\w*, отговорк\w*, соврать\w*, ввести в заблуждени\w*
+  - code: intimidate
+    category: social
+    name_ru: Запугать
+    attribute: cha
+    skill: intimidation
+    dc_medium: 12
+    description: Давлением, угрозой или репутацией добиться уступки, подчинения или страха у собеседника.
+    keywords: запугат\w*, угроз\w*, устраш\w*, давлени\w*, страх\w*, грубость\w*, напугать\w*, застращать\w*
+  - code: insight
+    category: social
+    name_ru: Прочитать собеседника
+    attribute: wis
+    skill: insight
+    dc_medium: 12
+    description: Понять истинные мотивы и эмоции собеседника, заметить ложь или скрытую угрозу.
+    keywords: проницател\w*, читать\w*, ложь\w*, намерени\w*, эмоци\w*, подозрен\w*, раскусить\w*, мотив\w*
+  - code: gather_information
+    category: social
+    name_ru: Собрать сведения
+    attribute: cha
+    skill: persuasion
+    dc_medium: 12
+    description: Расспросить местных, торговцев или стражу и собрать слухи; требует времени, контактов и, возможно, денег.
+    keywords: слух\w*, сведение\w*, расспросить\w*, информаци\w*, новост\w*, сплетн\w*, разузнать\w*, вопросы\w*
+  - code: haggle
+    category: social
+    name_ru: Торговаться
+    attribute: cha
+    skill: persuasion
+    dc_medium: 12
+    description: Сбить цену или улучшить условия сделки; грубый провал может испортить отношения с продавцом.
+    keywords: торг\w*, скидк\w*, цена\w*, барыш\w*, сделка\w*, торговаться\w*, уступить в цене\w*, дешевле\w*
+  - code: recruit_ally
+    category: social
+    name_ru: Завербовать союзника
+    attribute: cha
+    skill: persuasion
+    dc_medium: 18
+    description: Убедить NPC присоединиться к делу или помочь — нужна мотивация, плата либо общая цель.
+    keywords: союзник\w*, нанять\w*, завербовать\w*, помощь\w*, уговорить\w*, компаньон\w*, наёмник\w*
+  - code: interrogate
+    category: social
+    name_ru: Допрос
+    attribute: cha
+    skill: intimidation
+    dc_medium: 15
+    description: Допросить пленника или свидетеля — давление, угрозы или психологические уловки вытаскивают правду.
+    keywords: допрос\w*, пленник\w*, выпытать\w*, показани\w*, признани\w*, свидетел\w*, допросить\w*, пытк\w*
+  - code: perform
+    category: social
+    name_ru: Выступление
+    attribute: cha
+    skill: performance
+    dc_medium: 12
+    description: Музыка, пение, танец или история перед публикой; качество влияет на сбор, славу и расположение.
+    keywords: выступлени\w*, музыка\w*, пени\w*, танец\w*, сцен\w*, артист\w*, спеть\w*, сыграть\w*, бард\w*
+  - code: impersonate
+    category: social
+    name_ru: Выдать себя за другого
+    attribute: cha
+    skill: deception
+    dc_medium: 15
+    description: Притвориться другим человеком или должностным лицом; нужны костюм, грим и знание персонажа.
+    keywords: выдать\w*, самозванец\w*, перевоплощен\w*, подделк\w*, костюм\w*, роль\w*, грим\w*, личин\w*
+  - code: calm_animal
+    category: social
+    name_ru: Успокоить животное
+    attribute: wis
+    skill: animal_handling
+    dc_medium: 12
+    description: Утихомирить напуганное или дикое животное — медленные движения, еда, уверенность; резкость опасна.
+    keywords: животн\w*, успокоить\w*, прируч\w*, звер\w*, лошад\w*, дрессировк\w*, утихомирить\w*, питомец\w*
+  - code: issue_command
+    category: social
+    name_ru: Отдать команду животному
+    attribute: wis
+    skill: animal_handling
+    dc_medium: 10
+    description: Приказать обученному животному атаковать, искать, охранять или везти; животное должно знать команду.
+    keywords: команд\w*, животн\w*, приказ\w*, дрессиров\w*, ездов\w*, позвать\w*, пёс\w*, конь\w*
+  - code: flatter
+    category: social
+    name_ru: Польстить
+    attribute: cha
+    skill: persuasion
+    dc_medium: 10
+    description: Лесть и комплименты, чтобы расположить собеседника к себе и смягчить переговоры.
+    keywords: лесть\w*, комплимент\w*, похвал\w*, умаслить\w*, польстить\w*, подлизать\w*
+  - code: request_favor
+    category: social
+    name_ru: Попросить об одолжении
+    attribute: cha
+    skill: persuasion
+    dc_medium: 15
+    description: Попросить об услуге без оплаты — знакомство, долг или доброта склоняют к согласию.
+    keywords: одолжени\w*, услуга\w*, попросить\w*, милость\w*, взаймы\w*, одолжить\w*, поддержк\w*
+
+  # ---------------------------- object ----------------------------
+  - code: break_object
+    category: object
+    name_ru: Разбить предмет
+    attribute: str
+    skill: null
+    dc_medium: null
+    description: Разбить или сломать предмет — бутылку, мебель, хрупкий механизм; прочность зависит от материала (КД/HP предмета).
+    keywords: разбит\w*, сломат\w*, вдребезг\w*, крушить\w*, расплющить\w*, разнести\w*, разломать\w*
+  - code: manipulate_wiring
+    category: object
+    name_ru: Возня с проводкой
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 15
+    description: Перемкнуть, замкнуть или отключить цепи и проводку; нужен подходящий инструмент.
+    keywords: провод\w*, электричеств\w*, перемкнут\w*, схема\w*, механик\w*, контакт\w*, замыкани\w*
+  - code: pull_lever
+    category: object
+    name_ru: Дёрнуть рычаг
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Привести в действие рычаг — исправный механизм срабатывает без проверки; заедание требует Силы.
+    keywords: рычаг\w*, дёрнуть\w*, дернуть\w*, рукоятк\w*, дерг\w*
+  - code: turn_valve
+    category: object
+    name_ru: Повернуть вентиль
+    attribute: str
+    skill: null
+    dc_medium: 10
+    description: Открыть или закрыть вентиль, кран или маховик — газ, вода, пар; заржавевший требует Силы.
+    keywords: вентиль\w*, кран\w*, маховик\w*, задвижк\w*, повернуть\w*, крутить\w*, вентиля\w*
+  - code: push_button
+    category: object
+    name_ru: Нажать кнопку
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Нажать кнопку или переключатель — механизм срабатывает без проверки, если кнопка не ловушка.
+    keywords: кнопк\w*, переключател\w*, нажать\w*, активир\w*, рубильник\w*, клавиш\w*, тумблер\w*
+  - code: open_door
+    category: object
+    name_ru: Открыть дверь
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Открыть дверь, люк или крышку — без проверки, если она не заперта, не завалена и не заклинила.
+    keywords: открыт\w*, двер\w*, люк\w*, створк\w*, калитк\w*, отворить\w*, распахнуть\w*
+  - code: close_door
+    category: object
+    name_ru: Закрыть дверь
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Закрыть дверь или захлопнуть створку — отрезать погоню, сдержать огонь или укрыться.
+    keywords: закрыт\w*, захлопнуть\w*, двер\w*, прикрыть\w*, затворить\w*, закрываю\w*
+  - code: bar_door
+    category: object
+    name_ru: Подпереть дверь
+    attribute: str
+    skill: null
+    dc_medium: 10
+    description: Подпереть или забаррикадировать дверь, чтобы снаружи её было труднее открыть; нужно время на установку.
+    keywords: подпереть\w*, баррикад\w*, завал\w*, запереть\w*, преградить\w*, засов\w*, заклинить дверь\w*
+  - code: move_heavy_object
+    category: object
+    name_ru: Сдвинуть тяжёлый предмет
+    attribute: str
+    skill: null
+    dc_medium: 15
+    description: Сдвинуть камень, сундук, обломок или иную тяжесть; вес, поверхность и помощь меняют сложность.
+    keywords: сдвинут\w*, тяжел\w*, камен\w*, завал\w*, валун\w*, сундук\w*, передвинут\w*, толкать\w*
+  - code: jam_lock
+    category: object
+    name_ru: Заклинить замок
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 15
+    description: Заклинить замок изнутри так, чтобы ключ больше не подходил и замок можно было только взломать.
+    keywords: заклинить\w*, замок\w*, испортить замок\w*, клин\w*, заедать\w*, заблокировать\w*
+  - code: cut_rope
+    category: object
+    name_ru: Перерезать верёвку
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Перерезать верёвку, ремень или канат — мгновенно, если под рукой есть режущий инструмент.
+    keywords: перерезат\w*, верёвк\w*, канат\w*, лезви\w*, резать\w*, разрезать\w*, ножниц\w*, освободить\w*
+  - code: clear_rubble
+    category: object
+    name_ru: Расчистить завал
+    attribute: str
+    skill: athletics
+    dc_medium: 12
+    description: Разобрать завал или расчистить заваленный проход; затраченное время зависит от объёма работ.
+    keywords: завал\w*, расчист\w*, разобрать\w*, обломк\w*, щебень\w*, разгрести\w*, расчищать\w*
+  - code: conceal_object
+    category: object
+    name_ru: Спрятать предмет
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 12
+    description: Припрятать предмет на себе или в помещении от будущего обыска; находчивость против обыскивающего.
+    keywords: спрятат\w*, тайник\w*, схоронить\w*, предмет\w*, припрятать\w*, запрятать\w*, заныкать\w*
+
+  # ---------------------------- stealth ----------------------------
+  - code: hide
+    category: stealth
+    name_ru: Спрятаться
+    attribute: dex
+    skill: stealth
+    dc_medium: null
+    description: Скрыться из виду — Скрытность против пассивной Внимательности наблюдателей; нужно укрытие, темнота или маскировка.
+    keywords: спрятат\w*, скрыт\w*, затаит\w*, укрыти\w*, незаметн\w*, прятаться\w*, укрыться\w*
+  - code: sneak
+    category: stealth
+    name_ru: Прокрасться
+    attribute: dex
+    skill: stealth
+    dc_medium: 12
+    description: Бесшумно передвигаться — Скрытность против восприятия врагов; скорость передвижения снижена.
+    keywords: подкраст\w*, красться\w*, бесшумн\w*, скрытн\w*, тихонько\w*, прокраст\w*, тихо\w*
+  - code: pick_pocket
+    category: stealth
+    name_ru: Обчистить карман
+    attribute: dex
+    skill: sleight_of_hand
+    dc_medium: 15
+    description: Вытащить кошелёк, амулет или записку — Ловкость рук против пассивной Внимательности цели; толпа помогает.
+    keywords: карман\w*, обчистить\w*, кража\w*, воровств\w*, вытащить\w*, кошелек\w*, карманник\w*, украсть\w*
+  - code: eavesdrop
+    category: stealth
+    name_ru: Подслушать
+    attribute: wis
+    skill: perception
+    dc_medium: 12
+    description: Подслушать разговор за дверью или стеной, оставаясь незамеченным; скрипучие половицы — риск.
+    keywords: подслушат\w*, разговор\w*, двер\w*, стена\w*, секрет\w*, подслушивать\w*, щель\w*, замочн\w*
+  - code: disguise
+    category: stealth
+    name_ru: Замаскироваться
+    attribute: cha
+    skill: deception
+    dc_medium: 12
+    description: Изменить внешность костюмом и гримом; сходство проверяется при близком контакте и вопросах.
+    keywords: маскировк\w*, грим\w*, переодеван\w*, личин\w*, выдавать\w*, переодеться\w*, загримировать\w*
+  - code: shadow_target
+    category: stealth
+    name_ru: Слежка за целью
+    attribute: dex
+    skill: stealth
+    dc_medium: 12
+    description: Незаметно следовать за целью по улицам или в толпе, не отставая и не попадаясь на глаза.
+    keywords: следить\w*, хвост\w*, слежк\w*, преследоват\w*, наружн\w*, идти за\w*, проследить\w*
+  - code: blend_into_crowd
+    category: stealth
+    name_ru: Затеряться в толпе
+    attribute: cha
+    skill: deception
+    dc_medium: 10
+    description: Слиться с прохожими, отвлечь внимание и раствориться среди людей, избегая стражников или цели.
+    keywords: толп\w*, затерят\w*, раствориться\w*, не выделят\w*, людн\w*, слиться\w*, прохожи\w*
+
+  # ---------------------------- knowledge ----------------------------
+  - code: recall_lore_arcana
+    category: knowledge
+    name_ru: Знание о магии
+    attribute: int
+    skill: arcana
+    dc_medium: 15
+    description: Припомнить сведения о магии — заклинания, артефакты, магические существа, школы волшебства.
+    keywords: магия\w*, аркан\w*, заклинани\w*, артефакт\w*, волшебств\w*, знание\w*, помню\w*, вспомнить\w*
+  - code: recall_lore_history
+    category: knowledge
+    name_ru: Знание истории
+    attribute: int
+    skill: history
+    dc_medium: 15
+    description: Вспомнить историю — события, династии, войны, древние руины и прошлое этих земель.
+    keywords: истори\w*, летопис\w*, династи\w*, эпох\w*, древност\w*, хроник\w*, королевств\w*, былое\w*
+  - code: recall_lore_religion
+    category: knowledge
+    name_ru: Знание религии
+    attribute: int
+    skill: religion
+    dc_medium: 15
+    description: Знания о богах, культах, обрядах, святых символах и религиозных запретах.
+    keywords: бог\w*, религ\w*, культ\w*, храм\w*, обряд\w*, пантеон\w*, вера\w*, священн\w*, жрец\w*
+  - code: recall_lore_nature
+    category: knowledge
+    name_ru: Знание природы
+    attribute: int
+    skill: nature
+    dc_medium: 15
+    description: Знания о природе — растения, животные, погода, природные явления и выживание в диких местах.
+    keywords: природ\w*, флор\w*, фаун\w*, погод\w*, экосистем\w*, звер\w*, растение\w*, биолог\w*
+  - code: investigate_scene
+    category: knowledge
+    name_ru: Реконструкция события
+    attribute: int
+    skill: investigation
+    dc_medium: 12
+    description: Восстановить картину произошедшего по состоянию места — улики, повреждения, порядок действий.
+    keywords: расследовани\w*, улик\w*, картин\w*, реконстру\w*, место событи\w*, дедукци\w*, вывод\w*
+  - code: decipher_runes
+    category: knowledge
+    name_ru: Расшифровать руны
+    attribute: int
+    skill: arcana
+    dc_medium: 15
+    description: Прочесть руны и магические письмена; природа письма определяет навык — аркана, религия или история.
+    keywords: рун\w*, расшифров\w*, письмен\w*, глиф\w*, символ\w*, магическ\w*, клинопис\w*, иероглиф\w*
+  - code: appraise_value
+    category: knowledge
+    name_ru: Оценить стоимость
+    attribute: int
+    skill: investigation
+    dc_medium: 12
+    description: Определить рыночную стоимость и подлинность предмета; опыт и происхождение влияют на точность оценки.
+    keywords: оценк\w*, стоим\w*, подлинность\w*, цена\w*, антиквар\w*, драгоцен\w*, оценить\w*, ценность\w*
+  - code: recall_lore_local
+    category: knowledge
+    name_ru: Знание края
+    attribute: int
+    skill: history
+    dc_medium: 12
+    description: Знать местные обычаи, слухи, влиятельных персон и географию края; полезно в новом городе.
+    keywords: местн\w*, обыча\w*, слух\w*, кра\w*, город\w*, регион\w*, знакомств\w*, молва\w*
+
+  # ---------------------------- crafting ----------------------------
+  - code: craft_item
+    category: crafting
+    name_ru: Изготовить предмет
+    attribute: null
+    skill: null
+    dc_medium: 15
+    description: Создать предмет по рецепту — доспех, оружие, снаряжение; нужны материалы, инструмент и дни работы, владение инструментом даёт бонус.
+    keywords: создать\w*, изготовить\w*, ремесл\w*, кузн\w*, поделк\w*, мастер\w*, сделать\w*, сковать\w*, выковать\w*
+  - code: repair_item
+    category: crafting
+    name_ru: Починить предмет
+    attribute: null
+    skill: null
+    dc_medium: 10
+    description: Вернуть повреждённому снаряжению прочность и работоспособность; нужны инструменты и запасные части.
+    keywords: починить\w*, ремонт\w*, восстанов\w*, латать\w*, чин\w*, починю\w*, отремонтировать\w*, залатать\w*
+  - code: brew_potion
+    category: crafting
+    name_ru: Сварить зелье
+    attribute: int
+    skill: arcana
+    dc_medium: 15
+    description: Приготовить зелье по рецепту из ингредиентов с алхимическим или травническим набором; ошибка портит смесь.
+    keywords: зель\w*, алхим\w*, варить\w*, снадобь\w*, настойк\w*, эликсир\w*, сварить\w*, микстур\w*, котёл\w*
+  - code: cook
+    category: crafting
+    name_ru: Приготовить еду
+    attribute: wis
+    skill: survival
+    dc_medium: 10
+    description: Приготовить пищу; качество блюда влияет на эффекты отдыха — дополнительные кубики хитов и мораль.
+    keywords: готовк\w*, еда\w*, повар\w*, стряпн\w*, блюдо\w*, обед\w*, готовить\w*, печь\w*, жарить\w*
+  - code: sharpen_weapon
+    category: crafting
+    name_ru: Заточить оружие
+    attribute: null
+    skill: null
+    dc_medium: 10
+    description: Наточить клинок или инструмент; при успехе возможен небольшой временный бонус, если движок его поддерживает.
+    keywords: заточить\w*, точк\w*, оселк\w*, лезви\w*, клинок\w*, точил\w*, заточка\w*, наточить\w*
+
+  # ---------------------------- rest ----------------------------
+  - code: short_rest
+    category: rest
+    name_ru: Короткий отдых
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Отдых около часа — можно потратить кубики хитов на восстановление; прерывание боем отменяет эффект.
+    keywords: отдых\w*, короткий\w*, передышк\w*, перекур\w*, отдохнуть\w*, привал\w*, перерыв\w*
+  - code: long_rest
+    category: rest
+    name_ru: Длинный отдых
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Ночёвка около восьми часов — полное восстановление здоровья и части ресурсов; прерывание сбивает эффект.
+    keywords: сон\w*, отдых\w*, ночлег\w*, лагерь\w*, восстановлен\w*, спать\w*, выспаться\w*, рассвет\w*
+  - code: bandage_wounds
+    category: rest
+    name_ru: Перевязать раны
+    attribute: wis
+    skill: medicine
+    dc_medium: 12
+    description: Перевязать раны во время отдыха — дополнительное лечение сверх кубиков хитов; нужны бинты или набор.
+    keywords: перевяз\w*, бинт\w*, раны\w*, лечен\w*, медицина\w*, кровоостанавливающ\w*, повязк\w*, бинтоват\w*
+  - code: treat_poison
+    category: rest
+    name_ru: Лечить отравление
+    attribute: wis
+    skill: medicine
+    dc_medium: 15
+    description: Снять отравление или болезнь противоядием, лекарством либо проверкой Медицины.
+    keywords: отравлени\w*, яд\w*, лечить\w*, противояди\w*, болезн\w*, зараза\w*, вылечить\w*, отрава\w*
+  - code: stabilize_ally
+    category: rest
+    name_ru: Стабилизировать товарища
+    attribute: wis
+    skill: medicine
+    dc_medium: 10
+    description: Оказать первую помощь умирающему — при успехе он перестаёт терять хиты или приходит в себя с 1 HP.
+    keywords: стабилизировать\w*, умирающ\w*, спас\w*, без сознани\w*, первая помощь\w*, реанимаци\w*, спасти\w*
+  - code: keep_watch
+    category: rest
+    name_ru: Нести караул
+    attribute: wis
+    skill: perception
+    dc_medium: 12
+    description: Сторожить лагерь во время отдыха, чтобы заметить угрозу заранее и разбудить группу.
+    keywords: караул\w*, часовой\w*, вахт\w*, охранят\w*, дежурств\w*, дозор\w*, сторож\w*, караулить\w*
+
+  # ---------------------------- narrative (без броска) ----------------------------
+  - code: speak
+    category: narrative
+    name_ru: Сказать
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Произнести реплику, задать вопрос или обратиться к NPC — диалог идёт без бросков, пока не требуется проверка.
+    keywords: сказать\w*, речь\w*, фраз\w*, вопрос\w*, разговор\w*, обратиться\w*, говорю\w*, спросить\w*
+  - code: wait
+    category: narrative
+    name_ru: Подождать
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Выждать время или пропустить ход до наступления условия или триггера.
+    keywords: ждать\w*, подождать\w*, выждать\w*, пауза\w*, ожидани\w*, подожду\w*, жду\w*
+  - code: observe_passively
+    category: narrative
+    name_ru: Пассивно наблюдать
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Наблюдать без активных действий; движок использует пассивные значения Внимательности или Проницательности.
+    keywords: наблюдат\w*, смотреть\w*, пассивн\w*, глаз\w*, осматривать\w*, всматриваться\w*, следить взглядом\w*
+  - code: describe_action
+    category: narrative
+    name_ru: Описать действие
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Описать свободное действие или намерение — движок продолжает повествование и решает исход.
+    keywords: описать\w*, действи\w*, свободн\w*, намерени\w*, делать\w*, сделать\w*, замахнуться\w*, выглянуть\w*
+  - code: move_carefully
+    category: narrative
+    name_ru: Двигаться осторожно
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Медленно продвигаться, осматривая путь; по умолчанию без бросков, если не требуется скрытность.
+    keywords: осторожно\w*, медленно\w*, продвиг\w*, красться осторожно\w*, внимательно идти\w*, на цыпочках\w*
+  - code: gesture
+    category: narrative
+    name_ru: Жест
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Жест, мимика или условный сигнал напарнику без слов — считывается при прямой видимости.
+    keywords: жест\w*, мимика\w*, сигнал\w*, показать\w*, кивок\w*, махнуть\w*, машет\w*, указать\w*
+  - code: nod
+    category: narrative
+    name_ru: Кивнуть
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Знак согласия или подтверждения — короткая невербальная реакция персонажа.
+    keywords: кивок\w*, согласи\w*, кивать\w*, подтверждени\w*, кивнуть\w*, согласен\w*
+  - code: pray
+    category: narrative
+    name_ru: Молиться
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Обратиться к божеству или силам мира — ролевой флавор; при особых обстоятельствах мир может ответить знаком.
+    keywords: молитв\w*, молиться\w*, бог\w*, божеств\w*, обряд\w*, вера\w*, помолиться\w*, воззвать\w*
+  - code: taunt_flavor
+    category: narrative
+    name_ru: Насмешка
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Словесная провокация или насмешка без механического эффекта — чистый ролевой флавор.
+    keywords: насмешк\w*, дразнить\w*, оскорб\w*, провокаци\w*, издевк\w*, подкол\w*, обозвать\w*, высмеять\w*
+  - code: surrender
+    category: narrative
+    name_ru: Сдаться
+    attribute: null
+    skill: null
+    dc_medium: null
+    description: Сложить оружие и прекратить сопротивление — исход решает противник и движок.
+    keywords: сдаться\w*, капитуляци\w*, сдача\w*, сдаюсь\w*, сложить оружи\w*, пощад\w*, сдаёмся\w*
