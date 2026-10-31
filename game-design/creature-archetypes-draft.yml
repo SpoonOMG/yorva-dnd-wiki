@@ -1,0 +1,237 @@
+# Архетипы противников (creature_archetypes) — абстрактные «болванки»,
+# привязанные к уровню угрозы, а не к конкретному существу.
+#
+# Идея: механика детерминирована (таблица), оболочка — нарративная (LLM).
+# LLM получает список доступных кодов на уровень игрока и выбирает болванку,
+# сама придумывая имя/описание под сеттинг: «рыцарь-скелет» и «корпо-секьюрити»
+# могут быть одной болванкой elite_2.
+#
+# Калибровка — под СОЛО-игрока (основной режим):
+# - XP-база = SRD 5e «XP Thresholds per character» (medium budget) на уровень.
+# - HP-база подобрана так, чтобы рядовой умирал за 2–3 попадания игрока своего уровня.
+# - Существующие тестовые фикстуры остаются валидными:
+#   Кабан hp12/ac11/+3/1d6+2/50xp == recruit_1 (ровно база 1 уровня).
+
+# ---------------------------------------------------------------------------
+# Базовые параметры по уровню противника (== уровень игрока, которому он ровня).
+# ---------------------------------------------------------------------------
+base_by_level:
+  - level: 1
+    hp: 12
+    ac: 11
+    attack_bonus: 3
+    damage_dice: 1d6
+    damage_bonus: 2
+    xp: 50        # SRD medium solo L1; == Кабан/Иглобрюх из текущих тестов
+  - level: 2
+    hp: 16
+    ac: 11
+    attack_bonus: 3
+    damage_dice: 1d6
+    damage_bonus: 2
+    xp: 100
+  - level: 3
+    hp: 20
+    ac: 12
+    attack_bonus: 4
+    damage_dice: 1d8
+    damage_bonus: 2
+    xp: 150
+  - level: 4
+    hp: 24
+    ac: 12
+    attack_bonus: 4
+    damage_dice: 1d8
+    damage_bonus: 3
+    xp: 250
+  - level: 5
+    hp: 28
+    ac: 13
+    attack_bonus: 5
+    damage_dice: 1d10
+    damage_bonus: 3
+    xp: 500
+  - level: 6
+    hp: 32
+    ac: 13
+    attack_bonus: 5
+    damage_dice: 1d10
+    damage_bonus: 4
+    xp: 600
+  - level: 7
+    hp: 36
+    ac: 14
+    attack_bonus: 6
+    damage_dice: 2d6
+    damage_bonus: 4
+    xp: 750
+  - level: 8
+    hp: 40
+    ac: 14
+    attack_bonus: 6
+    damage_dice: 2d6
+    damage_bonus: 5
+    xp: 900
+  - level: 9
+    hp: 44
+    ac: 15
+    attack_bonus: 7
+    damage_dice: 2d8
+    damage_bonus: 5
+    xp: 1100
+  - level: 10
+    hp: 48
+    ac: 15
+    attack_bonus: 7
+    damage_dice: 2d8
+    damage_bonus: 6
+    xp: 1200
+
+# ---------------------------------------------------------------------------
+# Ранги — модификаторы поверх базы уровня.
+# xp_mult калиброван так, чтобы:
+#   - элита  ~= hard/deadly-сцена соло (заметный бой, но не кульминация);
+#   - босс   ~= deadly x1.5 (кульминация сцены, ~5–8 раундов);
+#   - эпик   ~= половина квеста (рекомендуется не спавнить ниже 5 уровня игрока).
+# ---------------------------------------------------------------------------
+ranks:
+  - code: recruit
+    name_ru: Рядовой
+    hp_mult: 1.0
+    xp_mult: 1.0
+    ac_delta: 0
+    attack_delta: 0
+    damage_dice_tier_delta: 0   # сдвиг по лестнице кубов 1d6→1d8→1d10→2d6→2d8
+    damage_bonus_delta: 0
+    features_count: 0
+    narrative_hint: Массовка. Ходят группами 2–4, не должны быть угрозой поодиночке.
+    loot_tier: common
+
+  - code: improved
+    name_ru: Улучшенный
+    hp_mult: 1.5
+    xp_mult: 1.5
+    ac_delta: 0
+    attack_delta: 1
+    damage_dice_tier_delta: 1
+    damage_bonus_delta: 0
+    features_count: 1
+    allowed_features: [pack_tactics, poison_strike, resist_element]
+    narrative_hint: Ветеран/сержант — выделяется среди массовки, заметно крепче.
+    loot_tier: common
+
+  - code: elite
+    name_ru: Элита
+    hp_mult: 2.5
+    xp_mult: 2.5
+    ac_delta: 1
+    attack_delta: 1
+    damage_dice_tier_delta: 1
+    damage_bonus_delta: 1
+    features_count: 1
+    allowed_features: [multiattack, aura_fear, regeneration, armor_heavy, enrage]
+    narrative_hint: Мини-босс сцены. Один против игрока — серьёзный бой.
+    loot_tier: uncommon
+
+  - code: boss
+    name_ru: Босс
+    hp_mult: 5.0
+    xp_mult: 4.0
+    ac_delta: 2
+    attack_delta: 2
+    damage_dice_tier_delta: 2
+    damage_bonus_delta: 2
+    features_count: 2
+    allowed_features: [multiattack, aura_fear, regeneration, armor_heavy, enrage, summon_minions]
+    phase: true            # на 50% HP — смена поведения (enrage/summon_minions по умолчанию)
+    save_bonus_vs_status: 4   # бросок против оглушения/страха с бонусом (B-23)
+    narrative_hint: Кульминация сцены/акта. Один на сессию-акту, не конвейер.
+    loot_tier: rare
+
+  - code: epic
+    name_ru: Эпический босс
+    hp_mult: 8.0
+    xp_mult: 6.0
+    ac_delta: 3
+    attack_delta: 3
+    damage_dice_tier_delta: 2
+    damage_bonus_delta: 3
+    features_count: 3
+    allowed_features: [multiattack, aura_fear, regeneration, armor_heavy, enrage, summon_minions]
+    phase: true
+    save_bonus_vs_status: 6
+    min_player_level: 5    # младше — LLM не получает этот код в списке доступных
+    narrative_hint: Кульминация квеста/кампании. Подготовка, отступление, возвращение.
+    loot_tier: legendary
+
+# ---------------------------------------------------------------------------
+# Фичи — слот-эффекты, выбираемые из allowed_features ранга.
+# Механика каждой фичи реализуется в rules-engine детерминированно.
+# ---------------------------------------------------------------------------
+features:
+  - code: multiattack
+    name_ru: Мультиатака
+    rule: 2 атаки за ход. Только против пати >= 3 героев; в соло/дуэте — одна тяжёлая атака (урон x1.5).
+  - code: pack_tactics
+    name_ru: Тактика стаи
+    rule: Преимущество на атаку, если союзник рядом (нарративно; механика — +2 к броску при >= 2 живых союзниках).
+  - code: poison_strike
+    name_ru: Ядовитый удар
+    rule: При попадании — спасбросок Телосложения DC 13 или статус «Отравлен».
+  - code: resist_element
+    name_ru: Сопротивление стихии
+    rule: Урон одного типа (огонь/холод/яд/молния — выбирает LLM под оболочку) режется вдвое.
+  - code: regeneration
+    name_ru: Регенерация
+    rule: В начале своего хода восстанавливает 10% maxHp, если жив.
+  - code: armor_heavy
+    name_ru: Тяжёлая броня
+    rule: Критические попадания считаются обычными.
+  - code: aura_fear
+    name_ru: Аура страха
+    rule: В начале хода игрока — спасбросок Мудрости DC 13 или «Испуган» (не может приблизиться).
+  - code: enrage
+    name_ru: Ярость
+    rule: Ниже 50% HP: +2 к урону, -2 к AC.
+  - code: summon_minions
+    name_ru: Призыв приспешников
+    rule: Однократно при падении ниже 50% HP — появляются 2 рядовых того же уровня с полными HP.
+
+# ---------------------------------------------------------------------------
+# Партийное масштабирование (решение владельца продукта).
+# За каждого союзника сверх соло-игрока — множитель +0.6 к статам противника.
+# Пример: соло=×1.0, дуэт=×1.6, троица=×2.2, полная пати (5 союзников)=×4.0.
+# ---------------------------------------------------------------------------
+party_scaling:
+  per_extra_ally_multiplier: 0.6
+  applies_to: [hp, xp]       # HP и награда масштабируются полностью
+  # ПРЕДОХРАНИТЕЛЬ: урон и бонус атаки НЕ масштабируются множителем —
+  # иначе при 5 союзниках босс наносит x4 урона за удар и гарантированно
+  # one-shot'ит любого героя. Партийная глубина даётся через HP (длиннее бой)
+  # и multiattack (больше целей), а не через ваншоты.
+  # attack_bonus/ac не масштабируются — иначе герои перестанут попадать/уворачиваться.
+  note: Калибровку 0.6 проверить на первом партийном плейтесте; при «губчатых» боях снизить до 0.4–0.5.
+
+# ---------------------------------------------------------------------------
+# Контракт интеграции (для SA/Backend — не часть миграции).
+# ---------------------------------------------------------------------------
+integration:
+  llm_contract: |
+    LLM получает в контексте список доступных кодов болванок
+    (уровень игрока ± 1, epic — только с 5 уровня игрока) с narrative_hint ранга.
+    LLM выбирает code и возвращает оболочку: name_ru, описание, тип урона
+    (для resist_element), выбранные features из allowed_features.
+    Характеристики LLM НЕ придумывает — сервер берёт их из таблицы.
+  ledger_freeze: |
+    При первом инстанцировании именованного противника сервер пишет в ledger
+    сессии: name → { archetype_code, features, hp_current/hp_max }.
+    Повторная встреча того же имени — статы из ledger, НЕ новый выбор LLM.
+    Без этого «Крысюк» будет то элитой, то рядовым — консистентность сюжета.
+  xp_source: |
+    xpForEnemy() (50/75/100 по maxHp) заменяется на xp из таблицы
+    (с party_scaling). Старые конкретные creatures мигрируют как skin pack
+    поверх архетипов с сохранением статов (тесты B-14/B-26/B-27 зелёные).
+  loot_mapping: |
+    Ранг → тир лута (loot_tier): витрина лута фильтрует редкость по тиру;
+    legendary из эпик-босса не считается в квоту сессии (уже гарантирован).
+  dice_ladder: [1d6, 1d8, 1d10, 2d6, 2d8]   # для damage_dice_tier_delta

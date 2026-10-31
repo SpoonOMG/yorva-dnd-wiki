@@ -1,0 +1,135 @@
+# Черновик каталога social_checks
+
+social_checks:
+  - code: persuade
+    name_ru: Убеждение
+    attribute: cha
+    skill: persuasion
+    dc_medium: 15
+    success_disposition: FRIENDLY
+    failure_disposition: NEUTRAL
+    success_rep_delta: 5
+    failure_rep_delta: -2
+    description: Убедить NPC действовать в твоих интересах через доверие и логику.
+    keywords: убежд\w*,уговор\w*,договор\w*,убедить\w*
+  - code: intimidate
+    name_ru: Запугивание
+    attribute: cha
+    skill: intimidation
+    dc_medium: 15
+    success_disposition: WARY
+    failure_disposition: HOSTILE
+    success_rep_delta: -2
+    failure_rep_delta: -5
+    description: Заставить NPC подчиниться через угрозы, силу или авторитет.
+    keywords: запуг\w*,напуг\w*,устраш\w*,угрож\w*,запугать\w*
+  - code: deceive
+    name_ru: Обман
+    attribute: cha
+    skill: deception
+    dc_medium: 15
+    success_disposition: FRIENDLY
+    failure_disposition: WARY
+    success_rep_delta: 0
+    failure_rep_delta: -5
+    description: Солгать, скрыть правду или выдать себя за другого.
+    keywords: обман\w*,блеф\w*,солгать\w*,обвести\w*,наврать\w*
+  - code: haggle
+    name_ru: Торговля
+    attribute: cha
+    skill: persuasion
+    dc_medium: 12
+    success_disposition: NEUTRAL
+    failure_disposition: NEUTRAL
+    success_rep_delta: 1
+    failure_rep_delta: -1
+    description: Сбить цену или выторговать лучшие условия сделки.
+    keywords: торг\w*,сбить цен\w*,сговор\w*,выторгов\w*
+  - code: gather_information
+    name_ru: Сбор слухов
+    attribute: cha
+    skill: persuasion
+    dc_medium: 12
+    success_disposition: NEUTRAL
+    failure_disposition: NEUTRAL
+    success_rep_delta: 1
+    failure_rep_delta: 0
+    description: Выпытать у местных слухи, новости или сплетни.
+    keywords: слухи\w*,сплетни\w*,узнать новост\w*,информ\w*,выпыт\w*
+  - code: recruit_ally
+    name_ru: Завербовать союзника
+    attribute: cha
+    skill: persuasion
+    dc_medium: 18
+    success_disposition: FRIENDLY
+    failure_disposition: WARY
+    success_rep_delta: 10
+    failure_rep_delta: -3
+    description: Убедить нейтрального NPC присоединиться к группе.
+    keywords: вербов\w*,заверб\w*,найти союзник\w*,присоедин\w*
+  - code: interrogate
+    name_ru: Допрос
+    attribute: cha
+    skill: intimidation
+    dc_medium: 15
+    success_disposition: WARY
+    failure_disposition: HOSTILE
+    success_rep_delta: -3
+    failure_rep_delta: -5
+    description: Выбить признание или информацию из нежелающего говорить NPC.
+    keywords: допрос\w*,выбить признан\w*,заставить говорить\w*,выпытыв\w*
+  - code: flatter
+    name_ru: Лесть
+    attribute: cha
+    skill: persuasion
+    dc_medium: 12
+    success_disposition: FRIENDLY
+    failure_disposition: NEUTRAL
+    success_rep_delta: 3
+    failure_rep_delta: -1
+    description: Расположить к себе через комплименты и восхищение.
+    keywords: лест\w*,восхищ\w*,хвал\w*,комплимент\w*
+  - code: perform
+    name_ru: Выступление
+    attribute: cha
+    skill: performance
+    dc_medium: 12
+    success_disposition: FRIENDLY
+    failure_disposition: NEUTRAL
+    success_rep_delta: 2
+    failure_rep_delta: -1
+    description: Развлечь толпу песней, танцем, музыкой или речью.
+    keywords: выступ\w*,песн\w*,танц\w*,играть на\w*
+  - code: impersonate
+    name_ru: Выдать себя за другого
+    attribute: cha
+    skill: deception
+    dc_medium: 15
+    success_disposition: NEUTRAL
+    failure_disposition: WARY
+    success_rep_delta: 0
+    failure_rep_delta: -5
+    description: Принять чужой облик, голос или статус, чтобы ввести в заблуждение.
+    keywords: выдать себя\w*,прикинуться\w*,под видом\w*,выдавать\w* за\w*
+  - code: calm_animal
+    name_ru: Успокоить животное
+    attribute: wis
+    skill: animal_handling
+    dc_medium: 12
+    success_disposition: NEUTRAL
+    failure_disposition: WARY
+    success_rep_delta: 0
+    failure_rep_delta: -2
+    description: Успокоить зверя, лошадь или дикое животное.
+    keywords: успокоить животн\w*,успокоить звер\w*,прируч\w*,усмир\w*
+  - code: insight_check
+    name_ru: Проницательность
+    attribute: wis
+    skill: insight
+    dc_medium: 12
+    success_disposition: NEUTRAL
+    failure_disposition: NEUTRAL
+    success_rep_delta: 0
+    failure_rep_delta: 0
+    description: Понять истинные намерения NPC или поймать его на лжи.
+    keywords: проницат\w*,мотив\w*,правда ли\w*,лж[её]т\w*,лгать\w*,намерени\w*
