@@ -1,0 +1,97 @@
+# Черновик каталога опасностей окружения (environmental_hazards).
+# Срабатывает когда игрок «борется» с огнём, ядовитым облаком, ямой и т.п.
+# Тип отклика движка:
+#   - trap: проверка ловушки (DEX save) при попытке пройти/взаимодействовать
+#   - terrain: нет немедленного урона, но есть модификаторы движения/зрения
+#   - poison/zone: урон или статус при входе/контакте
+
+environmental_hazards:
+  - code: open_flame
+    name_ru: Открытое пламя
+    type: trap
+    damage_per_turn: "1d6"
+    damage_type: fire
+    save_attribute: dex
+    save_dc: 12
+    on_fail_status: null
+    description: Огонь, костёр, горящая мебель — при контакте урон и риск возгорания одежды.
+
+  - code: toxic_cloud
+    name_ru: Ядовитое облако
+    type: zone
+    damage_per_turn: "1d6"
+    damage_type: poison
+    save_attribute: con
+    save_dc: 13
+    on_fail_status: Отравлен
+    description: Облако ядовитого газа — при входе спасбросок Телосложения, иначе урон и отравление.
+
+  - code: spike_pit
+    name_ru: Яма с кольями
+    type: trap
+    damage_per_turn: "1d10"
+    damage_type: piercing
+    save_attribute: dex
+    save_dc: 13
+    on_fail_status: null
+    description: Замаскированная яма с кольями — спасбросок Ловкости при обрушении.
+
+  - code: acid_pool
+    name_ru: Кислотная лужа
+    type: zone
+    damage_per_turn: "1d8"
+    damage_type: acid
+    save_attribute: dex
+    save_dc: 12
+    on_fail_status: null
+    description: Едкая кислота на полу — урон при нахождении или контакте с ней.
+
+  - code: freezing_wind
+    name_ru: Ледяной ветер
+    type: terrain
+    damage_per_turn: "1d4"
+    damage_type: cold
+    save_attribute: con
+    save_dc: 11
+    on_fail_status: null
+    description: Пронизывающий холодный ветер — периодический урон без остановки движения.
+
+  - code: collapsing_ceiling
+    name_ru: Обрушение потолка
+    type: trap
+    damage_per_turn: "2d6"
+    damage_type: bludgeoning
+    save_attribute: dex
+    save_dc: 15
+    on_fail_status: null
+    description: Треснувший свод — при обвале спасбросок Ловкости или тяжёлый урон.
+
+  - code: darkness_magic
+    name_ru: Магическая тьма
+    type: terrain
+    damage_per_turn: null
+    damage_type: null
+    save_attribute: null
+    save_dc: null
+    on_fail_status: null
+    description: Зона непроглядной тьмы — блокирует зрение, атаки с помехой, поиск сложнее.
+
+  - code: quicksand
+    name_ru: Зыбучий песок
+    type: terrain
+    damage_per_turn: null
+    damage_type: null
+    save_attribute: str
+    save_dc: 13
+    on_fail_status: null
+    description: Затягивающая трясина — при провале Силы персонаж увязает глубже.
+
+  - code: crushed_floor
+    name_ru: Хрупкий пол
+    type: trap
+    damage_per_turn: null
+    damage_type: null
+    save_attribute: dex
+    save_dc: 12
+    on_fail_status: null
+    description: Прогнившие доски — при провале Ловкости проваливается вниз (урон от падения).

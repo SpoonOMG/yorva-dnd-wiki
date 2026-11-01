@@ -1,0 +1,113 @@
+# Черновик каталога object_templates
+
+object_templates:
+  - code: wooden_door
+    name_ru: Деревянная дверь
+    category: door
+    ac: 13
+    hp: 10
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 15
+    fall_damage_percent: 50
+    description: Обычная деревянная дверь — ломается плечом или тяжёлым предметом.
+    keywords: деревянн\w* двер\w*,дубов\w* двер\w*,двер\w* (из )?дерев\w*,доск\w* двер\w*
+  - code: iron_door
+    name_ru: Железная дверь
+    category: door
+    ac: 17
+    hp: 25
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 20
+    fall_damage_percent: 50
+    description: Массивная металлическая дверь; без инструмента или огромной силы не взять.
+    keywords: железн\w* двер\w*,стальн\w* двер\w*,металлич\w* двер\w*,бронированн\w* двер\w*
+  - code: wooden_chest
+    name_ru: Деревянный сундук
+    category: container
+    ac: 12
+    hp: 8
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 12
+    fall_damage_percent: 25
+    description: Сундук из досок — можно вскрыть силой или подобрать замок.
+    keywords: сундук\w*,деревянн\w* сундук\w*,ящик\w*,ларец\w*,короб\w*
+  - code: iron_chest
+    name_ru: Железный сундук
+    category: container
+    ac: 16
+    hp: 18
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 18
+    fall_damage_percent: 25
+    description: Тяжёлый металлический сундук; ломать долго и шумно.
+    keywords: железн\w* сундук\w*,металлич\w* сундук\w*,стальн\w* ящик\w*,сейф\w*
+  - code: iron_grate
+    name_ru: Железная решётка
+    category: barrier
+    ac: 16
+    hp: 20
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 18
+    fall_damage_percent: 75
+    description: Решётка из прутьев; обрушение наносит серьёзный урон.
+    keywords: реш[её]тк\w*,прутья\w*,клетк\w*,реш[её]тчат\w* ворот\w*
+  - code: chain
+    name_ru: Цепь
+    category: barrier
+    ac: 15
+    hp: 8
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 16
+    fall_damage_percent: 25
+    description: Толстая железная цепь; можно перерезать инструментом или сорвать силой.
+    keywords: цеп\w*,оков\w*
+  - code: rope
+    name_ru: Верёвка
+    category: barrier
+    ac: 10
+    hp: 4
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 12
+    fall_damage_percent: 10
+    description: Обычная верёвка или канат — режется быстро.
+    keywords: вер[её]вк\w*,канат\w*
+  - code: barricade
+    name_ru: Баррикада
+    category: barrier
+    ac: 14
+    hp: 15
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 16
+    fall_damage_percent: 50
+    description: Импровизированная завалка из мебели и досок.
+    keywords: баррикад\w*,завал\w*,заслон\w*,прегражда\w*
+  - code: stone_wall
+    name_ru: Каменная стена
+    category: barrier
+    ac: 18
+    hp: 40
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 25
+    fall_damage_percent: 100
+    description: Толстая каменная кладина; пробить почти невозможно без инструмента.
+    keywords: каменн\w* стен\w*,кирпичн\w* стен\w*,стен\w* (из )?камн\w*
+  - code: wooden_barrier
+    name_ru: Деревянная преграда
+    category: barrier
+    ac: 12
+    hp: 12
+    break_attribute: str
+    break_skill: athletics
+    break_dc: 13
+    fall_damage_percent: 40
+    description: Доски, брёвна или плот — можно сломать или перелезть.
+    keywords: доск\w*,бревн\w*,плот\w*,деревянн\w* преград\w*

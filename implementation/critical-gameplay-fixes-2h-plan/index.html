@@ -1,0 +1,2128 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Платформа RPG-миров — продукт, гейм-дизайн и UX. Без технических деталей.">
+      
+      
+      
+        <link rel="canonical" href="https://spoonomg.github.io/yorva-dnd-wiki/implementation/critical-gameplay-fixes-2h-plan/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.0">
+    
+    
+      
+        <title>План исправления критических игровых уязвимостей на 2 часа - Yorva D&D — Вики (публичная)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-header__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Yorva D&D — Вики (публичная)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              План исправления критических игровых уязвимостей на 2 часа
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на тёмную"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Переключить на светлую"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Главная
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../product/" class="md-tabs__link">
+          
+  
+  
+  Продукт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/rules/" class="md-tabs__link">
+          
+  
+  
+  Игровой дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../design/visual-concept/" class="md-tabs__link">
+          
+  
+  
+  Дизайн
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../game-design/gameplay-backlog/" class="md-tabs__link">
+          
+  
+  
+  Бэклог
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/" class="md-tabs__link">
+          
+  
+  
+  Журнал
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Yorva D&amp;D — Вики (публичная)" class="md-nav__button md-logo" aria-label="Yorva D&D — Вики (публичная)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Yorva D&D — Вики (публичная)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SpoonOMG/yorva-dnd-wiki" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Главная
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Продукт
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Продукт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../product/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Режимы Творец / Игрок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Игровой дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Игровой дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/rules/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/combat-loop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бой
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/skills-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навыки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/ability-checks-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Проверки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/difficulty-modes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сложность
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gm-principles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Принципы GM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/economy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бизнес-модель
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/illustrations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Иллюстрации
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/loot-showcase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Дизайн
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Дизайн
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/visual-concept/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Визуальная концепция
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/character-creation-ux/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Создание персонажа
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/chat-ux-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чат
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/landing-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лендинг
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../design/layout-navigation-brief/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Навигация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Бэклог
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Бэклог
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../game-design/gameplay-backlog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Журнал
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Журнал
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Жёсткие правила исполнения
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Область работ
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Область работ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#p0p1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Основной блок P0/P1 — обязательно
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Не начинать в двухчасовом блоке
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Пошаговый основной план
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Пошаговый основной план">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шаг 0. Подготовка — 5 минут
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-selflearn-jvm-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шаг 1. Закрыть удалённый selflearn в обычном JVM — 10 минут
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шаг 2. Запретить создание сессии в чужом/удалённом мире — 15 минут
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шаг 3. Закрыть произвольные и повторные реакции — 15 минут
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spellservicecancast-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шаг 4. Проверять право на заклинание в SpellService.canCast — 20 минут
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шаг 5. Убрать бесплатное примирение по текстовому маркеру — 10 минут
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-prestrike-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Шаг 6. Запретить действие после недееспособности от preStrike — 15 минут
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Проверка основного блока — 20 минут
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Проверка основного блока — 20 минут">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. Сначала узкие тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-concurrency-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. Затем существующие concurrency-тесты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Ручная матрица изоляции
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Финальный контроль
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Правила таймбокса и точки остановки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Критерии готовности двухчасового блока
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Высокие риски после двухчасового блока
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Высокие риски после двухчасового блока">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-spec-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1. Идемпотентность ходов — отдельный spec-first этап
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-spineservice-side-effect-freshness-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2. SpineService: side effect без freshness-check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3. Общий герой в параллельных сессиях
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-milestone-xp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Повторный milestone XP при возврате в сцену
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#75-take_loot-legacy-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.5. Произвольный TAKE_LOOT и legacy-обходы валидатора
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#76-selflearn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6. Полная изоляция selflearn
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-hotfix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Что не входит даже в ближайший hotfix
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="2">План исправления критических игровых уязвимостей на 2 часа<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<p>Статус: <strong>основные исправления и идемпотентность реализованы; полная backend- и frontend-проверка пройдена</strong>.</p>
+<p>Цель: за 120 минут закрыть наиболее опасные эксплойты, не затрагивая чужую параллельную работу и не начиная изменения, которые невозможно безопасно закончить за этот срок.</p>
+<p>Отдельное требование: разные аккаунты и их параллельные сессии не должны влиять друг на друга. В основной блок входит отключение удалённого запуска selflearn в обычном JVM: сейчас он мутирует глобальный <code>BalanceRegistry</code> для всех пользователей.</p>
+<h2 id="1">1. Жёсткие правила исполнения<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Перед началом дождаться завершения параллельного агента.</li>
+<li>Выполнить <code>git status --short</code> и записать исходный список изменений. Не делать <code>reset</code>, <code>checkout</code>, <code>clean</code>, <code>stash</code> и не перезаписывать чужие файлы.</li>
+<li>Работать маленькими независимыми порциями в порядке из раздела 3. После каждой порции проверять diff только ожидаемых файлов.</li>
+<li>Не добавлять зависимости, новые подсистемы и рефакторинг «заодно».</li>
+<li>API менять только после <code>api-specification/openapi.yaml</code>. В основном блоке спецификация нужна для ответа <code>404</code> при создании сессии в недоступном мире.</li>
+<li>Не коммитить автоматически: перед каждым коммитом показать результат и получить подтверждение пользователя.</li>
+<li>Если шаг превысил свой таймбокс, остановиться на последнем рабочем состоянии, зафиксировать ошибку и не начинать следующий рискованный шаг.</li>
+<li>Не объявлять шаг завершённым, если его новые тесты не написаны/не пройдены или старые тесты сломаны без разобранной причины.</li>
+<li>После изменения поведения обновить рядом стоящие устаревшие комментарии и тесты, которые прямо закрепляют уязвимое поведение.</li>
+<li>Не запускать полный интеграционный прогон вместо точечных тестов в середине работы. Сначала узкие тесты, полный прогон — только после основного блока и при наличии времени.</li>
+</ol>
+<p>Известный исходный фон: в предыдущем прогоне <code>SessionIntegrationTest</code> давал 19 падений, преимущественно <code>401</code> на <code>createWorld</code>; остальные 30 выбранных тестов прошли. Эти падения нельзя автоматически приписывать новым исправлениям и нельзя называть интеграционную базу зелёной.</p>
+<h2 id="2_1">2. Область работ<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<h3 id="p0p1">Основной блок P0/P1 — обязательно<a class="headerlink" href="#p0p1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Порядок</th>
+<th>Проблема</th>
+<th>Минимально достаточное исправление</th>
+<th>Таймбокс</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Подготовка</td>
+<td>Зафиксировать исходный diff и тестовую базу</td>
+<td>5 мин</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Межаккаунтное изменение баланса</td>
+<td>Убрать selflearn HTTP endpoint из обычного/production контекста</td>
+<td>10 мин</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Создание сессии в чужом мире</td>
+<td>Проверить владельца мира до обеих веток создания</td>
+<td>15 мин</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Произвольные и повторные реакции</td>
+<td>Принимать только реакцию из последнего хода; перепроверить spell reaction</td>
+<td>15 мин</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Чужие/неизученные заклинания и любые заговоры</td>
+<td>Централизовать проверку доступности в <code>SpellService.canCast</code></td>
+<td>20 мин</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Бесплатное примирение врага</td>
+<td>Не выставлять <code>isAlly</code> по свободному тексту игрока или Narrator</td>
+<td>10 мин</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Действие после смертельного первого удара врага</td>
+<td>Не разрешать действие игрока, если <code>preStrike</code> сделал его недееспособным</td>
+<td>15 мин</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Проверка</td>
+<td>Точечные тесты, исправление только связанных ошибок, финальный diff</td>
+<td>20 мин</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Резерв</td>
+<td>Разбор результатов и отчёт</td>
+<td>10 мин</td>
+</tr>
+</tbody>
+</table>
+<p>Итого: <strong>120 минут</strong>.</p>
+<h3 id="_1">Не начинать в двухчасовом блоке<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>полноценную идемпотентность ходов;</li>
+<li>перенос и синхронизацию side effects <code>SpineService</code>;</li>
+<li>redesign write-through снимка одного героя, используемого параллельными сессиями;</li>
+<li>глобальную изоляцию <code>BalanceRegistry</code> для одновременных selflearn-прогонов;</li>
+<li>переработку всей ресурсной экономики.</li>
+</ul>
+<p>Это не отказ от исправлений: для них есть отдельные этапы в разделе 7.</p>
+<h2 id="3">3. Пошаговый основной план<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="0-5">Шаг 0. Подготовка — 5 минут<a class="headerlink" href="#0-5" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Убедиться, что параллельный агент завершил работу.</li>
+<li>Сохранить список исходно изменённых файлов из <code>git status --short</code>.</li>
+<li>Для каждого целевого файла, уже изменённого другой задачей, сначала прочитать актуальный diff. Не заменять файл целиком.</li>
+<li>Использовать только точечные правки. Новые тесты добавлять в уже существующие тестовые классы, если там есть подходящие fixtures; отдельный класс создавать только для отсутствующего сценария.</li>
+</ol>
+<p>Контроль: есть список исходных изменений, чужая работа не затронута.</p>
+<h3 id="1-selflearn-jvm-10">Шаг 1. Закрыть удалённый selflearn в обычном JVM — 10 минут<a class="headerlink" href="#1-selflearn-jvm-10" title="Permanent link">&para;</a></h3>
+<p><strong>Почему первым:</strong> любой авторизованный пользователь может запустить длительную операцию, которая вызывает <code>balanceRegistry.reset()</code> и <code>applyFixes()</code>. Это меняет правила параллельных игр других аккаунтов.</p>
+<p><strong>Файлы:</strong></p>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/sim/selflearn/SelfLearnController.kt</code></li>
+<li>при наличии подходящей инфраструктуры — профильный тест контекста рядом с существующими тестами.</li>
+</ul>
+<p><strong>Действия:</strong></p>
+<ol>
+<li>Пометить только HTTP-контроллер профилем <code>@Profile("selflearn")</code>.</li>
+<li>Не включать профиль <code>selflearn</code> в обычные <code>dev</code>/production настройки.</li>
+<li>Не менять <code>SelfLearnOrchestrator</code> и <code>BalanceRegistry</code> на этом шаге: их полная изоляция — отдельная задача.</li>
+<li>Обновить KDoc контроллера: ручной запуск доступен только в отдельном JVM с явно включённым профилем <code>selflearn</code>.</li>
+<li>Зафиксировать эксплуатационное ограничение: профиль <code>selflearn</code> запрещено включать в JVM, где идут реальные игровые сессии.</li>
+</ol>
+<p><strong>Почему этого достаточно для hotfix:</strong> в обычном приложении endpoint перестаёт регистрироваться и удалённый пользователь больше не может мутировать глобальный баланс. При явном включении профиля риск остаётся, поэтому это containment, а не полный refactor.</p>
+<p><strong>Проверка позже:</strong></p>
+<ul>
+<li>без профиля <code>selflearn</code> бин <code>SelfLearnController</code> отсутствует, <code>POST /api/v1/sim/selflearn/run</code> возвращает <code>404</code>;</li>
+<li>с профилем <code>selflearn</code> контроллер доступен только в изолированном запуске;</li>
+<li>обычные игровые сессии не меняют <code>BalanceRegistry.current</code> после попытки вызова endpoint.</li>
+</ul>
+<p>Стоп-условие: если профильная конфигурация требует изменения общей security-цепочки, не расширять работу; перейти к шагу 2 и оставить явную запись о незавершённой проверке.</p>
+<h3 id="2-15">Шаг 2. Запретить создание сессии в чужом/удалённом мире — 15 минут<a class="headerlink" href="#2-15" title="Permanent link">&para;</a></h3>
+<p><strong>Сначала спецификация:</strong></p>
+<ul>
+<li><code>api-specification/openapi.yaml</code>, операция <code>startSession</code> (<code>POST /api/v1/sessions</code>).</li>
+<li>Добавить <code>404</code>: мир не найден или недоступен текущему пользователю.</li>
+<li>В <code>x-pipe</code> первой содержательной операцией указать поиск мира по <code>(worldId, userId)</code> и отказ до создания героя/сессии.</li>
+</ul>
+<p><strong>Код:</strong></p>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt</code></li>
+<li><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionController.kt</code></li>
+<li><code>backend/app/src/main/kotlin/com/yorva/worlds/WorldRepository.kt</code> — использовать существующий метод, не добавлять новый без необходимости.</li>
+</ul>
+<p><strong>Действия:</strong></p>
+<ol>
+<li>В самом начале <code>SessionService.create</code>, <strong>до</strong> ветки <code>request.characterId != null</code>, вызвать:
+   <code>worldRepository.findByIdAndUserIdAndDeletedAtIsNull(request.worldId, userId)</code>.</li>
+<li>Если результата нет, выбросить отдельное <code>WorldNotFoundException</code> с нейтральным сообщением <code>World not found</code>.</li>
+<li>Не различать в ответе чужой, удалённый и несуществующий мир: все дают одинаковый <code>404</code>.</li>
+<li>Добавить обработчик этого исключения в <code>SessionController.create</code> со статусом <code>404</code> и существующим форматом <code>{ "error": ... }</code>.</li>
+<li>Переиспользовать уже загруженный <code>world.genre</code> вместо повторного небезопасного чтения только по <code>worldId</code> в ветке нового героя.</li>
+<li>Не полагаться на <code>CharacterService.loadForResume</code>: он проверяет героя, но не заменяет проверку владения миром.</li>
+</ol>
+<p><strong>Тесты:</strong></p>
+<ul>
+<li>владелец создаёт сессию нового героя — успех;</li>
+<li>владелец создаёт сессию с существующим героем — успех;</li>
+<li>пользователь B подставляет <code>worldId</code> пользователя A в обеих ветках — <code>404</code>;</li>
+<li>удалённый/несуществующий мир — <code>404</code>;</li>
+<li>после отказа не появилось ни новой сессии, ни нового героя.</li>
+</ul>
+<h3 id="3-15">Шаг 3. Закрыть произвольные и повторные реакции — 15 минут<a class="headerlink" href="#3-15" title="Permanent link">&para;</a></h3>
+<p><strong>Файлы:</strong></p>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt</code></li>
+<li><code>backend/app/src/test/kotlin/com/yorva/rules/ReactionResolverTest.kt</code> — только для чистой механики, если потребуется;</li>
+<li>тест сервисного контура реакций: использовать существующий подходящий класс либо создать <code>SessionReactionTurnTest</code>, потому что текущий <code>AvailableReactionsGateTest</code> проверяет только генерацию предложений.</li>
+</ul>
+<p><strong>Действия:</strong></p>
+<ol>
+<li>В <code>processReactionTurn</code> нормализовать код: <code>request.reaction?.trim()?.uppercase()</code>; пустое значение отклонить.</li>
+<li>Требовать наличие предыдущего хода и непустого <code>availableReactions</code>.</li>
+<li>Заменить текущее условие «проверять, только если список не пуст» на безусловное:
+   разрешить только <code>offered.any { it.reaction == normalizedReaction }</code>.</li>
+<li>Использовать нормализованный код при вызове <code>ReactionResolver.resolve</code>.</li>
+<li>После реакции оставить <code>availableReactions = emptyList()</code>: благодаря строгой проверке повторный <code>RETALIATION</code> на следующем follow-up будет отклонён.</li>
+<li>Для реакций-заклинаний (<code>SHIELD</code>, <code>HELLISH_REBUKE</code>, <code>ABSORB_ELEMENTS</code>, <code>FEATHER_FALL</code>) перед резолвом повторно проверить заклинание через <code>SpellService.canCast</code>. Добавить <code>SpellService? = null</code> в конструктор <code>SessionService</code> рядом с <code>SpellRegistry</code>, если инъекции ещё нет; в production отсутствие сервиса для spell reaction должно означать отказ, а не обход проверки.</li>
+<li>Не добавлять самостоятельный enemy turn после <code>RETALIATION</code>: задача — закрыть бесконечный follow-up, а не менять боевую модель.</li>
+</ol>
+<p><strong>Обязательные тесты:</strong></p>
+<ul>
+<li>пустой <code>availableReactions</code> + вручную подставленный <code>RETALIATION</code> → отказ, HP/XP/состояние не меняются;</li>
+<li>непредложенная реакция → отказ;</li>
+<li>вторая одинаковая реакция после первой → отказ;</li>
+<li>предложенная реакция → ровно одно применение;</li>
+<li>spell reaction без знания/подготовки или без подходящего слота → отказ без списания и эффекта;</li>
+<li>реакция в сессии A не использует предложения из сессии B.</li>
+</ul>
+<h3 id="4-spellservicecancast-20">Шаг 4. Проверять право на заклинание в <code>SpellService.canCast</code> — 20 минут<a class="headerlink" href="#4-spellservicecancast-20" title="Permanent link">&para;</a></h3>
+<p><strong>Файлы:</strong></p>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/spells/SpellService.kt</code></li>
+<li><code>backend/app/src/test/kotlin/com/yorva/spells/SpellServiceTest.kt</code></li>
+<li>при необходимости <code>SpellServiceUpcastTest</code>, <code>PactMagicTest</code>, <code>UtilityCantripTest</code> — только обновление fixtures, которые сейчас создают «пустого» персонажа со слотами.</li>
+</ul>
+<p><strong>Правило доступности:</strong></p>
+<ol>
+<li>Сохранить текущие запреты: incapacitated, rage, wild shape.</li>
+<li>Нормализовать <code>spell.id</code> и списки персонажа через <code>trim().lowercase()</code>.</li>
+<li>Для заговора (<code>level == 0</code>) требовать <code>spell.id in spellsKnown</code>; слот не нужен.</li>
+<li>Для wizard/mage требовать заклинание одновременно в <code>spellbook</code> и <code>preparedSpells</code>; заговоры — по пункту 3.</li>
+<li>Для cleric/druid/paladin требовать <code>preparedSpells</code>; доменные заклинания уже добавляются туда отдельно и должны продолжить работать.</li>
+<li>Для остальных заклинателей требовать <code>spellsKnown</code> либо явно выданное <code>preparedSpells</code>.</li>
+<li>Только после проверки доступности выполнять существующие проверки pact/slot и upcast.</li>
+<li>Не делать грубую универсальную проверку <code>spell.classes.contains(classId)</code>: она сломает доменные и патронные заклинания, законно присутствующие в <code>preparedSpells</code>/<code>spellsKnown</code>. Класс и источник выбора уже учитываются при создании и <code>prepareSpells</code>; <code>canCast</code> должен проверять фактическую доступность конкретного <code>spell.id</code>.</li>
+<li>Оба пути каста уже проходят через <code>TurnResolver.executeCastSpell</code>: текстовый и structured intent. Не вставлять вторую расходящуюся проверку в <code>resolveStructuredCast</code>.</li>
+</ol>
+<p><strong>Тесты:</strong></p>
+<ul>
+<li>персонаж без списков заклинаний не кастует заговор даже со свободными слотами;</li>
+<li>известный заговор кастуется без слота;</li>
+<li>заклинание другого класса, отсутствующее во всех списках персонажа, отклоняется;</li>
+<li>wizard не кастует заклинание, которое есть только в книге, но не подготовлено;</li>
+<li>подготовленное заклинание из книги доступно;</li>
+<li>доменное/патронное заклинание из соответствующего списка доступно;</li>
+<li>неизвестное заклинание отклоняется до списания слота;</li>
+<li>валидные pact/upcast сценарии сохраняются.</li>
+</ul>
+<p>Важно: существующий тест <code>canCast returns true when conditions met</code> и похожие fixtures нужно наполнить классом и корректными списками заклинаний, а не ослаблять новые проверки ради старого пустого fixture.</p>
+<h3 id="5-10">Шаг 5. Убрать бесплатное примирение по текстовому маркеру — 10 минут<a class="headerlink" href="#5-10" title="Permanent link">&para;</a></h3>
+<p><strong>Файлы:</strong></p>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt</code></li>
+<li><code>backend/app/src/test/kotlin/com/yorva/sessions/SessionServiceAllyFlagTest.kt</code></li>
+</ul>
+<p><strong>Действия:</strong></p>
+<ol>
+<li>Удалить автоматическую установку <code>Enemy.isAlly</code> из блока <code>allyScanInput</code>/<code>detectAllyMarker</code>.</li>
+<li>Не сканировать ни <code>request.action</code>, ни свободную прозу Narrator для изменения боевого состояния. Удаление только сканирования <code>request.action</code> недостаточно: Narrator может повторить prompt injection игрока.</li>
+<li>Примирение/завершение боя оставить только через существующий проверяемый <code>END_COMBAT</code> контур с <code>EffectValidator.validateEndCombat</code>.</li>
+<li>Поле <code>Enemy.isAlly</code> не удалять: оно может использоваться доверенными детерминированными сценариями. Убрать только небезопасный источник изменения.</li>
+<li>Обновить комментарии около <code>applyEnemyTurn</code>: свободный текст больше не является источником флага.</li>
+<li>Переписать старые тесты, которые прямо требуют ally-флаг по фразам «не враг»/«союзник»: теперь они должны требовать отсутствие смены состояния. Не удалять негативные сценарии.</li>
+</ol>
+<p><strong>Тесты:</strong></p>
+<ul>
+<li>игрок пишет «они не враги мне» → враг не становится союзником и бой не прекращается;</li>
+<li>Narrator возвращает «сложил оружие, союзник» без валидного эффекта → <code>isAlly</code> не меняется;</li>
+<li>валидный существующий <code>END_COMBAT</code> сценарий продолжает работать;</li>
+<li>следующий вражеский ход не подавляется одной текстовой фразой.</li>
+</ul>
+<h3 id="6-prestrike-15">Шаг 6. Запретить действие после недееспособности от <code>preStrike</code> — 15 минут<a class="headerlink" href="#6-prestrike-15" title="Permanent link">&para;</a></h3>
+<p><strong>Файл:</strong></p>
+<ul>
+<li><code>backend/app/src/main/kotlin/com/yorva/sessions/SessionService.kt</code></li>
+<li>новый сервисный тест только если нет подходящего существующего класса для enemy-first хода.</li>
+</ul>
+<p><strong>Действия:</strong></p>
+<ol>
+<li>После вычисления <code>preStrike</code>, но <strong>до</strong> <code>turnResolver.resolve(...)</code> для действия игрока вычислить предварительное состояние, применив только <code>preStrike.stateChanges</code> через существующий <code>applyStateChanges</code>.</li>
+<li>Не сохранять это предварительное состояние отдельно и не применять изменения второй раз к итоговому состоянию. Оно нужно только для gate.</li>
+<li>Если после <code>preStrike</code> персонаж имеет <code>hp &lt;= 0</code>, unconscious/dead или incapacitated, заменить действие игрока на <code>TurnMechanics(action = "no_roll", stateChanges = emptyList(), ...)</code> с понятным описанием пропуска.</li>
+<li>Сохранить текущую схему объединения: <code>preStrike</code> должен попасть в журнал и итоговое состояние ровно один раз.</li>
+<li>Не бросать <code>CharacterDeadException</code> до сохранения самого вражеского удара: это потеряет факт смерти/падения. Смертельные правила дальше обрабатывают итоговое состояние.</li>
+<li>Не менять обычный порядок ходов, где игрок ходит первым.</li>
+</ol>
+<p><strong>Тесты:</strong></p>
+<ul>
+<li>враг ходит первым и снимает все HP → атака/лечение/каст игрока не применяются;</li>
+<li><code>preStrike</code> накладывает unconscious/incapacitated → действие игрока пропущено;</li>
+<li>несмертельный <code>preStrike</code> → действие игрока выполняется;</li>
+<li>урон врага, статусы и броски записаны один раз, без двойного применения;</li>
+<li>ход игрока первым не изменился.</li>
+</ul>
+<h2 id="4-20">4. Проверка основного блока — 20 минут<a class="headerlink" href="#4-20" title="Permanent link">&para;</a></h2>
+<p>Команды ниже предназначены для этапа исправлений; <strong>в рамках составления этого плана они не запускались</strong>.</p>
+<h3 id="41">4.1. Сначала узкие тесты<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>Из <code>backend/</code>:</p>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:app:test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.spells.SpellServiceTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.spells.SpellServiceUpcastTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.rules.PactMagicTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.spells.UtilityCantripTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.rules.ReactionResolverTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.sessions.AvailableReactionsGateTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.sessions.SessionServiceAllyFlagTest'</span>
+</code></pre></div>
+<p>Добавить в команду новые классы тестов реакций, ownership и enemy-first, если они были созданы.</p>
+<h3 id="42-concurrency-">4.2. Затем существующие concurrency-тесты<a class="headerlink" href="#42-concurrency-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>./gradlew<span class="w"> </span>:app:test<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.sessions.SessionTurnConcurrencyTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.sessions.SessionLockingWriterRaceTest'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tests<span class="w"> </span><span class="s1">'com.yorva.sessions.SessionLockingWriterTest'</span>
+</code></pre></div>
+<p>Они не доказывают многоинстансную безопасность, но должны остаться зелёными.</p>
+<h3 id="43">4.3. Ручная матрица изоляции<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p>Если есть работающая локальная среда:</p>
+<ol>
+<li>Создать пользователей A и B, разные миры и по две параллельные сессии.</li>
+<li>B пытается создать сессию в мире A → <code>404</code>, записей нет.</li>
+<li>B вызывает selflearn без специального профиля → <code>404</code>; правила сессии A не меняются.</li>
+<li>A и B делают чередующиеся ходы → HP, враг, XP, лут и <code>availableReactions</code> остаются привязанными к своим <code>sessionId</code>.</li>
+<li>Повторить exploit-сценарии из шагов 3–6 и убедиться, что отказ не создаёт скрытых изменений.</li>
+</ol>
+<h3 id="44">4.4. Финальный контроль<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>git status --short</code> и <code>git diff -- &lt;каждый целевой файл&gt;</code>;</li>
+<li>в diff нет изменений параллельной auth-задачи;</li>
+<li>нет незапрошенных миграций, зависимостей и новых API-полей;</li>
+<li>OpenAPI и реализация <code>404</code> совпадают;</li>
+<li>все новые тесты зелёные;</li>
+<li>оставшиеся старые падения перечислены отдельно с точной причиной;</li>
+<li>в отчёте явно перечислены незакрытые высокие риски из раздела 7.</li>
+</ul>
+<h2 id="5">5. Правила таймбокса и точки остановки<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>T+30:</strong> должны быть закрыты selflearn и ownership. Если нет — продолжать только их, не начинать реакции.</li>
+<li><strong>T+65:</strong> должны быть закрыты реакции и заклинания. Если spell-gate ломает много старых fixtures, сначала исправлять fixtures; не расширять предметную модель.</li>
+<li><strong>T+90:</strong> должны быть закрыты ally-marker и <code>preStrike</code>.</li>
+<li><strong>T+105:</strong> новый код больше не писать, кроме исправлений ошибок, найденных точечными тестами.</li>
+<li><strong>T+110:</strong> прекратить отладку некритичных/старных инфраструктурных проблем, собрать diff и результаты.</li>
+<li><strong>T+120:</strong> выдать отчёт: исправлено/проверено/не исправлено/блокеры.</li>
+</ul>
+<p>Если времени не хватает, приоритет незавершённых работ: сначала довести до зелёного состояния уже начатый security-fix, затем остановиться. Не оставлять полурабочую идемпотентность или миграцию БД ради количества закрытых пунктов.</p>
+<h2 id="6">6. Критерии готовности двухчасового блока<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>Работа считается завершённой только если одновременно выполнено:</p>
+<ul>
+<li>selflearn недоступен в обычном/production JVM;</li>
+<li>обе ветки создания сессии проверяют владельца мира;</li>
+<li>произвольная/повторная реакция отклоняется сервером;</li>
+<li>текстовый и structured cast не могут использовать неизученное/неподготовленное заклинание;</li>
+<li>свободный текст не меняет <code>isAlly</code>;</li>
+<li>смертельный/обездвиживающий <code>preStrike</code> не позволяет игроку действовать;</li>
+<li>на каждый пункт есть негативный регрессионный тест;</li>
+<li>точечные тесты и существующие concurrency-тесты пройдены;</li>
+<li>известные незакрытые риски не выданы за исправленные.</li>
+</ul>
+<h2 id="7">7. Высокие риски после двухчасового блока<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="71-spec-first">7.1. Идемпотентность ходов — отдельный spec-first этап<a class="headerlink" href="#71-spec-first" title="Permanent link">&para;</a></h3>
+<p>Статус: <strong>реализовано и проверено</strong>. Миграция <code>0051-turn-request-idempotency</code>; ограничение — жёсткий crash JVM может оставить <code>IN_PROGRESS</code> без автоматического истечения.</p>
+<p><strong>Проблема:</strong> повтор после timeout создаёт новый ход и повторяет урон, расход ресурсов, XP и лут. Дедуп ловушки не решает общую проблему.</p>
+<p><strong>Порядок:</strong></p>
+<ol>
+<li>В OpenAPI добавить <code>clientRequestId</code> в <code>TurnRequest</code> и описать: клиент создаёт UUID на одно пользовательское действие; сетевые retry используют тот же UUID; новое действие — новый UUID.</li>
+<li>Обновить frontend retry-логику: автоматический retry не меняет UUID; повторный клик после полученного ответа создаёт новое действие только по явному выбору пользователя.</li>
+<li>Добавить отдельную таблицу запросов ходов с уникальным <code>(session_id, actor_user_id, client_request_id)</code>, статусом, хешем запроса и сохранённым ответом. Не хранить только <code>turn_id</code>: для точного replay нужен исходный <code>TurnResponse</code>.</li>
+<li>Атомарно зарезервировать ключ до LLM. Повтор <code>DONE</code> возвращает сохранённый ответ без механики и side effects; параллельный <code>IN_PROGRESS</code> получает <code>409</code>; тот же ключ с другим action/intent/reaction — <code>409</code>.</li>
+<li>Ошибку до начала механики разрешить повторять по явному правилу; после начала записи не делать второй расчёт. Все переходы статуса и запись ответа должны быть транзакционными.</li>
+<li>Проверить два параллельных одинаковых запроса, retry после commit/timeout, разные аккаунты с одинаковым UUID и разные сессии одного аккаунта.</li>
+</ol>
+<p>Не реализовывать упрощённый in-memory cache: он не работает после рестарта и между инстансами.</p>
+<h3 id="72-spineservice-side-effect-freshness-check">7.2. <code>SpineService</code>: side effect без freshness-check<a class="headerlink" href="#72-spineservice-side-effect-freshness-check" title="Permanent link">&para;</a></h3>
+<p><strong>Проблема:</strong> <code>applyEffects</code> и <code>tickStall</code> сохраняются до финальной проверки сессии. Ход может завершиться <code>409</code>, а сюжет уже изменится. Параллельные инстансы также могут перезаписать канву.</p>
+<p><strong>Порядок:</strong></p>
+<ol>
+<li>Сделать spine-изменения частью финальной короткой транзакции после <code>lockSession</code> и всех freshness-check.</li>
+<li>До этой транзакции только вычислить pending-эффекты, ничего не сохранять.</li>
+<li>Добавить блокировку строки spine (<code>FOR UPDATE</code>) либо <code>@Version</code>; выбранный вариант должен работать между разными JVM.</li>
+<li>Перенести начисление <code>spineXpGranted</code> и обновление описания/состояния в тот же согласованный коммит, чтобы XP соответствовал реально применённым битам.</li>
+<li>При <code>SessionConcurrentModificationException</code> не должно быть ни хода, ни spine, ни XP, ни лута.</li>
+<li>Тестировать двумя независимыми сервисными экземплярами/транзакциями, а не только in-memory lock одного singleton.</li>
+</ol>
+<h3 id="73">7.3. Общий герой в параллельных сессиях<a class="headerlink" href="#73" title="Permanent link">&para;</a></h3>
+<p><strong>Проблема:</strong> <code>CharacterService.syncHero</code> перезаписывает весь <code>characterJson</code> и <code>lastSessionId</code> по last-write-wins.</p>
+<p><strong>Порядок:</strong></p>
+<ol>
+<li>Сначала выбрать продуктовую модель: запретить одному герою одновременные активные сессии либо создавать независимый snapshot/fork на сессию.</li>
+<li>Для запрета — атомарная проверка/захват активной сессии в БД и понятный <code>409</code>.</li>
+<li>Для fork — не делать write-through поверх общего героя из каждой сессии; явная операция выбора итогового прогресса после завершения.</li>
+<li>Добавить optimistic version для защиты от незаметной перезаписи, но не считать одну <code>@Version</code> решением доменного конфликта.</li>
+<li>Проверить параллельные ходы одного героя в двух сессиях и независимость героев разных аккаунтов.</li>
+</ol>
+<p>Не пытаться решить это простым сравнением <code>lastSessionId</code>: это лишь скроет часть перезаписей и может потерять прогресс.</p>
+<h3 id="74-milestone-xp">7.4. Повторный milestone XP при возврате в сцену<a class="headerlink" href="#74-milestone-xp" title="Permanent link">&para;</a></h3>
+<p><strong>Минимальное исправление:</strong></p>
+<ul>
+<li>в обработчике <code>StateChange.ClearXpTriggers</code> удалять только временные per-location триггеры;</li>
+<li>сохранять ключи <code>milestone@...</code>;</li>
+<li>не менять остальную последовательность <code>sceneTransitions</code>/<code>milestoneChanges</code>.</li>
+</ul>
+<p><strong>Тест:</strong> <code>scene_1 → scene_2 → scene_1</code>: XP выдаётся за первое посещение каждой сцены, но повторное посещение <code>scene_1</code> не даёт XP. Существующий тест повтора подряд оставить.</p>
+<h3 id="75-take_loot-legacy-">7.5. Произвольный <code>TAKE_LOOT</code> и legacy-обходы валидатора<a class="headerlink" href="#75-take_loot-legacy-" title="Permanent link">&para;</a></h3>
+<p><strong>Порядок:</strong></p>
+<ol>
+<li>В structured и legacy <code>TAKE_LOOT</code> требовать, чтобы <code>itemId</code> принадлежал именно текущей витрине данной сессии, а не просто существовал в каталоге.</li>
+<li>Отклонять ID из <code>issuedLootItemIds</code>, дубли в одном ходу и повторную выдачу; количество ограничить доступным остатком витрины.</li>
+<li>Вынести общую проверку в один helper, чтобы structured/legacy пути не разошлись.</li>
+<li>Для legacy <code>SPAWN_ENEMY</code> и <code>DROP_ITEM</code> применять те же <code>EffectValidator</code>/rate-limit/whitelist, что и для structured effects; при невозможности валидировать legacy — консервативно отклонять тег.</li>
+<li>Тесты: чужой/произвольный catalog ID, ID из старой витрины, повторный ID, prompt injection через Narrator, превышение количества, параллельные сессии с разными витринами.</li>
+</ol>
+<h3 id="76-selflearn">7.6. Полная изоляция selflearn<a class="headerlink" href="#76-selflearn" title="Permanent link">&para;</a></h3>
+<p>После hotfix с профилем:</p>
+<ol>
+<li>Не использовать production singleton <code>BalanceRegistry</code> как изменяемый рабочий лист симуляции.</li>
+<li>Передавать отдельный <code>BalanceRegistry</code>/snapshot в контекст каждого selflearn-run и каждой симулированной сессии.</li>
+<li>Не публиковать итоговые overrides автоматически в игровой движок; применять только через явный reviewed deployment/config change.</li>
+<li>Проверить два параллельных selflearn-run и одновременную обычную игру: ни один не меняет правила другого.</li>
+</ol>
+<h2 id="8-hotfix">8. Что не входит даже в ближайший hotfix<a class="headerlink" href="#8-hotfix" title="Permanent link">&para;</a></h2>
+<p>Эти проблемы из ревью важны, но имеют меньший приоритет относительно перечисленных выше: бесплатный generic heal, неограниченные короткие отдыхи, боеприпасы и владение каталожным оружием, <code>prepareSpells</code> без long rest/во время боя, свиток без урона, один attack roll для multiattack. Их нельзя смешивать с двухчасовым security-блоком.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c21346df.min.js"></script>
+      
+    
+  </body>
+</html>
